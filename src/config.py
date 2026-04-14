@@ -18,10 +18,14 @@ FIELD_MAP_BY_NAME = {
     "거래 - 감면only 여부": "is_only_gam",
 }
 
-# 파이프라인 분류
+# 파이프라인 분류 — 개인
 PIPELINE_REGULAR = "B(젠트)-환급"
 PIPELINE_COLLECTION = ("C(젠트)-추심", "E(가은)-미수채권")
 STATUS_EXCLUDE = "실패"
+
+# 파이프라인 분류 — 법인
+CORP_PIPELINE_REGULAR = "법인-환급"
+CORP_PIPELINE_COLLECTION = ("법인-추심",)
 
 # 모델 하이퍼파라미터
 CHAIN_DIST_MAX_OFF = {

@@ -1,7 +1,9 @@
 # Data (API token으로 재생성 가능)
 data/deals_raw.json
 data/deals_slim.json
+data/deals_corp_slim.json
 data/.last_sync.txt
+data/.last_sync_corp.txt
 data/deal_fields.json
 
 # 로컬 환경

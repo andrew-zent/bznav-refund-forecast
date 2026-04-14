@@ -27,11 +27,16 @@ jobs:
       - name: Install dependencies
         run: pip install numpy openpyxl
 
-      - name: Extract from Pipedrive (incremental)
+      - name: Extract from Pipedrive (개인)
         env:
           PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
           PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
         run: python src/extract_pipedrive.py
+
+      - name: Extract from Pipedrive (법인)
+        env:
+          CORP_PIPEDRIVE_API_TOKEN: ${{ secrets.CORP_PIPEDRIVE_API_TOKEN }}
+        run: python src/extract_corp.py
 
       - name: Run forecast model
         env:

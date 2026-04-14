@@ -16,6 +16,7 @@ from config import (
     FIELD_MAP_BY_NAME, PIPELINE_REGULAR, PIPELINE_COLLECTION,
     STATUS_EXCLUDE, CHAIN_DIST_MAX_OFF, ROLLING_WINDOW,
     APP_FALLBACK_WINDOW, COLLECTION_MA_WINDOW, SEASON_ADJUSTMENT,
+    CORP_PIPELINE_REGULAR, CORP_PIPELINE_COLLECTION,
 )
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -515,6 +516,114 @@ class ForecastEngine:
         return results
 
 
+# ── 법인 간이 모델 ─────────────────────────────────────
+def load_corp_deals() -> list[dict]:
+    """법인 slim JSON 로드."""
+    path = DATA_DIR / "deals_corp_slim.json"
+    if not path.exists():
+        return []
+    print(f"  Loading corp JSON: {path.name} ({path.stat().st_size / 1e6:.1f} MB)")
+    raw = json.loads(path.read_text())
+    status_map = {"open": "진행 중", "won": "성사됨", "lost": "실패"}
+    for d in raw:
+        s = d.get("status", "")
+        d["status"] = status_map.get(s, s)
+    print(f"      loaded {len(raw):,} corp deals")
+    return raw
+
+
+def aggregate_corp(claims):
+    """법인 claims → 월별 결제 시계열 (정기/추심)."""
+    pay = {"regular": defaultdict(float), "collection": defaultdict(float)}
+    for c in claims:
+        status = str(c.get("status", ""))
+        pipe = str(c.get("pipeline", ""))
+        if STATUS_EXCLUDE in status:
+            continue
+        pd_ = parse_date(c.get("payment_date"))
+        pa = to_num(c.get("payment_amount"))
+        if not pd_ or pa <= 0:
+            continue
+        m = ym(pd_)
+        if CORP_PIPELINE_REGULAR in pipe:
+            pay["regular"][m] += pa
+        elif any(p in pipe for p in CORP_PIPELINE_COLLECTION):
+            pay["collection"][m] += pa
+    return pay
+
+
+class CorpForecastEngine:
+    """법인 간이 예측: 6개월 이동평균 + 선형추세."""
+
+    def __init__(self, corp_pay, current_m):
+        self.pay = corp_pay
+        self.current = current_m
+        self.last_complete = current_m - 1
+        lc = self.last_complete
+
+        # 정기/추심 각각 최근 6개월 MA + 추세
+        self.reg_params = self._fit_trend(corp_pay["regular"], lc)
+        self.col_params = self._fit_trend(corp_pay["collection"], lc)
+
+    def _fit_trend(self, series, lc, window=6):
+        """최근 window개월 데이터로 선형 추세 계산."""
+        vals = []
+        for i in range(window):
+            m = lc - window + 1 + i
+            vals.append(series.get(m, 0) / 1e8)
+        x = np.arange(len(vals))
+        if all(v == 0 for v in vals):
+            return {"ma": 0, "slope": 0}
+        slope, intercept = np.polyfit(x, vals, 1)
+        ma = float(np.mean(vals))
+        return {"ma": ma, "slope": float(slope), "last": float(vals[-1]),
+                "intercept": float(intercept), "window": len(vals)}
+
+    def _predict_series(self, params, months_ahead):
+        """선형추세로 예측 (억 단위)."""
+        idx = params["window"] - 1 + months_ahead
+        pred = params["intercept"] + params["slope"] * idx
+        return max(pred, 0)
+
+    def forecast(self, n_months=5):
+        results = []
+        for i in range(n_months):
+            target_m = self.current + i
+            reg = self._predict_series(self.reg_params, i)
+            col = self._predict_series(self.col_params, i)
+            total = reg + col
+            results.append({
+                "month": ym_label(target_m),
+                "regular": round(reg, 3),
+                "collection": round(col, 3),
+                "total": round(total, 3),
+            })
+        return results
+
+    def backtest(self, n_months=12):
+        results = []
+        for i in range(n_months, 0, -1):
+            tgt = self.current - i
+            actual_r = self.pay["regular"].get(tgt, 0) / 1e8
+            actual_c = self.pay["collection"].get(tgt, 0) / 1e8
+            actual = actual_r + actual_c
+            # walk-forward: 직전 6개월 MA
+            pred_vals = []
+            for j in range(1, 7):
+                m = tgt - j
+                pred_vals.append((self.pay["regular"].get(m, 0) +
+                                  self.pay["collection"].get(m, 0)) / 1e8)
+            pred = float(np.mean(pred_vals)) if pred_vals else 0
+            err = (pred - actual) / actual * 100 if actual > 0 else 0
+            results.append({
+                "month": ym_label(tgt),
+                "actual": round(actual, 3),
+                "predicted": round(pred, 3),
+                "error_pct": round(err, 1),
+            })
+        return results
+
+
 # ── main ─────────────────────────────────────────────
 def main():
     print("=" * 60)
@@ -567,11 +676,49 @@ def main():
         print(f"  {r['month']}: 실제 {r['actual']}억 vs 예측 {r['predicted']}억 ({r['error_pct']:+.1f}%) {tag}")
     print(f"  MAPE: {mape:.1f}%")
 
+    # ── 법인 ──
+    corp_claims = load_corp_deals()
+    corp_fc = []
+    corp_bt = []
+    corp_mape = None
+    if corp_claims:
+        corp_pay = aggregate_corp(corp_claims)
+        corp_engine = CorpForecastEngine(corp_pay, current_m)
+
+        print(f"\n[법인 예측]")
+        print(f"  정기 MA: {corp_engine.reg_params['ma']:.3f}억 (slope {corp_engine.reg_params['slope']:+.4f})")
+        print(f"  추심 MA: {corp_engine.col_params['ma']:.3f}억 (slope {corp_engine.col_params['slope']:+.4f})")
+
+        corp_fc = corp_engine.forecast(5)
+        for f in corp_fc:
+            print(f"  {f['month']}: 정기 {f['regular']}억 + 추심 {f['collection']}억 = {f['total']}억")
+
+        corp_bt = corp_engine.backtest(12)
+        corp_mape = float(np.mean([abs(r["error_pct"]) for r in corp_bt if r["actual"] > 0]))
+        print(f"  법인 MAPE: {corp_mape:.1f}%")
+
+    # ── 통합 ──
+    print(f"\n[통합 예측 (개인+법인)]")
+    combined_fc = []
+    for i, f_ind in enumerate(fc):
+        f_corp = corp_fc[i] if i < len(corp_fc) else {"regular": 0, "collection": 0, "total": 0}
+        combined = {
+            "month": f_ind["month"],
+            "individual": {"regular": f_ind["regular"], "collection": f_ind["collection"],
+                           "total": f_ind["total"], "season_adj": f_ind["season_adj"],
+                           "adjusted": f_ind["adjusted"], "breakdown": f_ind["breakdown"]},
+            "corporate": f_corp,
+            "grand_total": round(f_ind["adjusted"] + f_corp["total"], 2),
+        }
+        combined_fc.append(combined)
+        print(f"  {combined['month']}: 개인 {f_ind['adjusted']}억 + 법인 {f_corp['total']}억 = {combined['grand_total']}억")
+
     # Save outputs
     output = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "data_range": f"... ~ {ym_label(current_m)}",
         "total_claims": len(claims),
+        "total_corp_claims": len(corp_claims),
         "distributions": dists,
         "collection_pool": {
             "balance": round(engine.col_pool / 1e8, 1),
@@ -580,9 +727,11 @@ def main():
             "inflow_rate": round(engine.col_inflow_rate * 100, 1),
         },
         "season_adjustments": SEASON_ADJUSTMENT,
-        "forecast": fc,
+        "forecast": combined_fc,
         "backtest": bt,
+        "corp_backtest": corp_bt,
         "mape": round(mape, 2),
+        "corp_mape": round(corp_mape, 1) if corp_mape else None,
     }
     out_path = OUTPUT_DIR / "forecast.json"
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2))
