@@ -306,9 +306,88 @@ class ForecastEngine:
         recent = [app.get(m, 0) for m in [lc - 2, lc - 1, lc]]
         self.app_avg = float(np.mean([v for v in recent if v > 0])) if any(v > 0 for v in recent) else 0
 
-        # collection MA
-        cpay = series["C"]["pay"]
-        self.col_ma = float(np.mean([cpay.get(lc - i, 0) for i in range(COLLECTION_MA_WINDOW)]))
+        # collection: 채권풀 기반 예측
+        self._init_collection_pool(claims, series)
+
+    def _init_collection_pool(self, claims, series):
+        """채권풀 잔액 × 월간 회수율(utilization rate) 기반 추심 예측."""
+        lc = self.last_complete
+        col_pipes = PIPELINE_COLLECTION
+
+        # 추심 건 파싱: 신청월, 결정액, 결제월, 결제액
+        col_deals = []
+        for c in claims:
+            pipe = str(c.get("pipeline", ""))
+            status = str(c.get("status", ""))
+            if STATUS_EXCLUDE in status:
+                continue
+            if not any(p in pipe for p in col_pipes):
+                continue
+            ad = parse_date(c.get("apply_date"))
+            dd = parse_date(c.get("decision_date"))
+            pd_ = parse_date(c.get("payment_date"))
+            dec_amt = to_num(c.get("decision_amount"))
+            pay_amt = to_num(c.get("payment_amount"))
+            if not ad:
+                continue
+            col_deals.append({
+                "apply_m": ym(ad),
+                "dec_amt": dec_amt,
+                "pay_m": ym(pd_) if pd_ and pay_amt > 0 else None,
+                "pay_amt": pay_amt if pd_ else 0,
+            })
+
+        def pool_balance(T):
+            return sum(d["dec_amt"] for d in col_deals
+                       if d["apply_m"] < T and (d["pay_m"] is None or d["pay_m"] >= T))
+
+        def actual_pay(T):
+            return sum(d["pay_amt"] for d in col_deals if d["pay_m"] == T)
+
+        # 최근 3개월 utilization rate (결제/풀잔액)
+        rates = []
+        for i in range(1, COLLECTION_MA_WINDOW + 1):
+            T = lc - i + 1
+            pool = pool_balance(T)
+            paid = actual_pay(T)
+            if pool > 0:
+                rates.append(paid / pool)
+        self.col_util_rate = float(np.mean(rates)) if rates else 0
+
+        # 현재 풀 잔액
+        self.col_pool = pool_balance(self.current)
+
+        # 풀 순변동 (최근 3개월)
+        pools = [pool_balance(lc - i) for i in range(COLLECTION_MA_WINDOW, -1, -1)]
+        deltas = [pools[i + 1] - pools[i] for i in range(len(pools) - 1)]
+        self.col_pool_delta = float(np.mean(deltas)) if deltas else 0
+
+        self._col_deals = col_deals
+
+    def _predict_collection(self, months_ahead):
+        """months_ahead개월 후 추심 결제 예측 (풀잔액 × 회수율)."""
+        pool_est = self.col_pool + self.col_pool_delta * months_ahead
+        pool_est = max(pool_est, 0)
+        return pool_est * self.col_util_rate
+
+    def _backtest_collection(self, target_m):
+        """백테스트용: target_m 시점의 추심 예측 (직전 3개월 rate 사용)."""
+        def pool_balance(T):
+            return sum(d["dec_amt"] for d in self._col_deals
+                       if d["apply_m"] < T and (d["pay_m"] is None or d["pay_m"] >= T))
+        def actual_pay(T):
+            return sum(d["pay_amt"] for d in self._col_deals if d["pay_m"] == T)
+
+        pool = pool_balance(target_m)
+        rates = []
+        for j in range(1, COLLECTION_MA_WINDOW + 1):
+            T = target_m - j
+            p = pool_balance(T)
+            a = actual_pay(T)
+            if p > 0:
+                rates.append(a / p)
+        rate = float(np.mean(rates)) if rates else self.col_util_rate
+        return pool * rate
 
     def _get_app(self, m):
         s = self.series["B"]["app"]
@@ -350,7 +429,8 @@ class ForecastEngine:
                 "contrib": round(contrib / 1e8, 2),
                 "source": "실측" if is_actual else "추정"
             })
-        col = self.col_ma
+        months_ahead = target_m - self.current
+        col = self._predict_collection(months_ahead)
         pred_total = pred_reg + col
         mon = month_of(target_m)
         adj = SEASON_ADJUSTMENT.get(mon, 0)
@@ -398,8 +478,7 @@ class ForecastEngine:
                     d = sum(bfil.get(sm - o2, 0) * f2d_t.get(o2, 0) / 100 for o2 in f2d_t)
                 pred_b += d * r / 100
 
-            cpay = self.series["C"]["pay"]
-            pred_c = float(np.mean([cpay.get(tgt - j, 0) for j in range(1, 4)]))
+            pred_c = self._backtest_collection(tgt)
             pred = (pred_b + pred_c) / 1e8
             err = (pred - actual) / actual * 100 if actual > 0 else 0
             mon = month_of(tgt)
@@ -444,6 +523,12 @@ def main():
     for name, d in dists.items():
         print(f"  {name}: {d}")
 
+    # Collection pool info
+    print(f"\n[추심 채권풀]")
+    print(f"  풀 잔액: {engine.col_pool / 1e8:.1f}억")
+    print(f"  월간 회수율: {engine.col_util_rate * 100:.3f}%")
+    print(f"  풀 순변동: 월 {engine.col_pool_delta / 1e8:+.1f}억")
+
     # Forecast
     print(f"\n[향후 5개월 예측]")
     fc = engine.forecast(5)
@@ -465,6 +550,11 @@ def main():
         "data_range": f"... ~ {ym_label(current_m)}",
         "total_claims": len(claims),
         "distributions": dists,
+        "collection_pool": {
+            "balance": round(engine.col_pool / 1e8, 1),
+            "utilization_rate": round(engine.col_util_rate * 100, 3),
+            "monthly_delta": round(engine.col_pool_delta / 1e8, 1),
+        },
         "season_adjustments": SEASON_ADJUSTMENT,
         "forecast": fc,
         "backtest": bt,
