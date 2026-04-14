@@ -310,7 +310,7 @@ class ForecastEngine:
         # collection: 채권풀 기반 예측
         self._init_collection_pool(claims, series)
 
-    def _init_collection_pool(self, claims, series):
+    def _init_collection_pool(self, claims, _series):
         """채권풀 잔액 × 월간 회수율(utilization rate) 기반 추심 예측."""
         lc = self.last_complete
         col_pipes = PIPELINE_COLLECTION
@@ -358,40 +358,21 @@ class ForecastEngine:
         # 현재 풀 잔액
         self.col_pool = pool_balance(self.current)
 
-        # B → 추심 유입률: B 누수 대비 추심 풀 유입 비율 (최근 6개월)
-        d2p_total = sum(self.d2p.values())  # ~34.5%
-        self.col_leak_pct = (100 - d2p_total) / 100  # B 결정 중 미결제 비율
-
-        inflow_ratios = []
-        for i in range(1, 7):
-            T = lc - i + 1
-            pool_now = pool_balance(T)
-            pool_prev = pool_balance(T - 1)
-            paid = actual_pay(T)
-            inflow = (pool_now - pool_prev) + paid  # 순변동 + 결제 = 유입
-            b_dec = series["B"]["dec"].get(T, 0)
-            b_leak = b_dec * self.col_leak_pct
-            if b_leak > 0 and inflow > 0:
-                inflow_ratios.append(inflow / b_leak)
-        self.col_inflow_rate = float(np.mean(inflow_ratios)) if inflow_ratios else 0.20
+        # 풀 순변동: 최근 3개월 실측 기반
+        # (B→추심 유입을 간접 공식으로 추정하면 d2p에 수수료율이 내포되어
+        #  미결제율을 8배 과대추정하는 문제가 있으므로, 실측 변동을 직접 사용)
+        pools = [pool_balance(lc - i) for i in range(COLLECTION_MA_WINDOW, -1, -1)]
+        deltas = [pools[i + 1] - pools[i] for i in range(len(pools) - 1)]
+        self.col_pool_delta = float(np.mean(deltas)) if deltas else 0
 
         self._col_deals = col_deals
         self._col_pool_balance = pool_balance
 
     def _predict_collection(self, months_ahead):
-        """추심 결제 예측: B결정 → 누수 → 풀 유입 → 회수."""
-        pool = self.col_pool
-        for i in range(months_ahead):
-            # 이 달의 B 결정 → 누수 → 유입
-            target_m = self.current + i
-            b_dec = self._get_dec(target_m)
-            inflow = b_dec * self.col_leak_pct * self.col_inflow_rate
-            # 회수 (결제)
-            payment = pool * self.col_util_rate
-            # 풀 갱신: 유입 - 회수
-            pool = max(pool + inflow - payment, 0)
-        # 최종 월의 회수액
-        return pool * self.col_util_rate
+        """추심 결제 예측: 실측 풀 순변동 기반."""
+        pool_est = self.col_pool + self.col_pool_delta * months_ahead
+        pool_est = max(pool_est, 0)
+        return pool_est * self.col_util_rate
 
     def _backtest_collection(self, target_m):
         """백테스트용: target_m 시점의 추심 예측 (직전 3개월 rate 사용)."""
@@ -658,8 +639,7 @@ def main():
     print(f"\n[추심 채권풀]")
     print(f"  풀 잔액: {engine.col_pool / 1e8:.1f}억")
     print(f"  월간 회수율: {engine.col_util_rate * 100:.3f}%")
-    print(f"  B 누수율: {engine.col_leak_pct * 100:.1f}%")
-    print(f"  누수→풀 유입률: {engine.col_inflow_rate * 100:.1f}%")
+    print(f"  풀 순변동: 월 {engine.col_pool_delta / 1e8:+.1f}억")
 
     # Forecast
     print(f"\n[향후 5개월 예측]")
@@ -723,8 +703,7 @@ def main():
         "collection_pool": {
             "balance": round(engine.col_pool / 1e8, 1),
             "utilization_rate": round(engine.col_util_rate * 100, 3),
-            "leak_pct": round(engine.col_leak_pct * 100, 1),
-            "inflow_rate": round(engine.col_inflow_rate * 100, 1),
+            "monthly_delta": round(engine.col_pool_delta / 1e8, 1),
         },
         "season_adjustments": SEASON_ADJUSTMENT,
         "forecast": combined_fc,

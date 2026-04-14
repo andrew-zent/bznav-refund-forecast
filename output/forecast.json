@@ -28,8 +28,7 @@
   "collection_pool": {
     "balance": 149.4,
     "utilization_rate": 1.109,
-    "leak_pct": 65.5,
-    "inflow_rate": 18.7
+    "monthly_delta": -0.9
   },
   "season_adjustments": {
     "1": 0.0,
@@ -51,9 +50,9 @@
       "individual": {
         "regular": 14.39,
         "collection": 1.66,
-        "total": 16.04,
+        "total": 16.05,
         "season_adj": 0.0,
-        "adjusted": 16.04,
+        "adjusted": 16.05,
         "breakdown": [
           {
             "off": 0,
@@ -95,16 +94,16 @@
         "collection": 0.04,
         "total": 0.245
       },
-      "grand_total": 16.29
+      "grand_total": 16.3
     },
     {
       "month": "2026-05",
       "individual": {
         "regular": 16.45,
-        "collection": 1.67,
-        "total": 18.12,
+        "collection": 1.65,
+        "total": 18.1,
         "season_adj": 0.0,
-        "adjusted": 18.12,
+        "adjusted": 18.1,
         "breakdown": [
           {
             "off": 0,
@@ -146,16 +145,16 @@
         "collection": 0.05,
         "total": 0.24
       },
-      "grand_total": 18.36
+      "grand_total": 18.34
     },
     {
       "month": "2026-06",
       "individual": {
         "regular": 19.5,
-        "collection": 1.74,
-        "total": 21.24,
+        "collection": 1.64,
+        "total": 21.14,
         "season_adj": 0.0,
-        "adjusted": 21.24,
+        "adjusted": 21.14,
         "breakdown": [
           {
             "off": 0,
@@ -197,16 +196,16 @@
         "collection": 0.061,
         "total": 0.235
       },
-      "grand_total": 21.47
+      "grand_total": 21.38
     },
     {
       "month": "2026-07",
       "individual": {
         "regular": 17.0,
-        "collection": 1.79,
-        "total": 18.8,
+        "collection": 1.63,
+        "total": 18.63,
         "season_adj": 0.0,
-        "adjusted": 18.8,
+        "adjusted": 18.63,
         "breakdown": [
           {
             "off": 0,
@@ -248,16 +247,16 @@
         "collection": 0.071,
         "total": 0.23
       },
-      "grand_total": 19.03
+      "grand_total": 18.86
     },
     {
       "month": "2026-08",
       "individual": {
         "regular": 16.7,
-        "collection": 1.83,
-        "total": 18.54,
+        "collection": 1.62,
+        "total": 18.32,
         "season_adj": 0.0,
-        "adjusted": 18.54,
+        "adjusted": 18.32,
         "breakdown": [
           {
             "off": 0,
@@ -299,7 +298,7 @@
         "collection": 0.081,
         "total": 0.225
       },
-      "grand_total": 18.77
+      "grand_total": 18.55
     }
   ],
   "backtest": [
