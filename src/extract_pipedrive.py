@@ -99,27 +99,36 @@ def slim_deal(deal, pipe_names):
 
 
 def fetch_deals_slim(pipe_names, since=None):
-    """deals를 페이지네이션으로 가져오되 즉시 slim 변환."""
-    print(f"[2/3] Fetching deals {'since ' + since if since else '(full sync)'} ...")
+    """deals를 페이지네이션으로 가져오되 즉시 slim 변환.
+
+    incremental: DESC 정렬 → 오래된 건 만나면 즉시 중단 (전건 스캔 방지)
+    full: ASC 정렬 → 전건 순회
+    """
+    mode = "incremental" if since else "full sync"
+    print(f"[2/3] Fetching deals ({mode}) ...")
     all_deals = []
     start = 0
     LIMIT = 500
     page = 0
+    sort_order = "update_time DESC" if since else "update_time ASC"
     while True:
         page += 1
         params = {
             "start": start,
             "limit": LIMIT,
             "status": "all_not_deleted",
-            "sort": "update_time ASC",
+            "sort": sort_order,
         }
         data = http_get("/deals", params)
         chunk = data.get("data") or []
+        done = False
         for deal in chunk:
-            # Incremental filter
             if since and (deal.get("update_time") or "") < since:
-                continue
+                done = True
+                break
             all_deals.append(slim_deal(deal, pipe_names))
+        if done:
+            break
         if page % 50 == 0:
             print(f"      page {page}: {len(all_deals):,} deals so far")
         pag = data.get("additional_data", {}).get("pagination", {})
