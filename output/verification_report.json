@@ -1,0 +1,43 @@
+{
+  "agent": "verifier",
+  "timestamp": "2026-04-14T12:21:08.493705Z",
+  "total_checks": 6,
+  "passed": 4,
+  "failed": 2,
+  "severity": "warn",
+  "results": [
+    {
+      "check": "MAPE 수준",
+      "ok": true,
+      "detail": "5.7%",
+      "value": 5.73
+    },
+    {
+      "check": "편향 검증",
+      "ok": false,
+      "detail": "최대 연속 동일방향 5개월 (과소추정)",
+      "value": 5
+    },
+    {
+      "check": "백테스트 이상: 2026-03",
+      "ok": false,
+      "detail": "오차 -15.3% (임계 ±15.0%)",
+      "value": -15.3
+    },
+    {
+      "check": "분산 비율 안정성",
+      "ok": true,
+      "detail": "전체 안정"
+    },
+    {
+      "check": "채권풀 건강도",
+      "ok": true,
+      "detail": "잔액 149.4억, 순변동 -0.9억/월, 회수율 1.109%"
+    },
+    {
+      "check": "예측 범위",
+      "ok": true,
+      "detail": "16.3~21.4억 (정상)"
+    }
+  ]
+}
