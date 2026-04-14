@@ -59,15 +59,33 @@ def to_num(v) -> float:
 # ── data loading ─────────────────────────────────────
 def load_deals() -> list[dict]:
     """JSON 또는 xlsx에서 deals 로드 → 내부 포맷."""
+    # 1. slim JSON (extract_pipedrive.py의 최적화 출력) 우선
+    slim_path = DATA_DIR / "deals_slim.json"
+    if slim_path.exists():
+        return _load_slim_json(slim_path)
+    # 2. raw JSON (legacy) fallback
     raw_path = DATA_DIR / "deals_raw.json"
     if raw_path.exists():
         return _load_json(raw_path)
-    # xlsx fallback
+    # 3. xlsx fallback
     xlsx_files = list(DATA_DIR.glob("*.xlsx"))
     if xlsx_files:
         return _load_xlsx(xlsx_files[0])
-    print("ERROR: data/deals_raw.json 또는 data/*.xlsx 필요", file=sys.stderr)
+    print("ERROR: data/deals_slim.json, deals_raw.json, 또는 *.xlsx 필요", file=sys.stderr)
     sys.exit(1)
+
+
+def _load_slim_json(path: Path) -> list[dict]:
+    """slim JSON (이미 변수명 매핑 완료) 직접 로드."""
+    print(f"  Loading slim JSON: {path.name} ({path.stat().st_size / 1e6:.1f} MB)")
+    raw = json.loads(path.read_text())
+    # status 매핑 (slim에서 이미 pipeline 이름은 매핑됨)
+    status_map = {"open": "진행 중", "won": "성사됨", "lost": "실패"}
+    for d in raw:
+        s = d.get("status", "")
+        d["status"] = status_map.get(s, s)
+    print(f"      loaded {len(raw):,} deals")
+    return raw
 
 
 def _load_json(path: Path) -> list[dict]:
