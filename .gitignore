@@ -1,0 +1,13 @@
+# Data (API token으로 재생성 가능)
+data/deals_raw.json
+data/.last_sync.txt
+data/deal_fields.json
+
+# 로컬 환경
+.env
+__pycache__/
+*.pyc
+.DS_Store
+
+# xlsx도 제외 (GitHub 100MB 제한 초과)
+data/*.xlsx

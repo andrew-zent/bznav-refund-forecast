@@ -1,0 +1,352 @@
+{
+  "generated_at": "2026-04-14T01:31:41Z",
+  "data_range": "... ~ 2026-04",
+  "total_claims": 233102,
+  "distributions": {
+    "a2f": {
+      "0": 29.02,
+      "1": 29.31,
+      "2": 1.76,
+      "3": 0.75,
+      "4": 0.26
+    },
+    "f2d": {
+      "0": 14.22,
+      "1": 41.79,
+      "2": 37.98,
+      "3": 3.16,
+      "4": 2.08
+    },
+    "d2p": {
+      "0": 18.61,
+      "1": 14.29,
+      "2": 1.54,
+      "3": 0.07
+    }
+  },
+  "season_adjustments": {
+    "1": 0.05,
+    "2": -0.1,
+    "3": 0.2,
+    "4": 0.0,
+    "5": 0.0,
+    "6": -0.1,
+    "7": -0.1,
+    "8": 0.0,
+    "9": 0.0,
+    "10": 0.0,
+    "11": 0.0,
+    "12": 0.15
+  },
+  "forecast": [
+    {
+      "month": "2026-04",
+      "regular": 13.88,
+      "collection": 1.76,
+      "total": 15.65,
+      "season_adj": 0.0,
+      "adjusted": 15.65,
+      "breakdown": [
+        {
+          "off": 0,
+          "src": "2026-04",
+          "dec_amount": 22.68,
+          "rate": 18.605341694290125,
+          "contrib": 4.22,
+          "source": "추정"
+        },
+        {
+          "off": 1,
+          "src": "2026-03",
+          "dec_amount": 61.96,
+          "rate": 14.292338819836763,
+          "contrib": 8.85,
+          "source": "실측"
+        },
+        {
+          "off": 2,
+          "src": "2026-02",
+          "dec_amount": 50.45,
+          "rate": 1.5433017776704105,
+          "contrib": 0.78,
+          "source": "실측"
+        },
+        {
+          "off": 3,
+          "src": "2026-01",
+          "dec_amount": 43.91,
+          "rate": 0.07169197176923016,
+          "contrib": 0.03,
+          "source": "실측"
+        }
+      ]
+    },
+    {
+      "month": "2026-05",
+      "regular": 16.11,
+      "collection": 1.76,
+      "total": 17.87,
+      "season_adj": 0.0,
+      "adjusted": 17.87,
+      "breakdown": [
+        {
+          "off": 0,
+          "src": "2026-05",
+          "dec_amount": 63.82,
+          "rate": 18.605341694290125,
+          "contrib": 11.87,
+          "source": "추정"
+        },
+        {
+          "off": 1,
+          "src": "2026-04",
+          "dec_amount": 22.68,
+          "rate": 14.292338819836763,
+          "contrib": 3.24,
+          "source": "추정"
+        },
+        {
+          "off": 2,
+          "src": "2026-03",
+          "dec_amount": 61.96,
+          "rate": 1.5433017776704105,
+          "contrib": 0.96,
+          "source": "실측"
+        },
+        {
+          "off": 3,
+          "src": "2026-02",
+          "dec_amount": 50.45,
+          "rate": 0.07169197176923016,
+          "contrib": 0.04,
+          "source": "실측"
+        }
+      ]
+    },
+    {
+      "month": "2026-06",
+      "regular": 19.48,
+      "collection": 1.76,
+      "total": 21.24,
+      "season_adj": -0.1,
+      "adjusted": 19.12,
+      "breakdown": [
+        {
+          "off": 0,
+          "src": "2026-06",
+          "dec_amount": 53.54,
+          "rate": 18.605341694290125,
+          "contrib": 9.96,
+          "source": "추정"
+        },
+        {
+          "off": 1,
+          "src": "2026-05",
+          "dec_amount": 63.82,
+          "rate": 14.292338819836763,
+          "contrib": 9.12,
+          "source": "추정"
+        },
+        {
+          "off": 2,
+          "src": "2026-04",
+          "dec_amount": 22.68,
+          "rate": 1.5433017776704105,
+          "contrib": 0.35,
+          "source": "추정"
+        },
+        {
+          "off": 3,
+          "src": "2026-03",
+          "dec_amount": 61.96,
+          "rate": 0.07169197176923016,
+          "contrib": 0.04,
+          "source": "실측"
+        }
+      ]
+    },
+    {
+      "month": "2026-07",
+      "regular": 17.01,
+      "collection": 1.76,
+      "total": 18.78,
+      "season_adj": -0.1,
+      "adjusted": 16.9,
+      "breakdown": [
+        {
+          "off": 0,
+          "src": "2026-07",
+          "dec_amount": 44.94,
+          "rate": 18.605341694290125,
+          "contrib": 8.36,
+          "source": "추정"
+        },
+        {
+          "off": 1,
+          "src": "2026-06",
+          "dec_amount": 53.54,
+          "rate": 14.292338819836763,
+          "contrib": 7.65,
+          "source": "추정"
+        },
+        {
+          "off": 2,
+          "src": "2026-05",
+          "dec_amount": 63.82,
+          "rate": 1.5433017776704105,
+          "contrib": 0.98,
+          "source": "추정"
+        },
+        {
+          "off": 3,
+          "src": "2026-04",
+          "dec_amount": 22.68,
+          "rate": 0.07169197176923016,
+          "contrib": 0.02,
+          "source": "추정"
+        }
+      ]
+    },
+    {
+      "month": "2026-08",
+      "regular": 16.74,
+      "collection": 1.76,
+      "total": 18.5,
+      "season_adj": 0.0,
+      "adjusted": 18.5,
+      "breakdown": [
+        {
+          "off": 0,
+          "src": "2026-08",
+          "dec_amount": 50.76,
+          "rate": 18.605341694290125,
+          "contrib": 9.44,
+          "source": "추정"
+        },
+        {
+          "off": 1,
+          "src": "2026-07",
+          "dec_amount": 44.94,
+          "rate": 14.292338819836763,
+          "contrib": 6.42,
+          "source": "추정"
+        },
+        {
+          "off": 2,
+          "src": "2026-06",
+          "dec_amount": 53.54,
+          "rate": 1.5433017776704105,
+          "contrib": 0.83,
+          "source": "추정"
+        },
+        {
+          "off": 3,
+          "src": "2026-05",
+          "dec_amount": 63.82,
+          "rate": 0.07169197176923016,
+          "contrib": 0.05,
+          "source": "추정"
+        }
+      ]
+    }
+  ],
+  "backtest": [
+    {
+      "month": "2025-04",
+      "actual": 16.93,
+      "predicted": 16.02,
+      "error_pct": -5.4,
+      "season_month": 4,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-05",
+      "actual": 12.1,
+      "predicted": 12.06,
+      "error_pct": -0.3,
+      "season_month": 5,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-06",
+      "actual": 14.91,
+      "predicted": 13.21,
+      "error_pct": -11.4,
+      "season_month": 6,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-07",
+      "actual": 15.69,
+      "predicted": 14.68,
+      "error_pct": -6.4,
+      "season_month": 7,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-08",
+      "actual": 12.33,
+      "predicted": 13.86,
+      "error_pct": 12.4,
+      "season_month": 8,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-09",
+      "actual": 17.51,
+      "predicted": 17.04,
+      "error_pct": -2.7,
+      "season_month": 9,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-10",
+      "actual": 17.77,
+      "predicted": 17.71,
+      "error_pct": -0.3,
+      "season_month": 10,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-11",
+      "actual": 16.18,
+      "predicted": 15.94,
+      "error_pct": -1.5,
+      "season_month": 11,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2025-12",
+      "actual": 18.46,
+      "predicted": 17.58,
+      "error_pct": -4.8,
+      "season_month": 12,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2026-01",
+      "actual": 17.79,
+      "predicted": 17.33,
+      "error_pct": -2.6,
+      "season_month": 1,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2026-02",
+      "actual": 16.35,
+      "predicted": 17.58,
+      "error_pct": 7.5,
+      "season_month": 2,
+      "is_season_outlier": false
+    },
+    {
+      "month": "2026-03",
+      "actual": 24.61,
+      "predicted": 20.83,
+      "error_pct": -15.4,
+      "season_month": 3,
+      "is_season_outlier": true
+    }
+  ],
+  "mape": 5.89
+}
