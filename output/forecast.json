@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-14T05:42:17Z",
+  "generated_at": "2026-04-14T05:51:12Z",
   "data_range": "... ~ 2026-04",
   "total_claims": 233122,
   "distributions": {
@@ -27,7 +27,8 @@
   "collection_pool": {
     "balance": 149.4,
     "utilization_rate": 1.109,
-    "monthly_delta": -0.9
+    "leak_pct": 65.5,
+    "inflow_rate": 18.7
   },
   "season_adjustments": {
     "1": 0.0,
@@ -89,10 +90,10 @@
     {
       "month": "2026-05",
       "regular": 16.14,
-      "collection": 1.65,
-      "total": 17.78,
+      "collection": 1.67,
+      "total": 17.81,
       "season_adj": 0.0,
-      "adjusted": 17.78,
+      "adjusted": 17.81,
       "breakdown": [
         {
           "off": 0,
@@ -131,10 +132,10 @@
     {
       "month": "2026-06",
       "regular": 19.48,
-      "collection": 1.64,
-      "total": 21.12,
+      "collection": 1.74,
+      "total": 21.22,
       "season_adj": 0.0,
-      "adjusted": 21.12,
+      "adjusted": 21.22,
       "breakdown": [
         {
           "off": 0,
@@ -173,10 +174,10 @@
     {
       "month": "2026-07",
       "regular": 17.02,
-      "collection": 1.63,
-      "total": 18.64,
+      "collection": 1.79,
+      "total": 18.81,
       "season_adj": 0.0,
-      "adjusted": 18.64,
+      "adjusted": 18.81,
       "breakdown": [
         {
           "off": 0,
@@ -215,10 +216,10 @@
     {
       "month": "2026-08",
       "regular": 16.74,
-      "collection": 1.62,
-      "total": 18.36,
+      "collection": 1.83,
+      "total": 18.57,
       "season_adj": 0.0,
-      "adjusted": 18.36,
+      "adjusted": 18.57,
       "breakdown": [
         {
           "off": 0,

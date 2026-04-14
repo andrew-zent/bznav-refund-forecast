@@ -19,10 +19,10 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 </style></head><body>
 <div class="container">
 <h1>비즈넵 결제 예측 대시보드</h1>
-<div class="meta"><span>갱신: 2026-04-14T05:42:17Z</span><span>MAPE 5.75%</span><span>데이터: 233,122건</span></div>
+<div class="meta"><span>갱신: 2026-04-14T05:51:12Z</span><span>MAPE 5.75%</span><span>데이터: 233,122건</span></div>
 
 <div class="kpi-row">
-<div class="kpi hl"><div class="kpi-label">2026-04 권장</div><div class="kpi-value">15.59<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 15.59억, 시즌 +0%</div></div><div class="kpi hl"><div class="kpi-label">2026-05 권장</div><div class="kpi-value">17.78<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 17.78억, 시즌 +0%</div></div><div class="kpi hl"><div class="kpi-label">2026-06 권장</div><div class="kpi-value">21.12<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 21.12억, 시즌 +0%</div></div>
+<div class="kpi hl"><div class="kpi-label">2026-04 권장</div><div class="kpi-value">15.59<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 15.59억, 시즌 +0%</div></div><div class="kpi hl"><div class="kpi-label">2026-05 권장</div><div class="kpi-value">17.81<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 17.81억, 시즌 +0%</div></div><div class="kpi hl"><div class="kpi-label">2026-06 권장</div><div class="kpi-value">21.22<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">모델 21.22억, 시즌 +0%</div></div>
 <div class="kpi"><div class="kpi-label">12개월 MAPE</div><div class="kpi-value">5.75%</div></div>
 </div>
 
@@ -30,7 +30,7 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 <div class="card"><h2>📊 향후 예측</h2><div class="chart-c"><canvas id="fcChart"></canvas></div></div>
 <div class="card"><h2>🎯 권장 예측값</h2>
 <table><thead><tr><th>월</th><th>정기</th><th>추심</th><th>총합</th><th>시즌</th><th>권장</th></tr></thead>
-<tbody><tr><td><b>2026-04</b></td><td>13.93</td><td>1.66</td><td><b>15.59</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">15.59</td></tr><tr><td><b>2026-05</b></td><td>16.14</td><td>1.65</td><td><b>17.78</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">17.78</td></tr><tr><td><b>2026-06</b></td><td>19.48</td><td>1.64</td><td><b>21.12</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">21.12</td></tr><tr><td><b>2026-07</b></td><td>17.02</td><td>1.63</td><td><b>18.64</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">18.64</td></tr><tr><td><b>2026-08</b></td><td>16.74</td><td>1.62</td><td><b>18.36</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">18.36</td></tr></tbody></table></div>
+<tbody><tr><td><b>2026-04</b></td><td>13.93</td><td>1.66</td><td><b>15.59</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">15.59</td></tr><tr><td><b>2026-05</b></td><td>16.14</td><td>1.67</td><td><b>17.81</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">17.81</td></tr><tr><td><b>2026-06</b></td><td>19.48</td><td>1.74</td><td><b>21.22</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">21.22</td></tr><tr><td><b>2026-07</b></td><td>17.02</td><td>1.79</td><td><b>18.81</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">18.81</td></tr><tr><td><b>2026-08</b></td><td>16.74</td><td>1.83</td><td><b>18.57</b></td><td>+0%</td><td style="color:#58a6ff;font-weight:700;">18.57</td></tr></tbody></table></div>
 </div>
 
 <div class="grid-2">
@@ -46,8 +46,8 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 Chart.defaults.color='#8b949e';Chart.defaults.borderColor='#21262d';
 const g={color:'#21262d',drawBorder:false},bs={grid:g,ticks:{color:'#8b949e'}};
 new Chart(document.getElementById('fcChart'),{type:'bar',data:{labels:["2026-04", "2026-05", "2026-06", "2026-07", "2026-08"],datasets:[
-{label:'모델 예측',data:[15.59, 17.78, 21.12, 18.64, 18.36],backgroundColor:'#3fb950',borderRadius:4},
-{label:'시즌 보정',data:[15.59, 17.78, 21.12, 18.64, 18.36],type:'line',borderColor:'#d29922',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
+{label:'모델 예측',data:[15.59, 17.81, 21.22, 18.81, 18.57],backgroundColor:'#3fb950',borderRadius:4},
+{label:'시즌 보정',data:[15.59, 17.81, 21.22, 18.81, 18.57],type:'line',borderColor:'#d29922',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
 ]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:10}}},scales:{y:{...bs},x:{...bs}}}});
 new Chart(document.getElementById('btChart'),{type:'line',data:{labels:["2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"],datasets:[
 {label:'실제',data:[16.93, 12.1, 14.91, 15.69, 12.33, 17.51, 17.77, 16.18, 18.46, 17.79, 16.35, 24.61],borderColor:'#58a6ff',backgroundColor:'rgba(88,166,255,0.2)',fill:true,tension:.3,pointRadius:4,borderWidth:2.5},
