@@ -25,7 +25,7 @@ def main():
     else:
         html = template_path.read_text().replace("{{FORECAST_DATA}}", json.dumps(data, ensure_ascii=False))
 
-    out_path = OUTPUT_DIR / "dashboard.html"
+    out_path = OUTPUT_DIR / "index.html"
     out_path.write_text(html)
     print(f"→ {out_path} ({out_path.stat().st_size / 1024:.0f} KB)")
 
