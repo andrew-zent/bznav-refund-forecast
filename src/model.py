@@ -353,7 +353,12 @@ class ForecastEngine:
             paid = actual_pay(T)
             if pool > 0:
                 rates.append(paid / pool)
-        self.col_util_rate = float(np.mean(rates)) if rates else 0
+        raw_rate = float(np.mean(rates)) if rates else 0
+        self._util_rate_capped = raw_rate > 1.0
+        self._original_util_rate = raw_rate
+        self.col_util_rate = min(raw_rate, 1.0)
+        if self._util_rate_capped:
+            print(f"  ⚠ auto-heal: utilization_rate {raw_rate*100:.1f}% > 100%, capped to 100%")
 
         # 현재 풀 잔액
         self.col_pool = pool_balance(self.current)
@@ -553,7 +558,7 @@ def aggregate_corp(claims):
 
 
 class CorpForecastEngine:
-    """법인 간이 예측: 6개월 이동평균 + 선형추세."""
+    """법인 간이 예측: 자동 모델 선택 (선형추세 vs 단순 MA)."""
 
     def __init__(self, corp_pay, current_m):
         self.pay = corp_pay
@@ -565,6 +570,9 @@ class CorpForecastEngine:
         self.reg_params = self._fit_trend(corp_pay["regular"], lc)
         self.col_params = self._fit_trend(corp_pay["collection"], lc)
 
+        # 자동 모델 선택
+        self._auto_select_model()
+
     def _fit_trend(self, series, lc, window=6):
         """최근 window개월 데이터로 선형 추세 계산."""
         vals = []
@@ -573,7 +581,7 @@ class CorpForecastEngine:
             vals.append(series.get(m, 0) / 1e8)
         x = np.arange(len(vals))
         if all(v == 0 for v in vals):
-            return {"ma": 0, "slope": 0}
+            return {"ma": 0, "slope": 0, "intercept": 0, "window": len(vals)}
         slope, intercept = np.polyfit(x, vals, 1)
         ma = float(np.mean(vals))
         return {"ma": ma, "slope": float(slope), "last": float(vals[-1]),
@@ -585,7 +593,35 @@ class CorpForecastEngine:
         pred = params["intercept"] + params["slope"] * idx
         return max(pred, 0)
 
+    @staticmethod
+    def _wmape(bt):
+        valid = [r for r in bt if r["actual"] > 0]
+        if not valid:
+            return 0
+        total_actual = sum(r["actual"] for r in valid)
+        total_err = sum(abs(r["predicted"] - r["actual"]) for r in valid)
+        return (total_err / total_actual * 100) if total_actual > 0 else 0
+
+    def _auto_select_model(self):
+        """trend vs MA 백테스트 비교 → wMAPE가 낮은 모델 자동 선택."""
+        bt_trend = self.backtest(12, method="trend")
+        bt_ma = self.backtest(12, method="ma")
+        self.wmape_trend = self._wmape(bt_trend)
+        self.wmape_ma = self._wmape(bt_ma)
+
+        if self.wmape_ma < self.wmape_trend:
+            self.model_type = "simple_ma"
+        else:
+            self.model_type = "linear_trend"
+        print(f"  ⚠ auto-select: {self.model_type} "
+              f"(trend wMAPE: {self.wmape_trend:.1f}%, MA wMAPE: {self.wmape_ma:.1f}%)")
+
     def forecast(self, n_months=5):
+        if self.model_type == "simple_ma":
+            return self._forecast_ma(n_months)
+        return self._forecast_trend(n_months)
+
+    def _forecast_trend(self, n_months):
         results = []
         for i in range(n_months):
             target_m = self.current + i
@@ -600,19 +636,48 @@ class CorpForecastEngine:
             })
         return results
 
-    def backtest(self, n_months=12):
-        """Walk-forward 백테스트 — 예측과 동일한 선형추세 사용."""
+    def _forecast_ma(self, n_months):
+        lc = self.last_complete
+        reg_vals = [self.pay["regular"].get(lc - 5 + i, 0) / 1e8 for i in range(6)]
+        col_vals = [self.pay["collection"].get(lc - 5 + i, 0) / 1e8 for i in range(6)]
+        results = []
+        for i in range(n_months):
+            target_m = self.current + i
+            reg = max(float(np.mean(reg_vals[-6:])), 0)
+            col = max(float(np.mean(col_vals[-6:])), 0)
+            results.append({
+                "month": ym_label(target_m),
+                "regular": round(reg, 3),
+                "collection": round(col, 3),
+                "total": round(reg + col, 3),
+            })
+            reg_vals.append(reg)
+            col_vals.append(col)
+        return results
+
+    def backtest(self, n_months=12, method=None):
+        """Walk-forward 백테스트. method=None이면 선택된 모델 사용."""
+        if method is None:
+            method = getattr(self, "model_type", "trend")
+        use_trend = method != "ma" and method != "simple_ma"
         results = []
         for i in range(n_months, 0, -1):
             tgt = self.current - i
             actual_r = self.pay["regular"].get(tgt, 0) / 1e8
             actual_c = self.pay["collection"].get(tgt, 0) / 1e8
             actual = actual_r + actual_c
-            # walk-forward: tgt-1까지 데이터로 선형추세 피팅 → 1개월 예측
-            lc = tgt - 1
-            reg_p = self._fit_trend(self.pay["regular"], lc)
-            col_p = self._fit_trend(self.pay["collection"], lc)
-            pred = self._predict_series(reg_p, 1) + self._predict_series(col_p, 1)
+            if use_trend:
+                lc = tgt - 1
+                reg_p = self._fit_trend(self.pay["regular"], lc)
+                col_p = self._fit_trend(self.pay["collection"], lc)
+                pred = self._predict_series(reg_p, 1) + self._predict_series(col_p, 1)
+            else:
+                vals = []
+                for j in range(1, 7):
+                    m = tgt - j
+                    vals.append((self.pay["regular"].get(m, 0) +
+                                 self.pay["collection"].get(m, 0)) / 1e8)
+                pred = float(np.mean(vals)) if vals else 0
             err = (pred - actual) / actual * 100 if actual > 0 else 0
             results.append({
                 "month": ym_label(tgt),
@@ -700,6 +765,29 @@ def main():
         corp_mape = (total_err / total_actual * 100) if total_actual > 0 else 0
         print(f"  법인 wMAPE: {corp_mape:.1f}%")
 
+    # ── auto_corrections 수집 ──
+    auto_corrections = []
+    if engine._util_rate_capped:
+        auto_corrections.append({
+            "type": "utilization_rate_cap",
+            "original_pct": round(engine._original_util_rate * 100, 3),
+            "corrected_pct": round(engine.col_util_rate * 100, 3),
+            "reason": "utilization_rate > 100% — 물리적 상한 cap 적용",
+        })
+    if corp_claims and corp_engine.model_type == "simple_ma":
+        auto_corrections.append({
+            "type": "corp_model_fallback",
+            "from": "linear_trend",
+            "to": "simple_ma",
+            "wmape_trend": round(corp_engine.wmape_trend, 1),
+            "wmape_ma": round(corp_engine.wmape_ma, 1),
+            "reason": "MA의 wMAPE가 더 낮아 자동 전환",
+        })
+    if auto_corrections:
+        print(f"\n[자동 보정] {len(auto_corrections)}건 적용")
+        for ac in auto_corrections:
+            print(f"  - {ac['type']}: {ac['reason']}")
+
     # ── 통합 ──
     print(f"\n[통합 예측 (개인+법인)]")
     combined_fc = []
@@ -758,6 +846,8 @@ def main():
              "individual_mape": round(mape, 2),
              "corporate_mape": round(corp_mape, 1) if corp_mape else None},
         ],
+        "auto_corrections": len(auto_corrections),
+        "corp_model_type": corp_engine.model_type if corp_claims else None,
     }
     ps_path = OUTPUT_DIR / "pipeline_state.json"
     ps_path.write_text(json.dumps(pipeline_state, ensure_ascii=False, indent=2))
@@ -809,8 +899,10 @@ def main():
             "corporate": {
                 "mape": round(corp_mape, 1) if corp_mape else None,
                 "n_months": len(corp_bt),
+                "model_type": corp_engine.model_type if corp_claims else None,
             },
         },
+        "auto_corrections": auto_corrections,
     }
     vr_path = OUTPUT_DIR / "verification_report.json"
     vr_path.write_text(json.dumps(verification, ensure_ascii=False, indent=2))
