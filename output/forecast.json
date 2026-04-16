@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-16T06:40:59Z",
+  "generated_at": "2026-04-16T08:08:17Z",
   "data_range": "... ~ 2026-04",
-  "total_claims": 233599,
+  "total_claims": 233633,
   "total_corp_claims": 8194,
   "distributions": {
     "a2f": {
@@ -49,18 +49,18 @@
     {
       "month": "2026-04",
       "individual": {
-        "regular": 15.04,
+        "regular": 15.06,
         "collection": 1.66,
-        "total": 16.7,
+        "total": 16.71,
         "season_adj": 0.0,
-        "adjusted": 16.7,
+        "adjusted": 16.71,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-04",
-            "dec_amount": 28.7,
+            "dec_amount": 28.77,
             "rate": 18.605893528209613,
-            "contrib": 5.34,
+            "contrib": 5.35,
             "source": "추정"
           },
           {
@@ -95,31 +95,31 @@
         "collection": 0.04,
         "total": 0.245
       },
-      "grand_total": 16.95
+      "grand_total": 16.96
     },
     {
       "month": "2026-05",
       "individual": {
-        "regular": 17.48,
+        "regular": 17.59,
         "collection": 1.68,
-        "total": 19.16,
+        "total": 19.27,
         "season_adj": 0.0,
-        "adjusted": 19.16,
+        "adjusted": 19.27,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-05",
-            "dec_amount": 66.56,
+            "dec_amount": 67.09,
             "rate": 18.605893528209613,
-            "contrib": 12.38,
+            "contrib": 12.48,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-04",
-            "dec_amount": 28.7,
+            "dec_amount": 28.77,
             "rate": 14.291790366761182,
-            "contrib": 4.1,
+            "contrib": 4.11,
             "source": "추정"
           },
           {
@@ -146,37 +146,37 @@
         "collection": 0.05,
         "total": 0.24
       },
-      "grand_total": 19.4
+      "grand_total": 19.51
     },
     {
       "month": "2026-06",
       "individual": {
-        "regular": 20.75,
-        "collection": 1.75,
-        "total": 22.51,
+        "regular": 20.93,
+        "collection": 1.76,
+        "total": 22.68,
         "season_adj": 0.0,
-        "adjusted": 22.51,
+        "adjusted": 22.68,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-06",
-            "dec_amount": 57.79,
+            "dec_amount": 58.32,
             "rate": 18.605893528209613,
-            "contrib": 10.75,
+            "contrib": 10.85,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-05",
-            "dec_amount": 66.56,
+            "dec_amount": 67.09,
             "rate": 14.291790366761182,
-            "contrib": 9.51,
+            "contrib": 9.59,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-04",
-            "dec_amount": 28.7,
+            "dec_amount": 28.77,
             "rate": 1.5432438297050617,
             "contrib": 0.44,
             "source": "추정"
@@ -197,45 +197,45 @@
         "collection": 0.061,
         "total": 0.235
       },
-      "grand_total": 22.75
+      "grand_total": 22.91
     },
     {
       "month": "2026-07",
       "individual": {
-        "regular": 17.95,
+        "regular": 18.07,
         "collection": 1.82,
-        "total": 19.77,
+        "total": 19.89,
         "season_adj": 0.0,
-        "adjusted": 19.77,
+        "adjusted": 19.89,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-07",
-            "dec_amount": 46.45,
+            "dec_amount": 46.66,
             "rate": 18.605893528209613,
-            "contrib": 8.64,
+            "contrib": 8.68,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-06",
-            "dec_amount": 57.79,
+            "dec_amount": 58.32,
             "rate": 14.291790366761182,
-            "contrib": 8.26,
+            "contrib": 8.33,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-05",
-            "dec_amount": 66.56,
+            "dec_amount": 67.09,
             "rate": 1.5432438297050617,
-            "contrib": 1.03,
+            "contrib": 1.04,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-04",
-            "dec_amount": 28.7,
+            "dec_amount": 28.77,
             "rate": 0.07169122691853579,
             "contrib": 0.02,
             "source": "추정"
@@ -248,45 +248,45 @@
         "collection": 0.071,
         "total": 0.23
       },
-      "grand_total": 20.0
+      "grand_total": 20.12
     },
     {
       "month": "2026-08",
       "individual": {
-        "regular": 17.03,
+        "regular": 17.08,
         "collection": 1.86,
-        "total": 18.89,
+        "total": 18.94,
         "season_adj": 0.0,
-        "adjusted": 18.89,
+        "adjusted": 18.94,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-08",
-            "dec_amount": 50.78,
+            "dec_amount": 50.84,
             "rate": 18.605893528209613,
-            "contrib": 9.45,
+            "contrib": 9.46,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-07",
-            "dec_amount": 46.45,
+            "dec_amount": 46.66,
             "rate": 14.291790366761182,
-            "contrib": 6.64,
+            "contrib": 6.67,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-06",
-            "dec_amount": 57.79,
+            "dec_amount": 58.32,
             "rate": 1.5432438297050617,
-            "contrib": 0.89,
+            "contrib": 0.9,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-05",
-            "dec_amount": 66.56,
+            "dec_amount": 67.09,
             "rate": 0.07169122691853579,
             "contrib": 0.05,
             "source": "추정"
@@ -299,7 +299,7 @@
         "collection": 0.081,
         "total": 0.225
       },
-      "grand_total": 19.12
+      "grand_total": 19.17
     }
   ],
   "backtest": [
