@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-04-16T06:40:59Z",
+  "status": "success",
+  "steps": [
+    {
+      "name": "extract_individual",
+      "status": "success",
+      "records": 233599
+    },
+    {
+      "name": "extract_corporate",
+      "status": "success",
+      "records": 8194
+    },
+    {
+      "name": "model_fit",
+      "status": "success",
+      "distributions": [
+        "a2f",
+        "f2d",
+        "d2p"
+      ]
+    },
+    {
+      "name": "forecast",
+      "status": "success",
+      "months": 5
+    },
+    {
+      "name": "backtest",
+      "status": "success",
+      "individual_mape": 5.72,
+      "corporate_mape": 33.7
+    }
+  ],
+  "auto_corrections": 0,
+  "corp_model_type": "linear_trend"
+}
