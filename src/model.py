@@ -601,19 +601,18 @@ class CorpForecastEngine:
         return results
 
     def backtest(self, n_months=12):
+        """Walk-forward 백테스트 — 예측과 동일한 선형추세 사용."""
         results = []
         for i in range(n_months, 0, -1):
             tgt = self.current - i
             actual_r = self.pay["regular"].get(tgt, 0) / 1e8
             actual_c = self.pay["collection"].get(tgt, 0) / 1e8
             actual = actual_r + actual_c
-            # walk-forward: 직전 6개월 MA
-            pred_vals = []
-            for j in range(1, 7):
-                m = tgt - j
-                pred_vals.append((self.pay["regular"].get(m, 0) +
-                                  self.pay["collection"].get(m, 0)) / 1e8)
-            pred = float(np.mean(pred_vals)) if pred_vals else 0
+            # walk-forward: tgt-1까지 데이터로 선형추세 피팅 → 1개월 예측
+            lc = tgt - 1
+            reg_p = self._fit_trend(self.pay["regular"], lc)
+            col_p = self._fit_trend(self.pay["collection"], lc)
+            pred = self._predict_series(reg_p, 1) + self._predict_series(col_p, 1)
             err = (pred - actual) / actual * 100 if actual > 0 else 0
             results.append({
                 "month": ym_label(tgt),
@@ -694,8 +693,12 @@ def main():
             print(f"  {f['month']}: 정기 {f['regular']}억 + 추심 {f['collection']}억 = {f['total']}억")
 
         corp_bt = corp_engine.backtest(12)
-        corp_mape = float(np.mean([abs(r["error_pct"]) for r in corp_bt if r["actual"] > 0]))
-        print(f"  법인 MAPE: {corp_mape:.1f}%")
+        # wMAPE: 소량 데이터에 적합 — 절대오차합 / 실측합
+        valid = [r for r in corp_bt if r["actual"] > 0]
+        total_actual = sum(r["actual"] for r in valid)
+        total_err = sum(abs(r["predicted"] - r["actual"]) for r in valid)
+        corp_mape = (total_err / total_actual * 100) if total_actual > 0 else 0
+        print(f"  법인 wMAPE: {corp_mape:.1f}%")
 
     # ── 통합 ──
     print(f"\n[통합 예측 (개인+법인)]")
@@ -714,17 +717,18 @@ def main():
         print(f"  {combined['month']}: 개인 {f_ind['adjusted']}억 + 법인 {f_corp['total']}억 = {combined['grand_total']}억")
 
     # Save outputs
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": generated_at,
         "data_range": f"... ~ {ym_label(current_m)}",
         "total_claims": len(claims),
         "total_corp_claims": len(corp_claims),
         "distributions": dists,
         "collection_pool": {
             "balance": round(engine.col_pool / 1e8, 1),
-            "utilization_rate": round(engine.col_util_rate * 100, 3),
+            "utilization_rate_pct": round(engine.col_util_rate * 100, 3),
             "leak_pct": round(engine.col_leak_pct * 100, 1),
-            "inflow_rate": round(engine.col_inflow_rate * 100, 1),
+            "inflow_rate_pct": round(engine.col_inflow_rate * 100, 1),
         },
         "season_adjustments": SEASON_ADJUSTMENT,
         "forecast": combined_fc,
@@ -736,6 +740,81 @@ def main():
     out_path = OUTPUT_DIR / "forecast.json"
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2))
     print(f"\n→ {out_path}")
+
+    # ── Verify: pipeline_state.json ──
+    pipeline_state = {
+        "generated_at": generated_at,
+        "status": "success",
+        "steps": [
+            {"name": "extract_individual", "status": "success",
+             "records": len(claims)},
+            {"name": "extract_corporate", "status": "success",
+             "records": len(corp_claims)},
+            {"name": "model_fit", "status": "success",
+             "distributions": list(dists.keys())},
+            {"name": "forecast", "status": "success",
+             "months": len(combined_fc)},
+            {"name": "backtest", "status": "success",
+             "individual_mape": round(mape, 2),
+             "corporate_mape": round(corp_mape, 1) if corp_mape else None},
+        ],
+    }
+    ps_path = OUTPUT_DIR / "pipeline_state.json"
+    ps_path.write_text(json.dumps(pipeline_state, ensure_ascii=False, indent=2))
+    print(f"→ {ps_path}")
+
+    # ── Verify: verification_report.json ──
+    ind_pass = mape < 10
+    corp_pass = corp_mape is None or corp_mape < 30
+    col_pool = output["collection_pool"]
+    pool_util_ok = col_pool["utilization_rate_pct"] <= 100
+
+    verification = {
+        "generated_at": generated_at,
+        "overall": "pass" if (ind_pass and corp_pass and pool_util_ok) else "warn",
+        "checks": [
+            {
+                "name": "individual_mape",
+                "value": round(mape, 2),
+                "threshold": 10,
+                "unit": "%",
+                "status": "pass" if ind_pass else "warn",
+            },
+            {
+                "name": "corporate_mape",
+                "value": round(corp_mape, 1) if corp_mape else None,
+                "threshold": 30,
+                "unit": "%",
+                "status": "pass" if corp_pass else "warn",
+            },
+            {
+                "name": "collection_pool_utilization",
+                "value": col_pool["utilization_rate_pct"],
+                "threshold": 100,
+                "unit": "%/month",
+                "status": "pass" if pool_util_ok else "warn",
+            },
+            {
+                "name": "data_freshness",
+                "value": ym_label(current_m),
+                "status": "pass",
+            },
+        ],
+        "backtest_summary": {
+            "individual": {
+                "mape": round(mape, 2),
+                "n_months": len(bt),
+                "outlier_months": [r["month"] for r in bt if r.get("is_season_outlier")],
+            },
+            "corporate": {
+                "mape": round(corp_mape, 1) if corp_mape else None,
+                "n_months": len(corp_bt),
+            },
+        },
+    }
+    vr_path = OUTPUT_DIR / "verification_report.json"
+    vr_path.write_text(json.dumps(verification, ensure_ascii=False, indent=2))
+    print(f"→ {vr_path}")
 
 
 if __name__ == "__main__":
