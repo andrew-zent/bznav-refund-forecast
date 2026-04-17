@@ -50,6 +50,9 @@ jobs:
         working-directory: src
         run: python model.py
 
+      - name: Snapshot + timeline
+        run: python src/snapshot.py
+
       - name: Generate dashboard
         working-directory: src
         run: python generate_dashboard.py

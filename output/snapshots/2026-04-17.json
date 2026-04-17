@@ -1,0 +1,467 @@
+{
+  "generated_at": "2026-04-17T17:11:06Z",
+  "data_range": "... ~ 2026-04",
+  "mature_window": {
+    "start": "2024-11",
+    "end": "2025-10"
+  },
+  "conversion": {
+    "filtered_all": {
+      "apply_sum": 886.09,
+      "paid_sum": 180.14,
+      "conversion_pct": 20.33,
+      "months": "2024-11 ~ 2025-10",
+      "n_months": 12
+    },
+    "unfiltered": {
+      "apply_sum": 3477.63,
+      "paid_sum": 180.34,
+      "conversion_pct": 5.19,
+      "months": "2024-11 ~ 2025-10",
+      "n_months": 12
+    }
+  },
+  "pipeline_distribution": {
+    "A(지수)": {
+      "apply": 1886.8,
+      "paid": 0.19,
+      "conv_pct": 0.01
+    },
+    "D(젠트)-취소": {
+      "apply": 498.5,
+      "paid": 0.02,
+      "conv_pct": 0.0
+    },
+    "B(젠트)-환급": {
+      "apply": 855.2,
+      "paid": 171.37,
+      "conv_pct": 20.04
+    },
+    "C(젠트)-추심": {
+      "apply": 132.4,
+      "paid": 31.06,
+      "conv_pct": 23.46
+    },
+    "법인-환급": {
+      "apply": 92.2,
+      "paid": 3.94,
+      "conv_pct": 4.28
+    },
+    "법인-취소": {
+      "apply": 8.5,
+      "paid": 0.0,
+      "conv_pct": 0.0
+    },
+    "법인-추심": {
+      "apply": 3.9,
+      "paid": 0.54,
+      "conv_pct": 13.72
+    }
+  },
+  "top_lost_reasons": {
+    "total": 2588.42,
+    "top": [
+      {
+        "label": "환급불가_기경정청구 존재",
+        "raw_key": "환급불가_기경정청구 존재",
+        "apply_amount": 400.41,
+        "deal_count": 6648,
+        "share_pct": 15.47
+      },
+      {
+        "label": "환급불가_검토중_근로자 조정",
+        "raw_key": "환급불가_검토중_근로자 조정",
+        "apply_amount": 380.49,
+        "deal_count": 9601,
+        "share_pct": 14.7
+      },
+      {
+        "label": "환급불가_검토중_공제감면 기반영",
+        "raw_key": "환급불가_검토중_공제감면 기반영",
+        "apply_amount": 229.27,
+        "deal_count": 4806,
+        "share_pct": 8.86
+      },
+      {
+        "label": "환급불가_검토중_창업 아님",
+        "raw_key": "환급불가_검토중_창업 아님",
+        "apply_amount": 200.38,
+        "deal_count": 14282,
+        "share_pct": 7.74
+      },
+      {
+        "label": "환급불가_검토중_본신고의 세법 미준수",
+        "raw_key": "환급불가_검토중_본신고의 세법 미준수",
+        "apply_amount": 121.79,
+        "deal_count": 4560,
+        "share_pct": 4.71
+      },
+      {
+        "label": "환급불가_검토중_단년도 추가환급없음",
+        "raw_key": "환급불가_검토중_단년도 추가환급없음",
+        "apply_amount": 110.53,
+        "deal_count": 4474,
+        "share_pct": 4.27
+      },
+      {
+        "label": "신청취소_기타",
+        "raw_key": "신청취소_기타",
+        "apply_amount": 100.25,
+        "deal_count": 1984,
+        "share_pct": 3.87
+      },
+      {
+        "label": "신청취소_서류미비_기경정청구서",
+        "raw_key": "신청취소_서류미비_기경정청구서",
+        "apply_amount": 100.22,
+        "deal_count": 1323,
+        "share_pct": 3.87
+      },
+      {
+        "label": "신청취소_부재중",
+        "raw_key": "신청취소_부재중",
+        "apply_amount": 98.54,
+        "deal_count": 2013,
+        "share_pct": 3.81
+      },
+      {
+        "label": "환급불가_검토중_엔진문제",
+        "raw_key": "환급불가_검토중_엔진문제",
+        "apply_amount": 97.42,
+        "deal_count": 5802,
+        "share_pct": 3.76
+      }
+    ]
+  },
+  "top_cancel_reasons": {
+    "total": 465.46,
+    "top": [
+      {
+        "label": "부재중",
+        "raw_key": "356",
+        "apply_amount": 60.76,
+        "deal_count": 662,
+        "share_pct": 13.05
+      },
+      {
+        "label": "무응답",
+        "raw_key": "1025",
+        "apply_amount": 59.59,
+        "deal_count": 1546,
+        "share_pct": 12.8
+      },
+      {
+        "label": "신청취소_높은수수료",
+        "raw_key": "신청취소_높은수수료",
+        "apply_amount": 53.43,
+        "deal_count": 522,
+        "share_pct": 11.48
+      },
+      {
+        "label": "신청취소_기존세무대리인",
+        "raw_key": "신청취소_기존세무대리인",
+        "apply_amount": 40.99,
+        "deal_count": 473,
+        "share_pct": 8.81
+      },
+      {
+        "label": "기존 세무대리인",
+        "raw_key": "106",
+        "apply_amount": 27.32,
+        "deal_count": 372,
+        "share_pct": 5.87
+      },
+      {
+        "label": "신청취소_불이익걱정",
+        "raw_key": "신청취소_불이익걱정",
+        "apply_amount": 22.81,
+        "deal_count": 226,
+        "share_pct": 4.9
+      },
+      {
+        "label": "서류제출불가",
+        "raw_key": "355",
+        "apply_amount": 19.54,
+        "deal_count": 272,
+        "share_pct": 4.2
+      },
+      {
+        "label": "신뢰부족",
+        "raw_key": "357",
+        "apply_amount": 17.03,
+        "deal_count": 277,
+        "share_pct": 3.66
+      },
+      {
+        "label": "불이익걱정",
+        "raw_key": "202",
+        "apply_amount": 14.28,
+        "deal_count": 115,
+        "share_pct": 3.07
+      },
+      {
+        "label": "타 서비스 이용",
+        "raw_key": "117",
+        "apply_amount": 14.15,
+        "deal_count": 177,
+        "share_pct": 3.04
+      }
+    ]
+  },
+  "top_hold_reasons": {
+    "total": 623.8,
+    "top": [
+      {
+        "label": "고객검토(CS)",
+        "raw_key": "1469",
+        "apply_amount": 188.95,
+        "deal_count": 4035,
+        "share_pct": 30.29
+      },
+      {
+        "label": "환급액 변동",
+        "raw_key": "1465",
+        "apply_amount": 187.01,
+        "deal_count": 928,
+        "share_pct": 29.98
+      },
+      {
+        "label": "기경정청구서 요청(터칭콜)",
+        "raw_key": "1467",
+        "apply_amount": 152.39,
+        "deal_count": 2179,
+        "share_pct": 24.43
+      },
+      {
+        "label": "관리자 질문",
+        "raw_key": "1466",
+        "apply_amount": 27.11,
+        "deal_count": 321,
+        "share_pct": 4.35
+      },
+      {
+        "label": "기경정청구서 발급(세무서)",
+        "raw_key": "1482",
+        "apply_amount": 16.96,
+        "deal_count": 92,
+        "share_pct": 2.72
+      },
+      {
+        "label": "분류환급액 0원",
+        "raw_key": "1545",
+        "apply_amount": 10.29,
+        "deal_count": 761,
+        "share_pct": 1.65
+      },
+      {
+        "label": "보류요청",
+        "raw_key": "1470",
+        "apply_amount": 9.69,
+        "deal_count": 83,
+        "share_pct": 1.55
+      },
+      {
+        "label": "기경정청구서 요청(OB)",
+        "raw_key": "1468",
+        "apply_amount": 8.08,
+        "deal_count": 46,
+        "share_pct": 1.3
+      },
+      {
+        "label": "실패 예정",
+        "raw_key": "1547",
+        "apply_amount": 3.71,
+        "deal_count": 50,
+        "share_pct": 0.59
+      },
+      {
+        "label": "환급액 변동 + 기경정청구서 요청(터칭콜)",
+        "raw_key": "1465,1467",
+        "apply_amount": 3.22,
+        "deal_count": 17,
+        "share_pct": 0.52
+      }
+    ]
+  },
+  "top_customer_types": {
+    "total": 3477.59,
+    "top": [
+      {
+        "label": "(미기재)",
+        "raw_key": "(미기재)",
+        "apply_amount": 3281.96,
+        "deal_count": 114007,
+        "share_pct": 94.37
+      },
+      {
+        "label": "결제 예정",
+        "raw_key": "741",
+        "apply_amount": 80.43,
+        "deal_count": 2694,
+        "share_pct": 2.31
+      },
+      {
+        "label": "연락 불가",
+        "raw_key": "743",
+        "apply_amount": 51.39,
+        "deal_count": 2451,
+        "share_pct": 1.48
+      },
+      {
+        "label": "세무서 확인 예정",
+        "raw_key": "747",
+        "apply_amount": 13.89,
+        "deal_count": 542,
+        "share_pct": 0.4
+      },
+      {
+        "label": "신청 부정",
+        "raw_key": "742",
+        "apply_amount": 13.8,
+        "deal_count": 700,
+        "share_pct": 0.4
+      },
+      {
+        "label": "수수료 고액",
+        "raw_key": "744",
+        "apply_amount": 9.73,
+        "deal_count": 126,
+        "share_pct": 0.28
+      },
+      {
+        "label": "분할 납부 희망",
+        "raw_key": "746",
+        "apply_amount": 6.1,
+        "deal_count": 51,
+        "share_pct": 0.18
+      },
+      {
+        "label": "변제 능력 상실",
+        "raw_key": "748",
+        "apply_amount": 5.67,
+        "deal_count": 110,
+        "share_pct": 0.16
+      },
+      {
+        "label": "기타",
+        "raw_key": "753",
+        "apply_amount": 5.33,
+        "deal_count": 118,
+        "share_pct": 0.15
+      },
+      {
+        "label": "수수료 미고지",
+        "raw_key": "745",
+        "apply_amount": 3.54,
+        "deal_count": 165,
+        "share_pct": 0.1
+      }
+    ]
+  },
+  "top_channels": {
+    "total": 3477.62,
+    "top": [
+      {
+        "label": "Marketplace",
+        "raw_key": "524",
+        "apply_amount": 3349.62,
+        "deal_count": 118882,
+        "share_pct": 96.32
+      },
+      {
+        "label": "Marketplace",
+        "raw_key": "143",
+        "apply_amount": 104.27,
+        "deal_count": 1597,
+        "share_pct": 3.0
+      },
+      {
+        "label": "(미기재)",
+        "raw_key": "(미기재)",
+        "apply_amount": 23.73,
+        "deal_count": 599,
+        "share_pct": 0.68
+      }
+    ]
+  },
+  "top_utm_sources": {
+    "total": 3477.65,
+    "top": [
+      {
+        "label": "toss.join",
+        "raw_key": "toss.join",
+        "apply_amount": 949.77,
+        "deal_count": 36928,
+        "share_pct": 27.31
+      },
+      {
+        "label": "alrimtalk",
+        "raw_key": "alrimtalk",
+        "apply_amount": 723.08,
+        "deal_count": 27243,
+        "share_pct": 20.79
+      },
+      {
+        "label": "sms",
+        "raw_key": "sms",
+        "apply_amount": 233.51,
+        "deal_count": 3642,
+        "share_pct": 6.71
+      },
+      {
+        "label": "kbcardlms",
+        "raw_key": "kbcardlms",
+        "apply_amount": 160.33,
+        "deal_count": 4871,
+        "share_pct": 4.61
+      },
+      {
+        "label": "referer",
+        "raw_key": "referer",
+        "apply_amount": 150.76,
+        "deal_count": 3992,
+        "share_pct": 4.34
+      },
+      {
+        "label": "kakaobank",
+        "raw_key": "kakaobank",
+        "apply_amount": 132.1,
+        "deal_count": 6013,
+        "share_pct": 3.8
+      },
+      {
+        "label": "google.adwords",
+        "raw_key": "google.adwords",
+        "apply_amount": 107.59,
+        "deal_count": 3931,
+        "share_pct": 3.09
+      },
+      {
+        "label": "hanacardlms",
+        "raw_key": "hanacardlms",
+        "apply_amount": 100.34,
+        "deal_count": 3562,
+        "share_pct": 2.89
+      },
+      {
+        "label": "naver.searchad",
+        "raw_key": "naver.searchad",
+        "apply_amount": 84.26,
+        "deal_count": 2026,
+        "share_pct": 2.42
+      },
+      {
+        "label": "cashnote",
+        "raw_key": "cashnote",
+        "apply_amount": 83.16,
+        "deal_count": 2554,
+        "share_pct": 2.39
+      }
+    ]
+  },
+  "collection_pool": {
+    "balance": 151.2,
+    "utilization_rate_pct": 1.098,
+    "recent_3mo_avg_paid": 1.76
+  }
+}
