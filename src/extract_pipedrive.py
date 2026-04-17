@@ -90,11 +90,12 @@ def slim_deal(deal, pipe_names):
     rec = {}
     for raw_key, var_name in NEEDED_KEYS.items():
         rec[var_name] = deal.get(raw_key)
-    # standard fields
-    rec["id"] = deal.get("id")
-    rec["status"] = deal.get("status")
-    rec["pipeline"] = pipe_names.get(deal.get("pipeline_id"), str(deal.get("pipeline_id", "")))
-    rec["update_time"] = deal.get("update_time")
+    # standard fields (STD_KEYS 기반)
+    for k in STD_KEYS:
+        if k == "pipeline_id":
+            rec["pipeline"] = pipe_names.get(deal.get(k), str(deal.get(k, "")))
+        else:
+            rec[k] = deal.get(k)
     return rec
 
 
