@@ -45,9 +45,15 @@ NEEDED_KEYS = {
     "30adbcf37881a14b5a01952994fe8be1b473a5ea": "fee_rate",         # *최종 수수료율
     "57b3e5836348d6639373859c08ff7b916e8c75c9": "hecto_account",    # 헥토계좌 결제금액
     "8f3e1c66651fdabdeadbf78bad9777345312b334": "hecto_card",       # 헥토카드 결제금액
+    # 실패/취소 진단용
+    "dbf353faf17cf72c0bf336a994d945f7eec4a803": "cancel_reason",    # 신청취소사유 (varchar)
+    # 유입 채널 추적
+    "0008b09a5d8a125726edf3640f0307b3d9cfac89": "utm_source",
+    "daca31f5cef6433f0a8142d534a5358dac5419a3": "utm_medium",
+    "18ca8b6cdce3a7d3a4d444121ec0bff82d967ea0": "utm_campaign",
 }
 
-STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time"}
+STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time", "channel", "channel_id"}
 
 # 법인 파이프라인 이름 매핑 (개인과 통일된 네이밍)
 PIPE_NAME_MAP = {
@@ -128,11 +134,12 @@ def slim_deal(deal, pipe_names):
     # fee_rate 제거 (이미 payment_amount에 반영)
     rec.pop("fee_rate", None)
 
-    # standard fields
-    rec["id"] = deal.get("id")
-    rec["status"] = deal.get("status")
-    rec["pipeline"] = pipe_names.get(deal.get("pipeline_id"), str(deal.get("pipeline_id", "")))
-    rec["update_time"] = deal.get("update_time")
+    # standard fields (STD_KEYS 기반)
+    for k in STD_KEYS:
+        if k == "pipeline_id":
+            rec["pipeline"] = pipe_names.get(deal.get(k), str(deal.get(k, "")))
+        else:
+            rec[k] = deal.get(k)
     rec["source"] = "corp"  # 개인과 구분
     return rec
 

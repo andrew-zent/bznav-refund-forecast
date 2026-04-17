@@ -667,12 +667,30 @@ def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
 
 
 def diagnostic_breakdown(claims, current_m, n_months=18):
-    """필터 제외 원인 진단 — 월별 pipeline/status/lost_reason별 신청액 + 결제액 집계."""
-    by_pipe = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
-    by_status = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
-    by_lost_reason = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
-    # pipeline × lost_reason (실패건만, 월무관)
-    pipe_x_reason = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
+    """진단 — 여러 차원으로 월별 신청/결제 breakdown.
+
+    차원: pipeline, status, lost_reason, cancel_reason, hold_reason(1+2 merged),
+         customer_type, channel, utm_source
+    """
+    dims = {
+        "by_pipeline": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_status": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_lost_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_cancel_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_hold_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_customer_type": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_channel": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+        "by_utm_source": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
+    }
+    # Cross-tab (월 무관, 금액/건수)
+    pipe_x_lost = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
+    pipe_x_cancel = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
+    channel_x_pipeline = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
+
+    def clean(v):
+        if v is None or v == "":
+            return "(미기재)"
+        return str(v).strip() or "(미기재)"
 
     for c in claims:
         ad = parse_date(c.get("apply_date"))
@@ -681,26 +699,55 @@ def diagnostic_breakdown(claims, current_m, n_months=18):
         m = ym(ad)
         if m < current_m - n_months + 1:
             continue
-        pipe = str(c.get("pipeline", "(none)")) or "(none)"
-        status = str(c.get("status", "(none)")) or "(none)"
+        pipe = clean(c.get("pipeline"))
+        status = clean(c.get("status"))
+        channel = clean(c.get("channel"))
+        utm_source = clean(c.get("utm_source"))
+        customer_type = clean(c.get("customer_type"))
         aa = to_num(c.get("apply_amount"))
         pa = to_num(c.get("payment_amount"))
-        by_pipe[pipe][m]["app"] += aa
-        by_pipe[pipe][m]["pay"] += pa
-        by_pipe[pipe][m]["n"] += 1
-        by_status[status][m]["app"] += aa
-        by_status[status][m]["pay"] += pa
-        by_status[status][m]["n"] += 1
 
-        # 실패 건 사유 분석
-        if status == "실패" or status == "lost":
-            reason = c.get("lost_reason") or "(미기재)"
-            reason = str(reason).strip() or "(미기재)"
-            by_lost_reason[reason][m]["app"] += aa
-            by_lost_reason[reason][m]["pay"] += pa
-            by_lost_reason[reason][m]["n"] += 1
-            pipe_x_reason[pipe][reason]["app"] += aa
-            pipe_x_reason[pipe][reason]["n"] += 1
+        for key, dim in [
+            ("by_pipeline", pipe),
+            ("by_status", status),
+            ("by_channel", channel),
+            ("by_utm_source", utm_source),
+            ("by_customer_type", customer_type),
+        ]:
+            dims[key][dim][m]["app"] += aa
+            dims[key][dim][m]["pay"] += pa
+            dims[key][dim][m]["n"] += 1
+
+        # Cross-tab (모든 deal, channel x pipeline)
+        channel_x_pipeline[channel][pipe]["app"] += aa
+        channel_x_pipeline[channel][pipe]["n"] += 1
+
+        # Status-specific breakdown
+        if status in ("실패", "lost"):
+            r = clean(c.get("lost_reason"))
+            dims["by_lost_reason"][r][m]["app"] += aa
+            dims["by_lost_reason"][r][m]["pay"] += pa
+            dims["by_lost_reason"][r][m]["n"] += 1
+            pipe_x_lost[pipe][r]["app"] += aa
+            pipe_x_lost[pipe][r]["n"] += 1
+
+        # Cancel reason (취소 관련)
+        cr = c.get("cancel_reason") or c.get("cancel_reason_auto")
+        if cr:
+            r = clean(cr)
+            dims["by_cancel_reason"][r][m]["app"] += aa
+            dims["by_cancel_reason"][r][m]["pay"] += pa
+            dims["by_cancel_reason"][r][m]["n"] += 1
+            pipe_x_cancel[pipe][r]["app"] += aa
+            pipe_x_cancel[pipe][r]["n"] += 1
+
+        # Hold reason (보류 관련) - merge 2 fields
+        hr = c.get("hold_reason") or c.get("hold_reason_2")
+        if hr:
+            r = clean(hr)
+            dims["by_hold_reason"][r][m]["app"] += aa
+            dims["by_hold_reason"][r][m]["pay"] += pa
+            dims["by_hold_reason"][r][m]["n"] += 1
 
     def fmt_monthly(bucket):
         result = {}
@@ -717,21 +764,20 @@ def diagnostic_breakdown(claims, current_m, n_months=18):
             result[key] = rows
         return result
 
-    def fmt_pipe_x_reason(bucket):
+    def fmt_crosstab(bucket):
         result = {}
-        for pipe, reasons in bucket.items():
-            result[pipe] = [
-                {"reason": r, "apply_amount": round(v["app"] / 1e8, 2), "deal_count": v["n"]}
-                for r, v in sorted(reasons.items(), key=lambda x: -x[1]["app"])
+        for a, by_b in bucket.items():
+            result[a] = [
+                {"value": b, "apply_amount": round(v["app"] / 1e8, 2), "deal_count": v["n"]}
+                for b, v in sorted(by_b.items(), key=lambda x: -x[1]["app"])
             ]
         return result
 
-    return {
-        "by_pipeline": fmt_monthly(by_pipe),
-        "by_status": fmt_monthly(by_status),
-        "by_lost_reason": fmt_monthly(by_lost_reason),
-        "pipeline_x_lost_reason": fmt_pipe_x_reason(pipe_x_reason),
-    }
+    out = {k: fmt_monthly(v) for k, v in dims.items()}
+    out["pipeline_x_lost_reason"] = fmt_crosstab(pipe_x_lost)
+    out["pipeline_x_cancel_reason"] = fmt_crosstab(pipe_x_cancel)
+    out["channel_x_pipeline"] = fmt_crosstab(channel_x_pipeline)
+    return out
 
 
 def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
