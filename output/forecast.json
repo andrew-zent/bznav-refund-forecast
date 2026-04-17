@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-17T10:46:18Z",
+  "generated_at": "2026-04-17T13:37:22Z",
   "data_range": "... ~ 2026-04",
-  "total_claims": 233835,
+  "total_claims": 233861,
   "total_corp_claims": 8199,
   "distributions": {
     "a2f": {
@@ -437,7 +437,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 11.925
+            "amount": 11.928
           }
         ]
       },
@@ -831,7 +831,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 0.782
+            "amount": 0.783
           }
         ]
       }
@@ -2528,7 +2528,7 @@
       },
       {
         "paid_total": 11.9,
-        "conversion_pct": 15.18,
+        "conversion_pct": 15.19,
         "paid_by_offset": [
           {
             "off": 0,
@@ -2548,7 +2548,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 3.622
+            "paid": 3.624
           }
         ],
         "apply_month": "2026-01",
@@ -2556,7 +2556,7 @@
       },
       {
         "paid_total": 7.72,
-        "conversion_pct": 8.95,
+        "conversion_pct": 8.96,
         "paid_by_offset": [
           {
             "off": 0,
@@ -2571,7 +2571,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.246
+            "paid": 5.249
           }
         ],
         "apply_month": "2026-02",
@@ -3334,7 +3334,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 3.577
+            "paid": 3.578
           }
         ],
         "apply_month": "2026-01",
@@ -3357,7 +3357,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.196
+            "paid": 5.198
           }
         ],
         "apply_month": "2026-02",
@@ -4159,8 +4159,8 @@
         "apply_amount": 14.83
       },
       {
-        "paid_total": 0.04,
-        "conversion_pct": 2.34,
+        "paid_total": 0.05,
+        "conversion_pct": 2.4,
         "paid_by_offset": [
           {
             "off": 2,
@@ -4170,7 +4170,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 0.043
+            "paid": 0.044
           }
         ],
         "apply_month": "2026-01",
@@ -4894,6 +4894,987 @@
         "paid_by_offset": [],
         "apply_month": "2026-04",
         "apply_amount": 0.0
+      }
+    ],
+    "unfiltered": [
+      {
+        "paid_total": 9.07,
+        "conversion_pct": 5.84,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2024-11",
+            "paid": 0.06
+          },
+          {
+            "off": 1,
+            "month": "2024-12",
+            "paid": 1.939
+          },
+          {
+            "off": 2,
+            "month": "2025-01",
+            "paid": 4.891
+          },
+          {
+            "off": 3,
+            "month": "2025-02",
+            "paid": 1.302
+          },
+          {
+            "off": 4,
+            "month": "2025-03",
+            "paid": 0.457
+          },
+          {
+            "off": 5,
+            "month": "2025-04",
+            "paid": 0.25
+          },
+          {
+            "off": 6,
+            "month": "2025-05",
+            "paid": 0.075
+          },
+          {
+            "off": 7,
+            "month": "2025-06",
+            "paid": 0.036
+          },
+          {
+            "off": 8,
+            "month": "2025-07",
+            "paid": 0.014
+          },
+          {
+            "off": 9,
+            "month": "2025-08",
+            "paid": 0.009
+          },
+          {
+            "off": 10,
+            "month": "2025-09",
+            "paid": 0.011
+          },
+          {
+            "off": 11,
+            "month": "2025-10",
+            "paid": 0.004
+          },
+          {
+            "off": 12,
+            "month": "2025-11",
+            "paid": 0.002
+          },
+          {
+            "off": 13,
+            "month": "2025-12",
+            "paid": 0.001
+          },
+          {
+            "off": 14,
+            "month": "2026-01",
+            "paid": 0.01
+          },
+          {
+            "off": 15,
+            "month": "2026-02",
+            "paid": 0.001
+          },
+          {
+            "off": 16,
+            "month": "2026-03",
+            "paid": 0.002
+          },
+          {
+            "off": 17,
+            "month": "2026-04",
+            "paid": 0.0
+          }
+        ],
+        "apply_month": "2024-11",
+        "apply_amount": 155.13
+      },
+      {
+        "paid_total": 9.67,
+        "conversion_pct": 6.28,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2024-12",
+            "paid": 0.064
+          },
+          {
+            "off": 1,
+            "month": "2025-01",
+            "paid": 1.413
+          },
+          {
+            "off": 2,
+            "month": "2025-02",
+            "paid": 4.494
+          },
+          {
+            "off": 3,
+            "month": "2025-03",
+            "paid": 2.338
+          },
+          {
+            "off": 4,
+            "month": "2025-04",
+            "paid": 0.827
+          },
+          {
+            "off": 5,
+            "month": "2025-05",
+            "paid": 0.147
+          },
+          {
+            "off": 6,
+            "month": "2025-06",
+            "paid": 0.06
+          },
+          {
+            "off": 7,
+            "month": "2025-07",
+            "paid": 0.003
+          },
+          {
+            "off": 8,
+            "month": "2025-08",
+            "paid": 0.006
+          },
+          {
+            "off": 9,
+            "month": "2025-09",
+            "paid": 0.016
+          },
+          {
+            "off": 10,
+            "month": "2025-10",
+            "paid": 0.03
+          },
+          {
+            "off": 12,
+            "month": "2025-12",
+            "paid": 0.025
+          },
+          {
+            "off": 13,
+            "month": "2026-01",
+            "paid": 0.028
+          },
+          {
+            "off": 14,
+            "month": "2026-02",
+            "paid": 0.022
+          },
+          {
+            "off": 15,
+            "month": "2026-03",
+            "paid": 0.189
+          },
+          {
+            "off": 16,
+            "month": "2026-04",
+            "paid": 0.006
+          }
+        ],
+        "apply_month": "2024-12",
+        "apply_amount": 153.98
+      },
+      {
+        "paid_total": 17.01,
+        "conversion_pct": 6.38,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-01",
+            "paid": 0.045
+          },
+          {
+            "off": 1,
+            "month": "2025-02",
+            "paid": 2.292
+          },
+          {
+            "off": 2,
+            "month": "2025-03",
+            "paid": 7.965
+          },
+          {
+            "off": 3,
+            "month": "2025-04",
+            "paid": 4.481
+          },
+          {
+            "off": 4,
+            "month": "2025-05",
+            "paid": 0.69
+          },
+          {
+            "off": 5,
+            "month": "2025-06",
+            "paid": 0.698
+          },
+          {
+            "off": 6,
+            "month": "2025-07",
+            "paid": 0.328
+          },
+          {
+            "off": 7,
+            "month": "2025-08",
+            "paid": 0.057
+          },
+          {
+            "off": 8,
+            "month": "2025-09",
+            "paid": 0.141
+          },
+          {
+            "off": 9,
+            "month": "2025-10",
+            "paid": 0.05
+          },
+          {
+            "off": 10,
+            "month": "2025-11",
+            "paid": 0.029
+          },
+          {
+            "off": 12,
+            "month": "2026-01",
+            "paid": 0.109
+          },
+          {
+            "off": 13,
+            "month": "2026-02",
+            "paid": 0.071
+          },
+          {
+            "off": 14,
+            "month": "2026-03",
+            "paid": 0.029
+          },
+          {
+            "off": 15,
+            "month": "2026-04",
+            "paid": 0.03
+          }
+        ],
+        "apply_month": "2025-01",
+        "apply_amount": 266.52
+      },
+      {
+        "paid_total": 17.68,
+        "conversion_pct": 6.14,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-02",
+            "paid": 0.016
+          },
+          {
+            "off": 1,
+            "month": "2025-03",
+            "paid": 2.12
+          },
+          {
+            "off": 2,
+            "month": "2025-04",
+            "paid": 9.578
+          },
+          {
+            "off": 3,
+            "month": "2025-05",
+            "paid": 2.453
+          },
+          {
+            "off": 4,
+            "month": "2025-06",
+            "paid": 1.988
+          },
+          {
+            "off": 5,
+            "month": "2025-07",
+            "paid": 0.759
+          },
+          {
+            "off": 6,
+            "month": "2025-08",
+            "paid": 0.193
+          },
+          {
+            "off": 7,
+            "month": "2025-09",
+            "paid": 0.157
+          },
+          {
+            "off": 8,
+            "month": "2025-10",
+            "paid": 0.037
+          },
+          {
+            "off": 9,
+            "month": "2025-11",
+            "paid": 0.082
+          },
+          {
+            "off": 11,
+            "month": "2026-01",
+            "paid": 0.124
+          },
+          {
+            "off": 12,
+            "month": "2026-02",
+            "paid": 0.052
+          },
+          {
+            "off": 13,
+            "month": "2026-03",
+            "paid": 0.114
+          },
+          {
+            "off": 14,
+            "month": "2026-04",
+            "paid": 0.007
+          }
+        ],
+        "apply_month": "2025-02",
+        "apply_amount": 287.96
+      },
+      {
+        "paid_total": 17.51,
+        "conversion_pct": 5.64,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-03",
+            "paid": 0.187
+          },
+          {
+            "off": 1,
+            "month": "2025-04",
+            "paid": 1.639
+          },
+          {
+            "off": 2,
+            "month": "2025-05",
+            "paid": 7.381
+          },
+          {
+            "off": 3,
+            "month": "2025-06",
+            "paid": 5.31
+          },
+          {
+            "off": 4,
+            "month": "2025-07",
+            "paid": 1.548
+          },
+          {
+            "off": 5,
+            "month": "2025-08",
+            "paid": 0.614
+          },
+          {
+            "off": 6,
+            "month": "2025-09",
+            "paid": 0.33
+          },
+          {
+            "off": 7,
+            "month": "2025-10",
+            "paid": 0.064
+          },
+          {
+            "off": 8,
+            "month": "2025-11",
+            "paid": 0.099
+          },
+          {
+            "off": 9,
+            "month": "2025-12",
+            "paid": 0.007
+          },
+          {
+            "off": 10,
+            "month": "2026-01",
+            "paid": 0.132
+          },
+          {
+            "off": 11,
+            "month": "2026-02",
+            "paid": 0.099
+          },
+          {
+            "off": 12,
+            "month": "2026-03",
+            "paid": 0.069
+          },
+          {
+            "off": 13,
+            "month": "2026-04",
+            "paid": 0.031
+          }
+        ],
+        "apply_month": "2025-03",
+        "apply_amount": 310.37
+      },
+      {
+        "paid_total": 15.95,
+        "conversion_pct": 5.26,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-04",
+            "paid": 0.027
+          },
+          {
+            "off": 1,
+            "month": "2025-05",
+            "paid": 1.161
+          },
+          {
+            "off": 2,
+            "month": "2025-06",
+            "paid": 6.585
+          },
+          {
+            "off": 3,
+            "month": "2025-07",
+            "paid": 6.286
+          },
+          {
+            "off": 4,
+            "month": "2025-08",
+            "paid": 1.104
+          },
+          {
+            "off": 5,
+            "month": "2025-09",
+            "paid": 0.406
+          },
+          {
+            "off": 6,
+            "month": "2025-10",
+            "paid": 0.113
+          },
+          {
+            "off": 7,
+            "month": "2025-11",
+            "paid": 0.028
+          },
+          {
+            "off": 8,
+            "month": "2025-12",
+            "paid": 0.001
+          },
+          {
+            "off": 9,
+            "month": "2026-01",
+            "paid": 0.096
+          },
+          {
+            "off": 10,
+            "month": "2026-02",
+            "paid": 0.026
+          },
+          {
+            "off": 11,
+            "month": "2026-03",
+            "paid": 0.115
+          }
+        ],
+        "apply_month": "2025-04",
+        "apply_amount": 303.16
+      },
+      {
+        "paid_total": 9.22,
+        "conversion_pct": 5.34,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-05",
+            "paid": 0.022
+          },
+          {
+            "off": 1,
+            "month": "2025-06",
+            "paid": 0.48
+          },
+          {
+            "off": 2,
+            "month": "2025-07",
+            "paid": 5.391
+          },
+          {
+            "off": 3,
+            "month": "2025-08",
+            "paid": 2.531
+          },
+          {
+            "off": 4,
+            "month": "2025-09",
+            "paid": 0.418
+          },
+          {
+            "off": 5,
+            "month": "2025-10",
+            "paid": 0.097
+          },
+          {
+            "off": 6,
+            "month": "2025-11",
+            "paid": 0.065
+          },
+          {
+            "off": 7,
+            "month": "2025-12",
+            "paid": 0.064
+          },
+          {
+            "off": 8,
+            "month": "2026-01",
+            "paid": 0.089
+          },
+          {
+            "off": 9,
+            "month": "2026-02",
+            "paid": 0.027
+          },
+          {
+            "off": 10,
+            "month": "2026-03",
+            "paid": 0.028
+          },
+          {
+            "off": 11,
+            "month": "2026-04",
+            "paid": 0.007
+          }
+        ],
+        "apply_month": "2025-05",
+        "apply_amount": 172.8
+      },
+      {
+        "paid_total": 18.49,
+        "conversion_pct": 4.77,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-06",
+            "paid": 0.011
+          },
+          {
+            "off": 1,
+            "month": "2025-07",
+            "paid": 1.559
+          },
+          {
+            "off": 2,
+            "month": "2025-08",
+            "paid": 6.684
+          },
+          {
+            "off": 3,
+            "month": "2025-09",
+            "paid": 5.786
+          },
+          {
+            "off": 4,
+            "month": "2025-10",
+            "paid": 2.596
+          },
+          {
+            "off": 5,
+            "month": "2025-11",
+            "paid": 0.996
+          },
+          {
+            "off": 6,
+            "month": "2025-12",
+            "paid": 0.352
+          },
+          {
+            "off": 7,
+            "month": "2026-01",
+            "paid": 0.202
+          },
+          {
+            "off": 8,
+            "month": "2026-02",
+            "paid": 0.103
+          },
+          {
+            "off": 9,
+            "month": "2026-03",
+            "paid": 0.138
+          },
+          {
+            "off": 10,
+            "month": "2026-04",
+            "paid": 0.063
+          }
+        ],
+        "apply_month": "2025-06",
+        "apply_amount": 387.62
+      },
+      {
+        "paid_total": 18.64,
+        "conversion_pct": 4.47,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-07",
+            "paid": 0.058
+          },
+          {
+            "off": 1,
+            "month": "2025-08",
+            "paid": 1.085
+          },
+          {
+            "off": 2,
+            "month": "2025-09",
+            "paid": 8.64
+          },
+          {
+            "off": 3,
+            "month": "2025-10",
+            "paid": 5.992
+          },
+          {
+            "off": 4,
+            "month": "2025-11",
+            "paid": 1.213
+          },
+          {
+            "off": 5,
+            "month": "2025-12",
+            "paid": 1.025
+          },
+          {
+            "off": 6,
+            "month": "2026-01",
+            "paid": 0.311
+          },
+          {
+            "off": 7,
+            "month": "2026-02",
+            "paid": 0.206
+          },
+          {
+            "off": 8,
+            "month": "2026-03",
+            "paid": 0.085
+          },
+          {
+            "off": 9,
+            "month": "2026-04",
+            "paid": 0.026
+          }
+        ],
+        "apply_month": "2025-07",
+        "apply_amount": 417.43
+      },
+      {
+        "paid_total": 17.62,
+        "conversion_pct": 4.57,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-08",
+            "paid": 0.054
+          },
+          {
+            "off": 1,
+            "month": "2025-09",
+            "paid": 1.788
+          },
+          {
+            "off": 2,
+            "month": "2025-10",
+            "paid": 8.035
+          },
+          {
+            "off": 3,
+            "month": "2025-11",
+            "paid": 5.274
+          },
+          {
+            "off": 4,
+            "month": "2025-12",
+            "paid": 1.511
+          },
+          {
+            "off": 5,
+            "month": "2026-01",
+            "paid": 0.541
+          },
+          {
+            "off": 6,
+            "month": "2026-02",
+            "paid": 0.096
+          },
+          {
+            "off": 7,
+            "month": "2026-03",
+            "paid": 0.199
+          },
+          {
+            "off": 8,
+            "month": "2026-04",
+            "paid": 0.127
+          }
+        ],
+        "apply_month": "2025-08",
+        "apply_amount": 385.46
+      },
+      {
+        "paid_total": 14.68,
+        "conversion_pct": 4.8,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-09",
+            "paid": 0.092
+          },
+          {
+            "off": 1,
+            "month": "2025-10",
+            "paid": 0.995
+          },
+          {
+            "off": 2,
+            "month": "2025-11",
+            "paid": 7.417
+          },
+          {
+            "off": 3,
+            "month": "2025-12",
+            "paid": 4.434
+          },
+          {
+            "off": 4,
+            "month": "2026-01",
+            "paid": 0.992
+          },
+          {
+            "off": 5,
+            "month": "2026-02",
+            "paid": 0.412
+          },
+          {
+            "off": 6,
+            "month": "2026-03",
+            "paid": 0.255
+          },
+          {
+            "off": 7,
+            "month": "2026-04",
+            "paid": 0.085
+          }
+        ],
+        "apply_month": "2025-09",
+        "apply_amount": 306.18
+      },
+      {
+        "paid_total": 14.8,
+        "conversion_pct": 4.47,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-10",
+            "paid": 0.103
+          },
+          {
+            "off": 1,
+            "month": "2025-11",
+            "paid": 1.042
+          },
+          {
+            "off": 2,
+            "month": "2025-12",
+            "paid": 8.561
+          },
+          {
+            "off": 3,
+            "month": "2026-01",
+            "paid": 3.588
+          },
+          {
+            "off": 4,
+            "month": "2026-02",
+            "paid": 0.848
+          },
+          {
+            "off": 5,
+            "month": "2026-03",
+            "paid": 0.553
+          },
+          {
+            "off": 6,
+            "month": "2026-04",
+            "paid": 0.107
+          }
+        ],
+        "apply_month": "2025-10",
+        "apply_amount": 331.02
+      },
+      {
+        "paid_total": 18.28,
+        "conversion_pct": 4.13,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-11",
+            "paid": 0.049
+          },
+          {
+            "off": 1,
+            "month": "2025-12",
+            "paid": 2.605
+          },
+          {
+            "off": 2,
+            "month": "2026-01",
+            "paid": 9.757
+          },
+          {
+            "off": 3,
+            "month": "2026-02",
+            "paid": 4.317
+          },
+          {
+            "off": 4,
+            "month": "2026-03",
+            "paid": 1.252
+          },
+          {
+            "off": 5,
+            "month": "2026-04",
+            "paid": 0.297
+          }
+        ],
+        "apply_month": "2025-11",
+        "apply_amount": 442.34
+      },
+      {
+        "paid_total": 25.44,
+        "conversion_pct": 3.84,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2025-12",
+            "paid": 0.138
+          },
+          {
+            "off": 1,
+            "month": "2026-01",
+            "paid": 1.847
+          },
+          {
+            "off": 2,
+            "month": "2026-02",
+            "paid": 9.513
+          },
+          {
+            "off": 3,
+            "month": "2026-03",
+            "paid": 11.737
+          },
+          {
+            "off": 4,
+            "month": "2026-04",
+            "paid": 2.204
+          }
+        ],
+        "apply_month": "2025-12",
+        "apply_amount": 662.15
+      },
+      {
+        "paid_total": 11.9,
+        "conversion_pct": 3.32,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2026-01",
+            "paid": 0.001
+          },
+          {
+            "off": 1,
+            "month": "2026-02",
+            "paid": 0.59
+          },
+          {
+            "off": 2,
+            "month": "2026-03",
+            "paid": 7.685
+          },
+          {
+            "off": 3,
+            "month": "2026-04",
+            "paid": 3.624
+          }
+        ],
+        "apply_month": "2026-01",
+        "apply_amount": 358.06
+      },
+      {
+        "paid_total": 7.72,
+        "conversion_pct": 2.15,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2026-02",
+            "paid": 0.091
+          },
+          {
+            "off": 1,
+            "month": "2026-03",
+            "paid": 2.383
+          },
+          {
+            "off": 2,
+            "month": "2026-04",
+            "paid": 5.249
+          }
+        ],
+        "apply_month": "2026-02",
+        "apply_amount": 359.47
+      },
+      {
+        "paid_total": 0.88,
+        "conversion_pct": 0.28,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2026-03",
+            "paid": 0.082
+          },
+          {
+            "off": 1,
+            "month": "2026-04",
+            "paid": 0.801
+          }
+        ],
+        "apply_month": "2026-03",
+        "apply_amount": 319.87
+      },
+      {
+        "paid_total": 0.04,
+        "conversion_pct": 0.03,
+        "paid_by_offset": [
+          {
+            "off": 0,
+            "month": "2026-04",
+            "paid": 0.039
+          }
+        ],
+        "apply_month": "2026-04",
+        "apply_amount": 128.29
       }
     ]
   },
@@ -5780,7 +6761,7 @@
         "source_month": "2026-01",
         "source_amount": 70.94,
         "paid_total": 20.88,
-        "conversion_pct": 29.43,
+        "conversion_pct": 29.44,
         "paid_by_offset": [
           {
             "off": 0,
@@ -5800,7 +6781,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 2.752
+            "paid": 2.754
           }
         ]
       },
@@ -5823,7 +6804,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.248
+            "paid": 7.25
           }
         ]
       },
@@ -6541,7 +7522,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 2.436
+            "paid": 2.437
           }
         ]
       },
@@ -6564,7 +7545,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.226
+            "paid": 7.228
           }
         ]
       },
@@ -7372,7 +8353,7 @@
         "source_month": "2026-01",
         "source_amount": 5.74,
         "paid_total": 0.48,
-        "conversion_pct": 8.3,
+        "conversion_pct": 8.32,
         "paid_by_offset": [
           {
             "off": 2,
@@ -7382,7 +8363,7 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 0.316
+            "paid": 0.317
           }
         ]
       },
@@ -9045,7 +10026,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 1.0
+            "paid": 1.001
           }
         ]
       },
@@ -9063,7 +10044,7 @@
           {
             "off": 1,
             "month": "2026-04",
-            "paid": 6.945
+            "paid": 6.948
           }
         ]
       },
@@ -9076,7 +10057,7 @@
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 4.332
+            "paid": 4.333
           }
         ]
       }
@@ -9224,7 +10205,7 @@
     {
       "month": "2026-04",
       "balance": 151.15,
-      "paid": 0.782,
+      "paid": 0.783,
       "util_pct": 0.518
     }
   ],
