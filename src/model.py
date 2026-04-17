@@ -610,7 +610,8 @@ def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
 
     src_date_key/src_amt_key: "apply_date"/"apply_amount", "filing_date"/"filing_amount",
                                "decision_date"/"decision_amount"
-    group: "B" (개인 정기), "C" (개인 추심), "corp_regular", "corp_collection", "all"
+    group: "B" (개인 정기), "C" (개인 추심), "corp_regular", "corp_collection",
+           "all" (필터 후 전체), "unfiltered" (필터 없음 — 마케팅 base)
     """
     src_total = defaultdict(float)
     paid_by_off = defaultdict(lambda: defaultdict(float))
@@ -618,23 +619,24 @@ def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
     for c in claims:
         status = str(c.get("status", ""))
         pipe = str(c.get("pipeline", ""))
-        if STATUS_EXCLUDE in status:
-            continue
-        if group == "B" and PIPELINE_REGULAR not in pipe:
-            continue
-        if group == "C" and not any(p in pipe for p in PIPELINE_COLLECTION):
-            continue
-        if group == "corp_regular" and CORP_PIPELINE_REGULAR not in pipe:
-            continue
-        if group == "corp_collection" and not any(p in pipe for p in CORP_PIPELINE_COLLECTION):
-            continue
-        if group == "all":
-            is_valid = (PIPELINE_REGULAR in pipe
-                        or any(p in pipe for p in PIPELINE_COLLECTION)
-                        or CORP_PIPELINE_REGULAR in pipe
-                        or any(p in pipe for p in CORP_PIPELINE_COLLECTION))
-            if not is_valid:
+        if group != "unfiltered":
+            if STATUS_EXCLUDE in status:
                 continue
+            if group == "B" and PIPELINE_REGULAR not in pipe:
+                continue
+            if group == "C" and not any(p in pipe for p in PIPELINE_COLLECTION):
+                continue
+            if group == "corp_regular" and CORP_PIPELINE_REGULAR not in pipe:
+                continue
+            if group == "corp_collection" and not any(p in pipe for p in CORP_PIPELINE_COLLECTION):
+                continue
+            if group == "all":
+                is_valid = (PIPELINE_REGULAR in pipe
+                            or any(p in pipe for p in PIPELINE_COLLECTION)
+                            or CORP_PIPELINE_REGULAR in pipe
+                            or any(p in pipe for p in CORP_PIPELINE_COLLECTION))
+                if not is_valid:
+                    continue
 
         sd = parse_date(c.get(src_date_key))
         sa = to_num(c.get(src_amt_key))
@@ -948,6 +950,7 @@ def main():
         "individual_collection": apply_to_pay_cohort(claims, current_m, group="C"),
         "corporate_regular": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_regular"),
         "corporate_collection": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_collection"),
+        "unfiltered": apply_to_pay_cohort(all_claims, current_m, group="unfiltered"),
     }
 
     # 신고월(신고환급액) 기준 코호트 — 실제 세무서 제출 금액 대비 결제
