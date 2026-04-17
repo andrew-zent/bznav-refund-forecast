@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T08:25:20Z",
+  "generated_at": "2026-04-17T09:34:05Z",
   "overall": "warn",
   "checks": [
     {
@@ -18,7 +18,7 @@
     },
     {
       "name": "collection_pool_utilization",
-      "value": 1.099,
+      "value": 1.098,
       "threshold": 100,
       "unit": "%/month",
       "status": "pass"
