@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T16:05:46Z",
+  "generated_at": "2026-04-17T17:31:04Z",
   "data_range": "... ~ 2026-04",
   "total_claims": 233873,
   "total_corp_claims": 8199,
@@ -2571,7 +2571,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.259
+            "paid": 5.26
           }
         ],
         "apply_month": "2026-02",
@@ -3357,7 +3357,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.208
+            "paid": 5.209
           }
         ],
         "apply_month": "2026-02",
@@ -5839,7 +5839,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.259
+            "paid": 5.26
           }
         ],
         "apply_month": "2026-02",
@@ -11296,9 +11296,9 @@
         },
         {
           "month": "2026-02",
-          "apply_amount": 33.83,
+          "apply_amount": 33.84,
           "paid": 7.768,
-          "deal_count": 1628
+          "deal_count": 1629
         },
         {
           "month": "2026-03",
@@ -11406,9 +11406,9 @@
         },
         {
           "month": "2026-02",
-          "apply_amount": 54.37,
+          "apply_amount": 54.36,
           "paid": 1.74,
-          "deal_count": 1493
+          "deal_count": 1492
         },
         {
           "month": "2026-03",

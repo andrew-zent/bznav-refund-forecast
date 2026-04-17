@@ -1,19 +1,19 @@
 {
   "entries": [
     {
-      "generated_at": "2026-04-17T17:11:06Z",
+      "generated_at": "2026-04-17T17:31:04Z",
       "data_range": "... ~ 2026-04",
       "mature_window_end": "2025-10",
       "conversion_filtered_pct": 20.33,
       "conversion_unfiltered_pct": 5.19,
       "pipeline_shares": {
         "A(지수)": 54.26,
-        "D(젠트)-취소": 14.34,
+        "D(젠트)-취소": 14.33,
         "B(젠트)-환급": 24.59,
         "C(젠트)-추심": 3.81,
         "법인-환급": 2.65,
         "법인-취소": 0.24,
-        "법인-추심": 0.11
+        "법인-추심": 0.12
       },
       "pool_balance": 151.2,
       "pool_monthly_paid_3mo_avg": 1.76,
@@ -64,5 +64,5 @@
       "date": "2026-04-17"
     }
   ],
-  "updated_at": "2026-04-17T17:11:06Z"
+  "updated_at": "2026-04-17T17:31:04Z"
 }

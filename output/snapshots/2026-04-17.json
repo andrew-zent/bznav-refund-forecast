@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-17T17:11:06Z",
+  "generated_at": "2026-04-17T17:31:04Z",
   "data_range": "... ~ 2026-04",
   "mature_window": {
     "start": "2024-11",
@@ -53,7 +53,7 @@
       "conv_pct": 0.0
     },
     "법인-추심": {
-      "apply": 3.9,
+      "apply": 4.0,
       "paid": 0.54,
       "conv_pct": 13.72
     }
