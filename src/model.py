@@ -666,6 +666,50 @@ def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
     return result
 
 
+def diagnostic_breakdown(claims, current_m, n_months=18):
+    """필터 제외 원인 진단 — 월별 pipeline/status별 신청액 + 결제액 집계.
+
+    마케팅 base(unfiltered)와 내부 필터 base의 차이가 시간에 따라 어떻게 변하는지,
+    어느 pipeline/status가 '저효율 유입' 증가의 주범인지 파악."""
+    by_pipe = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
+    by_status = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
+
+    for c in claims:
+        ad = parse_date(c.get("apply_date"))
+        if not ad:
+            continue
+        m = ym(ad)
+        if m < current_m - n_months + 1:
+            continue
+        pipe = str(c.get("pipeline", "(none)")) or "(none)"
+        status = str(c.get("status", "(none)")) or "(none)"
+        aa = to_num(c.get("apply_amount"))
+        pa = to_num(c.get("payment_amount"))
+        by_pipe[pipe][m]["app"] += aa
+        by_pipe[pipe][m]["pay"] += pa
+        by_pipe[pipe][m]["n"] += 1
+        by_status[status][m]["app"] += aa
+        by_status[status][m]["pay"] += pa
+        by_status[status][m]["n"] += 1
+
+    def fmt(bucket):
+        result = {}
+        for key, monthly in bucket.items():
+            rows = []
+            for m in range(current_m - n_months + 1, current_m + 1):
+                v = monthly.get(m, {"app": 0.0, "pay": 0.0, "n": 0})
+                rows.append({
+                    "month": ym_label(m),
+                    "apply_amount": round(v["app"] / 1e8, 2),
+                    "paid": round(v["pay"] / 1e8, 3),
+                    "deal_count": v["n"],
+                })
+            result[key] = rows
+        return result
+
+    return {"by_pipeline": fmt(by_pipe), "by_status": fmt(by_status)}
+
+
 def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
     """신청월(조회환급액) 기준 코호트 — source_to_pay_cohort의 wrapper."""
     rows = source_to_pay_cohort(claims, current_m, "apply_date", "apply_amount",
@@ -967,6 +1011,9 @@ def main():
         "all": source_to_pay_cohort(all_claims, current_m, "decision_date", "decision_amount", group="all"),
     }
 
+    # 진단: pipeline/status별 월별 신청액·결제액 breakdown (마케팅 base 내 저효율 유입 원인 파악)
+    diag = diagnostic_breakdown(all_claims, current_m)
+
     # Save outputs
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
@@ -987,6 +1034,7 @@ def main():
         "filing_to_pay_cohort": filing_cohort,
         "decision_to_pay_cohort": decision_cohort,
         "collection_pool_trend": engine.pool_monthly_trend,
+        "diagnostic_breakdown": diag,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
