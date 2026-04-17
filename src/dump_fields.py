@@ -39,6 +39,7 @@ def summarize(fields, source_label):
             "is_custom": f.get("edit_flag", False),
             "options_count": len(options),
             "options": [o.get("label", "") for o in options[:30]],
+            "options_full": [{"id": o.get("id"), "label": o.get("label", "")} for o in options],
         })
     return result
 
