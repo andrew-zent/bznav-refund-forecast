@@ -511,3 +511,37 @@ def 예상결제액(월):
 
 세그먼트별 rate 편차보다 월별 rate 편차가 더 크기 때문. 개인 정기 한 세그먼트 내에서도 월마다 17~23% 변동이 있어, 세그먼트 믹스 보정이 오히려 노이즈 증가. 전체 flat rate가 더 robust.
 
+### C. Raw deal 이력 아카이브 (SQLite)
+
+매주 월요일 자동으로 전체 deal 스냅샷이 SQLite에 누적됨 — **과거 임의 시점 재현 가능**.
+
+**구조**
+- 저장소: [GitHub Release `history-archive`](https://github.com/andrew-zent/bznav-refund-forecast/releases/tag/history-archive)
+- 파일: `history.sqlite` (약 76MB, 1주차 기준)
+- 스키마: `deal_history(as_of_date, deal_id, source, status, pipeline, apply_*, filing_*, decision_*, payment_*, lost_reason, cancel_reason, hold_reason, customer_type, channel, utm_*)` 총 27컬럼
+- PK: `(as_of_date, deal_id, source)` — 주차 간 중복 자동 방지
+- 인덱스 5종: deal_id, as_of_date, pipeline, status, apply_date
+
+**누적 현황** (2026-04-17)
+- 1주차 시작, 242,072 deals (개인 233,873 + 법인 8,199)
+- 연간 예상 ~500MB~1.5GB, GitHub Release 2GB 한도 여유
+
+**다운로드 & 쿼리**
+
+```bash
+gh release download history-archive -p history.sqlite
+sqlite3 history.sqlite "
+  SELECT pipeline, COUNT(*) AS n, ROUND(SUM(apply_amount)/1e8,1) AS 억
+  FROM deal_history
+  WHERE as_of_date = '2026-04-17' AND status = '실패'
+  GROUP BY pipeline ORDER BY 억 DESC;"
+```
+
+**활용 예시**
+- 특정 시점(예: 3개월 전)의 pipeline 분포 재현
+- 특정 deal의 상태 변화 추적 (신청→신고→결정→결제 전 과정)
+- 주차별 A(지수) 비중 시계열 (구조적 변화 조기 감지)
+- 과거 임의 period에서 임시 분석 진행 (ad-hoc 쿼리)
+
+**쿼리 템플릿**: [docs/history_archive.md](./history_archive.md) 참고
+
