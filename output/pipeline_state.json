@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-17T14:18:41Z",
+  "generated_at": "2026-04-17T15:15:05Z",
   "status": "success",
   "steps": [
     {
       "name": "extract_individual",
       "status": "success",
-      "records": 233868
+      "records": 233872
     },
     {
       "name": "extract_corporate",

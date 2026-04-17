@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-17T14:18:41Z",
+  "generated_at": "2026-04-17T15:15:05Z",
   "data_range": "... ~ 2026-04",
-  "total_claims": 233868,
+  "total_claims": 233872,
   "total_corp_claims": 8199,
   "distributions": {
     "a2f": {
@@ -5874,7 +5874,7 @@
           }
         ],
         "apply_month": "2026-04",
-        "apply_amount": 128.35
+        "apply_amount": 128.58
       }
     ]
   },
@@ -10316,9 +10316,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 84.4,
+          "apply_amount": 84.64,
           "paid": 0.0,
-          "deal_count": 2516
+          "deal_count": 2520
         }
       ],
       "D(젠트)-취소": [
@@ -11418,9 +11418,172 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 75.63,
+          "apply_amount": 75.87,
           "paid": 0.003,
-          "deal_count": 2165
+          "deal_count": 2169
+        }
+      ]
+    },
+    "by_lost_reason": {
+      "(미기재)": [
+        {
+          "month": "2024-11",
+          "apply_amount": 111.78,
+          "paid": 0.006,
+          "deal_count": 2953
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 110.45,
+          "paid": 0.066,
+          "deal_count": 3620
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 187.16,
+          "paid": 0.133,
+          "deal_count": 6581
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 205.03,
+          "paid": 0.062,
+          "deal_count": 6333
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 230.4,
+          "paid": 0.094,
+          "deal_count": 6728
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 226.9,
+          "paid": 0.079,
+          "deal_count": 6142
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 129.71,
+          "paid": 0.009,
+          "deal_count": 3846
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 287.46,
+          "paid": 0.099,
+          "deal_count": 12163
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 311.63,
+          "paid": 0.175,
+          "deal_count": 5733
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 293.96,
+          "paid": 0.158,
+          "deal_count": 7279
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 233.22,
+          "paid": 0.03,
+          "deal_count": 9798
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 260.78,
+          "paid": 0.005,
+          "deal_count": 9499
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 343.72,
+          "paid": 0.043,
+          "deal_count": 14121
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 519.69,
+          "paid": 0.166,
+          "deal_count": 15835
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 278.17,
+          "paid": 0.022,
+          "deal_count": 7032
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 271.27,
+          "paid": 0.004,
+          "deal_count": 7619
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 204.52,
+          "paid": 0.0,
+          "deal_count": 5882
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 52.58,
+          "paid": 0.0,
+          "deal_count": 1685
+        }
+      ]
+    },
+    "pipeline_x_lost_reason": {
+      "A(지수)": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 3016.66,
+          "deal_count": 115298
+        }
+      ],
+      "D(젠트)-취소": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 915.85,
+          "deal_count": 9273
+        }
+      ],
+      "B(젠트)-환급": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 196.28,
+          "deal_count": 6201
+        }
+      ],
+      "C(젠트)-추심": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 0.06,
+          "deal_count": 5
+        }
+      ],
+      "테스트": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 0.0,
+          "deal_count": 1
+        }
+      ],
+      "법인-환급": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 115.95,
+          "deal_count": 1911
+        }
+      ],
+      "법인-취소": [
+        {
+          "reason": "(미기재)",
+          "apply_amount": 13.62,
+          "deal_count": 160
         }
       ]
     }
