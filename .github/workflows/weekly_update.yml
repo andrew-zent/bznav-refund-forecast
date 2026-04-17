@@ -3,7 +3,12 @@ name: Weekly Forecast Update
 on:
   schedule:
     - cron: '0 0 * * 1'  # 매주 월요일 09:00 KST (UTC 00:00)
-  workflow_dispatch: {}  # 수동 실행 가능
+  workflow_dispatch:
+    inputs:
+      full_sync:
+        description: "전건 재동기화 (lost_reason 등 신규 필드 backfill)"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -31,12 +36,12 @@ jobs:
         env:
           PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
           PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
-        run: python src/extract_pipedrive.py
+        run: python src/extract_pipedrive.py ${{ inputs.full_sync && '--full' || '' }}
 
       - name: Extract from Pipedrive (법인)
         env:
           CORP_PIPEDRIVE_API_TOKEN: ${{ secrets.CORP_PIPEDRIVE_API_TOKEN }}
-        run: python src/extract_corp.py
+        run: python src/extract_corp.py ${{ inputs.full_sync && '--full' || '' }}
 
       - name: Run forecast model
         env:

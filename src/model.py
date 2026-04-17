@@ -667,12 +667,12 @@ def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
 
 
 def diagnostic_breakdown(claims, current_m, n_months=18):
-    """필터 제외 원인 진단 — 월별 pipeline/status별 신청액 + 결제액 집계.
-
-    마케팅 base(unfiltered)와 내부 필터 base의 차이가 시간에 따라 어떻게 변하는지,
-    어느 pipeline/status가 '저효율 유입' 증가의 주범인지 파악."""
+    """필터 제외 원인 진단 — 월별 pipeline/status/lost_reason별 신청액 + 결제액 집계."""
     by_pipe = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
     by_status = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
+    by_lost_reason = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0}))
+    # pipeline × lost_reason (실패건만, 월무관)
+    pipe_x_reason = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
 
     for c in claims:
         ad = parse_date(c.get("apply_date"))
@@ -692,7 +692,17 @@ def diagnostic_breakdown(claims, current_m, n_months=18):
         by_status[status][m]["pay"] += pa
         by_status[status][m]["n"] += 1
 
-    def fmt(bucket):
+        # 실패 건 사유 분석
+        if status == "실패" or status == "lost":
+            reason = c.get("lost_reason") or "(미기재)"
+            reason = str(reason).strip() or "(미기재)"
+            by_lost_reason[reason][m]["app"] += aa
+            by_lost_reason[reason][m]["pay"] += pa
+            by_lost_reason[reason][m]["n"] += 1
+            pipe_x_reason[pipe][reason]["app"] += aa
+            pipe_x_reason[pipe][reason]["n"] += 1
+
+    def fmt_monthly(bucket):
         result = {}
         for key, monthly in bucket.items():
             rows = []
@@ -707,7 +717,21 @@ def diagnostic_breakdown(claims, current_m, n_months=18):
             result[key] = rows
         return result
 
-    return {"by_pipeline": fmt(by_pipe), "by_status": fmt(by_status)}
+    def fmt_pipe_x_reason(bucket):
+        result = {}
+        for pipe, reasons in bucket.items():
+            result[pipe] = [
+                {"reason": r, "apply_amount": round(v["app"] / 1e8, 2), "deal_count": v["n"]}
+                for r, v in sorted(reasons.items(), key=lambda x: -x[1]["app"])
+            ]
+        return result
+
+    return {
+        "by_pipeline": fmt_monthly(by_pipe),
+        "by_status": fmt_monthly(by_status),
+        "by_lost_reason": fmt_monthly(by_lost_reason),
+        "pipeline_x_lost_reason": fmt_pipe_x_reason(pipe_x_reason),
+    }
 
 
 def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
