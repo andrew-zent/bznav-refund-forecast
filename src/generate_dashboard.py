@@ -30,6 +30,163 @@ def main():
     print(f"→ {out_path} ({out_path.stat().st_size / 1024:.0f} KB)")
 
 
+def _marketing_section(data: dict) -> tuple[str, str]:
+    """마케팅 cohort LTV 섹션 HTML + 추가 chart JS 반환."""
+    ms = data.get("monthly_series") or {}
+    coh = data.get("apply_to_pay_cohort", {}).get("all") or []
+    fc_coh = data.get("filing_to_pay_cohort", {}).get("all") or []
+    dc_coh = data.get("decision_to_pay_cohort", {}).get("all") or []
+    pool = data.get("collection_pool") or {}
+    pool_trend = data.get("collection_pool_trend") or []
+
+    if not coh:
+        return ("", "")
+
+    # 완성 코호트 (2024-11 ~ 2025-10 등 M+6 경과분) 평균 전환율
+    # current_m 유추: 마지막 apply_month
+    last_m = coh[-1]["apply_month"]
+    # 단순 기준: 최근 6개 cohort 제외한 나머지를 성숙으로 간주
+    mature_coh = [r for r in coh[:-6] if r["apply_amount"] > 0]
+    if mature_coh:
+        sa = sum(r["apply_amount"] for r in mature_coh)
+        sp = sum(r["paid_total"] for r in mature_coh)
+        mature_rate = sp / sa * 100 if sa > 0 else 0
+    else:
+        mature_rate = 20.0
+
+    # In-flight 예측: offset 분포 기반
+    off_rate = {}
+    for r in mature_coh:
+        for x in r["paid_by_offset"]:
+            off_rate[x["off"]] = off_rate.get(x["off"], 0) + x["paid"]
+    sa_m = sum(r["apply_amount"] for r in mature_coh)
+    for o in off_rate:
+        off_rate[o] = off_rate[o] / sa_m if sa_m > 0 else 0
+
+    # 최근 6개 cohort 예측 테이블
+    current_apply = coh[-1]
+    current_m_label = current_apply["apply_month"]
+    year, month = map(int, current_m_label.split("-"))
+    current_m_idx = year * 12 + (month - 1)
+    inflight_rows = ""
+    for r in coh[-6:]:
+        y, m = map(int, r["apply_month"].split("-"))
+        apply_m_idx = y * 12 + (m - 1)
+        elapsed = current_m_idx - apply_m_idx
+        app = r["apply_amount"]
+        if app <= 0:
+            continue
+        by_off = {x["off"]: x["paid"] for x in r["paid_by_offset"]}
+        observed = sum(v for o, v in by_off.items() if o <= elapsed)
+        remaining = app * sum(off_rate.get(o, 0) for o in range(elapsed + 1, 25))
+        predicted = observed + remaining
+        pred_pct = predicted / app * 100
+        mark = "🟡" if elapsed < 6 else "🟢"
+        inflight_rows += (
+            f"<tr><td>{r['apply_month']}</td><td>{app:.1f}</td><td>M+{elapsed}</td>"
+            f"<td>{observed:.2f}</td><td>{remaining:.2f}</td>"
+            f"<td style='color:#58a6ff;font-weight:700;'>{predicted:.2f}</td>"
+            f"<td>{pred_pct:.1f}%</td><td>{mark}</td></tr>"
+        )
+
+    # 단계별 정밀화 비교 (최근 완전월)
+    if len(coh) >= 2:
+        ref = coh[-2]  # 직전월 (partial이 아닌)
+    else:
+        ref = coh[-1]
+    ref_month = ref["apply_month"]
+    ref_apply = ref["apply_amount"]
+    ref_filing = next((x["source_amount"] for x in fc_coh if x.get("source_month") == ref_month), 0)
+    ref_dec = next((x["source_amount"] for x in dc_coh if x.get("source_month") == ref_month), 0)
+    stage_rows = (
+        f"<tr><td>T+0 당일</td><td>신청환급금</td><td>{ref_apply:.1f}억</td><td>× {mature_rate:.2f}%</td>"
+        f"<td style='color:#58a6ff'>{ref_apply * mature_rate / 100:.2f}억</td></tr>"
+        f"<tr><td>T+7 신고 후</td><td>신고환급액</td><td>{ref_filing:.1f}억</td><td>× 30%</td>"
+        f"<td style='color:#58a6ff'>{ref_filing * 0.30:.2f}억</td></tr>"
+        f"<tr><td>T+14 결정 후</td><td>결정환급액</td><td>{ref_dec:.1f}억</td><td>× 31%</td>"
+        f"<td style='color:#58a6ff'>{ref_dec * 0.31:.2f}억</td></tr>"
+    )
+
+    # Pool 추이 chart data
+    pool_labels = json.dumps([p["month"] for p in pool_trend])
+    pool_balance_data = json.dumps([p["balance"] for p in pool_trend])
+    pool_paid_data = json.dumps([p["paid"] for p in pool_trend])
+
+    # KPI
+    pool_bal = pool.get("balance", 0)
+    pool_util = pool.get("utilization_rate_pct", 0)
+    monthly_harvest = round(pool_bal * pool_util / 100, 2)
+
+    html = f"""
+<div style="margin:24px 0 8px 0; padding-top:24px; border-top:2px solid #388bfd;">
+  <h1 style="font-size:18px; color:#3fb950;">🎯 마케팅 Cohort LTV (신청 기준)</h1>
+  <div style="font-size:11px; color:#8b949e; margin-bottom:12px;">
+    ⚠ 아래 값은 해당 월 신청 cohort의 <b>lifetime 예상 결제액</b>이며, 상단 월별 cash inflow와는 별개 지표입니다.
+    12개월 성숙 코호트 평균 전환율: <b style="color:#3fb950">{mature_rate:.2f}%</b>
+    (마케팅 base 환산: <b>{mature_rate / 4.77:.2f}%</b>)
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi" style="border-color:#3fb950;">
+    <div class="kpi-label">{current_m_label} 신청환급금 (내부 base)</div>
+    <div class="kpi-value" style="color:#3fb950;">{current_apply['apply_amount']:.1f}<span style="font-size:12px;color:#8b949e">억</span></div>
+    <div class="kpi-sub">예상 LTV: {current_apply['apply_amount'] * mature_rate / 100:.1f}억</div>
+  </div>
+  <div class="kpi" style="border-color:#3fb950;">
+    <div class="kpi-label">결정금액 풀 잔액</div>
+    <div class="kpi-value" style="color:#3fb950;">{pool_bal:.1f}<span style="font-size:12px;color:#8b949e">억</span></div>
+    <div class="kpi-sub">월 회수율 {pool_util:.2f}% → {monthly_harvest:.2f}억/월</div>
+  </div>
+  <div class="kpi" style="border-color:#3fb950;">
+    <div class="kpi-label">누수율 (B결정→추심)</div>
+    <div class="kpi-value" style="color:#3fb950;">{pool.get('leak_pct', 0):.1f}<span style="font-size:12px;color:#8b949e">%</span></div>
+    <div class="kpi-sub">유입률 {pool.get('inflow_rate_pct', 0):.1f}%</div>
+  </div>
+  <div class="kpi" style="border-color:#3fb950;">
+    <div class="kpi-label">월간 cohort 기여 공식</div>
+    <div class="kpi-value" style="color:#3fb950; font-size:14px; line-height:1.3;">신청×{mature_rate:.1f}%<br>+ 풀×{pool_util:.2f}%</div>
+    <div class="kpi-sub">하이브리드 forecast</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>📋 단계별 정밀화 ({ref_month} 기준)</h2>
+    <table>
+      <thead><tr><th>시점</th><th>입력</th><th>금액</th><th>계수</th><th>예상결제액</th></tr></thead>
+      <tbody>{stage_rows}</tbody>
+    </table>
+    <div style="font-size:10px; color:#6e7681; margin-top:8px;">
+      시간 경과에 따라 자동 replace: T+0 신청 rough → T+7 신고 정밀 → T+14 결정 확정
+    </div>
+  </div>
+  <div class="card">
+    <h2>🔄 In-flight Cohort 예측 (최근 6개월)</h2>
+    <table>
+      <thead><tr><th>신청월</th><th>신청</th><th>경과</th><th>관찰</th><th>남은</th><th>예측최종</th><th>예측%</th><th></th></tr></thead>
+      <tbody>{inflight_rows}</tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <h2>💰 결정금액 풀 추이 (24개월)</h2>
+  <div class="chart-c"><canvas id="poolChart"></canvas></div>
+  <div style="font-size:11px; color:#8b949e; margin-top:6px;">
+    풀 잔액 = 결정났지만 미결제된 추심 건의 합. 풀이 증가하면 향후 매출 ↑, 감소하면 향후 매출 ↓ 선행지표.
+  </div>
+</div>
+"""
+    chart_js = f"""
+new Chart(document.getElementById('poolChart'),{{type:'line',data:{{labels:{pool_labels},datasets:[
+  {{label:'풀 잔액 (억)',data:{pool_balance_data},borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.1)',fill:true,tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y'}},
+  {{label:'월 결제 회수 (억)',data:{pool_paid_data},borderColor:'#d29922',tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y1'}}
+]}},options:{{maintainAspectRatio:false,responsive:true,plugins:{{legend:{{position:'top',labels:{{boxWidth:10}}}}}},scales:{{y:{{...bs,position:'left',title:{{display:true,text:'풀 잔액'}}}},y1:{{...bs,position:'right',grid:{{drawOnChartArea:false}},title:{{display:true,text:'월 회수'}}}},x:{{...bs}}}}}}}});
+"""
+    return html, chart_js
+
+
 def _generate_inline(data: dict) -> str:
     """forecast.json을 기반으로 간략 대시보드 HTML 생성."""
     fc = data["forecast"]
@@ -37,6 +194,7 @@ def _generate_inline(data: dict) -> str:
     mape = data["mape"]
     gen = data["generated_at"]
     has_corp = bool(fc and "individual" in fc[0])
+    marketing_html, marketing_js = _marketing_section(data)
 
     if has_corp:
         fc_rows = "".join(
@@ -118,6 +276,8 @@ footer{{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}}
 <tbody>{bt_rows}</tbody></table></div>
 </div>
 
+{marketing_html}
+
 <footer>지엔터프라이즈 · Phase 2 v2 코호트 분산 모델 · 자동 갱신</footer>
 </div>
 <script>
@@ -132,6 +292,7 @@ new Chart(document.getElementById('btChart'),{{type:'line',data:{{labels:{bt_lab
 {{label:'실제',data:{bt_actual},borderColor:'#58a6ff',backgroundColor:'rgba(88,166,255,0.2)',fill:true,tension:.3,pointRadius:4,borderWidth:2.5}},
 {{label:'예측',data:{bt_pred},borderColor:'#3fb950',tension:.3,pointRadius:4,pointStyle:'triangle'}}
 ]}},options:{{maintainAspectRatio:false,responsive:true,plugins:{{legend:{{position:'top',labels:{{boxWidth:10}}}}}},scales:{{y:{{...bs}},x:{{...bs}}}}}}}});
+{marketing_js}
 </script></body></html>"""
 
 
