@@ -31,7 +31,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash --include-untracked -- output/field_catalog.json
           git pull --rebase origin main
+          git stash pop || true
           git add output/field_catalog.json
           git diff --staged --quiet || git commit -m "chore: field catalog dump $(date +%Y-%m-%d)"
           git push
