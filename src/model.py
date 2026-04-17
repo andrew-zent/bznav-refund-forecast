@@ -1038,6 +1038,26 @@ def main():
     # 진단: pipeline/status별 월별 신청액·결제액 breakdown (마케팅 base 내 저효율 유입 원인 파악)
     diag = diagnostic_breakdown(all_claims, current_m)
 
+    # Pipedrive field catalog — "이탈/사유/실패/reason" 포함 필드 찾기용
+    field_catalog = []
+    fields_path = DATA_DIR / "deal_fields.json"
+    if fields_path.exists():
+        try:
+            fields = json.loads(fields_path.read_text())
+            keywords = ["이탈", "사유", "실패", "reason", "lost", "이유", "원인", "취소"]
+            for key, info in fields.items():
+                name = info.get("name", "")
+                if any(kw in name.lower() or kw in name for kw in keywords):
+                    field_catalog.append({
+                        "key": key,
+                        "name": name,
+                        "field_type": info.get("field_type", ""),
+                        "options_count": len(info.get("options") or []) if info.get("options") else 0,
+                        "options_sample": [o.get("label", "") for o in (info.get("options") or [])[:5]],
+                    })
+        except Exception as e:
+            print(f"  field catalog load failed: {e}")
+
     # Save outputs
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
@@ -1059,6 +1079,7 @@ def main():
         "decision_to_pay_cohort": decision_cohort,
         "collection_pool_trend": engine.pool_monthly_trend,
         "diagnostic_breakdown": diag,
+        "field_catalog_candidates": field_catalog,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
