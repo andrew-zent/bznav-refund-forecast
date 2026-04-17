@@ -19,10 +19,10 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 </style></head><body>
 <div class="container">
 <h1>비즈넵 결제 예측 대시보드</h1>
-<div class="meta"><span>갱신: 2026-04-17T08:08:44Z</span><span>개인 MAPE 5.7%</span><span>개인: 233,798건</span><span>법인: 8,198건</span></div>
+<div class="meta"><span>갱신: 2026-04-17T08:25:20Z</span><span>개인 MAPE 5.7%</span><span>개인: 233,805건</span><span>법인: 8,198건</span></div>
 
 <div class="kpi-row">
-<div class="kpi hl"><div class="kpi-label">2026-04 통합</div><div class="kpi-value">16.98<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 16.74억 + 법인 0.245억</div></div><div class="kpi hl"><div class="kpi-label">2026-05 통합</div><div class="kpi-value">19.55<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 19.31억 + 법인 0.24억</div></div><div class="kpi hl"><div class="kpi-label">2026-06 통합</div><div class="kpi-value">23.04<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 22.81억 + 법인 0.235억</div></div>
+<div class="kpi hl"><div class="kpi-label">2026-04 통합</div><div class="kpi-value">16.98<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 16.74억 + 법인 0.245억</div></div><div class="kpi hl"><div class="kpi-label">2026-05 통합</div><div class="kpi-value">19.54<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 19.3억 + 법인 0.24억</div></div><div class="kpi hl"><div class="kpi-label">2026-06 통합</div><div class="kpi-value">23.04<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 22.8억 + 법인 0.235억</div></div>
 <div class="kpi"><div class="kpi-label">12개월 MAPE</div><div class="kpi-value">5.7%</div></div>
 </div>
 
@@ -30,7 +30,7 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 <div class="card"><h2>📊 향후 예측</h2><div class="chart-c"><canvas id="fcChart"></canvas></div></div>
 <div class="card"><h2>🎯 예측값 (개인+법인)</h2>
 <table><thead><tr><th>월</th><th>개인정기</th><th>개인추심</th><th>개인소계</th><th>법인</th><th style="color:#58a6ff">통합</th></tr></thead>
-<tbody><tr><td><b>2026-04</b></td><td>15.08</td><td>1.66</td><td>16.74</td><td>0.245</td><td style="color:#58a6ff;font-weight:700;">16.98</td></tr><tr><td><b>2026-05</b></td><td>17.63</td><td>1.68</td><td>19.31</td><td>0.24</td><td style="color:#58a6ff;font-weight:700;">19.55</td></tr><tr><td><b>2026-06</b></td><td>21.06</td><td>1.76</td><td>22.81</td><td>0.235</td><td style="color:#58a6ff;font-weight:700;">23.04</td></tr><tr><td><b>2026-07</b></td><td>18.24</td><td>1.82</td><td>20.06</td><td>0.23</td><td style="color:#58a6ff;font-weight:700;">20.29</td></tr><tr><td><b>2026-08</b></td><td>17.14</td><td>1.87</td><td>19.01</td><td>0.225</td><td style="color:#58a6ff;font-weight:700;">19.24</td></tr></tbody></table></div>
+<tbody><tr><td><b>2026-04</b></td><td>15.08</td><td>1.66</td><td>16.74</td><td>0.245</td><td style="color:#58a6ff;font-weight:700;">16.98</td></tr><tr><td><b>2026-05</b></td><td>17.62</td><td>1.68</td><td>19.3</td><td>0.24</td><td style="color:#58a6ff;font-weight:700;">19.54</td></tr><tr><td><b>2026-06</b></td><td>21.05</td><td>1.76</td><td>22.8</td><td>0.235</td><td style="color:#58a6ff;font-weight:700;">23.04</td></tr><tr><td><b>2026-07</b></td><td>18.23</td><td>1.82</td><td>20.06</td><td>0.23</td><td style="color:#58a6ff;font-weight:700;">20.29</td></tr><tr><td><b>2026-08</b></td><td>17.13</td><td>1.87</td><td>19.0</td><td>0.225</td><td style="color:#58a6ff;font-weight:700;">19.23</td></tr></tbody></table></div>
 </div>
 
 <div class="grid-2">
@@ -46,9 +46,9 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 Chart.defaults.color='#8b949e';Chart.defaults.borderColor='#21262d';
 const g={color:'#21262d',drawBorder:false},bs={grid:g,ticks:{color:'#8b949e'}};
 new Chart(document.getElementById('fcChart'),{type:'bar',data:{labels:["2026-04", "2026-05", "2026-06", "2026-07", "2026-08"],datasets:[
-{label:'개인',data:[16.74, 19.31, 22.81, 20.06, 19.01],backgroundColor:'#3fb950',borderRadius:4,stack:'s'},
+{label:'개인',data:[16.74, 19.3, 22.8, 20.06, 19.0],backgroundColor:'#3fb950',borderRadius:4,stack:'s'},
 {label:'법인',data:[0.245, 0.24, 0.235, 0.23, 0.225],backgroundColor:'#d29922',borderRadius:4,stack:'s'},
-{label:'통합',data:[16.98, 19.55, 23.04, 20.29, 19.24],type:'line',borderColor:'#58a6ff',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
+{label:'통합',data:[16.98, 19.54, 23.04, 20.29, 19.23],type:'line',borderColor:'#58a6ff',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
 ]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:10}}},scales:{y:{...bs,stacked:true},x:{...bs,stacked:true}}}});
 new Chart(document.getElementById('btChart'),{type:'line',data:{labels:["2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"],datasets:[
 {label:'실제',data:[16.93, 12.1, 14.91, 15.69, 12.33, 17.51, 17.77, 16.18, 18.46, 17.79, 16.35, 24.62],borderColor:'#58a6ff',backgroundColor:'rgba(88,166,255,0.2)',fill:true,tension:.3,pointRadius:4,borderWidth:2.5},
