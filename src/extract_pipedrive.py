@@ -51,7 +51,7 @@ NEEDED_KEYS = {
 }
 
 # Pipedrive standard field keys to keep
-STD_KEYS = {"id", "status", "pipeline_id", "update_time"}
+STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time"}
 
 
 def http_get(path, params, retries=3, backoff=2.0):

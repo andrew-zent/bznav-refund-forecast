@@ -47,7 +47,7 @@ NEEDED_KEYS = {
     "8f3e1c66651fdabdeadbf78bad9777345312b334": "hecto_card",       # 헥토카드 결제금액
 }
 
-STD_KEYS = {"id", "status", "pipeline_id", "update_time"}
+STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time"}
 
 # 법인 파이프라인 이름 매핑 (개인과 통일된 네이밍)
 PIPE_NAME_MAP = {
