@@ -14,3 +14,7 @@ __pycache__/
 
 # xlsx도 제외 (GitHub 100MB 제한 초과)
 data/*.xlsx
+
+# SQLite archive (GitHub Release로 관리)
+output/history.sqlite
+output/history.sqlite-journal
