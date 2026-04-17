@@ -53,6 +53,28 @@ jobs:
       - name: Snapshot + timeline
         run: python src/snapshot.py
 
+      - name: Download previous history.sqlite from release
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download history-archive -p history.sqlite -D output/ || echo "No existing archive — will create fresh"
+
+      - name: Archive raw deals to SQLite
+        run: python src/archive_history.py
+
+      - name: Upload history.sqlite to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # 릴리스 없으면 생성, 있으면 asset 교체
+          gh release view history-archive >/dev/null 2>&1 || \
+            gh release create history-archive --title "Deal History Archive" --notes "Weekly raw deal snapshots accumulated in SQLite. Download: \`gh release download history-archive -p history.sqlite\`"
+          gh release upload history-archive output/history.sqlite --clobber
+
+      - name: Cleanup — do not commit history.sqlite
+        run: rm -f output/history.sqlite
+
       - name: Generate dashboard
         working-directory: src
         run: python generate_dashboard.py
