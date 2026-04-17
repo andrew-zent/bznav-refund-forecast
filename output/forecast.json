@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-17T13:37:22Z",
+  "generated_at": "2026-04-17T14:18:41Z",
   "data_range": "... ~ 2026-04",
-  "total_claims": 233861,
+  "total_claims": 233868,
   "total_corp_claims": 8199,
   "distributions": {
     "a2f": {
@@ -437,7 +437,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 11.928
+            "amount": 11.938
           }
         ]
       },
@@ -2555,8 +2555,8 @@
         "apply_amount": 78.37
       },
       {
-        "paid_total": 7.72,
-        "conversion_pct": 8.96,
+        "paid_total": 7.73,
+        "conversion_pct": 8.97,
         "paid_by_offset": [
           {
             "off": 0,
@@ -2571,7 +2571,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.249
+            "paid": 5.259
           }
         ],
         "apply_month": "2026-02",
@@ -3341,8 +3341,8 @@
         "apply_amount": 75.32
       },
       {
-        "paid_total": 7.67,
-        "conversion_pct": 9.2,
+        "paid_total": 7.68,
+        "conversion_pct": 9.21,
         "paid_by_offset": [
           {
             "off": 0,
@@ -3357,7 +3357,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.198
+            "paid": 5.208
           }
         ],
         "apply_month": "2026-02",
@@ -5823,7 +5823,7 @@
         "apply_amount": 358.06
       },
       {
-        "paid_total": 7.72,
+        "paid_total": 7.73,
         "conversion_pct": 2.15,
         "paid_by_offset": [
           {
@@ -5839,7 +5839,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.249
+            "paid": 5.259
           }
         ],
         "apply_month": "2026-02",
@@ -5874,7 +5874,7 @@
           }
         ],
         "apply_month": "2026-04",
-        "apply_amount": 128.29
+        "apply_amount": 128.35
       }
     ]
   },
@@ -6788,8 +6788,8 @@
       {
         "source_month": "2026-02",
         "source_amount": 54.13,
-        "paid_total": 12.02,
-        "conversion_pct": 22.2,
+        "paid_total": 12.03,
+        "conversion_pct": 22.22,
         "paid_by_offset": [
           {
             "off": 0,
@@ -6804,7 +6804,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.25
+            "paid": 7.261
           }
         ]
       },
@@ -7529,8 +7529,8 @@
       {
         "source_month": "2026-02",
         "source_amount": 51.66,
-        "paid_total": 11.99,
-        "conversion_pct": 23.21,
+        "paid_total": 12.0,
+        "conversion_pct": 23.23,
         "paid_by_offset": [
           {
             "off": 0,
@@ -7545,7 +7545,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.228
+            "paid": 7.239
           }
         ]
       },
@@ -10051,13 +10051,13 @@
       {
         "source_month": "2026-04",
         "source_amount": 16.38,
-        "paid_total": 4.33,
-        "conversion_pct": 26.45,
+        "paid_total": 4.34,
+        "conversion_pct": 26.52,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 4.333
+            "paid": 4.344
           }
         ]
       }
@@ -10209,6 +10209,1222 @@
       "util_pct": 0.518
     }
   ],
+  "diagnostic_breakdown": {
+    "by_pipeline": {
+      "A(지수)": [
+        {
+          "month": "2024-11",
+          "apply_amount": 72.63,
+          "paid": 0.0,
+          "deal_count": 2306
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 78.09,
+          "paid": 0.001,
+          "deal_count": 3041
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 132.55,
+          "paid": 0.012,
+          "deal_count": 5601
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 145.65,
+          "paid": 0.0,
+          "deal_count": 5447
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 160.97,
+          "paid": 0.029,
+          "deal_count": 5730
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 154.18,
+          "paid": 0.032,
+          "deal_count": 5209
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 90.66,
+          "paid": 0.0,
+          "deal_count": 3305
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 234.62,
+          "paid": 0.0,
+          "deal_count": 11160
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 238.41,
+          "paid": 0.111,
+          "deal_count": 4887
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 216.85,
+          "paid": 0.0,
+          "deal_count": 6270
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 169.93,
+          "paid": 0.005,
+          "deal_count": 8730
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 192.3,
+          "paid": 0.0,
+          "deal_count": 8436
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 245.28,
+          "paid": 0.0,
+          "deal_count": 12584
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 369.96,
+          "paid": 0.0,
+          "deal_count": 13814
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 185.1,
+          "paid": 0.0,
+          "deal_count": 5979
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 175.94,
+          "paid": 0.0,
+          "deal_count": 6558
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 141.4,
+          "paid": 0.0,
+          "deal_count": 5104
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 84.4,
+          "paid": 0.0,
+          "deal_count": 2516
+        }
+      ],
+      "D(젠트)-취소": [
+        {
+          "month": "2024-11",
+          "apply_amount": 30.39,
+          "paid": 0.0,
+          "deal_count": 420
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 23.03,
+          "paid": 0.0,
+          "deal_count": 314
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 38.73,
+          "paid": 0.0,
+          "deal_count": 478
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 44.61,
+          "paid": 0.0,
+          "deal_count": 458
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 45.78,
+          "paid": 0.0,
+          "deal_count": 482
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 52.02,
+          "paid": 0.0,
+          "deal_count": 473
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 26.26,
+          "paid": 0.0,
+          "deal_count": 280
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 31.03,
+          "paid": 0.0,
+          "deal_count": 379
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 47.69,
+          "paid": 0.0,
+          "deal_count": 460
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 57.97,
+          "paid": 0.002,
+          "deal_count": 575
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 48.58,
+          "paid": 0.014,
+          "deal_count": 500
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 52.45,
+          "paid": 0.0,
+          "deal_count": 498
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 76.41,
+          "paid": 0.0,
+          "deal_count": 738
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 116.29,
+          "paid": 0.0,
+          "deal_count": 1108
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 72.56,
+          "paid": 0.001,
+          "deal_count": 646
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 72.5,
+          "paid": 0.0,
+          "deal_count": 653
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 72.6,
+          "paid": 0.0,
+          "deal_count": 677
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 14.43,
+          "paid": 0.0,
+          "deal_count": 169
+        }
+      ],
+      "B(젠트)-환급": [
+        {
+          "month": "2024-11",
+          "apply_amount": 40.81,
+          "paid": 8.595,
+          "deal_count": 1507
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 39.25,
+          "paid": 8.682,
+          "deal_count": 1851
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 74.68,
+          "paid": 16.099,
+          "deal_count": 3643
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 76.9,
+          "paid": 16.917,
+          "deal_count": 3453
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 74.06,
+          "paid": 15.445,
+          "deal_count": 3148
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 70.99,
+          "paid": 15.423,
+          "deal_count": 2821
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 40.97,
+          "paid": 9.021,
+          "deal_count": 1746
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 100.0,
+          "paid": 17.765,
+          "deal_count": 5291
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 105.35,
+          "paid": 17.886,
+          "deal_count": 2170
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 93.02,
+          "paid": 17.158,
+          "deal_count": 3055
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 70.23,
+          "paid": 14.327,
+          "deal_count": 4502
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 68.91,
+          "paid": 14.054,
+          "deal_count": 4017
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 99.14,
+          "paid": 18.046,
+          "deal_count": 5829
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 146.65,
+          "paid": 25.754,
+          "deal_count": 6391
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 90.64,
+          "paid": 13.624,
+          "deal_count": 2634
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 96.17,
+          "paid": 9.244,
+          "deal_count": 3363
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 96.73,
+          "paid": 1.094,
+          "deal_count": 3321
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 23.73,
+          "paid": 0.042,
+          "deal_count": 1044
+        }
+      ],
+      "C(젠트)-추심": [
+        {
+          "month": "2024-11",
+          "apply_amount": 3.96,
+          "paid": 1.061,
+          "deal_count": 232
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 8.52,
+          "paid": 2.312,
+          "deal_count": 412
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 15.48,
+          "paid": 3.431,
+          "deal_count": 799
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 14.56,
+          "paid": 3.708,
+          "deal_count": 836
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 14.87,
+          "paid": 3.863,
+          "deal_count": 938
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 12.31,
+          "paid": 2.814,
+          "deal_count": 648
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 6.42,
+          "paid": 1.477,
+          "deal_count": 362
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 12.06,
+          "paid": 2.62,
+          "deal_count": 701
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 15.99,
+          "paid": 3.615,
+          "deal_count": 329
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 9.63,
+          "paid": 2.141,
+          "deal_count": 401
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 9.39,
+          "paid": 2.057,
+          "deal_count": 622
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 9.2,
+          "paid": 1.961,
+          "deal_count": 547
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 14.73,
+          "paid": 3.445,
+          "deal_count": 896
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 14.83,
+          "paid": 3.538,
+          "deal_count": 832
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 1.91,
+          "paid": 0.51,
+          "deal_count": 105
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 0.12,
+          "paid": 0.044,
+          "deal_count": 4
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        }
+      ],
+      "테스트": [
+        {
+          "month": "2024-11",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 1
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        }
+      ],
+      "법인-환급": [
+        {
+          "month": "2024-11",
+          "apply_amount": 5.06,
+          "paid": 0.158,
+          "deal_count": 89
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 4.75,
+          "paid": 0.54,
+          "deal_count": 59
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 3.91,
+          "paid": 0.275,
+          "deal_count": 101
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 5.07,
+          "paid": 0.393,
+          "deal_count": 94
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 14.28,
+          "paid": 0.789,
+          "deal_count": 177
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 12.41,
+          "paid": 0.303,
+          "deal_count": 173
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 8.29,
+          "paid": 0.288,
+          "deal_count": 105
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 9.32,
+          "paid": 0.102,
+          "deal_count": 117
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 8.11,
+          "paid": 0.56,
+          "deal_count": 133
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 7.79,
+          "paid": 0.241,
+          "deal_count": 140
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 5.8,
+          "paid": 0.103,
+          "deal_count": 135
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 7.36,
+          "paid": 0.192,
+          "deal_count": 134
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 6.32,
+          "paid": 0.348,
+          "deal_count": 161
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 13.08,
+          "paid": 0.122,
+          "deal_count": 233
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 6.37,
+          "paid": 0.01,
+          "deal_count": 135
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 14.31,
+          "paid": 0.224,
+          "deal_count": 152
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 7.8,
+          "paid": 0.013,
+          "deal_count": 170
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 5.46,
+          "paid": 0.0,
+          "deal_count": 121
+        }
+      ],
+      "법인-취소": [
+        {
+          "month": "2024-11",
+          "apply_amount": 0.28,
+          "paid": 0.0,
+          "deal_count": 5
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 0.26,
+          "paid": 0.0,
+          "deal_count": 4
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 0.8,
+          "paid": 0.0,
+          "deal_count": 10
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 0.75,
+          "paid": 0.0,
+          "deal_count": 7
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 0.2,
+          "paid": 0.0,
+          "deal_count": 7
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 1.11,
+          "paid": 0.0,
+          "deal_count": 9
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 0.19,
+          "paid": 0.0,
+          "deal_count": 6
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 0.33,
+          "paid": 0.0,
+          "deal_count": 7
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 1.75,
+          "paid": 0.0,
+          "deal_count": 11
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 0.1,
+          "paid": 0.0,
+          "deal_count": 7
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 2.09,
+          "paid": 0.0,
+          "deal_count": 11
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 0.68,
+          "paid": 0.0,
+          "deal_count": 6
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 0.19,
+          "paid": 0.0,
+          "deal_count": 8
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 1.29,
+          "paid": 0.0,
+          "deal_count": 15
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 1.49,
+          "paid": 0.0,
+          "deal_count": 12
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 0.42,
+          "paid": 0.0,
+          "deal_count": 10
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 1.35,
+          "paid": 0.0,
+          "deal_count": 17
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 0.32,
+          "paid": 0.0,
+          "deal_count": 8
+        }
+      ],
+      "법인-추심": [
+        {
+          "month": "2024-11",
+          "apply_amount": 2.0,
+          "paid": 0.091,
+          "deal_count": 6
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 0.07,
+          "paid": 0.018,
+          "deal_count": 6
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 0.36,
+          "paid": 0.105,
+          "deal_count": 8
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 0.43,
+          "paid": 0.064,
+          "deal_count": 3
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 0.21,
+          "paid": 0.041,
+          "deal_count": 11
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 0.13,
+          "paid": 0.03,
+          "deal_count": 4
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 0.25,
+          "paid": 0.05,
+          "deal_count": 5
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 0.13,
+          "paid": 0.041,
+          "deal_count": 7
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 0.1,
+          "paid": 0.018,
+          "deal_count": 3
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 0.16,
+          "paid": 0.049,
+          "deal_count": 2
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 0.11,
+          "paid": 0.035,
+          "deal_count": 5
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 0.28,
+          "paid": 0.071,
+          "deal_count": 2
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 0.05,
+          "paid": 0.015,
+          "deal_count": 1
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 0.0,
+          "paid": 0.0,
+          "deal_count": 0
+        }
+      ]
+    },
+    "by_status": {
+      "실패": [
+        {
+          "month": "2024-11",
+          "apply_amount": 111.78,
+          "paid": 0.006,
+          "deal_count": 2953
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 110.45,
+          "paid": 0.066,
+          "deal_count": 3620
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 187.16,
+          "paid": 0.133,
+          "deal_count": 6581
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 205.03,
+          "paid": 0.062,
+          "deal_count": 6333
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 230.4,
+          "paid": 0.094,
+          "deal_count": 6728
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 226.9,
+          "paid": 0.079,
+          "deal_count": 6142
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 129.71,
+          "paid": 0.009,
+          "deal_count": 3846
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 287.46,
+          "paid": 0.099,
+          "deal_count": 12163
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 311.63,
+          "paid": 0.175,
+          "deal_count": 5733
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 293.96,
+          "paid": 0.158,
+          "deal_count": 7279
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 233.22,
+          "paid": 0.03,
+          "deal_count": 9798
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 260.78,
+          "paid": 0.005,
+          "deal_count": 9499
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 343.72,
+          "paid": 0.043,
+          "deal_count": 14121
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 519.69,
+          "paid": 0.166,
+          "deal_count": 15835
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 278.17,
+          "paid": 0.022,
+          "deal_count": 7032
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 271.27,
+          "paid": 0.004,
+          "deal_count": 7619
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 204.52,
+          "paid": 0.0,
+          "deal_count": 5882
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 52.58,
+          "paid": 0.0,
+          "deal_count": 1685
+        }
+      ],
+      "성사됨": [
+        {
+          "month": "2024-11",
+          "apply_amount": 39.36,
+          "paid": 9.216,
+          "deal_count": 1513
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 38.8,
+          "paid": 10.225,
+          "deal_count": 1830
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 69.79,
+          "paid": 17.468,
+          "deal_count": 3603
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 73.24,
+          "paid": 18.532,
+          "deal_count": 3445
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 70.93,
+          "paid": 17.76,
+          "deal_count": 3192
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 68.31,
+          "paid": 16.764,
+          "deal_count": 2765
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 39.22,
+          "paid": 9.826,
+          "deal_count": 1749
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 92.11,
+          "paid": 18.921,
+          "deal_count": 5159
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 95.32,
+          "paid": 19.972,
+          "deal_count": 2079
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 85.23,
+          "paid": 18.212,
+          "deal_count": 2960
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 65.97,
+          "paid": 15.372,
+          "deal_count": 4376
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 63.64,
+          "paid": 15.042,
+          "deal_count": 3863
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 87.64,
+          "paid": 19.543,
+          "deal_count": 5591
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 116.23,
+          "paid": 26.094,
+          "deal_count": 5760
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 54.03,
+          "paid": 11.905,
+          "deal_count": 1935
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 33.83,
+          "paid": 7.768,
+          "deal_count": 1628
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 2.86,
+          "paid": 0.883,
+          "deal_count": 136
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 0.14,
+          "paid": 0.039,
+          "deal_count": 8
+        }
+      ],
+      "진행 중": [
+        {
+          "month": "2024-11",
+          "apply_amount": 3.99,
+          "paid": 0.684,
+          "deal_count": 99
+        },
+        {
+          "month": "2024-12",
+          "apply_amount": 4.73,
+          "paid": 1.261,
+          "deal_count": 237
+        },
+        {
+          "month": "2025-01",
+          "apply_amount": 9.57,
+          "paid": 2.321,
+          "deal_count": 456
+        },
+        {
+          "month": "2025-02",
+          "apply_amount": 9.69,
+          "paid": 2.487,
+          "deal_count": 520
+        },
+        {
+          "month": "2025-03",
+          "apply_amount": 9.04,
+          "paid": 2.314,
+          "deal_count": 573
+        },
+        {
+          "month": "2025-04",
+          "apply_amount": 7.96,
+          "paid": 1.759,
+          "deal_count": 430
+        },
+        {
+          "month": "2025-05",
+          "apply_amount": 3.87,
+          "paid": 0.951,
+          "deal_count": 209
+        },
+        {
+          "month": "2025-06",
+          "apply_amount": 8.05,
+          "paid": 1.517,
+          "deal_count": 338
+        },
+        {
+          "month": "2025-07",
+          "apply_amount": 10.47,
+          "paid": 2.066,
+          "deal_count": 185
+        },
+        {
+          "month": "2025-08",
+          "apply_amount": 6.28,
+          "paid": 1.19,
+          "deal_count": 212
+        },
+        {
+          "month": "2025-09",
+          "apply_amount": 6.98,
+          "paid": 1.154,
+          "deal_count": 329
+        },
+        {
+          "month": "2025-10",
+          "apply_amount": 6.6,
+          "paid": 1.196,
+          "deal_count": 281
+        },
+        {
+          "month": "2025-11",
+          "apply_amount": 10.99,
+          "paid": 2.324,
+          "deal_count": 506
+        },
+        {
+          "month": "2025-12",
+          "apply_amount": 26.22,
+          "paid": 3.169,
+          "deal_count": 799
+        },
+        {
+          "month": "2026-01",
+          "apply_amount": 25.86,
+          "paid": 2.218,
+          "deal_count": 544
+        },
+        {
+          "month": "2026-02",
+          "apply_amount": 54.37,
+          "paid": 1.74,
+          "deal_count": 1493
+        },
+        {
+          "month": "2026-03",
+          "apply_amount": 112.5,
+          "paid": 0.224,
+          "deal_count": 3271
+        },
+        {
+          "month": "2026-04",
+          "apply_amount": 75.63,
+          "paid": 0.003,
+          "deal_count": 2165
+        }
+      ]
+    }
+  },
   "forecast": [
     {
       "month": "2026-04",
