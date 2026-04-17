@@ -187,6 +187,120 @@ new Chart(document.getElementById('poolChart'),{{type:'line',data:{{labels:{pool
     return html, chart_js
 
 
+def _diagnosis_section() -> tuple[str, str]:
+    """timeline.json + 최신 snapshot 기반 진단 KPI + 시계열 차트."""
+    timeline_path = OUTPUT_DIR / "timeline.json"
+    if not timeline_path.exists():
+        return ("", "")
+    timeline = json.loads(timeline_path.read_text())
+    entries = timeline.get("entries", [])
+    if not entries:
+        return ("", "")
+    latest = entries[-1]
+
+    # 최신 snapshot에서 Top 사유들 가져오기
+    date_str = latest.get("date", "")
+    snap_path = OUTPUT_DIR / "snapshots" / f"{date_str}.json"
+    snap = json.loads(snap_path.read_text()) if snap_path.exists() else None
+
+    # 시계열 chart 데이터
+    dates = json.dumps([e["date"] for e in entries])
+    conv_u = json.dumps([e.get("conversion_unfiltered_pct", 0) for e in entries])
+    conv_f = json.dumps([e.get("conversion_filtered_pct", 0) for e in entries])
+    pool_bal = json.dumps([e.get("pool_balance", 0) for e in entries])
+    pool_paid = json.dumps([e.get("pool_monthly_paid_3mo_avg", 0) for e in entries])
+
+    # Pipeline 비중 변화 (주요 pipeline만)
+    main_pipes = ["A(지수)", "B(젠트)-환급", "D(젠트)-취소", "C(젠트)-추심"]
+    pipe_datasets = []
+    pipe_colors = {"A(지수)": "#f85149", "B(젠트)-환급": "#3fb950",
+                   "D(젠트)-취소": "#d29922", "C(젠트)-추심": "#58a6ff"}
+    for p in main_pipes:
+        data_vals = [e.get("pipeline_shares", {}).get(p, 0) for e in entries]
+        pipe_datasets.append({"label": p, "data": data_vals, "color": pipe_colors.get(p, "#888")})
+
+    # KPI 카드
+    conv = snap["conversion"]["unfiltered"] if snap else {"conversion_pct": latest.get("conversion_unfiltered_pct", 0)}
+    a_share = latest.get("pipeline_shares", {}).get("A(지수)", 0)
+    b_share = latest.get("pipeline_shares", {}).get("B(젠트)-환급", 0)
+
+    # Top 3 lost + cancel reasons
+    lost_rows = ""
+    cancel_rows = ""
+    if snap:
+        for r in snap["top_lost_reasons"]["top"][:5]:
+            lost_rows += f'<tr><td>{r["label"]}</td><td>{r["apply_amount"]:.1f}</td><td>{r["deal_count"]:,}</td><td>{r["share_pct"]:.1f}%</td></tr>'
+        for r in snap["top_cancel_reasons"]["top"][:5]:
+            cancel_rows += f'<tr><td>{r["label"]}</td><td>{r["apply_amount"]:.1f}</td><td>{r["deal_count"]:,}</td><td>{r["share_pct"]:.1f}%</td></tr>'
+
+    html = f"""
+<div style="margin:24px 0 8px 0; padding-top:24px; border-top:2px solid #d29922;">
+  <h1 style="font-size:18px; color:#d29922;">📊 진단 KPI + 시계열 (주간 스냅샷)</h1>
+  <div style="font-size:11px; color:#8b949e; margin-bottom:12px;">
+    매주 월요일 자동 스냅샷. 완성 코호트 12개월 기준. 최신: {date_str} · 누적 {len(entries)}주.
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi" style="border-color:#d29922;">
+    <div class="kpi-label">Unfiltered 전환율</div>
+    <div class="kpi-value" style="color:#d29922;">{conv.get("conversion_pct", 0):.2f}<span style="font-size:12px;color:#8b949e">%</span></div>
+    <div class="kpi-sub">마케팅 base × 4.7% 권장</div>
+  </div>
+  <div class="kpi" style="border-color:#d29922;">
+    <div class="kpi-label">A(지수) pipeline 비중</div>
+    <div class="kpi-value" style="color:#f85149;">{a_share:.1f}<span style="font-size:12px;color:#8b949e">%</span></div>
+    <div class="kpi-sub">dead deal 공급처 — 낮출수록 좋음</div>
+  </div>
+  <div class="kpi" style="border-color:#d29922;">
+    <div class="kpi-label">B(젠트)-환급 비중</div>
+    <div class="kpi-value" style="color:#3fb950;">{b_share:.1f}<span style="font-size:12px;color:#8b949e">%</span></div>
+    <div class="kpi-sub">실제 매출 pipeline</div>
+  </div>
+  <div class="kpi" style="border-color:#d29922;">
+    <div class="kpi-label">풀 3개월 평균 결제</div>
+    <div class="kpi-value" style="color:#d29922;">{latest.get("pool_monthly_paid_3mo_avg", 0):.2f}<span style="font-size:12px;color:#8b949e">억</span></div>
+    <div class="kpi-sub">rolling 추심 회수</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card"><h2>📈 전환율 시계열</h2><div class="chart-c"><canvas id="convTrend"></canvas></div></div>
+  <div class="card"><h2>📊 Pipeline 비중 시계열</h2><div class="chart-c"><canvas id="pipeTrend"></canvas></div></div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>🚫 실패 사유 Top 5 ({date_str})</h2>
+    <table>
+      <thead><tr><th>사유</th><th>신청액(억)</th><th>건수</th><th>비중</th></tr></thead>
+      <tbody>{lost_rows}</tbody>
+    </table>
+  </div>
+  <div class="card">
+    <h2>❌ 취소 사유 Top 5 ({date_str})</h2>
+    <table>
+      <thead><tr><th>사유</th><th>신청액(억)</th><th>건수</th><th>비중</th></tr></thead>
+      <tbody>{cancel_rows}</tbody>
+    </table>
+  </div>
+</div>
+"""
+    pipe_ds_js = "[" + ",".join(
+        f'{{label:"{d["label"]}",data:{json.dumps(d["data"])},borderColor:"{d["color"]}",tension:.3,pointRadius:3,borderWidth:2}}'
+        for d in pipe_datasets
+    ) + "]"
+
+    chart_js = f"""
+new Chart(document.getElementById('convTrend'),{{type:'line',data:{{labels:{dates},datasets:[
+  {{label:'Unfiltered (마케팅 base)',data:{conv_u},borderColor:'#d29922',backgroundColor:'rgba(210,153,34,0.1)',fill:true,tension:.3,pointRadius:4,borderWidth:2.5}},
+  {{label:'Filtered (내부 base)',data:{conv_f},borderColor:'#3fb950',tension:.3,pointRadius:4,borderWidth:2}}
+]}},options:{{maintainAspectRatio:false,responsive:true,plugins:{{legend:{{position:'top',labels:{{boxWidth:10}}}}}},scales:{{y:{{...bs,title:{{display:true,text:'전환율 %'}}}},x:{{...bs}}}}}}}});
+new Chart(document.getElementById('pipeTrend'),{{type:'line',data:{{labels:{dates},datasets:{pipe_ds_js}}},options:{{maintainAspectRatio:false,responsive:true,plugins:{{legend:{{position:'top',labels:{{boxWidth:10}}}}}},scales:{{y:{{...bs,title:{{display:true,text:'비중 %'}}}},x:{{...bs}}}}}}}});
+"""
+    return html, chart_js
+
+
 def _generate_inline(data: dict) -> str:
     """forecast.json을 기반으로 간략 대시보드 HTML 생성."""
     fc = data["forecast"]
@@ -195,6 +309,7 @@ def _generate_inline(data: dict) -> str:
     gen = data["generated_at"]
     has_corp = bool(fc and "individual" in fc[0])
     marketing_html, marketing_js = _marketing_section(data)
+    diagnosis_html, diagnosis_js = _diagnosis_section()
 
     if has_corp:
         fc_rows = "".join(
@@ -278,6 +393,8 @@ footer{{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}}
 
 {marketing_html}
 
+{diagnosis_html}
+
 <footer>지엔터프라이즈 · Phase 2 v2 코호트 분산 모델 · 자동 갱신</footer>
 </div>
 <script>
@@ -293,6 +410,7 @@ new Chart(document.getElementById('btChart'),{{type:'line',data:{{labels:{bt_lab
 {{label:'예측',data:{bt_pred},borderColor:'#3fb950',tension:.3,pointRadius:4,pointStyle:'triangle'}}
 ]}},options:{{maintainAspectRatio:false,responsive:true,plugins:{{legend:{{position:'top',labels:{{boxWidth:10}}}}}},scales:{{y:{{...bs}},x:{{...bs}}}}}}}});
 {marketing_js}
+{diagnosis_js}
 </script></body></html>"""
 
 

@@ -1,0 +1,68 @@
+{
+  "entries": [
+    {
+      "generated_at": "2026-04-17T17:11:06Z",
+      "data_range": "... ~ 2026-04",
+      "mature_window_end": "2025-10",
+      "conversion_filtered_pct": 20.33,
+      "conversion_unfiltered_pct": 5.19,
+      "pipeline_shares": {
+        "A(지수)": 54.26,
+        "D(젠트)-취소": 14.34,
+        "B(젠트)-환급": 24.59,
+        "C(젠트)-추심": 3.81,
+        "법인-환급": 2.65,
+        "법인-취소": 0.24,
+        "법인-추심": 0.11
+      },
+      "pool_balance": 151.2,
+      "pool_monthly_paid_3mo_avg": 1.76,
+      "top_lost_reason_shares": [
+        {
+          "label": "환급불가_기경정청구 존재",
+          "share": 15.47
+        },
+        {
+          "label": "환급불가_검토중_근로자 조정",
+          "share": 14.7
+        },
+        {
+          "label": "환급불가_검토중_공제감면 기반영",
+          "share": 8.86
+        },
+        {
+          "label": "환급불가_검토중_창업 아님",
+          "share": 7.74
+        },
+        {
+          "label": "환급불가_검토중_본신고의 세법 미준수",
+          "share": 4.71
+        }
+      ],
+      "top_cancel_reason_shares": [
+        {
+          "label": "부재중",
+          "share": 13.05
+        },
+        {
+          "label": "무응답",
+          "share": 12.8
+        },
+        {
+          "label": "신청취소_높은수수료",
+          "share": 11.48
+        },
+        {
+          "label": "신청취소_기존세무대리인",
+          "share": 8.81
+        },
+        {
+          "label": "기존 세무대리인",
+          "share": 5.87
+        }
+      ],
+      "date": "2026-04-17"
+    }
+  ],
+  "updated_at": "2026-04-17T17:11:06Z"
+}
