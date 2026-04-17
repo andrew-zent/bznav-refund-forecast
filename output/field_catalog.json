@@ -1,0 +1,5679 @@
+{
+  "total_fields": 490,
+  "flagged_for_reason_analysis": [
+    {
+      "source": "개인",
+      "key": "lost_time",
+      "name": "실패 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "lost_reason",
+      "name": "실패 원인",
+      "field_type": "varchar_options",
+      "is_custom": false,
+      "options_count": 37,
+      "options": [
+        "환급불가_검토중_단년도 추가환급없음",
+        "환급불가_검토중_데이터 오류(신고서 정보 부재)",
+        "환급불가_검토중_본신고의 세법 미준수",
+        "환급불가_검토중_내년 추가납부 발생",
+        "환급불가_검토중_근로자 조정",
+        "환급불가_검토중_고용증대 23년 1차",
+        "환급불가_검토중_감가상각비 미계상 등",
+        "환급불가_검토중_엔진문제",
+        "환급불가_검토중_창업 아님",
+        "환급불가_검토중_공제감면 기반영",
+        "환급불가_검토중_감면대상업종 아님",
+        "환급불가_검토중_감면분자값이슈",
+        "환급불가_검토중_기타",
+        "환급불가_기경정청구 존재",
+        "신청취소_부재중",
+        "신청취소_무응답",
+        "신청취소_불이익걱정",
+        "신청취소_기존세무대리인",
+        "신청취소_기존세무대리인관계걱정",
+        "신청취소_높은수수료",
+        "신청취소_타서비스이용",
+        "신청취소_실수로신청",
+        "신청취소_좀더고민필요",
+        "신청취소_신뢰부족",
+        "신청취소_서류미비_기경정청구서",
+        "신청취소_서류미비",
+        "신청취소_체납",
+        "신청취소_개인사정",
+        "신청취소_복잡한절차(서비스)",
+        "신청취소_가공경비"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "32409a838adc8343885fc0c82fa4631d6a5087b9",
+      "name": "😊 취소방어 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "430f49c344b73aaa29622d1fa50e33f75a79ad80",
+      "name": "보류 사유",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 10,
+      "options": [
+        "환급액 변동",
+        "관리자 질문",
+        "기경정청구서 요청(터칭콜)",
+        "기경정청구서 요청(OB)",
+        "고객검토(CS)",
+        "보류요청",
+        "기경정청구서 발급(세무서)",
+        "분류환급액 0원",
+        "실패 예정",
+        "재수집 대상"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "5436c94e44a1689439681b6ef59a43163aae7fd3",
+      "name": "(검토 전)감면 적용상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "창중감",
+        "중특감",
+        "없음"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "499fbc9ba3be48d5a3c4c51353964c0f4eba5589",
+      "name": "(검토후)감면적용 상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 7,
+      "options": [
+        "창중감",
+        "중특감",
+        "없음",
+        "X(중특감 제외 창중감 적용)",
+        "X(창중감 제외 중특감 적용)",
+        "X(중특감 제외)",
+        "X(창중감 제외)"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "557330295ba27ff4c28a215aa7f98d0478b94e81",
+      "name": "CS중 취소요청",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "CS 취소요청",
+        "(자동) PROD"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "314ea8de88a7dda7349215ddc0975216b9662ad9",
+      "name": "보류사유",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 18,
+      "options": [
+        "배당소득",
+        "통합투자세액공제",
+        "창업벤처기업 세액공제",
+        "감염병",
+        "사회보험료 세액공제",
+        "고용증대 복수사업장",
+        "소득구분계산서",
+        "공동사업자",
+        "결손금",
+        "기타공제감면",
+        "가산세",
+        "소규모",
+        "수입금액 누락 가능성",
+        "재조회 필요",
+        "최종환급액 마이너스",
+        "기타",
+        "부재중",
+        "서류요청"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "36f53fa809b0106ae7206522b67204b7285d254d",
+      "name": "적용된 세액감면종류",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "45fe537fe0966e9570193e8758993148f7d390ad",
+      "name": "취소요청일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f362d92f24f82d2b27ecc093602489cf134170cd",
+      "name": "취소방어일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1fc8abc43087fc76f70c3f47da24946bf69e5b66",
+      "name": "취소방어 활동일(최근)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ebdd813efc921dcb6a90be9156642c824589aced",
+      "name": "취소신청사유",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 21,
+      "options": [
+        "기존 세무대리인",
+        "기존세무대리인관계걱정",
+        "수수료",
+        "타 서비스 이용",
+        "기신고 존재",
+        "좀 더 고민 필요",
+        "실수로 신청",
+        "업무 지연",
+        "환급액 감소",
+        "불이익걱정",
+        "서류제출불가",
+        "부재중",
+        "신뢰부족",
+        "무응답",
+        "체납",
+        "개인사정",
+        "복잡한절차(서비스)",
+        "복잡한절차(서류)",
+        "가공경비",
+        "소액 환급금",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "14558914daad0ec922e4e38a351df8058861c501",
+      "name": "취소신청사유(자동)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "7807d88b26fa77eb4fbb317d34139a751d854b0a",
+      "name": "취소수수료율",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ee6ecc0c8ad0476f262aca3ced3c2217a7971ace",
+      "name": "취소수수료",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ee6ecc0c8ad0476f262aca3ced3c2217a7971ace_currency",
+      "name": "취소수수료의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3a7d95a418826be9d6facd9f660a8315bb6bb14a",
+      "name": "감면only 여부",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d4f955de0b3a3895259efcbe01929ba38347a017",
+      "name": "감면only 환급액",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ce7c59501c2420693f3fe5183a44c6d9d5ccd894",
+      "name": "감면환급 금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ce7c59501c2420693f3fe5183a44c6d9d5ccd894_currency",
+      "name": "감면환급 금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "lost_time",
+      "name": "실패 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "lost_reason",
+      "name": "실패 원인",
+      "field_type": "varchar_options",
+      "is_custom": false,
+      "options_count": 13,
+      "options": [
+        "환급불가_검토중",
+        "환급불가_취하",
+        "환급불가_기각",
+        "환급불가_기신고건",
+        "신청취소_기존세무대리인",
+        "신청취소_높은수수료",
+        "신청취소_타서비스이용",
+        "신청취소_실수로신청",
+        "신청취소_좀더고민필요",
+        "신청취소_신뢰부족",
+        "신청취소_기타",
+        "신청취소_CMS미동의",
+        "환급불가_연도변경"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "45ffd7017eb754a19a689ccab8279635bf5e025f",
+      "name": "창업감면",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "33cfed73af66a8b032d5ebef13e772fe7054cea1",
+      "name": "중소기업특별세액감면",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "dbf353faf17cf72c0bf336a994d945f7eec4a803",
+      "name": "신청취소사유",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    }
+  ],
+  "all_fields": [
+    {
+      "source": "개인",
+      "key": "id",
+      "name": "ID",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "title",
+      "name": "이름",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "creator_user_id",
+      "name": "작성자",
+      "field_type": "user",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "user_id",
+      "name": "소유자",
+      "field_type": "user",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "weighted_value",
+      "name": "가중치",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "weighted_value_currency",
+      "name": "가중치를 적용한 값의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "pipeline",
+      "name": "파이프라인",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "stage_id",
+      "name": "단계",
+      "field_type": "stage",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "status",
+      "name": "상태",
+      "field_type": "status",
+      "is_custom": false,
+      "options_count": 4,
+      "options": [
+        "진행 중",
+        "실패",
+        "성사됨",
+        "삭제됨"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "add_time",
+      "name": "거래 생성됨",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "update_time",
+      "name": "업데이트 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "stage_change_time",
+      "name": "마지막 단계 변경",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "next_activity_date",
+      "name": "다음 활동 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "last_activity_date",
+      "name": "마지막 활동 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "won_time",
+      "name": "성사 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "last_incoming_mail_time",
+      "name": "마지막 수신한 이메일",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "last_outgoing_mail_time",
+      "name": "마지막 전송한 이메일",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "lost_time",
+      "name": "실패 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "close_time",
+      "name": "거래 종결 날짜:",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "lost_reason",
+      "name": "실패 원인",
+      "field_type": "varchar_options",
+      "is_custom": false,
+      "options_count": 37,
+      "options": [
+        "환급불가_검토중_단년도 추가환급없음",
+        "환급불가_검토중_데이터 오류(신고서 정보 부재)",
+        "환급불가_검토중_본신고의 세법 미준수",
+        "환급불가_검토중_내년 추가납부 발생",
+        "환급불가_검토중_근로자 조정",
+        "환급불가_검토중_고용증대 23년 1차",
+        "환급불가_검토중_감가상각비 미계상 등",
+        "환급불가_검토중_엔진문제",
+        "환급불가_검토중_창업 아님",
+        "환급불가_검토중_공제감면 기반영",
+        "환급불가_검토중_감면대상업종 아님",
+        "환급불가_검토중_감면분자값이슈",
+        "환급불가_검토중_기타",
+        "환급불가_기경정청구 존재",
+        "신청취소_부재중",
+        "신청취소_무응답",
+        "신청취소_불이익걱정",
+        "신청취소_기존세무대리인",
+        "신청취소_기존세무대리인관계걱정",
+        "신청취소_높은수수료",
+        "신청취소_타서비스이용",
+        "신청취소_실수로신청",
+        "신청취소_좀더고민필요",
+        "신청취소_신뢰부족",
+        "신청취소_서류미비_기경정청구서",
+        "신청취소_서류미비",
+        "신청취소_체납",
+        "신청취소_개인사정",
+        "신청취소_복잡한절차(서비스)",
+        "신청취소_가공경비"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "visible_to",
+      "name": "공개 대상:",
+      "field_type": "visible_to",
+      "is_custom": false,
+      "options_count": 4,
+      "options": [
+        "항목 소유자",
+        "항목 소유자의 공개 범위 그룹",
+        "항목 소유자의 공개 범위 그룹과 하위 그룹",
+        "전체 사용자"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "activities_count",
+      "name": "총 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "done_activities_count",
+      "name": "완료된 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "undone_activities_count",
+      "name": "해야 할 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "email_messages_count",
+      "name": "이메일 메시지 수",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "product_quantity",
+      "name": "상품 수량",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "product_amount",
+      "name": "상품 총액",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "product_name",
+      "name": "상품 이름",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "mrr",
+      "name": "MRR",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "mrr_currency",
+      "name": "MRR의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "arr",
+      "name": "ARR",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "arr_currency",
+      "name": "ARR의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "acv",
+      "name": "ACV",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "acv_currency",
+      "name": "ACV의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "origin",
+      "name": "출처 원본",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 13,
+      "options": [
+        "수동 생성됨",
+        "가져오기",
+        "API",
+        "자동화",
+        "마켓플레이스",
+        "잠재 고객",
+        "리드 제안",
+        "웹 양식",
+        "챗봇",
+        "라이브 채팅",
+        "웹 방문자",
+        "Campaigns",
+        "메시지 수신함"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "origin_id",
+      "name": "출처 원본 ID",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "channel",
+      "name": "출처 채널",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 9,
+      "options": [
+        "Prospector",
+        "Lead Suggestions",
+        "Web forms",
+        "Chatbot",
+        "Live chat",
+        "Web visitors",
+        "Campaigns",
+        "Marketplace",
+        "Messaging Inbox"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "channel_id",
+      "name": "출처 채널 ID",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "is_archived",
+      "name": "보관 상태",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 2,
+      "options": [
+        "보관되지 않음",
+        "보관됨"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "archive_time",
+      "name": "보관 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "sequence_enrollment",
+      "name": "시퀀스 등록",
+      "field_type": "boolean",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "value",
+      "name": "가치",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "currency",
+      "name": "통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "person_id",
+      "name": "담당자",
+      "field_type": "people",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "label",
+      "name": "레이블",
+      "field_type": "set",
+      "is_custom": false,
+      "options_count": 20,
+      "options": [
+        "민원/강성",
+        "재검토",
+        "원복",
+        "정보공개청구",
+        "부재중",
+        "이월결손금 검토완료",
+        "취소방어 성공",
+        "재신청",
+        "취소수수료결제자",
+        "취소요청자",
+        "취소결제거부",
+        "완료결제거부",
+        "계좌미등록",
+        "영업팀",
+        "지급명령 결제완료",
+        "환급완료 임의 변경",
+        "홈택스계정O",
+        "체납있음",
+        "출동 대상",
+        "급행"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "7e3e4339401091dba9499031078af1829c79e04f",
+      "name": "양도세 환급 신청 여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "4346f06337c3dc82ce0abf33983156e452a56092",
+      "name": "(리드) 영업 담당자",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 423,
+      "options": [
+        "김인철",
+        "김도훈",
+        "김도훈",
+        "김민기",
+        "장명호",
+        "김도훈",
+        "김민기",
+        "장명호",
+        "김은주",
+        "임춘례",
+        "배은희",
+        "엄정화",
+        "김영미",
+        "정성학",
+        "최경현",
+        "김명자",
+        "황윤정",
+        "조연화",
+        "이미양",
+        "임재은",
+        "김현진",
+        "장기영",
+        "서은숙",
+        "조규순",
+        "배동화",
+        "황인준",
+        "강태석",
+        "하영선",
+        "이인선",
+        "김기천"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "390e6be493e8a59f4419d72cb505b8e6fe9c1558",
+      "name": "(거래) 영업 담당자",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 261,
+      "options": [
+        "김인철",
+        "경상북도학원연합 경북지회",
+        "김현진",
+        "이상 네트웍스",
+        "안승남",
+        "안승남_영업사원",
+        "이인용",
+        "정갑중",
+        "전영태",
+        "전국영업인협동조합_송호범",
+        "전국영업인협동조합_박재하",
+        "전국영업인협동조합_이승훈",
+        "오현교",
+        "모두빌리지",
+        "나이스노무법인",
+        "전국영업인협동조합_김경섭",
+        "나이스노무법인_김동현",
+        "전국영업인협동조합_지수예",
+        "전국영업인협동조합_김현주",
+        "전국영업인협동조합_정완조",
+        "스페셜파트너스_송호범",
+        "스페셜파트너스_양기창",
+        "Jackson",
+        "사먼스",
+        "나이스노무법인_박지희",
+        "원주 소상공인",
+        "고주현",
+        "김종환",
+        "박기범",
+        "나다이자식들아"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "32409a838adc8343885fc0c82fa4631d6a5087b9",
+      "name": "😊 취소방어 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3872c9f450beec097bbb5db2dff1ae118684d765",
+      "name": "😊 줍줍콜 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "09e6870bdd4164aeda2c9e6b1f651d608b05969b",
+      "name": "😊 결제콜 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "bf47b51d43fc4ea9ef77da20a17d986017f1e170",
+      "name": "😊 추심콜 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1ed3c93ecacbf7f03f7ff66af85bf893b2237ac5",
+      "name": "19년 환급액 유무",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "Y",
+        "N"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "3e887c2ceb22904a8828618e1212f99e85f53867",
+      "name": "19년 신고 대상(전자연습장)",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "해당",
+        "비해당"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "41bc81272805a1de54238f10e04b66c95ba7bcf7",
+      "name": "최저한세이슈 수정대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "대상"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "31faf2f39859377072ace37ff8ceba6076e85bb5",
+      "name": "(임시) 2018환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "31faf2f39859377072ace37ff8ceba6076e85bb5_currency",
+      "name": "(임시) 2018환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "61b775117b7cd4054080a5ba0189f65e9ca68fcf",
+      "name": "(임시) 2018환급액 확인",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "없음",
+        "있음"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "02796edfbd0c5d79e29d36da052ac086a50926c4",
+      "name": "(임시)전자신고용 2023연도확인",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "존재",
+        "없음"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "8d78b9fc95aa4acae30cc2b290ceef6af6ca084f",
+      "name": "보류 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6a4c5816ff87fa993ea6c4affe4ce82636b09714",
+      "name": "보류 상태",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "보류 중",
+        "보류 완료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "430f49c344b73aaa29622d1fa50e33f75a79ad80",
+      "name": "보류 사유",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 10,
+      "options": [
+        "환급액 변동",
+        "관리자 질문",
+        "기경정청구서 요청(터칭콜)",
+        "기경정청구서 요청(OB)",
+        "고객검토(CS)",
+        "보류요청",
+        "기경정청구서 발급(세무서)",
+        "분류환급액 0원",
+        "실패 예정",
+        "재수집 대상"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "7fcb86ebf3f352fb633a0b46ccc7e538dc1ac0a3",
+      "name": "보류 활동일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "18b9123beaceb42249182bc4e113fe97e05b9017",
+      "name": "ob결과값",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 23,
+      "options": [
+        "성공-수수료할인",
+        "성공-불안감해소",
+        "성공-환급액차이",
+        "성공-타서비스(세무대리인)품질차이",
+        "성공-신뢰도상승",
+        "성공-궁금증해소",
+        "성공-자동전환",
+        "성공-기타",
+        "실패-안내거절",
+        "실패-세무대리인",
+        "실패-타서비스이용",
+        "실패-수수료",
+        "실패-좀더고민필요",
+        "실패-신뢰부족",
+        "실패-불이익걱정",
+        "실패-서류미비",
+        "실패-기신고존재",
+        "실패-업무지연",
+        "실패-환급액차이",
+        "실패-부재중",
+        "실패-단순변심",
+        "실패-국체체납",
+        "실패-기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "7d19b733cddd5e7b01a14e0c2462535412d3bd99",
+      "name": "브릭스 사용여부",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 6,
+      "options": [
+        "분류",
+        "예비검토",
+        "사전작업",
+        "본검토",
+        "작성",
+        "신고(서면/전자)"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "573f592ff3053f39800cdc8b4eae4b119948bfe4",
+      "name": "브릭스_분석상세",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "554c4e3641fee06f94665819b42c4181ce170252",
+      "name": "브릭스_웍스",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9bb17b59618ed4b7d8a07bfd94bd0116b4d4a9ac",
+      "name": "✔ 조회일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d63b4b92c9490208976c2fdd430cb55ee558b15e",
+      "name": "✔ 신청일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "cb63a666b791f4cff045c38a643f1a0d95476ec7",
+      "name": "✔ 재신청일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "18f5d8f72f30db7d6abdc4aa862f64b9cb96409b",
+      "name": "✔ 조회 환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "18f5d8f72f30db7d6abdc4aa862f64b9cb96409b_currency",
+      "name": "✔ 조회 환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "82cea44a11ca4bab8dd4dbf8ae28bc6ff018913b",
+      "name": "분석상세 2",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b5be9fe7018ac1939cdde6c7af4a23379150975f",
+      "name": "브릭스 환급 링크",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "dbfdd523523619b790a806e74677e1cd6cd63290",
+      "name": "이전 거래 링크",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0f19b83ab11ee7a2fd622577affd3b857343f416",
+      "name": "우편물 수집내역",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3c0153540459687af4ca29630d1cfc94e5c32017",
+      "name": "😊 세무서대응 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f7162f5be56a2e5b29dabe4b1e80e762d43b4777",
+      "name": "세무서대응 상태",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "세무서 대응중",
+        "대응 완료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "a194132f102fc1e0cbcc2343f72bf3e96a2a0391",
+      "name": "조사관 최초 인입일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "c54a8d46e038ef043d7e0312b3173b7a0f99a9a1",
+      "name": "대응완료 날짜",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "c309958c0d884491f198a53829527f4ba87b12fd",
+      "name": "조사관 요구사항",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 8,
+      "options": [
+        "내용 확인",
+        "고객 확인",
+        "서류 요청",
+        "신고서 수정",
+        "부분 취하",
+        "전체 취하",
+        "기각",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "eeb6b56102f64ab5fb92aece8499c140a9347b58",
+      "name": "😊 서류 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "43791698b5d9e9573b1cdc5210e9d68bff292d65",
+      "name": "요청서류(to  고객)",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 21,
+      "options": [
+        "대표자 신분증",
+        "대리인 신분증",
+        "위임장",
+        "대리인 사업자등록증",
+        "4대보험 자격취득 신고서",
+        "근로계약서",
+        "국민연금 가입자 명부",
+        "건강장기요양 보험료 납부확인서(인별)",
+        "지급명세서",
+        "근로자계산내역",
+        "급여 이체내역",
+        "근로소득 원천징수부",
+        "계정별원장",
+        "병적증명서",
+        "통신판매신고증",
+        "영업신고증",
+        "당초신고 관련 증빙자료",
+        "기신고서",
+        "경정청구서 날인",
+        "충당동의서 날인",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "25344f8a00ba645ac40b412a20ef425fa2a289ed",
+      "name": "요청날짜(to 고객)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4480862d3a45831ae726bf27e779ddb57a4f05d0",
+      "name": "서류업로드상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "제출완료",
+        "진행 중",
+        "미제출"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "26418a642cd3e589239a7899a85ef0ca74d903c8",
+      "name": "😊 터칭콜 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b79dc6f2d8ca7725b3220317d3245c1a464bb107",
+      "name": "터칭콜 진행(자동)",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "터칭콜 진행",
+        "터칭콜 미진행"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "e9d084433db32c83a59fe107f7a57d5d17043e99",
+      "name": "장기부재",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 5,
+      "options": [
+        "통화완료",
+        "감면진행",
+        "감면실패",
+        "고용증대실패",
+        "장기부재 취소방어"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "d076e2e092bc59904104ff4bc952d6494863caa7",
+      "name": "고용보험 수취",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "완료",
+        "없이 진행",
+        "전체 특관자"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "428b3072583c84e422390f812b422347418f5fe1",
+      "name": "토탈서비스 인증일시",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0014cff4432bc4bcc13ab72df1a99e9c2ec8adee",
+      "name": "고용보험 인증(작업중)",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "전체 특관자"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "07bd34ec04a88b72081a8fb863a85dff5fca02c5",
+      "name": "터칭콜 필요",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "필요"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "c71821623a8018a8c342cb3cfaa65f25c75ae821",
+      "name": "근로계약서 제출",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "가능"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "35cc603ef005edcb4778b0cd764db49bfc9b06d7",
+      "name": "😊 신분증 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5685ab5863c24b4aeabc2bed90b78bd40f89f1ce",
+      "name": "터칭콜완료 일자(자동)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "87aeb190a19eade0b19ef9835db1041b7da2a66c",
+      "name": "😊 분류 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5436c94e44a1689439681b6ef59a43163aae7fd3",
+      "name": "(검토 전)감면 적용상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "창중감",
+        "중특감",
+        "없음"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "481d4430cc35a2e013a632aac69bbc5500e3a5a0",
+      "name": "(검토 전)공제적용 상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "고용증대",
+        "사회보험료",
+        "통합고용",
+        "없음"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "dfab4d720ef941500b4a07d91f7ad93109b3ce33",
+      "name": "고용증대 23년 1차 대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "해당",
+        "비해당"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "66c262fe2f83ad60f32c81f5897818a38be66889",
+      "name": "전자연습장 버전",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f820248d863e6f4effe2234e81e662e81b8bed92",
+      "name": "켄엑셀 버전",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "262f219763586aa3664a14ae3ff965b06b3f22e2",
+      "name": "분류완료 일자(자동)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "326c3d6dc0e91620c177cf09bee7cb645245aa93",
+      "name": "예비검토대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "입니다.",
+        "아닙니다."
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "0c0c0f6427980217e33594d860006cd4fb38fcb1",
+      "name": "😊 예비검토 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4d4f90e1c9a92b82084eb72c699fb629afc9dd44",
+      "name": "😊 사전작업 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6402f439bfec6275bc406570982be2540b908c35",
+      "name": "😊 본검토 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "499fbc9ba3be48d5a3c4c51353964c0f4eba5589",
+      "name": "(검토후)감면적용 상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 7,
+      "options": [
+        "창중감",
+        "중특감",
+        "없음",
+        "X(중특감 제외 창중감 적용)",
+        "X(창중감 제외 중특감 적용)",
+        "X(중특감 제외)",
+        "X(창중감 제외)"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "4b9d20cfdba08aefa61cf4ebaa3afcbab04724ef",
+      "name": "(검토후)공제적용 상황",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 5,
+      "options": [
+        "고용증대",
+        "사회보험료",
+        "통합고용",
+        "없음",
+        "X(고용증대 기반영)"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "840c27392029c654389e7fa885a26bbd5f3e3c4c",
+      "name": "고용 24년 1차 대상",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "해당",
+        "비해당"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "45a33c6b609979d5f14e294839c4b1e543280ce9",
+      "name": "검토후환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "45a33c6b609979d5f14e294839c4b1e543280ce9_currency",
+      "name": "검토후환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "35c431b493773ed5419178c2772c99c4ff8005ab",
+      "name": "기경정청구",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1c411669318877b28d5dc7f83a903b8b58f91e60",
+      "name": "단년도",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6699ef434473105c1fb45d959ba97c9adb20320f",
+      "name": "원복 대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "대상"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "ab5616eb61a0f7608076a8c89049e8f9d32917b4",
+      "name": "검토완료 일자(자동)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "02c3df7fd0fd8f22bbf269bd05723a4a4a01ae46",
+      "name": "작성완료 일자(자동)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "823b181d754f702a572bec93f0ef4b21382f5301",
+      "name": "😊 신고 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6efb3b32ead5fd5d78393fd1d60af9cb43ae7c0e",
+      "name": "접수방법",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "인터넷(변환)",
+        "서면"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "8f6f699423080f68c964dc6445039e04dd594c8f",
+      "name": "전자신고 가능",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "TRUE",
+        "FALSE"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "84aa730356cdaeb238992c90f18eeef43beef0c8",
+      "name": "✔ 신고일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "882f0305c55e3c67060fea837ef334cd729b1bbc",
+      "name": "✍ 재신고일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "49592d9b46c828887d29182ce9b11f5a6f564744",
+      "name": "관할세무서",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d47289a91eb79774608c227f349a04aa74731694",
+      "name": "담당조사관",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0dac992765c34867ebcf33c3a1442edbfb93dfcb",
+      "name": "담당 공무원",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "51bce5abae543af9d57db2aa5f9aa41c18ac57d4",
+      "name": "조사관 전화번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4cb202235dc637de0acc310cb4d84ab1fb1b04ab",
+      "name": "조사관 이메일",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1ae7904eaa7cc6d1a2d9731ff647653eae805990",
+      "name": "조사관 팩스번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ada49fdb068665ee3c437ab4c996fce9ed2cde79",
+      "name": "✍ 신고 환급액-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ada49fdb068665ee3c437ab4c996fce9ed2cde79_currency",
+      "name": "✍ 신고 환급액-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "c86a14fb9b30df3535753929014a22cc4d44a1aa",
+      "name": "✍ 결정 환급액-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "c86a14fb9b30df3535753929014a22cc4d44a1aa_currency",
+      "name": "✍ 결정 환급액-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e8b271586f1c3422bc7036bdc357e22ed0fc0ea3",
+      "name": "✍ 신고 지방소득세",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e8b271586f1c3422bc7036bdc357e22ed0fc0ea3_currency",
+      "name": "✍ 신고 지방소득세의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1d298aa4d9d8bd89bba978f0fcc0f0589cbc971c",
+      "name": "✍ 결정 지방소득세-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1d298aa4d9d8bd89bba978f0fcc0f0589cbc971c_currency",
+      "name": "✍ 결정 지방소득세-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ae58f328fb0ae8dc48428ef1166271f087c89443",
+      "name": "📍 결제금액-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ae58f328fb0ae8dc48428ef1166271f087c89443_currency",
+      "name": "📍 결제금액-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5b0baf6c7d8a56733c1c2fc5e32f573dc3a245c7",
+      "name": "📍 종소세+지방소득세",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5b0baf6c7d8a56733c1c2fc5e32f573dc3a245c7_currency",
+      "name": "📍 종소세+지방소득세의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a6cdd17a9c1396d0bcb878998a763fea2a05b4ea",
+      "name": "🔐 3차 검토환급에 따른 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a6cdd17a9c1396d0bcb878998a763fea2a05b4ea_currency",
+      "name": "🔐 3차 검토환급에 따른 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "554ef4d7c0020402cd93b93b3d685a2675a6a9c6",
+      "name": "✍ 접수일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "bd0cf27e2ef80219e5edc70f9a9cf9587455f329",
+      "name": "인용확인 일자(6주뒤)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "7d43bf9c4ccdfaae186152e6e7734ed5a924a1e2",
+      "name": "✍ 농특세 충당여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "충당됨",
+        "충당안됨",
+        "미대상",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "4aeb3427baa826b2bb25972bcb60af4c00ffff63",
+      "name": "✍ 국세충당여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "충당됨",
+        "충당안됨",
+        "미대상",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "9a3b01b6f929c9f4ea9ee51e0523b405412850c2",
+      "name": "✍ 결정일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "70667bc93c5d37db4d5001c2287406ec5b5544ad",
+      "name": "✍ 입금예정일/현금수령일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3cd13b83e8a4a8a1ae10875aa5eadfa5a71060d5",
+      "name": "✍ 환급계좌 일치여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "일치",
+        "불일치",
+        "확인불가",
+        "현금수령"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "6c46f9cfb5bb684f639b429098520fe4eae926a1",
+      "name": "인용확인완료 일자(자동)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ff504792a87dd52d6921084f0fe448d90c67cc30",
+      "name": "✍ 체납충당",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "일부충당",
+        "전액충당",
+        "충당안함",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "eb7b2ae7a7fc8c57ebc555bc3103156b4b6125f5",
+      "name": "✍ 체납충당액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "eb7b2ae7a7fc8c57ebc555bc3103156b4b6125f5_currency",
+      "name": "✍ 체납충당액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a37281946d8cdb7592bb9c66a9db97c4be5d2113",
+      "name": "✍ 경정감",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "일부",
+        "전액",
+        "안함",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "5da0030b452ca525c54dcda78cfc9fd3a9c36c2b",
+      "name": "✍ 경정감금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5da0030b452ca525c54dcda78cfc9fd3a9c36c2b_currency",
+      "name": "✍ 경정감금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "7d57139fff12645b4d4542fa80243ead6143c212",
+      "name": "✍ 인용확인",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 6,
+      "options": [
+        "확인X",
+        "홈택스 인증",
+        "고객통화인증",
+        "대응팀 확인",
+        "CX 확인",
+        "정보공개청구"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "8e057c4b5b8a2a57e4ad2579c150b197f1017506",
+      "name": "✍ 인용확인상태",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 5,
+      "options": [
+        "조사관 처리중",
+        "세무서 부재",
+        "세무서 비협조",
+        "대응 필요",
+        "확인 종료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "0a81df250f6d66d41d0c84425d83f50b5a34716c",
+      "name": "지방세 결정일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "885dc31ad3352ffc5bab4597d7342ebbadd4f378",
+      "name": "지방세 입금예정일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "220e521d0a6b7c3ae21e01d89ff2867ae3629ea1",
+      "name": "지방세 계좌 일치여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "일치",
+        "불일치",
+        "현금수령",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "d1b959d945cb860a2eb243e92d0633cc63fe645c",
+      "name": "지방세 체납충당",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "전액",
+        "일부",
+        "안함",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "751cd8bae58a2b7703fbab3a9a99a685e184468a",
+      "name": "지방세 경정감",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "전액",
+        "일부",
+        "안함",
+        "확인불가"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "c3e12bf3a997f92d3662e625d274e69820c86494",
+      "name": "지방세 상태",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 6,
+      "options": [
+        "통보 X",
+        "확인종료",
+        "지자체 부재",
+        "처리중",
+        "재통화필요",
+        "확인 X(결제완료)"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "a3a0da0c437b692f7089b124d9a4009a82898f4b",
+      "name": "분석상세",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5d9657274ce708473087799f291b69cb719298cb",
+      "name": "납세자 정보확인용",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "cd06f7d24008226a1559fba0292526960efe779a",
+      "name": "예금주",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ca5225cabe59066cf0fb6a3652028b4048a2bcde",
+      "name": "환급 은행",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f98c1cdab006281dee3b8160088a4d271104644e",
+      "name": "환급 계좌번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9ee86debddfaeeddf84f4b1077787bc881394517",
+      "name": "납세자명",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b544391ace0abfd64b67668be577d6cf02261bc8",
+      "name": "납세자 생년월일",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "de9c416e25ea08a30e396e698ec4aff746cbed39",
+      "name": "서류제출여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "미제출",
+        "요청중",
+        "완료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "557330295ba27ff4c28a215aa7f98d0478b94e81",
+      "name": "CS중 취소요청",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "CS 취소요청",
+        "(자동) PROD"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "0c72d82118a7f1fb83dee4a546e982093ffbfc89",
+      "name": "지인추천",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5df67ac686d401863b752985cbf6bd424cd7537b",
+      "name": "신고서 작성일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "820bc67b1d9f997c9902dc6400afd720c78e9f21",
+      "name": "(임시) 변경 전 환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "820bc67b1d9f997c9902dc6400afd720c78e9f21_currency",
+      "name": "(임시) 변경 전 환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9dba3c42c18f96ffad645f9d65b96d02a2aa483a",
+      "name": "1차 환급액(지수)",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9dba3c42c18f96ffad645f9d65b96d02a2aa483a_currency",
+      "name": "1차 환급액(지수)의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "005ae4c6289b416114bde665127063f2337448ab",
+      "name": "2차 환급액(가은)",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "005ae4c6289b416114bde665127063f2337448ab_currency",
+      "name": "2차 환급액(가은)의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9d0047dd8bfb931df87aca6ff03c81a19940b41b",
+      "name": "고용산재토탈 상세파일.xlsx",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "98a1db6096b1fe82f47420962d95d819eadc2dce",
+      "name": "고용산재토탈 상세파일.jason",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "314ea8de88a7dda7349215ddc0975216b9662ad9",
+      "name": "보류사유",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 18,
+      "options": [
+        "배당소득",
+        "통합투자세액공제",
+        "창업벤처기업 세액공제",
+        "감염병",
+        "사회보험료 세액공제",
+        "고용증대 복수사업장",
+        "소득구분계산서",
+        "공동사업자",
+        "결손금",
+        "기타공제감면",
+        "가산세",
+        "소규모",
+        "수입금액 누락 가능성",
+        "재조회 필요",
+        "최종환급액 마이너스",
+        "기타",
+        "부재중",
+        "서류요청"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "944b6caa1dc39b272ad389ef3172b1a83c52b826",
+      "name": "담당자",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "019d829b2eb243f18afc2f4f689437a4acf03263",
+      "name": "☎ 팩스번호/우편재발송",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "69fb0b8fd4a18db2447b5dde40ae1ee117207607",
+      "name": "☎ 재발송일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "2badc715ca3af231f5a64cc9f93ece2c48fb19da",
+      "name": "☎ 재접수확인일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "38ed3b029c5275b9f4af59db5eab65eb813f936c",
+      "name": "☎ 총환급결정액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "38ed3b029c5275b9f4af59db5eab65eb813f936c_currency",
+      "name": "☎ 총환급결정액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ffd943fbb49d3581f1a759510212d923c638c307",
+      "name": "고용증대대상연도",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "36f53fa809b0106ae7206522b67204b7285d254d",
+      "name": "적용된 세액감면종류",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "43d0cdc10436e7d99894572f169177889e3b0a99",
+      "name": "💌 신고 전 알림톡",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0861d8b39f47b1a444ccf0e30f2402872be0fc61",
+      "name": "💌 신고완료 알림톡",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5bb114868c32717f6d70e35af07f7442495d77d7",
+      "name": "💌 결정확인 알림톡",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "086919527b24435ddf539262d139019245da5299",
+      "name": "💌 환급결정 알림톡",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b24a25502fdeb48ac55986536dd8d449fe1ec494",
+      "name": "💌 최초결제 알림톡",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d765a5d779494692b5f23376ae7e4e2d4cca3456",
+      "name": "결제방식",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "사전카드등록"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "6ba31914c139e233ad83bd0785f4b0f20411270f",
+      "name": "등록된 카드",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9f764654513a2fab41c6409f7ae238b24695006f",
+      "name": "기본 수수료율",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e8c5be215acb37654f711d082a595cb22eef32c7",
+      "name": "* 최종 수수료율",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d4253809f5ab190601db9baf8c727646e688f275",
+      "name": "✔ 결제마감기한",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4a24ae7cb63dc78976b1ab9ebba8414d584367db",
+      "name": "💸 PG",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "897afed52d7b6a78a08599c33323d548218359ac",
+      "name": "💸 결제일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "33ee1caf01bc884b131d9348179f8474220d0c3d",
+      "name": "💸 주문번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d96731fd11c802f99ed5599bb162903432c6d6d0",
+      "name": "💸 결제링크",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "692fabad744b069ace2a0da44854d2166870d873",
+      "name": "💸 카드결제링크(카드번호)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "aff503dd41435262ff830ef45d00757023425204",
+      "name": "💸 카드결제링크(앱카드)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "69b70d09e9e9a7e46dde0ed44914142de2ec1125",
+      "name": "💸 가상계좌번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "dc31fe3c5a005845cf875d7aad2ffee287907084",
+      "name": "💸 Type",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "07485d3f3f7e4c8bd762c3de88a95e1f020f4141",
+      "name": "현금영수증 승인번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0a54a8403d5fd78cd60e595d634885e923b7cdae",
+      "name": "소멸시효",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6c128ea11b0713cc48b9a3bfb6a05af198d38135",
+      "name": "외주콜 위임 여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "O",
+        "X"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "0ec37f587ba626b05d5db916d9e2f185e47f1abc",
+      "name": "B(환급)-고객 유형",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 13,
+      "options": [
+        "결제 예정",
+        "신청 부정",
+        "연락 불가",
+        "수수료 고액",
+        "수수료 미고지",
+        "분할 납부 희망",
+        "세무서 확인 예정",
+        "보이스피싱, 사기 의심",
+        "변제 능력 상실",
+        "환수 우려",
+        "회생/파산 신청",
+        "회생/파산 예정",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "663e171c55d8fe64636e890436a4bd20f225d623",
+      "name": "C(추심)-고객 유형",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 13,
+      "options": [
+        "결제 예정",
+        "신청 부정",
+        "연락 불가",
+        "수수료 고액",
+        "수수료 미고지",
+        "분할 납부 희망",
+        "세무서 확인 예정",
+        "보이스피싱, 사기 의심",
+        "변제 능력 상실",
+        "환수 우려",
+        "회생/파산 신청",
+        "회생/파산 예정",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "2061aaf59c50302de16096f1fa92db7b6d59d355",
+      "name": "최고장 발송 대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "O",
+        "X"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "917d33529144d8025660362a29eb6de2691188c3",
+      "name": "최고장 발송일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b74c488365025afb94b2c656d24701908e00d732",
+      "name": "내용증명 발송일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "69b948cd5331d1c78a7d4045dae1be38be7a7177",
+      "name": "지급명령단계 변경일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "28d3f5faa2e4bb424ccb2bd5e1c5f483c8845481",
+      "name": "💌 추심결제안내",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a686da912f5ea6e67e9d9e947e64dcf42a2d6266",
+      "name": "추심프로세스",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "추심콜",
+        "최고장",
+        "지급명령"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "96857e7bf48fd9c42e887bfb1acacc7714131c69",
+      "name": "분할결제 횟수",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 11,
+      "options": [
+        "예정",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "bfbd119e08ba1ec7b08891f8c90f4582f9067ac4",
+      "name": "법비용",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "bfbd119e08ba1ec7b08891f8c90f4582f9067ac4_currency",
+      "name": "법비용의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f0e77d984b871749f95e8a641e617e013b2fe240",
+      "name": "추심 위임",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "나라신용정보"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "1fd71f3ab1b39ae7b3992a59fad720e89d1605fb",
+      "name": "실제 회수금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1fd71f3ab1b39ae7b3992a59fad720e89d1605fb_currency",
+      "name": "실제 회수금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "81b10792267d42d1047ed8ccbc379a9d880cdbf9",
+      "name": "결정알림톡 일회성 문자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b688925e6509a9b638982fb4a642a3a5cb5709ad",
+      "name": "🔐 환급액(zent)에 따른 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b688925e6509a9b638982fb4a642a3a5cb5709ad_currency",
+      "name": "🔐 환급액(zent)에 따른 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d8b3cb784b24ca3eeae72d65664947adeb0787ff",
+      "name": "약관버전",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3153b1f8762c3aea1b9fc6dcfd3a092d964208ce",
+      "name": "✖ 이전 단계",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "fa0e102a3af6cafffe705f37edcd23ef005660bd",
+      "name": "고용증대 알림톡 인증 여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "y",
+        "n"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "45fe537fe0966e9570193e8758993148f7d390ad",
+      "name": "취소요청일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f362d92f24f82d2b27ecc093602489cf134170cd",
+      "name": "취소방어일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1fc8abc43087fc76f70c3f47da24946bf69e5b66",
+      "name": "취소방어 활동일(최근)",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ebdd813efc921dcb6a90be9156642c824589aced",
+      "name": "취소신청사유",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 21,
+      "options": [
+        "기존 세무대리인",
+        "기존세무대리인관계걱정",
+        "수수료",
+        "타 서비스 이용",
+        "기신고 존재",
+        "좀 더 고민 필요",
+        "실수로 신청",
+        "업무 지연",
+        "환급액 감소",
+        "불이익걱정",
+        "서류제출불가",
+        "부재중",
+        "신뢰부족",
+        "무응답",
+        "체납",
+        "개인사정",
+        "복잡한절차(서비스)",
+        "복잡한절차(서류)",
+        "가공경비",
+        "소액 환급금",
+        "기타"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "14558914daad0ec922e4e38a351df8058861c501",
+      "name": "취소신청사유(자동)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a7d14466b1d95c6646a77087f1f45d0149b98255",
+      "name": "userErn",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "06d221bd161064c61c6d7cdfccf895ac37c172fa",
+      "name": "refundId",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d0538442093c15f3cf5c989ac77d0688a6da9998",
+      "name": "tin",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "00a77da0124961fb9a79740476af206abdd7ebfc",
+      "name": "loginType",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b7cb98b81fae8dac0bc77822f6f997b594b89d84",
+      "name": "마케팅동의여부",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "fcac36f1390bc497c328515b90bc0c70aed08ced",
+      "name": "orgErn",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "020810acc6b1f479fdd219646a656b48a40c965f",
+      "name": "utmCampaign",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "2a1a449aeddc0f50508ee94ab75427b561f031a6",
+      "name": "utmMedium",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "17a8ad9fd35f59b439c74d10a7af218589bb126b",
+      "name": "utmSource",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e76d9b0dbeac86defb2a72629bf13c999454310a",
+      "name": "utmTerm",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5b358bb56983b3c57900b08ec6e3e41f500b2cbf",
+      "name": "UtmContent",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3ce287084ab7024a849de8b357df717093333b7e",
+      "name": "(조회)utmCampaign",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e58a8282f69b17ba72b4f77cfb2832f37b8ee130",
+      "name": "(조회) utmMedium",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b21d981e2a10ca515136521fe72ab61f0d43939e",
+      "name": "(조회) utmSource",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9ec84af552961c901e9cb4f59d8536a2e06b1d08",
+      "name": "(조회) utmTerm",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "b347f5e7e5871f02f33d4fb1e849d9256d868185",
+      "name": "(조회)UtmContent",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "803940d8856af447975743d84a1b2962c3e4c05d",
+      "name": "(자동)신청자 휴대폰 번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0d0d14ba250fefdadcea3c4f6b3f797416612577",
+      "name": "환급가능일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "403d70a2c48f7f0089f2d9b6851ac7f80c281bd0",
+      "name": "창업연도",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 4,
+      "options": [
+        "18년 창업",
+        "19년 창업",
+        "20년 창업",
+        "21년 창업"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "18bff8897b03f313d94cfc125f9feab4d07b7013",
+      "name": "💸 1결제마감기한",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4f55950761b17f9e3f9bb331aa107a5ca61611a3",
+      "name": "💸 1결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "4f55950761b17f9e3f9bb331aa107a5ca61611a3_currency",
+      "name": "💸 1결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "fd1051d985457137e975f1c7d0501a43ef90a76b",
+      "name": "💸 2paymentType",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "eff680c5483e56aedd438e79c9e43ca7e5d09998",
+      "name": "🏧 가상계좌 주문번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "bd415b20e2dcae10bfcf645592408b1d95a4e417",
+      "name": "💸 2결제일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "06e45325e3eba935e8369cefd7fb12f5d72d701e",
+      "name": "💸 2결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "06e45325e3eba935e8369cefd7fb12f5d72d701e_currency",
+      "name": "💸 2결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6806f8a991e5dfd7cbee1b69dd94d68ed8732031",
+      "name": "💸 2주문번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "eda032b662a0b16ab144c2fffc1d1f00ef4704df",
+      "name": "💸 2결제링크",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "814745d8492ba3aa4a5ff81ec447300582ec0dc4",
+      "name": "💸 2PG",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "67532be7335852a3b8368fd5554972f874bdf29a",
+      "name": "✍ 계좌개설 및 통지서",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 6,
+      "options": [
+        "현금수령통지서",
+        "계좌재전화전달",
+        "계좌팩스전달",
+        "계좌이메일전달",
+        "계좌개설신고",
+        "계좌전달완료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "997160c8c8f9cc9cf4417308d0ab968d39003529",
+      "name": "업무 진행비",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "50000",
+        "100000"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "7807d88b26fa77eb4fbb317d34139a751d854b0a",
+      "name": "취소수수료율",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ee6ecc0c8ad0476f262aca3ced3c2217a7971ace",
+      "name": "취소수수료",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ee6ecc0c8ad0476f262aca3ced3c2217a7971ace_currency",
+      "name": "취소수수료의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "fd0a1be0badcd40f7231ad37b49ad0c3958a1aed",
+      "name": "테스트",
+      "field_type": "time",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "fd0a1be0badcd40f7231ad37b49ad0c3958a1aed_timezone_id",
+      "name": "테스트의 시간대",
+      "field_type": "int",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a2726338264cedae3fa6475e43ec484d357ed66e",
+      "name": "지방세분 별도 납부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "지방세분 추후 납부"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "f98e0b2aa1035945cc0082386ecb9f43c00761b3",
+      "name": "분납 진행률",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "bf026900b182274b4dc28034aa7d78f9fab3e19e",
+      "name": "다음 납부일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "48c83ab2832b3e470154899dc3db5510221d321b",
+      "name": "잔액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "48c83ab2832b3e470154899dc3db5510221d321b_currency",
+      "name": "잔액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "8c1834c3c57da64a4d566b977d767d9c73551424",
+      "name": "법인계좌입금",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "8c1834c3c57da64a4d566b977d767d9c73551424_currency",
+      "name": "법인계좌입금의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9a43752247509d80140676b3f26ed561d83e0a6d",
+      "name": "헥토카드 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9a43752247509d80140676b3f26ed561d83e0a6d_currency",
+      "name": "헥토카드 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "325aca47760edcd5ca60ba0e4e51027c3651ef6b",
+      "name": "헥토계좌 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "325aca47760edcd5ca60ba0e4e51027c3651ef6b_currency",
+      "name": "헥토계좌 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5cd3d8ff99e1a956c3e9b860014bb2978e58527c",
+      "name": "이전 조회 이력",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "2b0e6357c5917787d6a6fe1adc98ae8dcb5a1359",
+      "name": "✔ 최초 신고 환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "2b0e6357c5917787d6a6fe1adc98ae8dcb5a1359_currency",
+      "name": "✔ 최초 신고 환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "71075f8ae35676a3e3501c8844aa94934b71dd98",
+      "name": "엑셀 버전(옵션)",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "1.2.0 버전",
+        "기존"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "019466d3b7558bfcd0eb14e2427d8faa4f8805fb",
+      "name": "😊 기경정청구 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "71d5a2bc80d3acab570eb013da7f688c34ecc71b",
+      "name": "😊 토탈서비스 담당자",
+      "field_type": "user",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d160c6f3a34020144e4727ba16047525b687112b",
+      "name": "급행",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "급행",
+        "취소방어성공"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "b850e6c0150f009d24a8e0a410a9f1150a0bdb21",
+      "name": "sessionId",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "f0aeb9f1ec8de7636ecbca1446e0f1e77f4f1770",
+      "name": "리드 라벨",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "0c9266fa907b687adc4c7fa754340cdcc7acafee",
+      "name": "특이사항(mike)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "e6c6be22aeac64b15324ebac0d477df79dc85ac2",
+      "name": "부대표 여부",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "True"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "3e293570165855c36c7e180a9fc73f82c843c143",
+      "name": "신고서 접수 구분",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "가은",
+        "지수"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "761387a6f4e656d347130d414c8c1b94a206ff32",
+      "name": "조사관 전송 날짜",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "3a7d95a418826be9d6facd9f660a8315bb6bb14a",
+      "name": "감면only 여부",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "cb52ae964ea2c9551e5ed516b84323b4b4cf3c44",
+      "name": "상황",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 6,
+      "options": [
+        "신고서 반송 (수취X)",
+        "신고서 반송 (수취O)",
+        "이메일 서류요청",
+        "팩스 서류요청",
+        "우편 서류요청",
+        "접수 X"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "d4f955de0b3a3895259efcbe01929ba38347a017",
+      "name": "감면only 환급액",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "169d4162c32ef94b44d3a174ed921b90ae542694",
+      "name": "사업장 수",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a7547de1b302c225efb0a5c9975f094a946dba4f",
+      "name": "고용산재토탈 증명서.pdf",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "eb9c63b0d07266a36dd3e614b58b7067543f0682",
+      "name": "근로자수",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "d7d5a0ba059874ba4fb8360097cc510f5c3bf927",
+      "name": "환급완료 단계 머문 일자",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "6cab76d7b4218659fe270dd36b55031c26298ca9",
+      "name": "분할환급",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "30ed3a55dcf412d41e6f03103b4b24dbc00c9cef",
+      "name": "😊 지방세 담당자",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "마이크",
+        "배넷",
+        "잭슨"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "1aeaa4de06d69d458d3dad5f58272b29c70c3db2",
+      "name": "CS 설문 알림톡 제출 현황",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "미제출",
+        "제출완료"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "7035111957476ca91e974b1fc2419826a9130673",
+      "name": "new터칭콜",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "대상"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "3d64a4bc15d27fc5d9cf13dde67a03195150ce0c",
+      "name": "☎ 수취 및 처리확인(필드명 변경필요)",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "수취미확인",
+        "접수완료",
+        "기각"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "36bfa0fdd3811ead35995485ce1d1115a122ee54",
+      "name": "고용증대세액 공제 대상자",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 3,
+      "options": [
+        "대상자",
+        "복잡한 대상자",
+        "비대상자"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "697acb71cae34dbe208095a17b38abe9af012179",
+      "name": "고용증대환급 금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "697acb71cae34dbe208095a17b38abe9af012179_currency",
+      "name": "고용증대환급 금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ce7c59501c2420693f3fe5183a44c6d9d5ccd894",
+      "name": "감면환급 금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ce7c59501c2420693f3fe5183a44c6d9d5ccd894_currency",
+      "name": "감면환급 금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "org_id",
+      "name": "조직",
+      "field_type": "org",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "probability",
+      "name": "확률",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "expected_close_date",
+      "name": "예상 종료 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "35b339239cd2af13d9480039b994b298a30a3964",
+      "name": "🥲 테스트(벨라)**테스트",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "2"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "d2061e00b18916f5c273c28af0e0cd6ee7050561",
+      "name": "탈퇴회원",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "탈퇴회원"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "438cc4eb42c136e62059ca04ce13aea82c3f758a",
+      "name": "코로나지원금",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "해당"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "93b70abe00afefd4f0cbdf5c1f706f2f682d00f1",
+      "name": "결정확인 인증일시",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1766ecfc79235e5fe38db5598c733f1cf3551c11",
+      "name": "양도세 조회 환급액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "1766ecfc79235e5fe38db5598c733f1cf3551c11_currency",
+      "name": "양도세 조회 환급액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "2521069b598d16ad47af0265410dafe128e23d03",
+      "name": "접수일자_1",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "29e7d7a5aa97507bcf02d9d125167dd052c78fcc",
+      "name": "사건명_1",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 11,
+      "options": [
+        "지급명령",
+        "계좌 압류",
+        "급여 압류",
+        "매출채권 압류",
+        "유체동산 압류",
+        "부동산 강제경매",
+        "채권 가압류",
+        "부동산 가압류",
+        "처분금지 가처분",
+        "재산명시",
+        "채무불이행자명부"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "0fc2c2a77498af46514891a04c20cf5178b58398",
+      "name": "관할법원_1",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 72,
+      "options": [
+        "대법원",
+        "서울고등법원",
+        "대전고등법원",
+        "대구고등법원",
+        "부산고등법원",
+        "광주고등법원",
+        "수원고등법원",
+        "서울행정법원",
+        "서울가정법원",
+        "부산가정법원",
+        "대전가정법원",
+        "대구가정법원",
+        "광주가정법원",
+        "인천가정법원",
+        "울산가정법원",
+        "수원가정법원",
+        "서울회생법원",
+        "수원회생법원",
+        "부산회생법원",
+        "서울중앙지방법원",
+        "서울동부지방법원",
+        "서울서부지방법원",
+        "서울남부지방법원",
+        "서울북부지방법원",
+        "의정부지방법원",
+        "인천지방법원",
+        "수원지방법원",
+        "춘천지방법원",
+        "대전지방법원",
+        "청주지방법원"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "72fdb7fd8095de9e7c0e6e7fca031ee7b2edd5f7",
+      "name": "사건번호_1",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "136ded67c8855373a637b61ed1970030657cfe38",
+      "name": "종국결과_1",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 14,
+      "options": [
+        "예정",
+        "접수",
+        "진행중",
+        "보정",
+        "보정명령",
+        "기각",
+        "각하",
+        "인용",
+        "일부인용",
+        "결정",
+        "취하",
+        "종결",
+        "항고",
+        "재판이송"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "9ee7d4352a77ea80af5c70b54c809519b20d51bb",
+      "name": "종국일자_1",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "29ec71673a8e69124d082b96be71a0da84f4c00f",
+      "name": "접수일자_2",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "dbb40cdfea1ad72ffed62416d397ec5ab2fc292d",
+      "name": "사건명_2",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 11,
+      "options": [
+        "지급명령",
+        "계좌 압류",
+        "급여 압류",
+        "매출채권 압류",
+        "유체동산 압류",
+        "부동산 강제경매",
+        "채권 가압류",
+        "부동산 가압류",
+        "처분금지 가처분",
+        "재산명시",
+        "채무불이행자명부"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "f1fb252c828918f0d274674971c8c8665e93b35d",
+      "name": "관할법원_2",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 72,
+      "options": [
+        "대법원",
+        "서울고등법원",
+        "대전고등법원",
+        "대구고등법원",
+        "부산고등법원",
+        "광주고등법원",
+        "수원고등법원",
+        "서울행정법원",
+        "서울가정법원",
+        "부산가정법원",
+        "대전가정법원",
+        "대구가정법원",
+        "광주가정법원",
+        "인천가정법원",
+        "울산가정법원",
+        "수원가정법원",
+        "서울회생법원",
+        "수원회생법원",
+        "부산회생법원",
+        "서울중앙지방법원",
+        "서울동부지방법원",
+        "서울서부지방법원",
+        "서울남부지방법원",
+        "서울북부지방법원",
+        "의정부지방법원",
+        "인천지방법원",
+        "수원지방법원",
+        "춘천지방법원",
+        "대전지방법원",
+        "청주지방법원"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "b0bc00051edb463d43cb44d501edd87ade2f7f30",
+      "name": "사건번호_2",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "7e458de7a8612a5145942599f9bff24dccf3f098",
+      "name": "종국결과_2",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 14,
+      "options": [
+        "예정",
+        "접수",
+        "진행중",
+        "보정",
+        "보정명령",
+        "기각",
+        "각하",
+        "인용",
+        "일부인용",
+        "결정",
+        "취하",
+        "종결",
+        "항고",
+        "재판이송"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "2c7b90eda95dbb64c3db7b4dfd47631a46778f0a",
+      "name": "종국일자_2",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "57bd5736dc6613aca0648548ea424a9eab89a9f1",
+      "name": "접수일자_3",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "be3c9741f9a2b13ca21f4f81d574ea6e95023406",
+      "name": "사건명_3",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 11,
+      "options": [
+        "지급명령",
+        "계좌 압류",
+        "급여 압류",
+        "매출채권 압류",
+        "유체동산 압류",
+        "부동산 강제경매",
+        "채권 가압류",
+        "부동산 가압류",
+        "처분금지 가처분",
+        "재산명시",
+        "채무불이행자명부"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "a25a0170a9bd4c31f73da109c3a3ed64bec905b7",
+      "name": "관할법원_3",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 72,
+      "options": [
+        "대법원",
+        "서울고등법원",
+        "대전고등법원",
+        "대구고등법원",
+        "부산고등법원",
+        "광주고등법원",
+        "수원고등법원",
+        "서울행정법원",
+        "서울가정법원",
+        "부산가정법원",
+        "대전가정법원",
+        "대구가정법원",
+        "광주가정법원",
+        "인천가정법원",
+        "울산가정법원",
+        "수원가정법원",
+        "서울회생법원",
+        "수원회생법원",
+        "부산회생법원",
+        "서울중앙지방법원",
+        "서울동부지방법원",
+        "서울서부지방법원",
+        "서울남부지방법원",
+        "서울북부지방법원",
+        "의정부지방법원",
+        "인천지방법원",
+        "수원지방법원",
+        "춘천지방법원",
+        "대전지방법원",
+        "청주지방법원"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "f58e65b73c55e3f16d1840cd72cac22c4938c800",
+      "name": "사건번호_3",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "ec5b0c6f2f8188beb5b415d4d80ddddfa8d467fb",
+      "name": "종국결과_3",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 14,
+      "options": [
+        "예정",
+        "접수",
+        "진행중",
+        "보정",
+        "보정명령",
+        "기각",
+        "각하",
+        "인용",
+        "일부인용",
+        "결정",
+        "취하",
+        "종결",
+        "항고",
+        "재판이송"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "8b5df0d848c70067762aec10ca11ce637e1b841b",
+      "name": "종국일자_3",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "a9b0ea7054e64b3c6bfb273c92bc266b9265661f",
+      "name": "접수일자_4",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "846b61e0b35e9486e7b510797a7cbd69205b716b",
+      "name": "사건명_4",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 11,
+      "options": [
+        "지급명령",
+        "계좌 압류",
+        "급여 압류",
+        "매출채권 압류",
+        "유체동산 압류",
+        "부동산 강제경매",
+        "채권 가압류",
+        "부동산 가압류",
+        "처분금지 가처분",
+        "재산명시",
+        "채무불이행자명부"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "b3da871936ebce7cc514459eca29a4aaa24c06b9",
+      "name": "관할법원_4",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 72,
+      "options": [
+        "대법원",
+        "서울고등법원",
+        "대전고등법원",
+        "대구고등법원",
+        "부산고등법원",
+        "광주고등법원",
+        "수원고등법원",
+        "서울행정법원",
+        "서울가정법원",
+        "부산가정법원",
+        "대전가정법원",
+        "대구가정법원",
+        "광주가정법원",
+        "인천가정법원",
+        "울산가정법원",
+        "수원가정법원",
+        "서울회생법원",
+        "수원회생법원",
+        "부산회생법원",
+        "서울중앙지방법원",
+        "서울동부지방법원",
+        "서울서부지방법원",
+        "서울남부지방법원",
+        "서울북부지방법원",
+        "의정부지방법원",
+        "인천지방법원",
+        "수원지방법원",
+        "춘천지방법원",
+        "대전지방법원",
+        "청주지방법원"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "1019af6002191b5b886db0fcf3d2da33b93bd2df",
+      "name": "사건번호_4",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "5ba6c5460c39701f5537a5a1bd3b3278b109f5cd",
+      "name": "종국결과_4",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 14,
+      "options": [
+        "예정",
+        "접수",
+        "진행중",
+        "보정",
+        "보정명령",
+        "기각",
+        "각하",
+        "인용",
+        "일부인용",
+        "결정",
+        "취하",
+        "종결",
+        "항고",
+        "재판이송"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "2f4288fc812dd94ddbaadc34f26c3b96d8f827b2",
+      "name": "종국일자_4",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "개인",
+      "key": "9f00c34ba92a94745d586c04da3c4cac024ff626",
+      "name": "이월결손금 대상",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "O"
+      ]
+    },
+    {
+      "source": "개인",
+      "key": "6ea6927b887005ae8abf91a85d35255ee1d71abf",
+      "name": "날짜테스트",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "o"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "id",
+      "name": "ID",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "title",
+      "name": "이름",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "creator_user_id",
+      "name": "작성자",
+      "field_type": "user",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "user_id",
+      "name": "소유자",
+      "field_type": "user",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "weighted_value",
+      "name": "가중치",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "weighted_value_currency",
+      "name": "가중치를 적용한 값의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "pipeline",
+      "name": "파이프라인",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "stage_id",
+      "name": "단계",
+      "field_type": "stage",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "status",
+      "name": "상태",
+      "field_type": "status",
+      "is_custom": false,
+      "options_count": 4,
+      "options": [
+        "진행 중",
+        "실패",
+        "성사됨",
+        "삭제됨"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "add_time",
+      "name": "거래 생성됨",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "update_time",
+      "name": "업데이트 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "stage_change_time",
+      "name": "마지막 단계 변경",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "next_activity_date",
+      "name": "다음 활동 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "last_activity_date",
+      "name": "마지막 활동 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "won_time",
+      "name": "성사 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "last_incoming_mail_time",
+      "name": "마지막 수신한 이메일",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "last_outgoing_mail_time",
+      "name": "마지막 전송한 이메일",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "lost_time",
+      "name": "실패 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "close_time",
+      "name": "거래 종결 날짜:",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "lost_reason",
+      "name": "실패 원인",
+      "field_type": "varchar_options",
+      "is_custom": false,
+      "options_count": 13,
+      "options": [
+        "환급불가_검토중",
+        "환급불가_취하",
+        "환급불가_기각",
+        "환급불가_기신고건",
+        "신청취소_기존세무대리인",
+        "신청취소_높은수수료",
+        "신청취소_타서비스이용",
+        "신청취소_실수로신청",
+        "신청취소_좀더고민필요",
+        "신청취소_신뢰부족",
+        "신청취소_기타",
+        "신청취소_CMS미동의",
+        "환급불가_연도변경"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "visible_to",
+      "name": "공개 대상:",
+      "field_type": "visible_to",
+      "is_custom": false,
+      "options_count": 2,
+      "options": [
+        "항목 소유자",
+        "전체 사용자"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "activities_count",
+      "name": "총 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "done_activities_count",
+      "name": "완료된 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "undone_activities_count",
+      "name": "해야 할 활동",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "email_messages_count",
+      "name": "이메일 메시지 수",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "product_quantity",
+      "name": "상품 수량",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "product_amount",
+      "name": "상품 총액",
+      "field_type": "double",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "product_name",
+      "name": "상품 이름",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "mrr",
+      "name": "MRR",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "mrr_currency",
+      "name": "MRR의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "arr",
+      "name": "ARR",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "arr_currency",
+      "name": "ARR의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "acv",
+      "name": "ACV",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "acv_currency",
+      "name": "ACV의 통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "origin",
+      "name": "출처 원본",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 13,
+      "options": [
+        "수동 생성됨",
+        "가져오기",
+        "API",
+        "자동화",
+        "마켓플레이스",
+        "잠재 고객",
+        "리드 제안",
+        "웹 양식",
+        "챗봇",
+        "라이브 채팅",
+        "웹 방문자",
+        "Campaigns",
+        "메시지 수신함"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "origin_id",
+      "name": "출처 원본 ID",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "channel",
+      "name": "출처 채널",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 9,
+      "options": [
+        "Prospector",
+        "Lead Suggestions",
+        "Web forms",
+        "Chatbot",
+        "Live chat",
+        "Web visitors",
+        "Campaigns",
+        "Marketplace",
+        "Messaging Inbox"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "channel_id",
+      "name": "출처 채널 ID",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "is_archived",
+      "name": "보관 상태",
+      "field_type": "enum",
+      "is_custom": false,
+      "options_count": 2,
+      "options": [
+        "보관되지 않음",
+        "보관됨"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "archive_time",
+      "name": "보관 시간",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "sequence_enrollment",
+      "name": "시퀀스 등록",
+      "field_type": "boolean",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "value",
+      "name": "가치",
+      "field_type": "monetary",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "currency",
+      "name": "통화",
+      "field_type": "varchar",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "probability",
+      "name": "확률",
+      "field_type": "int",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "org_id",
+      "name": "조직",
+      "field_type": "org",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "person_id",
+      "name": "담당자",
+      "field_type": "people",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "label",
+      "name": "레이블",
+      "field_type": "set",
+      "is_custom": false,
+      "options_count": 2,
+      "options": [
+        " ",
+        "취소수수료결제자"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "expected_close_date",
+      "name": "예상 종료 날짜",
+      "field_type": "date",
+      "is_custom": false,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "63231636516a30325193f8fe55bf680474c3133e",
+      "name": "내용증명 발송일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "3662df2aa6a1de5332abbcd6c0066897c9db8a8b",
+      "name": "성사 데이터 전달",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "True"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "704f455b6b72f15918ca2d518be2046126833305",
+      "name": "(임시) 유입채널",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "리벰버"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "fdb033bcc766ab2f03a799747358478054e5be62",
+      "name": "(리드)영업 담당자",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 20,
+      "options": [
+        "김인철",
+        "경상북도학원연합 경북지회",
+        "이상 네트웍스",
+        "안승남",
+        "안승남_영업사원",
+        "이인용",
+        "정갑중",
+        "전영태",
+        "김현진",
+        "전국영업인협동조합_송호범",
+        "전국영업인협동조합_박재하",
+        "전국영업인협동조합_이승훈",
+        "오현교",
+        "모두빌리지",
+        "나이스노무법인",
+        "전국영업인협동조합_지수예",
+        "전국영업인협동조합_김현주",
+        "전국영업인협동조합_정완조",
+        "사먼스",
+        "윤응식"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "3dbe3dd9215ee4ec09fa9f9f8e753a0178b0f689",
+      "name": "(거래)영업 담당자",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 23,
+      "options": [
+        "김인철",
+        "경상북도학원연합 경북지회",
+        "이상 네트웍스",
+        "안승남",
+        "안승남_영업사원",
+        "이인용",
+        "정갑중",
+        "전영태",
+        "김현진",
+        "전국영업인협동조합_송호범",
+        "전국영업인협동조합_박재하",
+        "전국영업인협동조합_이승훈",
+        "오현교",
+        "모두빌리지",
+        "나이스노무법인",
+        "전국영업인협동조합_지수예",
+        "전국영업인협동조합_김현주",
+        "전국영업인협동조합_정완조",
+        "사먼스",
+        "김주영",
+        "고은",
+        "고주현",
+        "윤응식"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "d5dc2c260980c51d1d2ee8beeaedd1a270f075f5",
+      "name": "관할 세무서",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "5c84e9728faedfecdbcf992908a21a38eab51cd1",
+      "name": "담당 공무원",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "3ae378c172a879c5160174dea29e8b3791360ed9",
+      "name": "환급확인 상태",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "True",
+        "False"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "c201478fac934708d9cad8280ac6855b4bd52d6d",
+      "name": "✔ 조회일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "763fdb0697376420280693965f28c4123dd72d5b",
+      "name": "✔ 신청일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "15bdf7777f105b8cd9dac73dc099df98d14d526b",
+      "name": "재신청일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "ea8d36f6b730cc7f872d6de4d4bf9425785b8729",
+      "name": "✔ 신고일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "60ab18f36f995eeb0950698bc6fb7bbd3caabb6f",
+      "name": "재접수일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "5259679ce27fecb64dfa47183485613a1174b1c1",
+      "name": "✔ 환급완료 변경일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "affff94a9249903fa7ecda79bf6f9f1ea891071e",
+      "name": "✔ 환급완료 변경 시간",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "a416fad6ab7cbc198dfd5b05abe8a1f757c42eb3",
+      "name": "✔ 환급액(zent)",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "a416fad6ab7cbc198dfd5b05abe8a1f757c42eb3_currency",
+      "name": "✔ 환급액(zent)의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "4afc639ff0a3170698322450ab3121d2f7f4cf29",
+      "name": "✔ 절세효과",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "4afc639ff0a3170698322450ab3121d2f7f4cf29_currency",
+      "name": "✔ 절세효과의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "83a0cc7ad74ae684f6bbeb3133eb2866dad677b0",
+      "name": "*검토환급액-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "83a0cc7ad74ae684f6bbeb3133eb2866dad677b0_currency",
+      "name": "*검토환급액-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "4b9446b4c68d81bab6f598b66aa5061d0baa194c",
+      "name": "*결정 환급액-알림톡발송",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "4b9446b4c68d81bab6f598b66aa5061d0baa194c_currency",
+      "name": "*결정 환급액-알림톡발송의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "495dc5aea20f8e437963f4295d98f67c3270b465",
+      "name": "이월세액공제 증가액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "495dc5aea20f8e437963f4295d98f67c3270b465_currency",
+      "name": "이월세액공제 증가액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "8832106bfaaf0458ff6eafa4bbf89e17de5f0a0d",
+      "name": "최종 환급완료일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "c85b8adcdc811c30f859352326dbf60f7a363e08",
+      "name": "마지막 연도 매출액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "c85b8adcdc811c30f859352326dbf60f7a363e08_currency",
+      "name": "마지막 연도 매출액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "633eda16fedbdd354caf6eb4eb7595247a3a934e",
+      "name": "마지막 연도 당기순이익",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "633eda16fedbdd354caf6eb4eb7595247a3a934e_currency",
+      "name": "마지막 연도 당기순이익의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "880dcf5f4905568ed6695b52b5af21116b335382",
+      "name": "사업장주소",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "1f2a85338749afde93a061d5da25c11c0c4cca03",
+      "name": "고용증대",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "a82a469e5ece1d2f96792bab7c5c70e1091e7502",
+      "name": "사회보험료",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "45ffd7017eb754a19a689ccab8279635bf5e025f",
+      "name": "창업감면",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "33cfed73af66a8b032d5ebef13e772fe7054cea1",
+      "name": "중소기업특별세액감면",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "682260d004591c4fe83571e5e49adc6e30c716b9",
+      "name": "농어촌특별세",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "9984bd9b116955a81459c40b56f36cadde9670dd",
+      "name": "추가납부세액",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "true",
+        "false"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "caa7d39713ac18697452691900199a908a2afcd0",
+      "name": "분석상세",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "cd9ede95891acb6d28f82d4f9ce3eee067d39da3",
+      "name": "분석상세2",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "955b203b85d2066bcabdf7447949019b2a42b011",
+      "name": "환급은행",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "f26c8c32275169b76edc390c8f7835798aa6dae0",
+      "name": "환급 계좌번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "dbf353faf17cf72c0bf336a994d945f7eec4a803",
+      "name": "신청취소사유",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "6aff32795065fc375f52a090b22f9a9fb0deb733",
+      "name": "기본 수수료율",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "30adbcf37881a14b5a01952994fe8be1b473a5ea",
+      "name": "*최종 수수료율",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "6d410852449be4789911513968095eb53c46add2",
+      "name": "릭택스",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "릭택스"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "413bf7fa92a68b9bc27ad5137bf53acfbb59c313",
+      "name": "신고서 전달",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "전달완료"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "523a3fde61c6794abbf9014c45c4660b2e3ebf19",
+      "name": "지인추천",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "ec9ffcf66c4cbef3c221758e2e2179ae2d340cb3",
+      "name": "CMS동의 여부",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "동의완료"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "665bf2784d1f2dc550d9542c5d114fea1ea030b5",
+      "name": "가은/지수",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 2,
+      "options": [
+        "가은",
+        "지수"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "e573f18f21f1990388a2dea7b6656acacb7fb188",
+      "name": "이전 거래 링크",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "b847187ea3b46c88ed6b4544a5f8045eced4184d",
+      "name": "💌 최초결제안내",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "de02a81ca582df87c918270716ee7b057f90e02c",
+      "name": "✔ 결제마감일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "b648e5308f4ad4a69169154898bd7be25301541a",
+      "name": "세금계산서 발행",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "발행 완료"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "f056012e60e27fcfecbfc8694a03ece267632695",
+      "name": "세금계산서 선발행",
+      "field_type": "enum",
+      "is_custom": true,
+      "options_count": 1,
+      "options": [
+        "True"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "e18e7dcd11ac5825b5ae7943e434cfc0dfffdca3",
+      "name": "⚡ 결제 독촉",
+      "field_type": "set",
+      "is_custom": true,
+      "options_count": 5,
+      "options": [
+        "1차",
+        "2차",
+        "3차",
+        "4차",
+        "5차"
+      ]
+    },
+    {
+      "source": "법인",
+      "key": "7258f59a3a5edcf07a486a273686292090b997f7",
+      "name": "결제 예정일",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "a10a98139c2a13fc154d4df53ecf981bc895beef",
+      "name": "💸 PG",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "dd68046f0536492917e28d1f03b0e0549e44c813",
+      "name": "💸 결제일자",
+      "field_type": "date",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "b1e24aa2c3257f5f942f4ce760677ef5b89922f5",
+      "name": "💸 주문번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "a74d8742c7ed5e18099ea39c3be27d4d68874b4a",
+      "name": "💸 가상계좌 주문번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "1cb84c2749b882cacd1977899cecab656e4a8d43",
+      "name": "💸 카드결제링크(카드번호)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "d05f4b8a4409fcf441017a918f3fff997daf6e03",
+      "name": "💸 카드결제링크(앱카드)",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "8f100f18a988fa475ebf0f21d41d4f9d07c2f0cc",
+      "name": "💸 가상계좌번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "fea334834484ad0156820e967b25589b22b7d07e",
+      "name": "💸 paymentType",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "2d754ed3119c9fa7b25dd93f5dd6fee3dfe42c81",
+      "name": "브릭스_분석상세",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "88f28491cf9ba51b7fa21b8ee033eca1ed6942a7",
+      "name": "orgErn",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "e2f8161ddff42a6cb0622d292146137a12b9f45d",
+      "name": "userErn",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "79a2f2827be0d4318057c42c4992eca9f768c5ae",
+      "name": "tin",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "6a7b6085a23f141642886cdc42160bc11dcd6b19",
+      "name": "refundId",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "eb81df1279c33f07d871b33f856c1edb495b96a7",
+      "name": "마케팅동의여부",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "89ada1ab80d4b31987867ee39dce3864ebfadd61",
+      "name": "bznav_database_key",
+      "field_type": "double",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "3aa762cfa72320b85500a56beb3f187459454875",
+      "name": "약관버전",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "18ca8b6cdce3a7d3a4d444121ec0bff82d967ea0",
+      "name": "utmCampaign",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "daca31f5cef6433f0a8142d534a5358dac5419a3",
+      "name": "utmMedium",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "0008b09a5d8a125726edf3640f0307b3d9cfac89",
+      "name": "utmSource",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "a5bea539d1f19714c17d159c64775b220db7d643",
+      "name": "utmTerm",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "9a741d0b7fddb0d346a76e3a9bdb26ac03c39124",
+      "name": "UtmContent",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "343320bc84878113458a3b7bc9a75c10fb6e9a2a",
+      "name": "(조회)utmCampaign",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "87d7e5f7419b91917a3e6989c1a17cee2736336c",
+      "name": "(조회) utmMedium",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "495d87ec4af535181a7c2b362103b3f3db713650",
+      "name": "(조회) utmSource",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "957cb7e90691a6e16d07fc3f85592527192b021e",
+      "name": "(조회) utmTerm",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "985968052a6a28f77982b81b8f0df34511b2fc19",
+      "name": "(조회)UtmContent",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "57b3e5836348d6639373859c08ff7b916e8c75c9",
+      "name": "헥토계좌 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "57b3e5836348d6639373859c08ff7b916e8c75c9_currency",
+      "name": "헥토계좌 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "8f3e1c66651fdabdeadbf78bad9777345312b334",
+      "name": "헥토카드 결제금액",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "8f3e1c66651fdabdeadbf78bad9777345312b334_currency",
+      "name": "헥토카드 결제금액의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "5c71bb7b8b97b63145088a60719c1154e7b257b8",
+      "name": "법인계좌입금",
+      "field_type": "monetary",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "5c71bb7b8b97b63145088a60719c1154e7b257b8_currency",
+      "name": "법인계좌입금의 통화",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "61efb8a355cde5b9dc56e97e678b2b08024e23b5",
+      "name": "✔ 신청자 휴대폰 번호",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "b4732c86b2b4237c60264b5cb1986278774dc244",
+      "name": "sessionId",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "0a67386cef93afe0e0a71fbce190e39ecccb0d06",
+      "name": "이전 조회 이력",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    },
+    {
+      "source": "법인",
+      "key": "9dee26f3d2a3c30232ddb824f38e9ce7f7709a7d",
+      "name": "테스트",
+      "field_type": "varchar",
+      "is_custom": true,
+      "options_count": 0,
+      "options": []
+    }
+  ]
+}
