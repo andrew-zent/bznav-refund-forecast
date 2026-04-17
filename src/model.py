@@ -383,6 +383,17 @@ class ForecastEngine:
         self._col_deals = col_deals
         self._col_pool_balance = pool_balance
 
+        # 월별 풀 추이 (최근 24개월) export용
+        self.pool_monthly_trend = [
+            {
+                "month": ym_label(T),
+                "balance": round(pool_balance(T) / 1e8, 2),
+                "paid": round(actual_pay(T) / 1e8, 3),
+                "util_pct": round(actual_pay(T) / pool_balance(T) * 100, 3) if pool_balance(T) > 0 else 0,
+            }
+            for T in range(self.current - 23, self.current + 1)
+        ]
+
     def _predict_collection(self, months_ahead):
         """추심 결제 예측: B결정 → 누수 → 풀 유입 → 회수."""
         pool = self.col_pool
@@ -972,6 +983,7 @@ def main():
         "apply_to_pay_cohort": apply_cohort,
         "filing_to_pay_cohort": filing_cohort,
         "decision_to_pay_cohort": decision_cohort,
+        "collection_pool_trend": engine.pool_monthly_trend,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
