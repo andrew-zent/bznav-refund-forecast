@@ -593,6 +593,63 @@ def series_to_list(s, current_m, n=24):
     ]
 
 
+def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
+    """신청월 기준 코호트 — 각 신청월의 결제액 추적 (offset별 + 누적).
+
+    group: "B" (개인 정기), "C" (개인 추심), "corp_regular", "corp_collection", "all"
+    """
+    apply_total = defaultdict(float)
+    paid_by_off = defaultdict(lambda: defaultdict(float))
+
+    for c in claims:
+        status = str(c.get("status", ""))
+        pipe = str(c.get("pipeline", ""))
+        if STATUS_EXCLUDE in status:
+            continue
+        if group == "B" and PIPELINE_REGULAR not in pipe:
+            continue
+        if group == "C" and not any(p in pipe for p in PIPELINE_COLLECTION):
+            continue
+        if group == "corp_regular" and CORP_PIPELINE_REGULAR not in pipe:
+            continue
+        if group == "corp_collection" and not any(p in pipe for p in CORP_PIPELINE_COLLECTION):
+            continue
+        if group == "all":
+            is_valid = (PIPELINE_REGULAR in pipe
+                        or any(p in pipe for p in PIPELINE_COLLECTION)
+                        or CORP_PIPELINE_REGULAR in pipe
+                        or any(p in pipe for p in CORP_PIPELINE_COLLECTION))
+            if not is_valid:
+                continue
+
+        ad = parse_date(c.get("apply_date"))
+        aa = to_num(c.get("apply_amount"))
+        pd_ = parse_date(c.get("payment_date"))
+        pa = to_num(c.get("payment_amount"))
+        if ad and aa > 0:
+            apply_total[ym(ad)] += aa
+            if pd_ and pa > 0:
+                off = ym(pd_) - ym(ad)
+                if 0 <= off <= max_off:
+                    paid_by_off[ym(ad)][off] += pa
+
+    result = []
+    for am in range(current_m - n_months + 1, current_m + 1):
+        aa_total = apply_total.get(am, 0)
+        paid_total = sum(paid_by_off[am].values())
+        result.append({
+            "apply_month": ym_label(am),
+            "apply_amount": round(aa_total / 1e8, 2),
+            "paid_total": round(paid_total / 1e8, 2),
+            "conversion_pct": round(paid_total / aa_total * 100, 2) if aa_total > 0 else None,
+            "paid_by_offset": [
+                {"off": off, "month": ym_label(am + off), "paid": round(p / 1e8, 3)}
+                for off, p in sorted(paid_by_off[am].items()) if p > 0
+            ],
+        })
+    return result
+
+
 class CorpForecastEngine:
     """법인 간이 예측: 자동 모델 선택 (선형추세 vs 단순 MA)."""
 
@@ -858,6 +915,16 @@ def main():
         },
     }
 
+    # 신청월 기준 코호트 — 각 신청월에 들어온 신청액이 이후 얼마만큼 결제로 전환되는지
+    all_claims = claims + (corp_claims or [])
+    apply_cohort = {
+        "all": apply_to_pay_cohort(all_claims, current_m, group="all"),
+        "individual_regular": apply_to_pay_cohort(claims, current_m, group="B"),
+        "individual_collection": apply_to_pay_cohort(claims, current_m, group="C"),
+        "corporate_regular": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_regular"),
+        "corporate_collection": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_collection"),
+    }
+
     # Save outputs
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
@@ -874,6 +941,7 @@ def main():
         },
         "season_adjustments": SEASON_ADJUSTMENT,
         "monthly_series": monthly_series,
+        "apply_to_pay_cohort": apply_cohort,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
