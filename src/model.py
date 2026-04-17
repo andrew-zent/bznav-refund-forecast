@@ -557,6 +557,42 @@ def aggregate_corp(claims):
     return pay
 
 
+def aggregate_corp_full(claims):
+    """법인 claims → 월별 app/fil/dec/pay 시계열 (정기/추심)."""
+    series = {
+        grp: {k: defaultdict(float) for k in ["app", "fil", "dec", "pay"]}
+        for grp in ("regular", "collection")
+    }
+    for c in claims:
+        status = str(c.get("status", ""))
+        pipe = str(c.get("pipeline", ""))
+        if STATUS_EXCLUDE in status:
+            continue
+        if CORP_PIPELINE_REGULAR in pipe:
+            grp = "regular"
+        elif any(p in pipe for p in CORP_PIPELINE_COLLECTION):
+            grp = "collection"
+        else:
+            continue
+        ad = parse_date(c.get("apply_date"))
+        fd = parse_date(c.get("filing_date"))
+        dd = parse_date(c.get("decision_date"))
+        pd_ = parse_date(c.get("payment_date"))
+        if ad: series[grp]["app"][ym(ad)] += to_num(c.get("apply_amount"))
+        if fd: series[grp]["fil"][ym(fd)] += to_num(c.get("filing_amount"))
+        if dd: series[grp]["dec"][ym(dd)] += to_num(c.get("decision_amount"))
+        if pd_: series[grp]["pay"][ym(pd_)] += to_num(c.get("payment_amount"))
+    return series
+
+
+def series_to_list(s, current_m, n=24):
+    """월별 defaultdict → [{month, amount(억)}, ...] (current_m 포함 최근 n개월)."""
+    return [
+        {"month": ym_label(m), "amount": round(s.get(m, 0) / 1e8, 3)}
+        for m in range(current_m - n + 1, current_m + 1)
+    ]
+
+
 class CorpForecastEngine:
     """법인 간이 예측: 자동 모델 선택 (선형추세 vs 단순 MA)."""
 
@@ -804,6 +840,24 @@ def main():
         combined_fc.append(combined)
         print(f"  {combined['month']}: 개인 {f_ind['adjusted']}억 + 법인 {f_corp['total']}억 = {combined['grand_total']}억")
 
+    # 월별 시리즈 (app/fil/dec/pay × 개인 B/C + 법인 regular/collection, 최근 24개월)
+    corp_series = aggregate_corp_full(corp_claims) if corp_claims else {
+        "regular": {k: defaultdict(float) for k in ["app", "fil", "dec", "pay"]},
+        "collection": {k: defaultdict(float) for k in ["app", "fil", "dec", "pay"]},
+    }
+    monthly_series = {
+        "individual": {
+            grp_name: {stage: series_to_list(series[grp][stage], current_m)
+                       for stage in ["app", "fil", "dec", "pay"]}
+            for grp, grp_name in [("B", "regular"), ("C", "collection")]
+        },
+        "corporate": {
+            grp: {stage: series_to_list(corp_series[grp][stage], current_m)
+                  for stage in ["app", "fil", "dec", "pay"]}
+            for grp in ["regular", "collection"]
+        },
+    }
+
     # Save outputs
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
@@ -819,6 +873,7 @@ def main():
             "inflow_rate_pct": round(engine.col_inflow_rate * 100, 1),
         },
         "season_adjustments": SEASON_ADJUSTMENT,
+        "monthly_series": monthly_series,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
