@@ -593,12 +593,15 @@ def series_to_list(s, current_m, n=24):
     ]
 
 
-def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
-    """신청월 기준 코호트 — 각 신청월의 결제액 추적 (offset별 + 누적).
+def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
+                         n_months=18, max_off=24, group="all"):
+    """원천월(신청/신고/결정 등) 기준 코호트 — 결제액을 offset별로 추적.
 
+    src_date_key/src_amt_key: "apply_date"/"apply_amount", "filing_date"/"filing_amount",
+                               "decision_date"/"decision_amount"
     group: "B" (개인 정기), "C" (개인 추심), "corp_regular", "corp_collection", "all"
     """
-    apply_total = defaultdict(float)
+    src_total = defaultdict(float)
     paid_by_off = defaultdict(lambda: defaultdict(float))
 
     for c in claims:
@@ -622,32 +625,43 @@ def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all")
             if not is_valid:
                 continue
 
-        ad = parse_date(c.get("apply_date"))
-        aa = to_num(c.get("apply_amount"))
+        sd = parse_date(c.get(src_date_key))
+        sa = to_num(c.get(src_amt_key))
         pd_ = parse_date(c.get("payment_date"))
         pa = to_num(c.get("payment_amount"))
-        if ad and aa > 0:
-            apply_total[ym(ad)] += aa
+        if sd and sa > 0:
+            src_total[ym(sd)] += sa
             if pd_ and pa > 0:
-                off = ym(pd_) - ym(ad)
+                off = ym(pd_) - ym(sd)
                 if 0 <= off <= max_off:
-                    paid_by_off[ym(ad)][off] += pa
+                    paid_by_off[ym(sd)][off] += pa
 
     result = []
-    for am in range(current_m - n_months + 1, current_m + 1):
-        aa_total = apply_total.get(am, 0)
-        paid_total = sum(paid_by_off[am].values())
+    for sm in range(current_m - n_months + 1, current_m + 1):
+        s_total = src_total.get(sm, 0)
+        paid_total = sum(paid_by_off[sm].values())
         result.append({
-            "apply_month": ym_label(am),
-            "apply_amount": round(aa_total / 1e8, 2),
+            "source_month": ym_label(sm),
+            "source_amount": round(s_total / 1e8, 2),
             "paid_total": round(paid_total / 1e8, 2),
-            "conversion_pct": round(paid_total / aa_total * 100, 2) if aa_total > 0 else None,
+            "conversion_pct": round(paid_total / s_total * 100, 2) if s_total > 0 else None,
             "paid_by_offset": [
-                {"off": off, "month": ym_label(am + off), "paid": round(p / 1e8, 3)}
-                for off, p in sorted(paid_by_off[am].items()) if p > 0
+                {"off": off, "month": ym_label(sm + off), "paid": round(p / 1e8, 3)}
+                for off, p in sorted(paid_by_off[sm].items()) if p > 0
             ],
         })
     return result
+
+
+def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
+    """신청월(조회환급액) 기준 코호트 — source_to_pay_cohort의 wrapper."""
+    rows = source_to_pay_cohort(claims, current_m, "apply_date", "apply_amount",
+                                 n_months=n_months, max_off=max_off, group=group)
+    # 하위호환: source_month/source_amount → apply_month/apply_amount
+    for r in rows:
+        r["apply_month"] = r.pop("source_month")
+        r["apply_amount"] = r.pop("source_amount")
+    return rows
 
 
 class CorpForecastEngine:
@@ -915,7 +929,7 @@ def main():
         },
     }
 
-    # 신청월 기준 코호트 — 각 신청월에 들어온 신청액이 이후 얼마만큼 결제로 전환되는지
+    # 신청월(조회환급액) 기준 코호트
     all_claims = claims + (corp_claims or [])
     apply_cohort = {
         "all": apply_to_pay_cohort(all_claims, current_m, group="all"),
@@ -923,6 +937,20 @@ def main():
         "individual_collection": apply_to_pay_cohort(claims, current_m, group="C"),
         "corporate_regular": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_regular"),
         "corporate_collection": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_collection"),
+    }
+
+    # 신고월(신고환급액) 기준 코호트 — 실제 세무서 제출 금액 대비 결제
+    filing_cohort = {
+        "all": source_to_pay_cohort(all_claims, current_m, "filing_date", "filing_amount", group="all"),
+        "individual_regular": source_to_pay_cohort(claims, current_m, "filing_date", "filing_amount", group="B"),
+        "individual_collection": source_to_pay_cohort(claims, current_m, "filing_date", "filing_amount", group="C"),
+        "corporate_regular": source_to_pay_cohort(corp_claims or [], current_m, "filing_date", "filing_amount", group="corp_regular"),
+        "corporate_collection": source_to_pay_cohort(corp_claims or [], current_m, "filing_date", "filing_amount", group="corp_collection"),
+    }
+
+    # 결정월(결정환급액) 기준 코호트 — 국세청 승인 금액 대비 결제
+    decision_cohort = {
+        "all": source_to_pay_cohort(all_claims, current_m, "decision_date", "decision_amount", group="all"),
     }
 
     # Save outputs
@@ -942,6 +970,8 @@ def main():
         "season_adjustments": SEASON_ADJUSTMENT,
         "monthly_series": monthly_series,
         "apply_to_pay_cohort": apply_cohort,
+        "filing_to_pay_cohort": filing_cohort,
+        "decision_to_pay_cohort": decision_cohort,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
