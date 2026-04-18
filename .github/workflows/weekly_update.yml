@@ -3,12 +3,7 @@ name: Weekly Forecast Update
 on:
   schedule:
     - cron: '0 0 * * 1'  # 매주 월요일 09:00 KST (UTC 00:00)
-  workflow_dispatch:
-    inputs:
-      full_sync:
-        description: "전건 재동기화 (lost_reason 등 신규 필드 backfill)"
-        type: boolean
-        default: false
+  workflow_dispatch: {}  # 수동 실행 가능
 
 permissions:
   contents: write
@@ -36,12 +31,12 @@ jobs:
         env:
           PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
           PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
-        run: python src/extract_pipedrive.py ${{ inputs.full_sync && '--full' || '' }}
+        run: python src/extract_pipedrive.py
 
       - name: Extract from Pipedrive (법인)
         env:
           CORP_PIPEDRIVE_API_TOKEN: ${{ secrets.CORP_PIPEDRIVE_API_TOKEN }}
-        run: python src/extract_corp.py ${{ inputs.full_sync && '--full' || '' }}
+        run: python src/extract_corp.py
 
       - name: Run forecast model
         env:
@@ -50,40 +45,26 @@ jobs:
         working-directory: src
         run: python model.py
 
-      - name: Snapshot + timeline
-        run: python src/snapshot.py
-
-      - name: Download previous history.sqlite from release
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release download history-archive -p history.sqlite -D output/ || echo "No existing archive — will create fresh"
-
-      - name: Archive raw deals to SQLite
-        run: python src/archive_history.py
-
-      - name: Upload history.sqlite to release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # 릴리스 없으면 생성, 있으면 asset 교체
-          gh release view history-archive >/dev/null 2>&1 || \
-            gh release create history-archive --title "Deal History Archive" --notes "Weekly raw deal snapshots accumulated in SQLite. Download: \`gh release download history-archive -p history.sqlite\`"
-          gh release upload history-archive output/history.sqlite --clobber
-
-      - name: Cleanup — do not commit history.sqlite
-        run: rm -f output/history.sqlite
-
       - name: Generate dashboard
         working-directory: src
         run: python generate_dashboard.py
+
+      - name: Verify forecast
+        run: python src/agents/verifier.py
 
       - name: Send Slack notification
         if: always()
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python src/notify_slack.py
+
+      - name: Publish Confluence report
+        if: always()
+        env:
+          CONFLUENCE_EMAIL: ${{ secrets.CONFLUENCE_EMAIL }}
+          CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          CONFLUENCE_REPORT_PAGE_ID: ${{ secrets.CONFLUENCE_REPORT_PAGE_ID }}
+        run: python src/agents/confluence_reporter.py
 
       - name: Commit updated output
         run: |
