@@ -47,10 +47,14 @@ NEEDED_KEYS = {
     "8f3e1c66651fdabdeadbf78bad9777345312b334": "hecto_card",       # 헥토카드 결제금액
     # 실패/취소 진단용
     "dbf353faf17cf72c0bf336a994d945f7eec4a803": "cancel_reason",    # 신청취소사유 (varchar)
-    # 유입 채널 추적
+    # 유입 채널 추적 - 신청 시점
     "0008b09a5d8a125726edf3640f0307b3d9cfac89": "utm_source",
     "daca31f5cef6433f0a8142d534a5358dac5419a3": "utm_medium",
     "18ca8b6cdce3a7d3a4d444121ec0bff82d967ea0": "utm_campaign",
+    # 유입 채널 추적 - 조회 시점
+    "495d87ec4af535181a7c2b362103b3f3db713650": "utm_source_query",
+    "87d7e5f7419b91917a3e6989c1a17cee2736336c": "utm_medium_query",
+    "343320bc84878113458a3b7bc9a75c10fb6e9a2a": "utm_campaign_query",
 }
 
 STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time", "channel", "channel_id"}
