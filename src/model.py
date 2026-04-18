@@ -285,16 +285,19 @@ def fit_dist(claims, src_date_key, src_amt_key, tgt_date_key, tgt_amt_key,
 
 # ── prediction engine ────────────────────────────────
 class ForecastEngine:
-    def __init__(self, claims, series, current_partial_m, today_day=None):
+    def __init__(self, claims, series, current_partial_m, today_day=None,
+                 rolling_window=None, collection_ma_window=None):
         self.claims = claims
         self.series = series
         self.current = current_partial_m
         self.last_complete = current_partial_m - 1
         self.today_day = today_day or datetime.now().day
+        self._rolling_window = rolling_window if rolling_window is not None else ROLLING_WINDOW
+        self._cma_window = collection_ma_window if collection_ma_window is not None else COLLECTION_MA_WINDOW
 
         # fit distributions
         lc = self.last_complete
-        w = ROLLING_WINDOW
+        w = self._rolling_window
         self.a2f = fit_dist(claims, "apply_date", "apply_amount", "filing_date", "filing_amount",
                             CHAIN_DIST_MAX_OFF["a2f"], lc, window=w)
         self.f2d = fit_dist(claims, "filing_date", "filing_amount", "decision_date", "decision_amount",
@@ -347,7 +350,7 @@ class ForecastEngine:
 
         # 최근 3개월 utilization rate (결제/풀잔액)
         rates = []
-        for i in range(1, COLLECTION_MA_WINDOW + 1):
+        for i in range(1, self._cma_window + 1):
             T = lc - i + 1
             pool = pool_balance(T)
             paid = actual_pay(T)
@@ -361,7 +364,7 @@ class ForecastEngine:
         # 풀 순변동: 최근 3개월 실측 기반
         # (B→추심 유입을 간접 공식으로 추정하면 d2p에 수수료율이 내포되어
         #  미결제율을 8배 과대추정하는 문제가 있으므로, 실측 변동을 직접 사용)
-        pools = [pool_balance(lc - i) for i in range(COLLECTION_MA_WINDOW, -1, -1)]
+        pools = [pool_balance(lc - i) for i in range(self._cma_window, -1, -1)]
         deltas = [pools[i + 1] - pools[i] for i in range(len(pools) - 1)]
         self.col_pool_delta = float(np.mean(deltas)) if deltas else 0
 
@@ -384,7 +387,7 @@ class ForecastEngine:
 
         pool = pool_balance(target_m)
         rates = []
-        for j in range(1, COLLECTION_MA_WINDOW + 1):
+        for j in range(1, self._cma_window + 1):
             T = target_m - j
             p = pool_balance(T)
             a = actual_pay(T)
@@ -464,7 +467,7 @@ class ForecastEngine:
 
             # refit at that time
             lc = tgt - 1
-            w = ROLLING_WINDOW
+            w = self._rolling_window
             d2p_t = fit_dist(self.claims, "decision_date", "decision_amount",
                              "payment_date", "payment_amount",
                              CHAIN_DIST_MAX_OFF["d2p"], lc, window=w)
