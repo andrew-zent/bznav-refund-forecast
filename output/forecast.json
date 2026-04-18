@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-04-17T17:31:04Z",
+  "generated_at": "2026-04-18T02:23:33Z",
   "data_range": "... ~ 2026-04",
-  "total_claims": 233873,
-  "total_corp_claims": 8199,
+  "total_claims": 233903,
+  "total_corp_claims": 8200,
   "distributions": {
     "a2f": {
       "0": 29.03,
@@ -26,7 +26,7 @@
     }
   },
   "collection_pool": {
-    "balance": 151.2,
+    "balance": 151.3,
     "utilization_rate_pct": 1.098,
     "leak_pct": 65.5,
     "inflow_rate_pct": 19.6
@@ -123,15 +123,15 @@
           },
           {
             "month": "2025-11",
-            "amount": 81.977
+            "amount": 81.921
           },
           {
             "month": "2025-12",
-            "amount": 122.974
+            "amount": 122.936
           },
           {
             "month": "2026-01",
-            "amount": 75.321
+            "amount": 75.247
           },
           {
             "month": "2026-02",
@@ -143,7 +143,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 23.485
+            "amount": 23.476
           }
         ],
         "fil": [
@@ -225,11 +225,11 @@
           },
           {
             "month": "2025-12",
-            "amount": 58.848
+            "amount": 58.822
           },
           {
             "month": "2026-01",
-            "amount": 64.074
+            "amount": 63.978
           },
           {
             "month": "2026-02",
@@ -241,7 +241,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 48.522
+            "amount": 48.513
           }
         ],
         "dec": [
@@ -335,7 +335,7 @@
           },
           {
             "month": "2026-03",
-            "amount": 62.23
+            "amount": 62.107
           },
           {
             "month": "2026-04",
@@ -437,7 +437,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 11.941
+            "amount": 12.002
           }
         ]
       },
@@ -517,15 +517,15 @@
           },
           {
             "month": "2025-11",
-            "amount": 14.729
+            "amount": 14.785
           },
           {
             "month": "2025-12",
-            "amount": 14.826
+            "amount": 14.864
           },
           {
             "month": "2026-01",
-            "amount": 1.905
+            "amount": 1.979
           },
           {
             "month": "2026-02",
@@ -619,11 +619,11 @@
           },
           {
             "month": "2025-12",
-            "amount": 10.448
+            "amount": 10.474
           },
           {
             "month": "2026-01",
-            "amount": 5.743
+            "amount": 5.839
           },
           {
             "month": "2026-02",
@@ -729,7 +729,7 @@
           },
           {
             "month": "2026-03",
-            "amount": 2.092
+            "amount": 2.215
           },
           {
             "month": "2026-04",
@@ -831,7 +831,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 0.783
+            "amount": 0.793
           }
         ]
       }
@@ -933,7 +933,7 @@
           },
           {
             "month": "2026-04",
-            "amount": 1.914
+            "amount": 1.919
           }
         ],
         "fil": [
@@ -2456,8 +2456,8 @@
         "apply_amount": 69.8
       },
       {
-        "paid_total": 18.25,
-        "conversion_pct": 18.6,
+        "paid_total": 18.26,
+        "conversion_pct": 18.61,
         "paid_by_offset": [
           {
             "off": 0,
@@ -2487,7 +2487,7 @@
           {
             "off": 5,
             "month": "2026-04",
-            "paid": 0.297
+            "paid": 0.306
           }
         ],
         "apply_month": "2025-11",
@@ -2527,7 +2527,7 @@
         "apply_amount": 140.09
       },
       {
-        "paid_total": 11.9,
+        "paid_total": 11.91,
         "conversion_pct": 15.19,
         "paid_by_offset": [
           {
@@ -2548,15 +2548,15 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 3.627
+            "paid": 3.63
           }
         ],
         "apply_month": "2026-01",
         "apply_amount": 78.37
       },
       {
-        "paid_total": 7.73,
-        "conversion_pct": 8.97,
+        "paid_total": 7.79,
+        "conversion_pct": 9.03,
         "paid_by_offset": [
           {
             "off": 0,
@@ -2571,7 +2571,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.26
+            "paid": 5.316
           }
         ],
         "apply_month": "2026-02",
@@ -2597,16 +2597,16 @@
       },
       {
         "paid_total": 0.04,
-        "conversion_pct": 0.15,
+        "conversion_pct": 0.16,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 0.039
+            "paid": 0.04
           }
         ],
         "apply_month": "2026-04",
-        "apply_amount": 25.4
+        "apply_amount": 25.39
       }
     ],
     "individual_regular": [
@@ -3243,7 +3243,7 @@
       },
       {
         "paid_total": 16.71,
-        "conversion_pct": 20.39,
+        "conversion_pct": 20.4,
         "paid_by_offset": [
           {
             "off": 0,
@@ -3277,11 +3277,11 @@
           }
         ],
         "apply_month": "2025-11",
-        "apply_amount": 81.98
+        "apply_amount": 81.92
       },
       {
         "paid_total": 24.39,
-        "conversion_pct": 19.83,
+        "conversion_pct": 19.84,
         "paid_by_offset": [
           {
             "off": 0,
@@ -3310,11 +3310,11 @@
           }
         ],
         "apply_month": "2025-12",
-        "apply_amount": 122.97
+        "apply_amount": 122.94
       },
       {
         "paid_total": 11.85,
-        "conversion_pct": 15.73,
+        "conversion_pct": 15.75,
         "paid_by_offset": [
           {
             "off": 0,
@@ -3334,15 +3334,15 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 3.581
+            "paid": 3.583
           }
         ],
         "apply_month": "2026-01",
-        "apply_amount": 75.32
+        "apply_amount": 75.25
       },
       {
-        "paid_total": 7.68,
-        "conversion_pct": 9.21,
+        "paid_total": 7.74,
+        "conversion_pct": 9.28,
         "paid_by_offset": [
           {
             "off": 0,
@@ -3357,7 +3357,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.209
+            "paid": 5.265
           }
         ],
         "apply_month": "2026-02",
@@ -3383,12 +3383,12 @@
       },
       {
         "paid_total": 0.04,
-        "conversion_pct": 0.16,
+        "conversion_pct": 0.17,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 0.039
+            "paid": 0.04
           }
         ],
         "apply_month": "2026-04",
@@ -4103,8 +4103,8 @@
         "apply_amount": 9.2
       },
       {
-        "paid_total": 1.3,
-        "conversion_pct": 8.84,
+        "paid_total": 1.31,
+        "conversion_pct": 8.87,
         "paid_by_offset": [
           {
             "off": 2,
@@ -4124,15 +4124,15 @@
           {
             "off": 5,
             "month": "2026-04",
-            "paid": 0.049
+            "paid": 0.058
           }
         ],
         "apply_month": "2025-11",
-        "apply_amount": 14.73
+        "apply_amount": 14.79
       },
       {
         "paid_total": 0.94,
-        "conversion_pct": 6.32,
+        "conversion_pct": 6.3,
         "paid_by_offset": [
           {
             "off": 1,
@@ -4156,11 +4156,11 @@
           }
         ],
         "apply_month": "2025-12",
-        "apply_amount": 14.83
+        "apply_amount": 14.86
       },
       {
         "paid_total": 0.05,
-        "conversion_pct": 2.4,
+        "conversion_pct": 2.31,
         "paid_by_offset": [
           {
             "off": 2,
@@ -4174,7 +4174,7 @@
           }
         ],
         "apply_month": "2026-01",
-        "apply_amount": 1.91
+        "apply_amount": 1.98
       },
       {
         "paid_total": 0.01,
@@ -4730,7 +4730,7 @@
         "conversion_pct": 0.0,
         "paid_by_offset": [],
         "apply_month": "2026-04",
-        "apply_amount": 1.91
+        "apply_amount": 1.92
       }
     ],
     "corporate_collection": [
@@ -5724,7 +5724,7 @@
         "apply_amount": 331.02
       },
       {
-        "paid_total": 18.28,
+        "paid_total": 18.29,
         "conversion_pct": 4.13,
         "paid_by_offset": [
           {
@@ -5755,7 +5755,7 @@
           {
             "off": 5,
             "month": "2026-04",
-            "paid": 0.297
+            "paid": 0.306
           }
         ],
         "apply_month": "2025-11",
@@ -5795,8 +5795,8 @@
         "apply_amount": 662.15
       },
       {
-        "paid_total": 11.9,
-        "conversion_pct": 3.32,
+        "paid_total": 11.91,
+        "conversion_pct": 3.33,
         "paid_by_offset": [
           {
             "off": 0,
@@ -5816,15 +5816,15 @@
           {
             "off": 3,
             "month": "2026-04",
-            "paid": 3.627
+            "paid": 3.63
           }
         ],
         "apply_month": "2026-01",
         "apply_amount": 358.06
       },
       {
-        "paid_total": 7.73,
-        "conversion_pct": 2.15,
+        "paid_total": 7.79,
+        "conversion_pct": 2.17,
         "paid_by_offset": [
           {
             "off": 0,
@@ -5839,7 +5839,7 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 5.26
+            "paid": 5.316
           }
         ],
         "apply_month": "2026-02",
@@ -5870,11 +5870,11 @@
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 0.039
+            "paid": 0.04
           }
         ],
         "apply_month": "2026-04",
-        "apply_amount": 128.59
+        "apply_amount": 129.65
       }
     ]
   },
@@ -6727,8 +6727,8 @@
       {
         "source_month": "2025-12",
         "source_amount": 71.19,
-        "paid_total": 21.37,
-        "conversion_pct": 30.02,
+        "paid_total": 21.38,
+        "conversion_pct": 30.03,
         "paid_by_offset": [
           {
             "off": 0,
@@ -6753,7 +6753,7 @@
           {
             "off": 4,
             "month": "2026-04",
-            "paid": 0.811
+            "paid": 0.82
           }
         ]
       },
@@ -6788,8 +6788,8 @@
       {
         "source_month": "2026-02",
         "source_amount": 54.13,
-        "paid_total": 12.03,
-        "conversion_pct": 22.22,
+        "paid_total": 12.05,
+        "conversion_pct": 22.27,
         "paid_by_offset": [
           {
             "off": 0,
@@ -6804,15 +6804,15 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.261
+            "paid": 7.285
           }
         ]
       },
       {
         "source_month": "2026-03",
         "source_amount": 61.96,
-        "paid_total": 1.74,
-        "conversion_pct": 2.82,
+        "paid_total": 1.78,
+        "conversion_pct": 2.87,
         "paid_by_offset": [
           {
             "off": 0,
@@ -6822,20 +6822,20 @@
           {
             "off": 1,
             "month": "2026-04",
-            "paid": 1.419
+            "paid": 1.454
           }
         ]
       },
       {
         "source_month": "2026-04",
-        "source_amount": 48.85,
+        "source_amount": 48.84,
         "paid_total": 0.08,
         "conversion_pct": 0.17,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 0.083
+            "paid": 0.085
           }
         ]
       }
@@ -7467,9 +7467,9 @@
       },
       {
         "source_month": "2025-12",
-        "source_amount": 58.85,
+        "source_amount": 58.82,
         "paid_total": 19.91,
-        "conversion_pct": 33.84,
+        "conversion_pct": 33.85,
         "paid_by_offset": [
           {
             "off": 0,
@@ -7500,9 +7500,9 @@
       },
       {
         "source_month": "2026-01",
-        "source_amount": 64.07,
+        "source_amount": 63.98,
         "paid_total": 20.35,
-        "conversion_pct": 31.77,
+        "conversion_pct": 31.81,
         "paid_by_offset": [
           {
             "off": 0,
@@ -7529,8 +7529,8 @@
       {
         "source_month": "2026-02",
         "source_amount": 51.66,
-        "paid_total": 12.0,
-        "conversion_pct": 23.23,
+        "paid_total": 12.03,
+        "conversion_pct": 23.28,
         "paid_by_offset": [
           {
             "off": 0,
@@ -7545,15 +7545,15 @@
           {
             "off": 2,
             "month": "2026-04",
-            "paid": 7.239
+            "paid": 7.263
           }
         ]
       },
       {
         "source_month": "2026-03",
         "source_amount": 60.32,
-        "paid_total": 1.71,
-        "conversion_pct": 2.84,
+        "paid_total": 1.75,
+        "conversion_pct": 2.9,
         "paid_by_offset": [
           {
             "off": 0,
@@ -7563,20 +7563,20 @@
           {
             "off": 1,
             "month": "2026-04",
-            "paid": 1.388
+            "paid": 1.423
           }
         ]
       },
       {
         "source_month": "2026-04",
-        "source_amount": 48.52,
+        "source_amount": 48.51,
         "paid_total": 0.08,
         "conversion_pct": 0.17,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 0.083
+            "paid": 0.085
           }
         ]
       }
@@ -8323,9 +8323,9 @@
       },
       {
         "source_month": "2025-12",
-        "source_amount": 10.45,
-        "paid_total": 1.19,
-        "conversion_pct": 11.36,
+        "source_amount": 10.47,
+        "paid_total": 1.2,
+        "conversion_pct": 11.42,
         "paid_by_offset": [
           {
             "off": 1,
@@ -8345,15 +8345,15 @@
           {
             "off": 4,
             "month": "2026-04",
-            "paid": 0.153
+            "paid": 0.163
           }
         ]
       },
       {
         "source_month": "2026-01",
-        "source_amount": 5.74,
+        "source_amount": 5.84,
         "paid_total": 0.48,
-        "conversion_pct": 8.32,
+        "conversion_pct": 8.19,
         "paid_by_offset": [
           {
             "off": 2,
@@ -10033,8 +10033,8 @@
       {
         "source_month": "2026-03",
         "source_amount": 64.32,
-        "paid_total": 19.52,
-        "conversion_pct": 30.35,
+        "paid_total": 19.55,
+        "conversion_pct": 30.39,
         "paid_by_offset": [
           {
             "off": 0,
@@ -10044,20 +10044,20 @@
           {
             "off": 1,
             "month": "2026-04",
-            "paid": 6.95
+            "paid": 6.973
           }
         ]
       },
       {
         "source_month": "2026-04",
         "source_amount": 16.38,
-        "paid_total": 4.34,
-        "conversion_pct": 26.52,
+        "paid_total": 4.39,
+        "conversion_pct": 26.8,
         "paid_by_offset": [
           {
             "off": 0,
             "month": "2026-04",
-            "paid": 4.344
+            "paid": 4.39
           }
         ]
       }
@@ -10180,33 +10180,33 @@
     },
     {
       "month": "2025-12",
-      "balance": 157.37,
+      "balance": 157.4,
       "paid": 0.81,
       "util_pct": 0.515
     },
     {
       "month": "2026-01",
-      "balance": 164.72,
+      "balance": 164.76,
       "paid": 1.9,
-      "util_pct": 1.154
+      "util_pct": 1.153
     },
     {
       "month": "2026-02",
-      "balance": 160.68,
+      "balance": 160.8,
       "paid": 1.58,
       "util_pct": 0.983
     },
     {
       "month": "2026-03",
-      "balance": 156.38,
+      "balance": 156.51,
       "paid": 1.811,
-      "util_pct": 1.158
+      "util_pct": 1.157
     },
     {
       "month": "2026-04",
-      "balance": 151.15,
-      "paid": 0.783,
-      "util_pct": 0.518
+      "balance": 151.27,
+      "paid": 0.793,
+      "util_pct": 0.524
     }
   ],
   "diagnostic_breakdown": {
@@ -10316,9 +10316,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 84.65,
+          "apply_amount": 85.7,
           "paid": 0.0,
-          "deal_count": 2521
+          "deal_count": 2551
         }
       ],
       "D(젠트)-취소": [
@@ -10426,9 +10426,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 14.43,
+          "apply_amount": 14.44,
           "paid": 0.0,
-          "deal_count": 169
+          "deal_count": 170
         }
       ],
       "B(젠트)-환급": [
@@ -10506,21 +10506,21 @@
         },
         {
           "month": "2025-11",
-          "apply_amount": 99.14,
-          "paid": 18.046,
-          "deal_count": 5829
+          "apply_amount": 99.08,
+          "paid": 18.037,
+          "deal_count": 5828
         },
         {
           "month": "2025-12",
-          "apply_amount": 146.65,
-          "paid": 25.754,
-          "deal_count": 6391
+          "apply_amount": 146.61,
+          "paid": 25.748,
+          "deal_count": 6388
         },
         {
           "month": "2026-01",
-          "apply_amount": 90.64,
-          "paid": 13.624,
-          "deal_count": 2634
+          "apply_amount": 90.57,
+          "paid": 13.595,
+          "deal_count": 2632
         },
         {
           "month": "2026-02",
@@ -10536,9 +10536,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 23.73,
+          "apply_amount": 23.72,
           "paid": 0.042,
-          "deal_count": 1044
+          "deal_count": 1043
         }
       ],
       "C(젠트)-추심": [
@@ -10616,21 +10616,21 @@
         },
         {
           "month": "2025-11",
-          "apply_amount": 14.73,
-          "paid": 3.445,
-          "deal_count": 896
+          "apply_amount": 14.79,
+          "paid": 3.454,
+          "deal_count": 897
         },
         {
           "month": "2025-12",
-          "apply_amount": 14.83,
-          "paid": 3.538,
-          "deal_count": 832
+          "apply_amount": 14.86,
+          "paid": 3.544,
+          "deal_count": 835
         },
         {
           "month": "2026-01",
-          "apply_amount": 1.91,
-          "paid": 0.51,
-          "deal_count": 105
+          "apply_amount": 1.98,
+          "paid": 0.539,
+          "deal_count": 107
         },
         {
           "month": "2026-02",
@@ -10866,9 +10866,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 5.46,
+          "apply_amount": 5.47,
           "paid": 0.0,
-          "deal_count": 121
+          "deal_count": 122
         }
       ],
       "법인-취소": [
@@ -11174,9 +11174,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 519.69,
+          "apply_amount": 519.68,
           "paid": 0.166,
-          "deal_count": 15835
+          "deal_count": 15833
         },
         {
           "month": "2026-01",
@@ -11278,9 +11278,9 @@
         },
         {
           "month": "2025-11",
-          "apply_amount": 87.64,
-          "paid": 19.543,
-          "deal_count": 5591
+          "apply_amount": 87.69,
+          "paid": 19.553,
+          "deal_count": 5592
         },
         {
           "month": "2025-12",
@@ -11290,15 +11290,15 @@
         },
         {
           "month": "2026-01",
-          "apply_amount": 54.04,
-          "paid": 11.908,
-          "deal_count": 1936
+          "apply_amount": 54.05,
+          "paid": 11.91,
+          "deal_count": 1938
         },
         {
           "month": "2026-02",
-          "apply_amount": 33.84,
-          "paid": 7.768,
-          "deal_count": 1629
+          "apply_amount": 34.13,
+          "paid": 7.825,
+          "deal_count": 1638
         },
         {
           "month": "2026-03",
@@ -11309,8 +11309,8 @@
         {
           "month": "2026-04",
           "apply_amount": 0.14,
-          "paid": 0.039,
-          "deal_count": 8
+          "paid": 0.04,
+          "deal_count": 9
         }
       ],
       "진행 중": [
@@ -11388,27 +11388,27 @@
         },
         {
           "month": "2025-11",
-          "apply_amount": 10.99,
-          "paid": 2.324,
-          "deal_count": 506
+          "apply_amount": 10.93,
+          "paid": 2.314,
+          "deal_count": 505
         },
         {
           "month": "2025-12",
-          "apply_amount": 26.22,
+          "apply_amount": 26.23,
           "paid": 3.169,
-          "deal_count": 799
+          "deal_count": 801
         },
         {
           "month": "2026-01",
           "apply_amount": 25.85,
-          "paid": 2.216,
-          "deal_count": 543
+          "paid": 2.213,
+          "deal_count": 541
         },
         {
           "month": "2026-02",
-          "apply_amount": 54.36,
-          "paid": 1.74,
-          "deal_count": 1492
+          "apply_amount": 54.06,
+          "paid": 1.684,
+          "deal_count": 1483
         },
         {
           "month": "2026-03",
@@ -11418,9 +11418,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 75.88,
-          "paid": 0.003,
-          "deal_count": 2170
+          "apply_amount": 76.93,
+          "paid": 0.002,
+          "deal_count": 2200
         }
       ]
     },
@@ -11508,7 +11508,7 @@
           "month": "2025-12",
           "apply_amount": 4.59,
           "paid": 0.0,
-          "deal_count": 454
+          "deal_count": 453
         },
         {
           "month": "2026-01",
@@ -13596,9 +13596,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 5.34,
+          "apply_amount": 5.33,
           "paid": 0.0,
-          "deal_count": 337
+          "deal_count": 336
         },
         {
           "month": "2026-01",
@@ -16262,9 +16262,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 1.37,
+          "apply_amount": 1.38,
           "paid": 0.0,
-          "deal_count": 19
+          "deal_count": 20
         }
       ],
       "신청취소_기존세무대리인": [
@@ -79516,9 +79516,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 128.59,
+          "apply_amount": 129.65,
           "paid": 0.042,
-          "deal_count": 3863
+          "deal_count": 3894
         }
       ],
       "741": [
@@ -81168,9 +81168,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 122.81,
+          "apply_amount": 123.86,
           "paid": 0.042,
-          "deal_count": 3734
+          "deal_count": 3764
         }
       ],
       "143": [
@@ -81278,9 +81278,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 5.78,
+          "apply_amount": 5.79,
           "paid": 0.0,
-          "deal_count": 129
+          "deal_count": 130
         }
       ]
     },
@@ -81390,9 +81390,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 18.7,
+          "apply_amount": 18.75,
           "paid": 0.001,
-          "deal_count": 517
+          "deal_count": 519
         }
       ],
       "facebook.business": [
@@ -81476,9 +81476,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 40.28,
+          "apply_amount": 40.27,
           "paid": 2.128,
-          "deal_count": 1620
+          "deal_count": 1619
         },
         {
           "month": "2026-01",
@@ -81500,9 +81500,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 6.58,
+          "apply_amount": 6.63,
           "paid": 0.03,
-          "deal_count": 223
+          "deal_count": 225
         }
       ],
       "kbcardlms": [
@@ -81696,9 +81696,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 36.28,
+          "apply_amount": 36.27,
           "paid": 1.234,
-          "deal_count": 434
+          "deal_count": 433
         },
         {
           "month": "2026-01",
@@ -81720,9 +81720,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 6.74,
+          "apply_amount": 6.98,
           "paid": 0.0,
-          "deal_count": 84
+          "deal_count": 86
         }
       ],
       "referer": [
@@ -81806,9 +81806,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 16.76,
+          "apply_amount": 16.77,
           "paid": 0.712,
-          "deal_count": 414
+          "deal_count": 415
         },
         {
           "month": "2026-01",
@@ -81940,9 +81940,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 6.16,
+          "apply_amount": 6.17,
           "paid": 0.002,
-          "deal_count": 168
+          "deal_count": 169
         }
       ],
       "kakaobank": [
@@ -82270,9 +82270,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 4.04,
+          "apply_amount": 4.09,
           "paid": 0.001,
-          "deal_count": 138
+          "deal_count": 139
         }
       ],
       "cashnote": [
@@ -82356,9 +82356,9 @@
         },
         {
           "month": "2025-12",
-          "apply_amount": 10.5,
+          "apply_amount": 10.51,
           "paid": 0.232,
-          "deal_count": 253
+          "deal_count": 254
         },
         {
           "month": "2026-01",
@@ -82380,9 +82380,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 1.63,
+          "apply_amount": 1.64,
           "paid": 0.0,
-          "deal_count": 31
+          "deal_count": 33
         }
       ],
       "hanacardlms": [
@@ -83920,9 +83920,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 8.88,
+          "apply_amount": 8.93,
           "paid": 0.0,
-          "deal_count": 285
+          "deal_count": 292
         }
       ],
       "overtake": [
@@ -85680,9 +85680,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 7.35,
+          "apply_amount": 7.43,
           "paid": 0.0,
-          "deal_count": 275
+          "deal_count": 281
         }
       ],
       "instagram": [
@@ -90300,9 +90300,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 2.96,
+          "apply_amount": 2.97,
           "paid": 0.0,
-          "deal_count": 60
+          "deal_count": 61
         }
       ],
       "marketboro": [
@@ -91950,9 +91950,9 @@
         },
         {
           "month": "2026-04",
-          "apply_amount": 25.47,
+          "apply_amount": 25.98,
           "paid": 0.006,
-          "deal_count": 830
+          "deal_count": 837
         }
       ],
       "lee_byung_se": [
@@ -93151,12 +93151,12 @@
         {
           "value": "신청취소_높은수수료",
           "apply_amount": 24.93,
-          "deal_count": 2825
+          "deal_count": 2824
         },
         {
           "value": "신청취소_개인사정",
           "apply_amount": 18.59,
-          "deal_count": 1390
+          "deal_count": 1389
         },
         {
           "value": "환급불가_검토중_내년 추가납부 발생",
@@ -93746,8 +93746,8 @@
         },
         {
           "value": "신청취소_높은수수료",
-          "apply_amount": 66.0,
-          "deal_count": 668
+          "apply_amount": 66.01,
+          "deal_count": 669
         },
         {
           "value": "106",
@@ -96165,8 +96165,8 @@
         },
         {
           "value": "355",
-          "apply_amount": 4.57,
-          "deal_count": 52
+          "apply_amount": 4.52,
+          "deal_count": 51
         },
         {
           "value": "357",
@@ -96671,6 +96671,11 @@
           "deal_count": 1
         },
         {
+          "value": "355",
+          "apply_amount": 0.1,
+          "deal_count": 5
+        },
+        {
           "value": "신청취소_기타(좀더고민하고 신청할게요)",
           "apply_amount": 0.1,
           "deal_count": 1
@@ -96689,11 +96694,6 @@
           "value": "106",
           "apply_amount": 0.07,
           "deal_count": 3
-        },
-        {
-          "value": "355",
-          "apply_amount": 0.05,
-          "deal_count": 4
         },
         {
           "value": "109",
@@ -97024,23 +97024,23 @@
       "524": [
         {
           "value": "A(지수)",
-          "apply_amount": 3077.09,
-          "deal_count": 116311
+          "apply_amount": 3078.14,
+          "deal_count": 116341
         },
         {
           "value": "B(젠트)-환급",
-          "apply_amount": 1402.87,
-          "deal_count": 59657
+          "apply_amount": 1402.7,
+          "deal_count": 59650
         },
         {
           "value": "D(젠트)-취소",
-          "apply_amount": 917.95,
-          "deal_count": 9237
+          "apply_amount": 917.96,
+          "deal_count": 9238
         },
         {
           "value": "C(젠트)-추심",
-          "apply_amount": 163.46,
-          "deal_count": 8645
+          "apply_amount": 163.62,
+          "deal_count": 8651
         },
         {
           "value": "테스트",
@@ -97052,7 +97052,7 @@
         {
           "value": "법인-환급",
           "apply_amount": 145.12,
-          "deal_count": 2420
+          "deal_count": 2421
         },
         {
           "value": "법인-취소",
@@ -97072,26 +97072,26 @@
     {
       "month": "2026-04",
       "individual": {
-        "regular": 15.07,
+        "regular": 14.76,
         "collection": 1.66,
-        "total": 16.73,
+        "total": 16.42,
         "season_adj": 0.0,
-        "adjusted": 16.73,
+        "adjusted": 16.42,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-04",
-            "dec_amount": 28.91,
+            "dec_amount": 27.3,
             "rate": 18.605893528209613,
-            "contrib": 5.38,
+            "contrib": 5.08,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-03",
-            "dec_amount": 62.23,
+            "dec_amount": 62.11,
             "rate": 14.291790366761182,
-            "contrib": 8.89,
+            "contrib": 8.88,
             "source": "실측"
           },
           {
@@ -97118,37 +97118,37 @@
         "collection": 0.04,
         "total": 0.245
       },
-      "grand_total": 16.98
+      "grand_total": 16.67
     },
     {
       "month": "2026-05",
       "individual": {
-        "regular": 17.63,
+        "regular": 17.01,
         "collection": 1.68,
-        "total": 19.31,
+        "total": 18.69,
         "season_adj": 0.0,
-        "adjusted": 19.31,
+        "adjusted": 18.69,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-05",
-            "dec_amount": 67.2,
+            "dec_amount": 65.11,
             "rate": 18.605893528209613,
-            "contrib": 12.5,
+            "contrib": 12.11,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-04",
-            "dec_amount": 28.91,
+            "dec_amount": 27.3,
             "rate": 14.291790366761182,
-            "contrib": 4.13,
+            "contrib": 3.9,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-03",
-            "dec_amount": 62.23,
+            "dec_amount": 62.11,
             "rate": 1.5432438297050617,
             "contrib": 0.96,
             "source": "실측"
@@ -97169,45 +97169,45 @@
         "collection": 0.05,
         "total": 0.24
       },
-      "grand_total": 19.55
+      "grand_total": 18.93
     },
     {
       "month": "2026-06",
       "individual": {
-        "regular": 21.06,
-        "collection": 1.76,
-        "total": 22.82,
+        "regular": 20.35,
+        "collection": 1.75,
+        "total": 22.1,
         "season_adj": 0.0,
-        "adjusted": 22.82,
+        "adjusted": 22.1,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-06",
-            "dec_amount": 58.95,
+            "dec_amount": 56.84,
             "rate": 18.605893528209613,
-            "contrib": 10.97,
+            "contrib": 10.58,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-05",
-            "dec_amount": 67.2,
+            "dec_amount": 65.11,
             "rate": 14.291790366761182,
-            "contrib": 9.6,
+            "contrib": 9.31,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-04",
-            "dec_amount": 28.91,
+            "dec_amount": 27.3,
             "rate": 1.5432438297050617,
-            "contrib": 0.45,
+            "contrib": 0.42,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-03",
-            "dec_amount": 62.23,
+            "dec_amount": 62.11,
             "rate": 0.07169122691853579,
             "contrib": 0.04,
             "source": "실측"
@@ -97220,45 +97220,45 @@
         "collection": 0.061,
         "total": 0.235
       },
-      "grand_total": 23.05
+      "grand_total": 22.34
     },
     {
       "month": "2026-07",
       "individual": {
-        "regular": 18.24,
+        "regular": 17.83,
         "collection": 1.82,
-        "total": 20.07,
+        "total": 19.64,
         "season_adj": 0.0,
-        "adjusted": 20.07,
+        "adjusted": 19.64,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-07",
-            "dec_amount": 47.08,
+            "dec_amount": 46.65,
             "rate": 18.605893528209613,
-            "contrib": 8.76,
+            "contrib": 8.68,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-06",
-            "dec_amount": 58.95,
+            "dec_amount": 56.84,
             "rate": 14.291790366761182,
-            "contrib": 8.43,
+            "contrib": 8.12,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-05",
-            "dec_amount": 67.2,
+            "dec_amount": 65.11,
             "rate": 1.5432438297050617,
-            "contrib": 1.04,
+            "contrib": 1.0,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-04",
-            "dec_amount": 28.91,
+            "dec_amount": 27.3,
             "rate": 0.07169122691853579,
             "contrib": 0.02,
             "source": "추정"
@@ -97271,45 +97271,45 @@
         "collection": 0.071,
         "total": 0.23
       },
-      "grand_total": 20.3
+      "grand_total": 19.87
     },
     {
       "month": "2026-08",
       "individual": {
-        "regular": 17.13,
-        "collection": 1.87,
-        "total": 19.0,
+        "regular": 17.0,
+        "collection": 1.86,
+        "total": 18.87,
         "season_adj": 0.0,
-        "adjusted": 19.0,
+        "adjusted": 18.87,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-08",
-            "dec_amount": 50.75,
+            "dec_amount": 50.59,
             "rate": 18.605893528209613,
-            "contrib": 9.44,
+            "contrib": 9.41,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-07",
-            "dec_amount": 47.08,
+            "dec_amount": 46.65,
             "rate": 14.291790366761182,
-            "contrib": 6.73,
+            "contrib": 6.67,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-06",
-            "dec_amount": 58.95,
+            "dec_amount": 56.84,
             "rate": 1.5432438297050617,
-            "contrib": 0.91,
+            "contrib": 0.88,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-05",
-            "dec_amount": 67.2,
+            "dec_amount": 65.11,
             "rate": 0.07169122691853579,
             "contrib": 0.05,
             "source": "추정"
@@ -97322,7 +97322,7 @@
         "collection": 0.081,
         "total": 0.225
       },
-      "grand_total": 19.23
+      "grand_total": 19.1
     }
   ],
   "backtest": [
@@ -97417,8 +97417,8 @@
     {
       "month": "2026-03",
       "actual": 24.62,
-      "predicted": 20.77,
-      "error_pct": -15.6,
+      "predicted": 20.74,
+      "error_pct": -15.7,
       "season_month": 3,
       "is_season_outlier": true
     }
@@ -97497,6 +97497,6 @@
       "error_pct": -67.0
     }
   ],
-  "mape": 5.7,
+  "mape": 5.71,
   "corp_mape": 33.7
 }

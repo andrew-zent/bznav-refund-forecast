@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-17T17:31:04Z",
+  "generated_at": "2026-04-18T02:23:33Z",
   "overall": "warn",
   "checks": [
     {
       "name": "individual_mape",
-      "value": 5.7,
+      "value": 5.71,
       "threshold": 10,
       "unit": "%",
       "status": "pass"
@@ -31,7 +31,7 @@
   ],
   "backtest_summary": {
     "individual": {
-      "mape": 5.7,
+      "mape": 5.71,
       "n_months": 12,
       "outlier_months": [
         "2026-03"
