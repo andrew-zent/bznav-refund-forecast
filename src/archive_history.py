@@ -44,6 +44,9 @@ CREATE TABLE IF NOT EXISTS deal_history (
   utm_source        TEXT,
   utm_medium        TEXT,
   utm_campaign      TEXT,
+  utm_source_query  TEXT,
+  utm_medium_query  TEXT,
+  utm_campaign_query TEXT,
   is_only_gam       TEXT,
   update_time       TEXT,
   PRIMARY KEY (as_of_date, deal_id, source)
@@ -71,6 +74,7 @@ COLS = [
     "lost_reason", "lost_time", "cancel_reason", "cancel_reason_auto",
     "hold_reason", "hold_reason_2", "customer_type",
     "channel", "channel_id", "utm_source", "utm_medium", "utm_campaign",
+    "utm_source_query", "utm_medium_query", "utm_campaign_query",
     "is_only_gam", "update_time",
 ]
 
@@ -102,6 +106,9 @@ def _row(d, as_of_date, source):
         d.get("utm_source"),
         d.get("utm_medium"),
         d.get("utm_campaign"),
+        d.get("utm_source_query"),
+        d.get("utm_medium_query"),
+        d.get("utm_campaign_query"),
         d.get("is_only_gam"),
         d.get("update_time"),
     ])
