@@ -310,7 +310,7 @@ class ForecastEngine:
         # collection: 채권풀 기반 예측
         self._init_collection_pool(claims, series)
 
-    def _init_collection_pool(self, claims, series):
+    def _init_collection_pool(self, claims, _series):
         """채권풀 잔액 × 월간 회수율(utilization rate) 기반 추심 예측."""
         lc = self.last_complete
         col_pipes = PIPELINE_COLLECTION
@@ -353,61 +353,26 @@ class ForecastEngine:
             paid = actual_pay(T)
             if pool > 0:
                 rates.append(paid / pool)
-        raw_rate = float(np.mean(rates)) if rates else 0
-        self._util_rate_capped = raw_rate > 1.0
-        self._original_util_rate = raw_rate
-        self.col_util_rate = min(raw_rate, 1.0)
-        if self._util_rate_capped:
-            print(f"  ⚠ auto-heal: utilization_rate {raw_rate*100:.1f}% > 100%, capped to 100%")
+        self.col_util_rate = float(np.mean(rates)) if rates else 0
 
         # 현재 풀 잔액
         self.col_pool = pool_balance(self.current)
 
-        # B → 추심 유입률: B 누수 대비 추심 풀 유입 비율 (최근 6개월)
-        d2p_total = sum(self.d2p.values())  # ~34.5%
-        self.col_leak_pct = (100 - d2p_total) / 100  # B 결정 중 미결제 비율
-
-        inflow_ratios = []
-        for i in range(1, 7):
-            T = lc - i + 1
-            pool_now = pool_balance(T)
-            pool_prev = pool_balance(T - 1)
-            paid = actual_pay(T)
-            inflow = (pool_now - pool_prev) + paid  # 순변동 + 결제 = 유입
-            b_dec = series["B"]["dec"].get(T, 0)
-            b_leak = b_dec * self.col_leak_pct
-            if b_leak > 0 and inflow > 0:
-                inflow_ratios.append(inflow / b_leak)
-        self.col_inflow_rate = float(np.mean(inflow_ratios)) if inflow_ratios else 0.20
+        # 풀 순변동: 최근 3개월 실측 기반
+        # (B→추심 유입을 간접 공식으로 추정하면 d2p에 수수료율이 내포되어
+        #  미결제율을 8배 과대추정하는 문제가 있으므로, 실측 변동을 직접 사용)
+        pools = [pool_balance(lc - i) for i in range(COLLECTION_MA_WINDOW, -1, -1)]
+        deltas = [pools[i + 1] - pools[i] for i in range(len(pools) - 1)]
+        self.col_pool_delta = float(np.mean(deltas)) if deltas else 0
 
         self._col_deals = col_deals
         self._col_pool_balance = pool_balance
 
-        # 월별 풀 추이 (최근 24개월) export용
-        self.pool_monthly_trend = [
-            {
-                "month": ym_label(T),
-                "balance": round(pool_balance(T) / 1e8, 2),
-                "paid": round(actual_pay(T) / 1e8, 3),
-                "util_pct": round(actual_pay(T) / pool_balance(T) * 100, 3) if pool_balance(T) > 0 else 0,
-            }
-            for T in range(self.current - 23, self.current + 1)
-        ]
-
     def _predict_collection(self, months_ahead):
-        """추심 결제 예측: B결정 → 누수 → 풀 유입 → 회수."""
-        pool = self.col_pool
-        for i in range(months_ahead):
-            # 이 달의 B 결정 → 누수 → 유입
-            target_m = self.current + i
-            b_dec = self._get_dec(target_m)
-            inflow = b_dec * self.col_leak_pct * self.col_inflow_rate
-            # 회수 (결제)
-            payment = pool * self.col_util_rate
-            # 풀 갱신: 유입 - 회수
-            pool = max(pool + inflow - payment, 0)
-        # 최종 월의 회수액
-        return pool * self.col_util_rate
+        """추심 결제 예측: 실측 풀 순변동 기반."""
+        pool_est = self.col_pool + self.col_pool_delta * months_ahead
+        pool_est = max(pool_est, 0)
+        return pool_est * self.col_util_rate
 
     def _backtest_collection(self, target_m):
         """백테스트용: target_m 시점의 추심 예측 (직전 3개월 rate 사용)."""
@@ -604,195 +569,8 @@ def series_to_list(s, current_m, n=24):
     ]
 
 
-def source_to_pay_cohort(claims, current_m, src_date_key, src_amt_key,
-                         n_months=18, max_off=24, group="all"):
-    """원천월(신청/신고/결정 등) 기준 코호트 — 결제액을 offset별로 추적.
-
-    src_date_key/src_amt_key: "apply_date"/"apply_amount", "filing_date"/"filing_amount",
-                               "decision_date"/"decision_amount"
-    group: "B" (개인 정기), "C" (개인 추심), "corp_regular", "corp_collection",
-           "all" (필터 후 전체), "unfiltered" (필터 없음 — 마케팅 base)
-    """
-    src_total = defaultdict(float)
-    paid_by_off = defaultdict(lambda: defaultdict(float))
-
-    for c in claims:
-        status = str(c.get("status", ""))
-        pipe = str(c.get("pipeline", ""))
-        if group != "unfiltered":
-            if STATUS_EXCLUDE in status:
-                continue
-            if group == "B" and PIPELINE_REGULAR not in pipe:
-                continue
-            if group == "C" and not any(p in pipe for p in PIPELINE_COLLECTION):
-                continue
-            if group == "corp_regular" and CORP_PIPELINE_REGULAR not in pipe:
-                continue
-            if group == "corp_collection" and not any(p in pipe for p in CORP_PIPELINE_COLLECTION):
-                continue
-            if group == "all":
-                is_valid = (PIPELINE_REGULAR in pipe
-                            or any(p in pipe for p in PIPELINE_COLLECTION)
-                            or CORP_PIPELINE_REGULAR in pipe
-                            or any(p in pipe for p in CORP_PIPELINE_COLLECTION))
-                if not is_valid:
-                    continue
-
-        sd = parse_date(c.get(src_date_key))
-        sa = to_num(c.get(src_amt_key))
-        pd_ = parse_date(c.get("payment_date"))
-        pa = to_num(c.get("payment_amount"))
-        if sd and sa > 0:
-            src_total[ym(sd)] += sa
-            if pd_ and pa > 0:
-                off = ym(pd_) - ym(sd)
-                if 0 <= off <= max_off:
-                    paid_by_off[ym(sd)][off] += pa
-
-    result = []
-    for sm in range(current_m - n_months + 1, current_m + 1):
-        s_total = src_total.get(sm, 0)
-        paid_total = sum(paid_by_off[sm].values())
-        result.append({
-            "source_month": ym_label(sm),
-            "source_amount": round(s_total / 1e8, 2),
-            "paid_total": round(paid_total / 1e8, 2),
-            "conversion_pct": round(paid_total / s_total * 100, 2) if s_total > 0 else None,
-            "paid_by_offset": [
-                {"off": off, "month": ym_label(sm + off), "paid": round(p / 1e8, 3)}
-                for off, p in sorted(paid_by_off[sm].items()) if p > 0
-            ],
-        })
-    return result
-
-
-def diagnostic_breakdown(claims, current_m, n_months=18):
-    """진단 — 여러 차원으로 월별 신청/결제 breakdown.
-
-    차원: pipeline, status, lost_reason, cancel_reason, hold_reason(1+2 merged),
-         customer_type, channel, utm_source
-    """
-    dims = {
-        "by_pipeline": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_status": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_lost_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_cancel_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_hold_reason": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_customer_type": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_channel": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-        "by_utm_source": defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "pay": 0.0, "n": 0})),
-    }
-    # Cross-tab (월 무관, 금액/건수)
-    pipe_x_lost = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
-    pipe_x_cancel = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
-    channel_x_pipeline = defaultdict(lambda: defaultdict(lambda: {"app": 0.0, "n": 0}))
-
-    def clean(v):
-        if v is None or v == "":
-            return "(미기재)"
-        return str(v).strip() or "(미기재)"
-
-    for c in claims:
-        ad = parse_date(c.get("apply_date"))
-        if not ad:
-            continue
-        m = ym(ad)
-        if m < current_m - n_months + 1:
-            continue
-        pipe = clean(c.get("pipeline"))
-        status = clean(c.get("status"))
-        channel = clean(c.get("channel"))
-        utm_source = clean(c.get("utm_source"))
-        customer_type = clean(c.get("customer_type"))
-        aa = to_num(c.get("apply_amount"))
-        pa = to_num(c.get("payment_amount"))
-
-        for key, dim in [
-            ("by_pipeline", pipe),
-            ("by_status", status),
-            ("by_channel", channel),
-            ("by_utm_source", utm_source),
-            ("by_customer_type", customer_type),
-        ]:
-            dims[key][dim][m]["app"] += aa
-            dims[key][dim][m]["pay"] += pa
-            dims[key][dim][m]["n"] += 1
-
-        # Cross-tab (모든 deal, channel x pipeline)
-        channel_x_pipeline[channel][pipe]["app"] += aa
-        channel_x_pipeline[channel][pipe]["n"] += 1
-
-        # Status-specific breakdown
-        if status in ("실패", "lost"):
-            r = clean(c.get("lost_reason"))
-            dims["by_lost_reason"][r][m]["app"] += aa
-            dims["by_lost_reason"][r][m]["pay"] += pa
-            dims["by_lost_reason"][r][m]["n"] += 1
-            pipe_x_lost[pipe][r]["app"] += aa
-            pipe_x_lost[pipe][r]["n"] += 1
-
-        # Cancel reason (취소 관련)
-        cr = c.get("cancel_reason") or c.get("cancel_reason_auto")
-        if cr:
-            r = clean(cr)
-            dims["by_cancel_reason"][r][m]["app"] += aa
-            dims["by_cancel_reason"][r][m]["pay"] += pa
-            dims["by_cancel_reason"][r][m]["n"] += 1
-            pipe_x_cancel[pipe][r]["app"] += aa
-            pipe_x_cancel[pipe][r]["n"] += 1
-
-        # Hold reason (보류 관련) - merge 2 fields
-        hr = c.get("hold_reason") or c.get("hold_reason_2")
-        if hr:
-            r = clean(hr)
-            dims["by_hold_reason"][r][m]["app"] += aa
-            dims["by_hold_reason"][r][m]["pay"] += pa
-            dims["by_hold_reason"][r][m]["n"] += 1
-
-    def fmt_monthly(bucket):
-        result = {}
-        for key, monthly in bucket.items():
-            rows = []
-            for m in range(current_m - n_months + 1, current_m + 1):
-                v = monthly.get(m, {"app": 0.0, "pay": 0.0, "n": 0})
-                rows.append({
-                    "month": ym_label(m),
-                    "apply_amount": round(v["app"] / 1e8, 2),
-                    "paid": round(v["pay"] / 1e8, 3),
-                    "deal_count": v["n"],
-                })
-            result[key] = rows
-        return result
-
-    def fmt_crosstab(bucket):
-        result = {}
-        for a, by_b in bucket.items():
-            result[a] = [
-                {"value": b, "apply_amount": round(v["app"] / 1e8, 2), "deal_count": v["n"]}
-                for b, v in sorted(by_b.items(), key=lambda x: -x[1]["app"])
-            ]
-        return result
-
-    out = {k: fmt_monthly(v) for k, v in dims.items()}
-    out["pipeline_x_lost_reason"] = fmt_crosstab(pipe_x_lost)
-    out["pipeline_x_cancel_reason"] = fmt_crosstab(pipe_x_cancel)
-    out["channel_x_pipeline"] = fmt_crosstab(channel_x_pipeline)
-    return out
-
-
-def apply_to_pay_cohort(claims, current_m, n_months=18, max_off=24, group="all"):
-    """신청월(조회환급액) 기준 코호트 — source_to_pay_cohort의 wrapper."""
-    rows = source_to_pay_cohort(claims, current_m, "apply_date", "apply_amount",
-                                 n_months=n_months, max_off=max_off, group=group)
-    # 하위호환: source_month/source_amount → apply_month/apply_amount
-    for r in rows:
-        r["apply_month"] = r.pop("source_month")
-        r["apply_amount"] = r.pop("source_amount")
-    return rows
-
-
 class CorpForecastEngine:
-    """법인 간이 예측: 자동 모델 선택 (선형추세 vs 단순 MA)."""
+    """법인 간이 예측: 6개월 이동평균 + 선형추세."""
 
     def __init__(self, corp_pay, current_m):
         self.pay = corp_pay
@@ -804,9 +582,6 @@ class CorpForecastEngine:
         self.reg_params = self._fit_trend(corp_pay["regular"], lc)
         self.col_params = self._fit_trend(corp_pay["collection"], lc)
 
-        # 자동 모델 선택
-        self._auto_select_model()
-
     def _fit_trend(self, series, lc, window=6):
         """최근 window개월 데이터로 선형 추세 계산."""
         vals = []
@@ -815,7 +590,7 @@ class CorpForecastEngine:
             vals.append(series.get(m, 0) / 1e8)
         x = np.arange(len(vals))
         if all(v == 0 for v in vals):
-            return {"ma": 0, "slope": 0, "intercept": 0, "window": len(vals)}
+            return {"ma": 0, "slope": 0}
         slope, intercept = np.polyfit(x, vals, 1)
         ma = float(np.mean(vals))
         return {"ma": ma, "slope": float(slope), "last": float(vals[-1]),
@@ -827,35 +602,7 @@ class CorpForecastEngine:
         pred = params["intercept"] + params["slope"] * idx
         return max(pred, 0)
 
-    @staticmethod
-    def _wmape(bt):
-        valid = [r for r in bt if r["actual"] > 0]
-        if not valid:
-            return 0
-        total_actual = sum(r["actual"] for r in valid)
-        total_err = sum(abs(r["predicted"] - r["actual"]) for r in valid)
-        return (total_err / total_actual * 100) if total_actual > 0 else 0
-
-    def _auto_select_model(self):
-        """trend vs MA 백테스트 비교 → wMAPE가 낮은 모델 자동 선택."""
-        bt_trend = self.backtest(12, method="trend")
-        bt_ma = self.backtest(12, method="ma")
-        self.wmape_trend = self._wmape(bt_trend)
-        self.wmape_ma = self._wmape(bt_ma)
-
-        if self.wmape_ma < self.wmape_trend:
-            self.model_type = "simple_ma"
-        else:
-            self.model_type = "linear_trend"
-        print(f"  ⚠ auto-select: {self.model_type} "
-              f"(trend wMAPE: {self.wmape_trend:.1f}%, MA wMAPE: {self.wmape_ma:.1f}%)")
-
     def forecast(self, n_months=5):
-        if self.model_type == "simple_ma":
-            return self._forecast_ma(n_months)
-        return self._forecast_trend(n_months)
-
-    def _forecast_trend(self, n_months):
         results = []
         for i in range(n_months):
             target_m = self.current + i
@@ -870,48 +617,20 @@ class CorpForecastEngine:
             })
         return results
 
-    def _forecast_ma(self, n_months):
-        lc = self.last_complete
-        reg_vals = [self.pay["regular"].get(lc - 5 + i, 0) / 1e8 for i in range(6)]
-        col_vals = [self.pay["collection"].get(lc - 5 + i, 0) / 1e8 for i in range(6)]
-        results = []
-        for i in range(n_months):
-            target_m = self.current + i
-            reg = max(float(np.mean(reg_vals[-6:])), 0)
-            col = max(float(np.mean(col_vals[-6:])), 0)
-            results.append({
-                "month": ym_label(target_m),
-                "regular": round(reg, 3),
-                "collection": round(col, 3),
-                "total": round(reg + col, 3),
-            })
-            reg_vals.append(reg)
-            col_vals.append(col)
-        return results
-
-    def backtest(self, n_months=12, method=None):
-        """Walk-forward 백테스트. method=None이면 선택된 모델 사용."""
-        if method is None:
-            method = getattr(self, "model_type", "trend")
-        use_trend = method != "ma" and method != "simple_ma"
+    def backtest(self, n_months=12):
         results = []
         for i in range(n_months, 0, -1):
             tgt = self.current - i
             actual_r = self.pay["regular"].get(tgt, 0) / 1e8
             actual_c = self.pay["collection"].get(tgt, 0) / 1e8
             actual = actual_r + actual_c
-            if use_trend:
-                lc = tgt - 1
-                reg_p = self._fit_trend(self.pay["regular"], lc)
-                col_p = self._fit_trend(self.pay["collection"], lc)
-                pred = self._predict_series(reg_p, 1) + self._predict_series(col_p, 1)
-            else:
-                vals = []
-                for j in range(1, 7):
-                    m = tgt - j
-                    vals.append((self.pay["regular"].get(m, 0) +
-                                 self.pay["collection"].get(m, 0)) / 1e8)
-                pred = float(np.mean(vals)) if vals else 0
+            # walk-forward: 직전 6개월 MA
+            pred_vals = []
+            for j in range(1, 7):
+                m = tgt - j
+                pred_vals.append((self.pay["regular"].get(m, 0) +
+                                  self.pay["collection"].get(m, 0)) / 1e8)
+            pred = float(np.mean(pred_vals)) if pred_vals else 0
             err = (pred - actual) / actual * 100 if actual > 0 else 0
             results.append({
                 "month": ym_label(tgt),
@@ -956,8 +675,7 @@ def main():
     print(f"\n[추심 채권풀]")
     print(f"  풀 잔액: {engine.col_pool / 1e8:.1f}억")
     print(f"  월간 회수율: {engine.col_util_rate * 100:.3f}%")
-    print(f"  B 누수율: {engine.col_leak_pct * 100:.1f}%")
-    print(f"  누수→풀 유입률: {engine.col_inflow_rate * 100:.1f}%")
+    print(f"  풀 순변동: 월 {engine.col_pool_delta / 1e8:+.1f}억")
 
     # Forecast
     print(f"\n[향후 5개월 예측]")
@@ -992,35 +710,8 @@ def main():
             print(f"  {f['month']}: 정기 {f['regular']}억 + 추심 {f['collection']}억 = {f['total']}억")
 
         corp_bt = corp_engine.backtest(12)
-        # wMAPE: 소량 데이터에 적합 — 절대오차합 / 실측합
-        valid = [r for r in corp_bt if r["actual"] > 0]
-        total_actual = sum(r["actual"] for r in valid)
-        total_err = sum(abs(r["predicted"] - r["actual"]) for r in valid)
-        corp_mape = (total_err / total_actual * 100) if total_actual > 0 else 0
-        print(f"  법인 wMAPE: {corp_mape:.1f}%")
-
-    # ── auto_corrections 수집 ──
-    auto_corrections = []
-    if engine._util_rate_capped:
-        auto_corrections.append({
-            "type": "utilization_rate_cap",
-            "original_pct": round(engine._original_util_rate * 100, 3),
-            "corrected_pct": round(engine.col_util_rate * 100, 3),
-            "reason": "utilization_rate > 100% — 물리적 상한 cap 적용",
-        })
-    if corp_claims and corp_engine.model_type == "simple_ma":
-        auto_corrections.append({
-            "type": "corp_model_fallback",
-            "from": "linear_trend",
-            "to": "simple_ma",
-            "wmape_trend": round(corp_engine.wmape_trend, 1),
-            "wmape_ma": round(corp_engine.wmape_ma, 1),
-            "reason": "MA의 wMAPE가 더 낮아 자동 전환",
-        })
-    if auto_corrections:
-        print(f"\n[자동 보정] {len(auto_corrections)}건 적용")
-        for ac in auto_corrections:
-            print(f"  - {ac['type']}: {ac['reason']}")
+        corp_mape = float(np.mean([abs(r["error_pct"]) for r in corp_bt if r["actual"] > 0]))
+        print(f"  법인 MAPE: {corp_mape:.1f}%")
 
     # ── 통합 ──
     print(f"\n[통합 예측 (개인+법인)]")
@@ -1056,76 +747,20 @@ def main():
         },
     }
 
-    # 신청월(조회환급액) 기준 코호트
-    all_claims = claims + (corp_claims or [])
-    apply_cohort = {
-        "all": apply_to_pay_cohort(all_claims, current_m, group="all"),
-        "individual_regular": apply_to_pay_cohort(claims, current_m, group="B"),
-        "individual_collection": apply_to_pay_cohort(claims, current_m, group="C"),
-        "corporate_regular": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_regular"),
-        "corporate_collection": apply_to_pay_cohort(corp_claims or [], current_m, group="corp_collection"),
-        "unfiltered": apply_to_pay_cohort(all_claims, current_m, group="unfiltered"),
-    }
-
-    # 신고월(신고환급액) 기준 코호트 — 실제 세무서 제출 금액 대비 결제
-    filing_cohort = {
-        "all": source_to_pay_cohort(all_claims, current_m, "filing_date", "filing_amount", group="all"),
-        "individual_regular": source_to_pay_cohort(claims, current_m, "filing_date", "filing_amount", group="B"),
-        "individual_collection": source_to_pay_cohort(claims, current_m, "filing_date", "filing_amount", group="C"),
-        "corporate_regular": source_to_pay_cohort(corp_claims or [], current_m, "filing_date", "filing_amount", group="corp_regular"),
-        "corporate_collection": source_to_pay_cohort(corp_claims or [], current_m, "filing_date", "filing_amount", group="corp_collection"),
-    }
-
-    # 결정월(결정환급액) 기준 코호트 — 국세청 승인 금액 대비 결제
-    decision_cohort = {
-        "all": source_to_pay_cohort(all_claims, current_m, "decision_date", "decision_amount", group="all"),
-    }
-
-    # 진단: pipeline/status별 월별 신청액·결제액 breakdown (마케팅 base 내 저효율 유입 원인 파악)
-    diag = diagnostic_breakdown(all_claims, current_m)
-
-    # Pipedrive field catalog — "이탈/사유/실패/reason" 포함 필드 찾기용
-    field_catalog = []
-    fields_path = DATA_DIR / "deal_fields.json"
-    if fields_path.exists():
-        try:
-            fields = json.loads(fields_path.read_text())
-            keywords = ["이탈", "사유", "실패", "reason", "lost", "이유", "원인", "취소"]
-            for key, info in fields.items():
-                name = info.get("name", "")
-                if any(kw in name.lower() or kw in name for kw in keywords):
-                    field_catalog.append({
-                        "key": key,
-                        "name": name,
-                        "field_type": info.get("field_type", ""),
-                        "options_count": len(info.get("options") or []) if info.get("options") else 0,
-                        "options_sample": [o.get("label", "") for o in (info.get("options") or [])[:5]],
-                    })
-        except Exception as e:
-            print(f"  field catalog load failed: {e}")
-
     # Save outputs
-    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     output = {
-        "generated_at": generated_at,
+        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "data_range": f"... ~ {ym_label(current_m)}",
         "total_claims": len(claims),
         "total_corp_claims": len(corp_claims),
         "distributions": dists,
         "collection_pool": {
             "balance": round(engine.col_pool / 1e8, 1),
-            "utilization_rate_pct": round(engine.col_util_rate * 100, 3),
-            "leak_pct": round(engine.col_leak_pct * 100, 1),
-            "inflow_rate_pct": round(engine.col_inflow_rate * 100, 1),
+            "utilization_rate": round(engine.col_util_rate * 100, 3),
+            "monthly_delta": round(engine.col_pool_delta / 1e8, 1),
         },
         "season_adjustments": SEASON_ADJUSTMENT,
         "monthly_series": monthly_series,
-        "apply_to_pay_cohort": apply_cohort,
-        "filing_to_pay_cohort": filing_cohort,
-        "decision_to_pay_cohort": decision_cohort,
-        "collection_pool_trend": engine.pool_monthly_trend,
-        "diagnostic_breakdown": diag,
-        "field_catalog_candidates": field_catalog,
         "forecast": combined_fc,
         "backtest": bt,
         "corp_backtest": corp_bt,
@@ -1135,85 +770,6 @@ def main():
     out_path = OUTPUT_DIR / "forecast.json"
     out_path.write_text(json.dumps(output, ensure_ascii=False, indent=2))
     print(f"\n→ {out_path}")
-
-    # ── Verify: pipeline_state.json ──
-    pipeline_state = {
-        "generated_at": generated_at,
-        "status": "success",
-        "steps": [
-            {"name": "extract_individual", "status": "success",
-             "records": len(claims)},
-            {"name": "extract_corporate", "status": "success",
-             "records": len(corp_claims)},
-            {"name": "model_fit", "status": "success",
-             "distributions": list(dists.keys())},
-            {"name": "forecast", "status": "success",
-             "months": len(combined_fc)},
-            {"name": "backtest", "status": "success",
-             "individual_mape": round(mape, 2),
-             "corporate_mape": round(corp_mape, 1) if corp_mape else None},
-        ],
-        "auto_corrections": len(auto_corrections),
-        "corp_model_type": corp_engine.model_type if corp_claims else None,
-    }
-    ps_path = OUTPUT_DIR / "pipeline_state.json"
-    ps_path.write_text(json.dumps(pipeline_state, ensure_ascii=False, indent=2))
-    print(f"→ {ps_path}")
-
-    # ── Verify: verification_report.json ──
-    ind_pass = mape < 10
-    corp_pass = corp_mape is None or corp_mape < 30
-    col_pool = output["collection_pool"]
-    pool_util_ok = col_pool["utilization_rate_pct"] <= 100
-
-    verification = {
-        "generated_at": generated_at,
-        "overall": "pass" if (ind_pass and corp_pass and pool_util_ok) else "warn",
-        "checks": [
-            {
-                "name": "individual_mape",
-                "value": round(mape, 2),
-                "threshold": 10,
-                "unit": "%",
-                "status": "pass" if ind_pass else "warn",
-            },
-            {
-                "name": "corporate_mape",
-                "value": round(corp_mape, 1) if corp_mape else None,
-                "threshold": 30,
-                "unit": "%",
-                "status": "pass" if corp_pass else "warn",
-            },
-            {
-                "name": "collection_pool_utilization",
-                "value": col_pool["utilization_rate_pct"],
-                "threshold": 100,
-                "unit": "%/month",
-                "status": "pass" if pool_util_ok else "warn",
-            },
-            {
-                "name": "data_freshness",
-                "value": ym_label(current_m),
-                "status": "pass",
-            },
-        ],
-        "backtest_summary": {
-            "individual": {
-                "mape": round(mape, 2),
-                "n_months": len(bt),
-                "outlier_months": [r["month"] for r in bt if r.get("is_season_outlier")],
-            },
-            "corporate": {
-                "mape": round(corp_mape, 1) if corp_mape else None,
-                "n_months": len(corp_bt),
-                "model_type": corp_engine.model_type if corp_claims else None,
-            },
-        },
-        "auto_corrections": auto_corrections,
-    }
-    vr_path = OUTPUT_DIR / "verification_report.json"
-    vr_path.write_text(json.dumps(verification, ensure_ascii=False, indent=2))
-    print(f"→ {vr_path}")
 
 
 if __name__ == "__main__":
