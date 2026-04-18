@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-18T02:23:33Z",
+  "generated_at": "2026-04-18T04:15:43Z",
   "status": "success",
   "steps": [
     {
       "name": "extract_individual",
       "status": "success",
-      "records": 233903
+      "records": 233926
     },
     {
       "name": "extract_corporate",
@@ -29,7 +29,7 @@
     {
       "name": "backtest",
       "status": "success",
-      "individual_mape": 5.71,
+      "individual_mape": 5.72,
       "corporate_mape": 33.7
     }
   ],

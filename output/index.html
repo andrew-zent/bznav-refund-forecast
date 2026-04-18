@@ -19,25 +19,25 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 </style></head><body>
 <div class="container">
 <h1>비즈넵 결제 예측 대시보드</h1>
-<div class="meta"><span>갱신: 2026-04-18T02:23:33Z</span><span>개인 MAPE 5.71%</span><span>개인: 233,903건</span><span>법인: 8,200건</span></div>
+<div class="meta"><span>갱신: 2026-04-18T04:15:43Z</span><span>개인 MAPE 5.72%</span><span>개인: 233,926건</span><span>법인: 8,200건</span></div>
 
 <div class="kpi-row">
-<div class="kpi hl"><div class="kpi-label">2026-04 통합</div><div class="kpi-value">16.67<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 16.42억 + 법인 0.245억</div></div><div class="kpi hl"><div class="kpi-label">2026-05 통합</div><div class="kpi-value">18.93<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 18.69억 + 법인 0.24억</div></div><div class="kpi hl"><div class="kpi-label">2026-06 통합</div><div class="kpi-value">22.34<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 22.1억 + 법인 0.235억</div></div>
-<div class="kpi"><div class="kpi-label">12개월 MAPE</div><div class="kpi-value">5.71%</div></div>
+<div class="kpi hl"><div class="kpi-label">2026-04 통합</div><div class="kpi-value">16.66<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 16.41억 + 법인 0.245억</div></div><div class="kpi hl"><div class="kpi-label">2026-05 통합</div><div class="kpi-value">18.92<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 18.68억 + 법인 0.24억</div></div><div class="kpi hl"><div class="kpi-label">2026-06 통합</div><div class="kpi-value">22.32<span style="font-size:12px;color:#8b949e">억</span></div><div class="kpi-sub">개인 22.09억 + 법인 0.235억</div></div>
+<div class="kpi"><div class="kpi-label">12개월 MAPE</div><div class="kpi-value">5.72%</div></div>
 </div>
 
 <div class="grid-2">
 <div class="card"><h2>📊 향후 예측</h2><div class="chart-c"><canvas id="fcChart"></canvas></div></div>
 <div class="card"><h2>🎯 예측값 (개인+법인)</h2>
 <table><thead><tr><th>월</th><th>개인정기</th><th>개인추심</th><th>개인소계</th><th>법인</th><th style="color:#58a6ff">통합</th></tr></thead>
-<tbody><tr><td><b>2026-04</b></td><td>14.76</td><td>1.66</td><td>16.42</td><td>0.245</td><td style="color:#58a6ff;font-weight:700;">16.67</td></tr><tr><td><b>2026-05</b></td><td>17.01</td><td>1.68</td><td>18.69</td><td>0.24</td><td style="color:#58a6ff;font-weight:700;">18.93</td></tr><tr><td><b>2026-06</b></td><td>20.35</td><td>1.75</td><td>22.1</td><td>0.235</td><td style="color:#58a6ff;font-weight:700;">22.34</td></tr><tr><td><b>2026-07</b></td><td>17.83</td><td>1.82</td><td>19.64</td><td>0.23</td><td style="color:#58a6ff;font-weight:700;">19.87</td></tr><tr><td><b>2026-08</b></td><td>17.0</td><td>1.86</td><td>18.87</td><td>0.225</td><td style="color:#58a6ff;font-weight:700;">19.1</td></tr></tbody></table></div>
+<tbody><tr><td><b>2026-04</b></td><td>14.75</td><td>1.66</td><td>16.41</td><td>0.245</td><td style="color:#58a6ff;font-weight:700;">16.66</td></tr><tr><td><b>2026-05</b></td><td>17.0</td><td>1.68</td><td>18.68</td><td>0.24</td><td style="color:#58a6ff;font-weight:700;">18.92</td></tr><tr><td><b>2026-06</b></td><td>20.34</td><td>1.75</td><td>22.09</td><td>0.235</td><td style="color:#58a6ff;font-weight:700;">22.32</td></tr><tr><td><b>2026-07</b></td><td>17.82</td><td>1.82</td><td>19.64</td><td>0.23</td><td style="color:#58a6ff;font-weight:700;">19.87</td></tr><tr><td><b>2026-08</b></td><td>17.0</td><td>1.86</td><td>18.86</td><td>0.225</td><td style="color:#58a6ff;font-weight:700;">19.09</td></tr></tbody></table></div>
 </div>
 
 <div class="grid-2">
 <div class="card"><h2>📈 12개월 백테스트</h2><div class="chart-c"><canvas id="btChart"></canvas></div></div>
 <div class="card"><h2>📋 백테스트 상세</h2>
 <table><thead><tr><th>월</th><th>실제</th><th>예측</th><th>오차</th><th></th></tr></thead>
-<tbody><tr><td>2025-04</td><td>16.93</td><td>16.11</td><td style="color:#3fb950">-4.8%</td><td>🟢</td></tr><tr><td>2025-05</td><td>12.1</td><td>12.14</td><td style="color:#3fb950">+0.3%</td><td>🟢</td></tr><tr><td>2025-06</td><td>14.91</td><td>13.26</td><td style="color:#d29922">-11.1%</td><td>🟡</td></tr><tr><td>2025-07</td><td>15.69</td><td>14.73</td><td style="color:#3fb950">-6.1%</td><td>🟢</td></tr><tr><td>2025-08</td><td>12.33</td><td>13.93</td><td style="color:#d29922">+13.0%</td><td>🟡</td></tr><tr><td>2025-09</td><td>17.51</td><td>17.08</td><td style="color:#3fb950">-2.5%</td><td>🟢</td></tr><tr><td>2025-10</td><td>17.77</td><td>17.75</td><td style="color:#3fb950">-0.1%</td><td>🟢</td></tr><tr><td>2025-11</td><td>16.18</td><td>15.98</td><td style="color:#3fb950">-1.3%</td><td>🟢</td></tr><tr><td>2025-12</td><td>18.46</td><td>17.64</td><td style="color:#3fb950">-4.4%</td><td>🟢</td></tr><tr><td>2026-01</td><td>17.79</td><td>17.39</td><td style="color:#3fb950">-2.3%</td><td>🟢</td></tr><tr><td>2026-02</td><td>16.35</td><td>17.48</td><td style="color:#3fb950">+6.9%</td><td>🟢</td></tr><tr><td>2026-03</td><td>24.62</td><td>20.74</td><td style="color:#d29922">-15.7%</td><td>🟡</td></tr></tbody></table></div>
+<tbody><tr><td>2025-04</td><td>16.93</td><td>16.11</td><td style="color:#3fb950">-4.8%</td><td>🟢</td></tr><tr><td>2025-05</td><td>12.1</td><td>12.14</td><td style="color:#3fb950">+0.3%</td><td>🟢</td></tr><tr><td>2025-06</td><td>14.91</td><td>13.26</td><td style="color:#d29922">-11.1%</td><td>🟡</td></tr><tr><td>2025-07</td><td>15.69</td><td>14.73</td><td style="color:#3fb950">-6.1%</td><td>🟢</td></tr><tr><td>2025-08</td><td>12.33</td><td>13.93</td><td style="color:#d29922">+13.0%</td><td>🟡</td></tr><tr><td>2025-09</td><td>17.51</td><td>17.08</td><td style="color:#3fb950">-2.5%</td><td>🟢</td></tr><tr><td>2025-10</td><td>17.77</td><td>17.75</td><td style="color:#3fb950">-0.1%</td><td>🟢</td></tr><tr><td>2025-11</td><td>16.18</td><td>15.98</td><td style="color:#3fb950">-1.3%</td><td>🟢</td></tr><tr><td>2025-12</td><td>18.46</td><td>17.64</td><td style="color:#3fb950">-4.4%</td><td>🟢</td></tr><tr><td>2026-01</td><td>17.79</td><td>17.39</td><td style="color:#3fb950">-2.3%</td><td>🟢</td></tr><tr><td>2026-02</td><td>16.35</td><td>17.48</td><td style="color:#3fb950">+6.9%</td><td>🟢</td></tr><tr><td>2026-03</td><td>24.62</td><td>20.73</td><td style="color:#d29922">-15.8%</td><td>🟡</td></tr></tbody></table></div>
 </div>
 
 
@@ -64,7 +64,7 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
   <div class="kpi" style="border-color:#3fb950;">
     <div class="kpi-label">누수율 (B결정→추심)</div>
     <div class="kpi-value" style="color:#3fb950;">65.5<span style="font-size:12px;color:#8b949e">%</span></div>
-    <div class="kpi-sub">유입률 19.6%</div>
+    <div class="kpi-sub">유입률 19.7%</div>
   </div>
   <div class="kpi" style="border-color:#3fb950;">
     <div class="kpi-label">월간 cohort 기여 공식</div>
@@ -78,7 +78,7 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
     <h2>📋 단계별 정밀화 (2026-03 기준)</h2>
     <table>
       <thead><tr><th>시점</th><th>입력</th><th>금액</th><th>계수</th><th>예상결제액</th></tr></thead>
-      <tbody><tr><td>T+0 당일</td><td>신청환급금</td><td>95.4억</td><td>× 20.33%</td><td style='color:#58a6ff'>19.40억</td></tr><tr><td>T+7 신고 후</td><td>신고환급액</td><td>62.0억</td><td>× 30%</td><td style='color:#58a6ff'>18.59억</td></tr><tr><td>T+14 결정 후</td><td>결정환급액</td><td>64.3억</td><td>× 31%</td><td style='color:#58a6ff'>19.94억</td></tr></tbody>
+      <tbody><tr><td>T+0 당일</td><td>신청환급금</td><td>95.3억</td><td>× 20.33%</td><td style='color:#58a6ff'>19.38억</td></tr><tr><td>T+7 신고 후</td><td>신고환급액</td><td>61.9억</td><td>× 30%</td><td style='color:#58a6ff'>18.56억</td></tr><tr><td>T+14 결정 후</td><td>결정환급액</td><td>64.3억</td><td>× 31%</td><td style='color:#58a6ff'>19.94억</td></tr></tbody>
     </table>
     <div style="font-size:10px; color:#6e7681; margin-top:8px;">
       시간 경과에 따라 자동 replace: T+0 신청 rough → T+7 신고 정밀 → T+14 결정 확정
@@ -88,7 +88,7 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
     <h2>🔄 In-flight Cohort 예측 (최근 6개월)</h2>
     <table>
       <thead><tr><th>신청월</th><th>신청</th><th>경과</th><th>관찰</th><th>남은</th><th>예측최종</th><th>예측%</th><th></th></tr></thead>
-      <tbody><tr><td>2025-11</td><td>98.1</td><td>M+5</td><td>18.26</td><td>0.66</td><td style='color:#58a6ff;font-weight:700;'>18.92</td><td>19.3%</td><td>🟡</td></tr><tr><td>2025-12</td><td>140.1</td><td>M+4</td><td>25.44</td><td>1.98</td><td style='color:#58a6ff;font-weight:700;'>27.42</td><td>19.6%</td><td>🟡</td></tr><tr><td>2026-01</td><td>78.4</td><td>M+3</td><td>11.91</td><td>2.36</td><td style='color:#58a6ff;font-weight:700;'>14.27</td><td>18.2%</td><td>🟡</td></tr><tr><td>2026-02</td><td>86.2</td><td>M+2</td><td>7.79</td><td>7.43</td><td style='color:#58a6ff;font-weight:700;'>15.22</td><td>17.7%</td><td>🟡</td></tr><tr><td>2026-03</td><td>95.4</td><td>M+1</td><td>0.88</td><td>17.44</td><td style='color:#58a6ff;font-weight:700;'>18.32</td><td>19.2%</td><td>🟡</td></tr><tr><td>2026-04</td><td>25.4</td><td>M+0</td><td>0.04</td><td>5.14</td><td style='color:#58a6ff;font-weight:700;'>5.18</td><td>20.4%</td><td>🟡</td></tr></tbody>
+      <tbody><tr><td>2025-11</td><td>98.1</td><td>M+5</td><td>18.26</td><td>0.66</td><td style='color:#58a6ff;font-weight:700;'>18.92</td><td>19.3%</td><td>🟡</td></tr><tr><td>2025-12</td><td>140.1</td><td>M+4</td><td>25.44</td><td>1.98</td><td style='color:#58a6ff;font-weight:700;'>27.42</td><td>19.6%</td><td>🟡</td></tr><tr><td>2026-01</td><td>78.4</td><td>M+3</td><td>11.92</td><td>2.36</td><td style='color:#58a6ff;font-weight:700;'>14.28</td><td>18.2%</td><td>🟡</td></tr><tr><td>2026-02</td><td>86.2</td><td>M+2</td><td>7.80</td><td>7.43</td><td style='color:#58a6ff;font-weight:700;'>15.23</td><td>17.7%</td><td>🟡</td></tr><tr><td>2026-03</td><td>95.3</td><td>M+1</td><td>0.88</td><td>17.42</td><td style='color:#58a6ff;font-weight:700;'>18.30</td><td>19.2%</td><td>🟡</td></tr><tr><td>2026-04</td><td>25.4</td><td>M+0</td><td>0.04</td><td>5.14</td><td style='color:#58a6ff;font-weight:700;'>5.18</td><td>20.4%</td><td>🟡</td></tr></tbody>
     </table>
   </div>
 </div>
@@ -162,18 +162,18 @@ footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
 Chart.defaults.color='#8b949e';Chart.defaults.borderColor='#21262d';
 const g={color:'#21262d',drawBorder:false},bs={grid:g,ticks:{color:'#8b949e'}};
 new Chart(document.getElementById('fcChart'),{type:'bar',data:{labels:["2026-04", "2026-05", "2026-06", "2026-07", "2026-08"],datasets:[
-{label:'개인',data:[16.42, 18.69, 22.1, 19.64, 18.87],backgroundColor:'#3fb950',borderRadius:4,stack:'s'},
+{label:'개인',data:[16.41, 18.68, 22.09, 19.64, 18.86],backgroundColor:'#3fb950',borderRadius:4,stack:'s'},
 {label:'법인',data:[0.245, 0.24, 0.235, 0.23, 0.225],backgroundColor:'#d29922',borderRadius:4,stack:'s'},
-{label:'통합',data:[16.67, 18.93, 22.34, 19.87, 19.1],type:'line',borderColor:'#58a6ff',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
+{label:'통합',data:[16.66, 18.92, 22.32, 19.87, 19.09],type:'line',borderColor:'#58a6ff',backgroundColor:'transparent',tension:.3,pointRadius:6,pointStyle:'rectRot',borderWidth:2.5}
 ]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:10}}},scales:{y:{...bs,stacked:true},x:{...bs,stacked:true}}}});
 new Chart(document.getElementById('btChart'),{type:'line',data:{labels:["2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03"],datasets:[
 {label:'실제',data:[16.93, 12.1, 14.91, 15.69, 12.33, 17.51, 17.77, 16.18, 18.46, 17.79, 16.35, 24.62],borderColor:'#58a6ff',backgroundColor:'rgba(88,166,255,0.2)',fill:true,tension:.3,pointRadius:4,borderWidth:2.5},
-{label:'예측',data:[16.11, 12.14, 13.26, 14.73, 13.93, 17.08, 17.75, 15.98, 17.64, 17.39, 17.48, 20.74],borderColor:'#3fb950',tension:.3,pointRadius:4,pointStyle:'triangle'}
+{label:'예측',data:[16.11, 12.14, 13.26, 14.73, 13.93, 17.08, 17.75, 15.98, 17.64, 17.39, 17.48, 20.73],borderColor:'#3fb950',tension:.3,pointRadius:4,pointStyle:'triangle'}
 ]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:10}}},scales:{y:{...bs},x:{...bs}}}});
 
 new Chart(document.getElementById('poolChart'),{type:'line',data:{labels:["2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-09", "2025-10", "2025-11", "2025-12", "2026-01", "2026-02", "2026-03", "2026-04"],datasets:[
-  {label:'풀 잔액 (억)',data:[58.73, 63.79, 67.28, 72.58, 77.37, 80.69, 84.64, 86.55, 92.02, 100.49, 109.55, 119.26, 125.37, 126.55, 132.92, 141.79, 145.47, 148.34, 150.67, 157.4, 164.76, 160.8, 156.51, 151.27],borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.1)',fill:true,tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y'},
-  {label:'월 결제 회수 (억)',data:[0.093, 0.064, 0.0, 0.019, 0.208, 0.312, 0.388, 0.441, 0.477, 0.533, 0.468, 0.684, 1.07, 0.399, 0.47, 0.809, 0.991, 1.065, 0.931, 0.81, 1.9, 1.58, 1.811, 0.793],borderColor:'#d29922',tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y1'}
+  {label:'풀 잔액 (억)',data:[58.73, 63.79, 67.28, 72.58, 77.37, 80.69, 84.64, 86.55, 92.02, 100.49, 109.55, 119.26, 125.37, 126.55, 132.92, 141.79, 145.47, 148.34, 150.67, 157.4, 164.77, 160.86, 156.56, 151.33],borderColor:'#3fb950',backgroundColor:'rgba(63,185,80,0.1)',fill:true,tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y'},
+  {label:'월 결제 회수 (억)',data:[0.093, 0.064, 0.0, 0.019, 0.208, 0.312, 0.388, 0.441, 0.477, 0.533, 0.468, 0.684, 1.07, 0.399, 0.47, 0.809, 0.991, 1.065, 0.931, 0.81, 1.9, 1.58, 1.811, 0.794],borderColor:'#d29922',tension:.3,pointRadius:3,borderWidth:2,yAxisID:'y1'}
 ]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{position:'top',labels:{boxWidth:10}}},scales:{y:{...bs,position:'left',title:{display:true,text:'풀 잔액'}},y1:{...bs,position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'월 회수'}},x:{...bs}}}});
 
 
