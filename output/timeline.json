@@ -64,7 +64,7 @@
       "date": "2026-04-17"
     },
     {
-      "generated_at": "2026-04-18T02:23:34Z",
+      "generated_at": "2026-04-18T04:15:43Z",
       "data_range": "... ~ 2026-04",
       "mature_window_end": "2025-10",
       "conversion_filtered_pct": 20.33,
@@ -127,5 +127,5 @@
       "date": "2026-04-18"
     }
   ],
-  "updated_at": "2026-04-18T02:23:34Z"
+  "updated_at": "2026-04-18T04:15:43Z"
 }

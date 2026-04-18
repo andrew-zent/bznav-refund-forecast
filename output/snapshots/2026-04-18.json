@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-18T02:23:34Z",
+  "generated_at": "2026-04-18T04:15:43Z",
   "data_range": "... ~ 2026-04",
   "mature_window": {
     "start": "2024-11",
@@ -59,7 +59,7 @@
     }
   },
   "top_lost_reasons": {
-    "total": 2588.42,
+    "total": 2588.41,
     "top": [
       {
         "label": "환급불가_기경정청구 존재",
@@ -106,8 +106,8 @@
       {
         "label": "신청취소_기타",
         "raw_key": "신청취소_기타",
-        "apply_amount": 100.25,
-        "deal_count": 1984,
+        "apply_amount": 100.24,
+        "deal_count": 1983,
         "share_pct": 3.87
       },
       {
@@ -390,8 +390,8 @@
       {
         "label": "toss.join",
         "raw_key": "toss.join",
-        "apply_amount": 949.77,
-        "deal_count": 36928,
+        "apply_amount": 949.78,
+        "deal_count": 36929,
         "share_pct": 27.31
       },
       {
@@ -461,7 +461,7 @@
   },
   "collection_pool": {
     "balance": 151.3,
-    "utilization_rate_pct": 1.098,
+    "utilization_rate_pct": 1.097,
     "recent_3mo_avg_paid": 1.76
   }
 }
