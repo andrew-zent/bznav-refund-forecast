@@ -334,21 +334,21 @@ with tabs[1]:
 
             # 그룹 막대 (접수율·수주율·결제율)
             fig_fn = go.Figure()
-            hover_tpl = "<b>%{x}</b><br>%{fullData.name}: %{y:.1f}%<br>딜수: %{customdata}건<extra></extra>"
-            for col, label, color in [
-                ("filing_rate",   "접수율",  "#4C9BE8"),
-                ("decision_rate", "결정율",  "#7BC67E"),
-                ("won_rate",      "수주율",  "#F9A825"),
-                ("payment_rate",  "결제율",  "#EF5350"),
+            for col, label, color, n_col in [
+                ("filing_rate",   "접수율",  "#4C9BE8", "filing_n"),
+                ("decision_rate", "결정율",  "#7BC67E", "decision_n"),
+                ("won_rate",      "수주율",  "#F9A825", "won_n"),
+                ("payment_rate",  "결제율",  "#EF5350", "payment_n"),
             ]:
+                n_series = df_fn[n_col] if n_col in df_fn.columns else df_fn["deals"]
                 fig_fn.add_bar(
                     x=df_fn["channel"], y=df_fn[col], name=label,
                     marker_color=color,
-                    customdata=df_fn["deals"],
+                    customdata=list(zip(n_series, df_fn["deals"])),
                     hovertemplate=(
                         f"<b>%{{x}}</b><br>{label}: %{{y:.1f}}%"
                         f"<br><i>{METRIC_DEFS.get(label,'')}</i>"
-                        "<br>딜수: %{customdata:,}건<extra></extra>"
+                        "<br>해당 단계: %{customdata[0]:,}건 / 전체 신청: %{customdata[1]:,}건<extra></extra>"
                     ),
                 )
             fig_fn.update_layout(
@@ -358,13 +358,20 @@ with tabs[1]:
             )
             st.plotly_chart(fig_fn, use_container_width=True)
 
-            # 수익률 오버레이 (scatter)
+            # 신청액 · 결제액 · 수익률 복합 차트
             fig_y = go.Figure()
             fig_y.add_bar(
                 x=df_fn["channel"], y=df_fn["apply_oku"],
-                name="신청액(억)", marker_color="lightblue", opacity=0.6,
+                name="신청액(억)", marker_color="#90CAF9", opacity=0.8,
                 yaxis="y2",
                 hovertemplate="<b>%{x}</b><br>신청액: %{y:.1f}억<extra></extra>",
+            )
+            fig_y.add_bar(
+                x=df_fn["channel"],
+                y=df_fn["payment_oku"] if "payment_oku" in df_fn.columns else [],
+                name="결제액(억)", marker_color="#A5D6A7", opacity=0.8,
+                yaxis="y2",
+                hovertemplate="<b>%{x}</b><br>결제액: %{y:.1f}억<extra></extra>",
             )
             fig_y.add_scatter(
                 x=df_fn["channel"], y=df_fn["yield_pct"],
@@ -376,8 +383,9 @@ with tabs[1]:
                 ),
             )
             fig_y.update_layout(
-                height=360, yaxis_title="수익률 (%)",
-                yaxis2=dict(title="신청액(억)", overlaying="y", side="right", showgrid=False),
+                barmode="group",
+                height=400, yaxis_title="수익률 (%)",
+                yaxis2=dict(title="금액(억)", overlaying="y", side="right", showgrid=False),
                 xaxis_tickangle=-30, legend_title="",
             )
             st.plotly_chart(fig_y, use_container_width=True)
