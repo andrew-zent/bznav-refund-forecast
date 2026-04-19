@@ -583,9 +583,27 @@ with tabs[2]:
         by_media = cohort.get("by_media", [])
         if by_media:
             st.subheader(f"매체별 CPL 표 ({roas_label})")
+            mc1, mc2, mc3 = st.columns([2, 1, 1])
+            with mc1:
+                media_search = st.text_input("매체명 검색", placeholder="예: toss, kakao, naver...", key="media_search")
+            with mc2:
+                media_min_spend = st.number_input("최소 광고비(만원)", min_value=0, max_value=10000, value=0, step=10, key="media_min_spend")
+            with mc3:
+                media_sort = st.selectbox("정렬 기준", ["광고비↓", "CPL↑", "ROAS↓", "신청건수↓"], key="media_sort")
+
             df_media = pd.DataFrame(by_media)
-            if "광고비" in df_media.columns:
-                df_media = df_media[df_media["광고비"] >= roas_min_spend * 10000]
+            total_count = len(df_media)
+            if "광고비" in df_media.columns and media_min_spend > 0:
+                df_media = df_media[df_media["광고비"] >= media_min_spend * 10000]
+            if media_search.strip() and "채널" in df_media.columns:
+                df_media = df_media[df_media["채널"].str.contains(media_search.strip(), case=False, na=False)]
+
+            sort_map = {"광고비↓": ("광고비", False), "CPL↑": ("CPL_krw", True), "ROAS↓": ("ROAS_expected", False), "신청건수↓": ("신청건수", False)}
+            sort_col, sort_asc = sort_map.get(media_sort, ("광고비", False))
+            if sort_col in df_media.columns:
+                df_media = df_media.sort_values(sort_col, ascending=sort_asc)
+
+            st.caption(f"전체 {total_count}개 매체 중 {len(df_media)}개 표시")
             cols_show = [c for c in ["채널", "광고비", "CPL_krw", "ROAS_expected", "신청건수"] if c in df_media.columns]
             df_show = df_media[cols_show].copy()
 
