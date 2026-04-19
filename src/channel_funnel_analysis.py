@@ -53,6 +53,7 @@ def run():
             "channel":        src,
             "deals":          deals,
             "apply_oku":      round((apply or 0) / 1e8, 2),
+            "payment_oku":    round((pay_amt or 0) / 1e8, 2),
             "filing_n":       filed,
             "decision_n":     decided,
             "won_n":          won,

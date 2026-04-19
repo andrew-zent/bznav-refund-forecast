@@ -358,13 +358,20 @@ with tabs[1]:
             )
             st.plotly_chart(fig_fn, use_container_width=True)
 
-            # 수익률 오버레이 (scatter)
+            # 신청액 · 결제액 · 수익률 복합 차트
             fig_y = go.Figure()
             fig_y.add_bar(
                 x=df_fn["channel"], y=df_fn["apply_oku"],
-                name="신청액(억)", marker_color="lightblue", opacity=0.6,
+                name="신청액(억)", marker_color="#90CAF9", opacity=0.8,
                 yaxis="y2",
                 hovertemplate="<b>%{x}</b><br>신청액: %{y:.1f}억<extra></extra>",
+            )
+            fig_y.add_bar(
+                x=df_fn["channel"],
+                y=df_fn["payment_oku"] if "payment_oku" in df_fn.columns else [],
+                name="결제액(억)", marker_color="#A5D6A7", opacity=0.8,
+                yaxis="y2",
+                hovertemplate="<b>%{x}</b><br>결제액: %{y:.1f}억<extra></extra>",
             )
             fig_y.add_scatter(
                 x=df_fn["channel"], y=df_fn["yield_pct"],
@@ -376,8 +383,9 @@ with tabs[1]:
                 ),
             )
             fig_y.update_layout(
-                height=360, yaxis_title="수익률 (%)",
-                yaxis2=dict(title="신청액(억)", overlaying="y", side="right", showgrid=False),
+                barmode="group",
+                height=400, yaxis_title="수익률 (%)",
+                yaxis2=dict(title="금액(억)", overlaying="y", side="right", showgrid=False),
                 xaxis_tickangle=-30, legend_title="",
             )
             st.plotly_chart(fig_y, use_container_width=True)
