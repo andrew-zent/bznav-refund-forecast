@@ -1,0 +1,181 @@
+{
+  "generated_at": "2026-04-19T00:39:23",
+  "baseline": {
+    "rw": 6,
+    "cma": 3,
+    "season_adj": {
+      "1": 0.0,
+      "2": -0.05,
+      "3": 0.1,
+      "4": 0.0,
+      "5": 0.0,
+      "6": 0.0,
+      "7": 0.0,
+      "8": 0.0,
+      "9": 0.0,
+      "10": 0.0,
+      "11": 0.0,
+      "12": 0.05
+    },
+    "mape": 4.22
+  },
+  "best": {
+    "rw": 6,
+    "cma": 2,
+    "mape": 1.086,
+    "season_adj": {
+      "1": 0.05,
+      "2": -0.05,
+      "3": 0.15,
+      "4": 0.05,
+      "5": 0.0,
+      "6": 0.1,
+      "7": 0.05,
+      "8": -0.1,
+      "9": 0.0,
+      "10": 0.0,
+      "11": 0.0,
+      "12": 0.05
+    },
+    "backtest": [
+      {
+        "month": "2025-04",
+        "actual": 16.93,
+        "predicted": 16.9,
+        "error_pct": -0.1,
+        "season_month": 4
+      },
+      {
+        "month": "2025-05",
+        "actual": 12.1,
+        "predicted": 12.12,
+        "error_pct": 0.2,
+        "season_month": 5
+      },
+      {
+        "month": "2025-06",
+        "actual": 14.91,
+        "predicted": 14.72,
+        "error_pct": -1.3,
+        "season_month": 6
+      },
+      {
+        "month": "2025-07",
+        "actual": 15.69,
+        "predicted": 15.47,
+        "error_pct": -1.4,
+        "season_month": 7
+      },
+      {
+        "month": "2025-08",
+        "actual": 12.33,
+        "predicted": 12.32,
+        "error_pct": -0.1,
+        "season_month": 8
+      },
+      {
+        "month": "2025-09",
+        "actual": 17.51,
+        "predicted": 17.15,
+        "error_pct": -2.0,
+        "season_month": 9
+      },
+      {
+        "month": "2025-10",
+        "actual": 17.77,
+        "predicted": 17.88,
+        "error_pct": 0.6,
+        "season_month": 10
+      },
+      {
+        "month": "2025-11",
+        "actual": 16.18,
+        "predicted": 16.04,
+        "error_pct": -0.9,
+        "season_month": 11
+      },
+      {
+        "month": "2025-12",
+        "actual": 18.46,
+        "predicted": 18.52,
+        "error_pct": 0.3,
+        "season_month": 12
+      },
+      {
+        "month": "2026-01",
+        "actual": 17.79,
+        "predicted": 18.17,
+        "error_pct": 2.1,
+        "season_month": 1
+      },
+      {
+        "month": "2026-02",
+        "actual": 16.35,
+        "predicted": 16.72,
+        "error_pct": 2.2,
+        "season_month": 2
+      },
+      {
+        "month": "2026-03",
+        "actual": 24.62,
+        "predicted": 24.19,
+        "error_pct": -1.7,
+        "season_month": 3
+      }
+    ]
+  },
+  "improvement_pct": 3.134,
+  "grid_top10": [
+    {
+      "rw": 6,
+      "cma": 2,
+      "mape": 5.449
+    },
+    {
+      "rw": 5,
+      "cma": 2,
+      "mape": 5.458
+    },
+    {
+      "rw": 4,
+      "cma": 2,
+      "mape": 5.653
+    },
+    {
+      "rw": 5,
+      "cma": 3,
+      "mape": 5.678
+    },
+    {
+      "rw": 3,
+      "cma": 2,
+      "mape": 5.702
+    },
+    {
+      "rw": 5,
+      "cma": 4,
+      "mape": 5.708
+    },
+    {
+      "rw": 6,
+      "cma": 3,
+      "mape": 5.708
+    },
+    {
+      "rw": 6,
+      "cma": 4,
+      "mape": 5.818
+    },
+    {
+      "rw": 5,
+      "cma": 5,
+      "mape": 5.843
+    },
+    {
+      "rw": 6,
+      "cma": 5,
+      "mape": 5.854
+    }
+  ],
+  "dry_run": true
+}
