@@ -149,6 +149,13 @@ PIPELINE_STEPS = [
         "error_policy": ErrorPolicy.SKIP,
         "max_retries": 0,
     },
+    {
+        "name": "confluence_report",
+        "script": "agents/confluence_reporter.py",
+        "description": "Confluence 주간 리포트 게시",
+        "error_policy": ErrorPolicy.SKIP,
+        "max_retries": 0,
+    },
 ]
 
 

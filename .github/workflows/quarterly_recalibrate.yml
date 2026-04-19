@@ -1,0 +1,51 @@
+name: Quarterly Recalibration
+
+on:
+  # 매 분기 첫 번째 월요일 09:00 KST (UTC 00:00)
+  # 1월, 4월, 7월, 10월 첫째 주 월요일
+  schedule:
+    - cron: '0 0 1-7 1,4,7,10 1'
+  workflow_dispatch: {}  # 수동 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  recalibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install numpy
+
+      - name: Download history archive
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release download history-archive \
+            --repo ${{ github.repository }} \
+            --pattern "history.sqlite" \
+            --output /tmp/history.sqlite \
+          || echo "history archive 없음 — 스킵"
+
+      - name: Run recalibrator
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: python src/agents/recalibrator.py
+
+      - name: Commit recalibration report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/recalibration_report.json
+          git diff --staged --quiet || git commit -m "chore: quarterly recalibration $(date +%Y-%m-%d)"
+          git push

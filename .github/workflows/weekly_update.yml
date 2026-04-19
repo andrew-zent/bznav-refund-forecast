@@ -27,64 +27,16 @@ jobs:
       - name: Install dependencies
         run: pip install numpy openpyxl statsmodels plotly pandas
 
-      - name: Extract from Pipedrive (개인)
+      - name: Run pipeline (Orchestrator)
         env:
           PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
           PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
-        run: python src/extract_pipedrive.py
-
-      - name: Extract from Pipedrive (법인)
-        env:
           CORP_PIPEDRIVE_API_TOKEN: ${{ secrets.CORP_PIPEDRIVE_API_TOKEN }}
-        run: python src/extract_corp.py
-
-      - name: Run forecast model
-        env:
-          PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
-          PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
-        working-directory: src
-        run: python model.py
-
-      - name: Generate dashboard
-        working-directory: src
-        run: python generate_dashboard.py
-
-      - name: UTM 채널 효율 분석
-        continue-on-error: true
-        run: python src/utm_channel_analysis.py
-
-      - name: 채널 정밀 분석 (신규/리마인드, 캠페인 A/B, 멀티터치)
-        continue-on-error: true
-        run: python src/channel_deep_analysis.py
-
-      - name: 어트리뷰션 분석 (First/Last/Linear, CRM Lift, Journey Matrix)
-        continue-on-error: true
-        run: python src/attribution_analysis.py
-
-      - name: 채널 퍼널 분석 (전환율, 분기 트렌드, 자력전환율)
-        continue-on-error: true
-        run: python src/channel_funnel_analysis.py
-
-      - name: 앙상블 예측 (Cohort + ARIMA + ETS)
-        continue-on-error: true
-        run: python src/agents/ensemble.py
-
-      - name: Verify forecast
-        run: python src/agents/verifier.py
-
-      - name: Send Slack notification
-        if: always()
-        env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: python src/notify_slack.py
-
-      - name: Publish Confluence report
-        if: always()
-        env:
           CONFLUENCE_EMAIL: ${{ secrets.CONFLUENCE_EMAIL }}
           CONFLUENCE_API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
           CONFLUENCE_REPORT_PAGE_ID: ${{ secrets.CONFLUENCE_REPORT_PAGE_ID }}
-        run: python src/agents/confluence_reporter.py
+        run: python src/agents/orchestrator.py
 
       - name: Commit updated output
         run: |
