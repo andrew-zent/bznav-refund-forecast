@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install numpy openpyxl
+        run: pip install numpy openpyxl statsmodels plotly
 
       - name: Extract from Pipedrive (개인)
         env:
