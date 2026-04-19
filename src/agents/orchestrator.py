@@ -143,6 +143,13 @@ PIPELINE_STEPS = [
         "max_retries": 0,
     },
     {
+        "name": "validate_dashboard",
+        "script": "agents/dashboard_validator.py",
+        "description": "Streamlit 대시보드 기동 검증",
+        "error_policy": ErrorPolicy.SKIP,  # 검증 실패 시 Slack 경보는 가지만 배포는 진행
+        "max_retries": 0,
+    },
+    {
         "name": "notify_slack",
         "script": "notify_slack.py",
         "description": "Slack 알림",
