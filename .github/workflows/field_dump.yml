@@ -1,0 +1,39 @@
+name: Field Catalog Dump
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Dump field catalog
+        env:
+          PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+          PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
+          CORP_PIPEDRIVE_API_TOKEN: ${{ secrets.CORP_PIPEDRIVE_API_TOKEN }}
+        run: python src/dump_fields.py
+
+      - name: Commit field catalog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash --include-untracked -- output/field_catalog.json
+          git pull --rebase origin main
+          git stash pop || true
+          git add output/field_catalog.json
+          git diff --staged --quiet || git commit -m "chore: field catalog dump $(date +%Y-%m-%d)"
+          git push

@@ -35,7 +35,7 @@ CHAIN_DIST_MAX_OFF = {
 }
 ROLLING_WINDOW = 6  # 최적 윈도우 (Phase 3 실험 1c 결과)
 APP_FALLBACK_WINDOW = 3  # 신청금액 fallback 윈도우
-COLLECTION_MA_WINDOW = 3  # 추심 MA 윈도우
+COLLECTION_MA_WINDOW = 2  # 추심 MA 윈도우 (tuner 최적화: 3→2, MAPE 4.22%→3.94%)
 
 # 시즌 보정 (24개월 백테스트 최적화 + 조사관 도메인 지식 반영)
 # 종소세 시즌(6~7월): 결정 지연 → 결제 이월 효과, d2p 분포가 이미 반영하므로 중복 차감 제거

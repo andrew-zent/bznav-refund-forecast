@@ -48,10 +48,24 @@ NEEDED_KEYS = {
     "9a3b01b6f929c9f4ea9ee51e0523b405412850c2": "decision_date",    # ✍ 결정일자
     "897afed52d7b6a78a08599c33323d548218359ac": "payment_date",     # 💸 결제일자
     "3a7d95a418826be9d6facd9f660a8315bb6bb14a": "is_only_gam",     # 감면only 여부
+    # 실패/취소/보류 진단용
+    "ebdd813efc921dcb6a90be9156642c824589aced": "cancel_reason",   # 취소신청사유 (21옵션)
+    "14558914daad0ec922e4e38a351df8058861c501": "cancel_reason_auto",  # 취소신청사유(자동)
+    "430f49c344b73aaa29622d1fa50e33f75a79ad80": "hold_reason",     # 보류 사유 (10옵션)
+    "314ea8de88a7dda7349215ddc0975216b9662ad9": "hold_reason_2",   # 보류사유 (18옵션)
+    "0ec37f587ba626b05d5db916d9e2f185e47f1abc": "customer_type",   # B(환급)-고객 유형 (13옵션)
+    # 유입 채널 추적 - 신청 시점
+    "17a8ad9fd35f59b439c74d10a7af218589bb126b": "utm_source",
+    "2a1a449aeddc0f50508ee94ab75427b561f031a6": "utm_medium",
+    "020810acc6b1f479fdd219646a656b48a40c965f": "utm_campaign",
+    # 유입 채널 추적 - 조회 시점 (처음 진입)
+    "b21d981e2a10ca515136521fe72ab61f0d43939e": "utm_source_query",
+    "e58a8282f69b17ba72b4f77cfb2832f37b8ee130": "utm_medium_query",
+    "3ce287084ab7024a849de8b357df717093333b7e": "utm_campaign_query",
 }
 
 # Pipedrive standard field keys to keep
-STD_KEYS = {"id", "status", "pipeline_id", "update_time"}
+STD_KEYS = {"id", "status", "pipeline_id", "update_time", "lost_reason", "lost_time", "channel", "channel_id"}
 
 
 def http_get(path, params, retries=3, backoff=2.0):
@@ -90,11 +104,12 @@ def slim_deal(deal, pipe_names):
     rec = {}
     for raw_key, var_name in NEEDED_KEYS.items():
         rec[var_name] = deal.get(raw_key)
-    # standard fields
-    rec["id"] = deal.get("id")
-    rec["status"] = deal.get("status")
-    rec["pipeline"] = pipe_names.get(deal.get("pipeline_id"), str(deal.get("pipeline_id", "")))
-    rec["update_time"] = deal.get("update_time")
+    # standard fields (STD_KEYS 기반)
+    for k in STD_KEYS:
+        if k == "pipeline_id":
+            rec["pipeline"] = pipe_names.get(deal.get(k), str(deal.get(k, "")))
+        else:
+            rec[k] = deal.get(k)
     return rec
 
 
