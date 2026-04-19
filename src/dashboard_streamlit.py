@@ -195,10 +195,10 @@ alrimtalk/SMS 재유입이 있을 때 수익률이 더 높다면
 }
 
 
-@st.dialog("", width="large")
+@st.dialog("📖 이 차트 이해하기", width="large")
 def show_guide(key: str):
     g = GUIDES.get(key, {})
-    st.markdown(f"# {g.get('title','')}")
+    st.markdown(f"## {g.get('title','')}")
     st.markdown(g.get("body", ""))
 
 
