@@ -38,10 +38,19 @@ def excl():
 
 def window_dates(as_of: str):
     d = date.fromisoformat(as_of)
+
+    def rel(days: int) -> str:
+        return (d - timedelta(days=days)).isoformat()
+
     return {
         "12M": ("2024-11-01", "2025-10-31", True),
-        "3M":  ((d-timedelta(days=90)).isoformat(), as_of, False),
-        "1M":  ((d-timedelta(days=30)).isoformat(), as_of, False),
+        "6M":  (rel(180), as_of, False),
+        "3M":  (rel(90),  as_of, False),
+        "1M":  (rel(30),  as_of, False),
+        "4W":  (rel(28),  as_of, False),
+        "3W":  (rel(21),  as_of, False),
+        "2W":  (rel(14),  as_of, False),
+        "1W":  (rel(7),   as_of, False),
     }
 
 # ══ [2/4] 신규 vs 리마인드 ══════════════════════════════════════════

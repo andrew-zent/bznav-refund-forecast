@@ -40,13 +40,20 @@ class Window:
 
 def build_windows(as_of: str) -> list[Window]:
     as_of_d = date.fromisoformat(as_of)
+
+    def rel(days: int) -> str:
+        return (as_of_d - timedelta(days=days)).isoformat()
+
     return [
         Window("12M_cohort", "완성 코호트 12M (2024-11~2025-10)",
                "2024-11-01", "2025-10-31", matured=True),
-        Window("3M_recent", f"최근 3개월 (~{as_of})",
-               (as_of_d - timedelta(days=90)).isoformat(), as_of, matured=False),
-        Window("1M_recent", f"최근 1개월 (~{as_of})",
-               (as_of_d - timedelta(days=30)).isoformat(), as_of, matured=False),
+        Window("6M_recent",  f"최근 6개월 (~{as_of})",  rel(180), as_of, matured=False),
+        Window("3M_recent",  f"최근 3개월 (~{as_of})",  rel(90),  as_of, matured=False),
+        Window("1M_recent",  f"최근 1개월 (~{as_of})",  rel(30),  as_of, matured=False),
+        Window("4W_recent",  f"최근 4주 (~{as_of})",    rel(28),  as_of, matured=False),
+        Window("3W_recent",  f"최근 3주 (~{as_of})",    rel(21),  as_of, matured=False),
+        Window("2W_recent",  f"최근 2주 (~{as_of})",    rel(14),  as_of, matured=False),
+        Window("1W_recent",  f"최근 1주 (~{as_of})",    rel(7),   as_of, matured=False),
     ]
 
 

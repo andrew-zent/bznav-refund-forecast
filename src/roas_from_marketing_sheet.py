@@ -65,15 +65,20 @@ def load_slicer(path: Path) -> pd.DataFrame:
 
 
 def windows(latest_date: pd.Timestamp) -> list[dict]:
+    def rel(days: int) -> str:
+        return (latest_date - timedelta(days=days)).strftime("%Y-%m-%d")
+
+    end = latest_date.strftime("%Y-%m-%d")
     return [
         dict(key="12M_cohort", label="완성 코호트 12M (2024-11~2025-10)",
              start="2024-11-01", end="2025-10-31", matured=True),
-        dict(key="3M_recent", label=f"최근 3개월 (~{latest_date.date()})",
-             start=(latest_date - timedelta(days=90)).strftime("%Y-%m-%d"),
-             end=latest_date.strftime("%Y-%m-%d"), matured=False),
-        dict(key="1M_recent", label=f"최근 1개월 (~{latest_date.date()})",
-             start=(latest_date - timedelta(days=30)).strftime("%Y-%m-%d"),
-             end=latest_date.strftime("%Y-%m-%d"), matured=False),
+        dict(key="6M_recent",  label=f"최근 6개월 (~{end})", start=rel(180), end=end, matured=False),
+        dict(key="3M_recent",  label=f"최근 3개월 (~{end})", start=rel(90),  end=end, matured=False),
+        dict(key="1M_recent",  label=f"최근 1개월 (~{end})", start=rel(30),  end=end, matured=False),
+        dict(key="4W_recent",  label=f"최근 4주 (~{end})",   start=rel(28),  end=end, matured=False),
+        dict(key="3W_recent",  label=f"최근 3주 (~{end})",   start=rel(21),  end=end, matured=False),
+        dict(key="2W_recent",  label=f"최근 2주 (~{end})",   start=rel(14),  end=end, matured=False),
+        dict(key="1W_recent",  label=f"최근 1주 (~{end})",   start=rel(7),   end=end, matured=False),
     ]
 
 
@@ -192,7 +197,7 @@ if __name__ == "__main__":
     out = run()
     print(f"\nsource = {out['source_file']}")
     print(f"data through = {out['data_max_date']}\n")
-    for k in ["12M_cohort", "3M_recent", "1M_recent"]:
+    for k in ["12M_cohort", "6M_recent", "3M_recent", "1M_recent", "4W_recent", "3W_recent", "2W_recent", "1W_recent"]:
         s = out["by_window"][k]["summary"]
         flag = "" if s["matured"] else "  (lag 미성숙)"
         print(f"[{k}]{flag}")
