@@ -1,38 +1,72 @@
 {
-  "generated_at": "2026-04-18T04:15:43Z",
+  "run_id": "20260414_122108",
+  "started_at": "2026-04-14T12:21:08Z",
+  "finished_at": "2026-04-14T12:21:08Z",
   "status": "success",
   "steps": [
     {
       "name": "extract_individual",
-      "status": "success",
-      "records": 233926
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
     },
     {
-      "name": "extract_corporate",
-      "status": "success",
-      "records": 8200
+      "name": "extract_corp",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
     },
     {
-      "name": "model_fit",
-      "status": "success",
-      "distributions": [
-        "a2f",
-        "f2d",
-        "d2p"
-      ]
+      "name": "watch_data",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
     },
     {
-      "name": "forecast",
-      "status": "success",
-      "months": 5
+      "name": "run_model",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
     },
     {
-      "name": "backtest",
-      "status": "success",
-      "individual_mape": 5.72,
-      "corporate_mape": 33.7
+      "name": "verify_forecast",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
+    },
+    {
+      "name": "generate_dashboard",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
+    },
+    {
+      "name": "notify_slack",
+      "status": "skipped",
+      "started_at": "2026-04-14T12:21:08Z",
+      "finished_at": "2026-04-14T12:21:08Z",
+      "duration_sec": 0,
+      "detail": "dry-run",
+      "error": ""
     }
   ],
-  "auto_corrections": 0,
-  "corp_model_type": "linear_trend"
+  "dry_run": true
 }

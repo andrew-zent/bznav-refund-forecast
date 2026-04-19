@@ -1,0 +1,62 @@
+{
+  "generated_at": "2026-04-19T03:15:26Z",
+  "current_month": "2026-04",
+  "models_used": [
+    "cohort",
+    "arima",
+    "ets"
+  ],
+  "fallback_cohort_only": false,
+  "weights": {
+    "cohort": 0.7037,
+    "arima": 0.1442,
+    "ets": 0.1521
+  },
+  "weight_basis": "inverse of recent 3M backtest MAPE",
+  "mape": {
+    "cohort_12m": 5.44,
+    "cohort_3m": 8.33,
+    "arima_12m": 24.21,
+    "arima_3m": 40.64,
+    "ets_12m": 23.31,
+    "ets_3m": 38.54
+  },
+  "forecast": [
+    {
+      "month": "2026-04",
+      "cohort": 16.11,
+      "arima": 18.2,
+      "ets": 19.24,
+      "ensemble": 16.89
+    },
+    {
+      "month": "2026-05",
+      "cohort": 18.03,
+      "arima": 16.12,
+      "ets": 19.48,
+      "ensemble": 17.97
+    },
+    {
+      "month": "2026-06",
+      "cohort": 21.24,
+      "arima": 16.92,
+      "ets": 19.73,
+      "ensemble": 20.39
+    },
+    {
+      "month": "2026-07",
+      "cohort": 18.95,
+      "arima": 16.61,
+      "ets": 19.97,
+      "ensemble": 18.77
+    },
+    {
+      "month": "2026-08",
+      "cohort": 18.34,
+      "arima": 16.73,
+      "ets": 20.22,
+      "ensemble": 18.39
+    }
+  ],
+  "units": "억원 (100M KRW)"
+}

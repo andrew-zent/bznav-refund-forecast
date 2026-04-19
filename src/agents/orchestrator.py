@@ -114,20 +114,6 @@ PIPELINE_STEPS = [
         "error_policy": ErrorPolicy.SKIP,
         "max_retries": 0,
     },
-    {
-        "name": "ensemble_forecast",
-        "script": "agents/ensemble.py",
-        "description": "멀티 모델 앙상블 예측 (cohort+ARIMA+ETS)",
-        "error_policy": ErrorPolicy.SKIP,
-        "max_retries": 0,
-    },
-    {
-        "name": "confluence_report",
-        "script": "agents/confluence_reporter.py",
-        "description": "Confluence 주간 리포트 자동 게시",
-        "error_policy": ErrorPolicy.SKIP,
-        "max_retries": 0,
-    },
 ]
 
 

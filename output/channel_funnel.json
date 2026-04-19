@@ -1,0 +1,1138 @@
+{
+  "generated_at": "2026-04-19T09:41:45Z",
+  "as_of": "2026-04-18",
+  "min_deals": 100,
+  "funnel": [
+    {
+      "channel": "toss.join",
+      "deals": 16338,
+      "apply_oku": 429.93,
+      "filing_rate": 91.9,
+      "decision_rate": 82.8,
+      "won_rate": 72.8,
+      "payment_rate": 72.3,
+      "yield_pct": 14.84
+    },
+    {
+      "channel": "alrimtalk",
+      "deals": 11576,
+      "apply_oku": 332.31,
+      "filing_rate": 89.4,
+      "decision_rate": 78.8,
+      "won_rate": 73.6,
+      "payment_rate": 73.2,
+      "yield_pct": 14.24
+    },
+    {
+      "channel": "sms",
+      "deals": 1455,
+      "apply_oku": 107.18,
+      "filing_rate": 84.1,
+      "decision_rate": 73.3,
+      "won_rate": 68.0,
+      "payment_rate": 67.1,
+      "yield_pct": 10.76
+    },
+    {
+      "channel": "referer",
+      "deals": 1857,
+      "apply_oku": 82.51,
+      "filing_rate": 84.9,
+      "decision_rate": 73.8,
+      "won_rate": 69.7,
+      "payment_rate": 68.9,
+      "yield_pct": 12.07
+    },
+    {
+      "channel": "kbcardlms",
+      "deals": 1805,
+      "apply_oku": 72.03,
+      "filing_rate": 83.5,
+      "decision_rate": 73.9,
+      "won_rate": 69.3,
+      "payment_rate": 68.8,
+      "yield_pct": 12.13
+    },
+    {
+      "channel": "kakaobank",
+      "deals": 2681,
+      "apply_oku": 64.21,
+      "filing_rate": 91.8,
+      "decision_rate": 82.1,
+      "won_rate": 75.5,
+      "payment_rate": 74.9,
+      "yield_pct": 14.05
+    },
+    {
+      "channel": "google.adwords",
+      "deals": 1558,
+      "apply_oku": 48.66,
+      "filing_rate": 80.7,
+      "decision_rate": 69.8,
+      "won_rate": 63.4,
+      "payment_rate": 62.6,
+      "yield_pct": 10.12
+    },
+    {
+      "channel": "naver.searchad",
+      "deals": 1003,
+      "apply_oku": 44.15,
+      "filing_rate": 81.9,
+      "decision_rate": 68.0,
+      "won_rate": 69.2,
+      "payment_rate": 68.5,
+      "yield_pct": 11.67
+    },
+    {
+      "channel": "hanacardlms",
+      "deals": 1222,
+      "apply_oku": 41.05,
+      "filing_rate": 84.7,
+      "decision_rate": 75.0,
+      "won_rate": 68.6,
+      "payment_rate": 68.3,
+      "yield_pct": 11.29
+    },
+    {
+      "channel": "kakaochannel",
+      "deals": 1230,
+      "apply_oku": 37.37,
+      "filing_rate": 87.5,
+      "decision_rate": 76.9,
+      "won_rate": 71.2,
+      "payment_rate": 70.7,
+      "yield_pct": 13.14
+    },
+    {
+      "channel": "shinhancardlms",
+      "deals": 1470,
+      "apply_oku": 33.47,
+      "filing_rate": 91.2,
+      "decision_rate": 84.1,
+      "won_rate": 80.1,
+      "payment_rate": 80.1,
+      "yield_pct": 12.43
+    },
+    {
+      "channel": "partner",
+      "deals": 873,
+      "apply_oku": 32.06,
+      "filing_rate": 86.5,
+      "decision_rate": 78.2,
+      "won_rate": 71.4,
+      "payment_rate": 71.0,
+      "yield_pct": 11.51
+    },
+    {
+      "channel": "cashnote",
+      "deals": 858,
+      "apply_oku": 29.9,
+      "filing_rate": 83.6,
+      "decision_rate": 68.5,
+      "won_rate": 60.3,
+      "payment_rate": 59.7,
+      "yield_pct": 9.73
+    },
+    {
+      "channel": "okpos",
+      "deals": 718,
+      "apply_oku": 26.85,
+      "filing_rate": 79.8,
+      "decision_rate": 67.4,
+      "won_rate": 63.4,
+      "payment_rate": 63.1,
+      "yield_pct": 11.94
+    },
+    {
+      "channel": "facebook.business",
+      "deals": 854,
+      "apply_oku": 25.96,
+      "filing_rate": 87.6,
+      "decision_rate": 76.6,
+      "won_rate": 72.0,
+      "payment_rate": 72.1,
+      "yield_pct": 10.97
+    },
+    {
+      "channel": "banksalad",
+      "deals": 405,
+      "apply_oku": 22.42,
+      "filing_rate": 82.7,
+      "decision_rate": 69.4,
+      "won_rate": 65.4,
+      "payment_rate": 65.4,
+      "yield_pct": 10.93
+    },
+    {
+      "channel": "wooricardlms",
+      "deals": 686,
+      "apply_oku": 22.21,
+      "filing_rate": 83.1,
+      "decision_rate": 73.3,
+      "won_rate": 68.1,
+      "payment_rate": 67.8,
+      "yield_pct": 11.94
+    },
+    {
+      "channel": "alrimtalk.toss.join",
+      "deals": 642,
+      "apply_oku": 21.46,
+      "filing_rate": 92.2,
+      "decision_rate": 81.5,
+      "won_rate": 75.5,
+      "payment_rate": 75.2,
+      "yield_pct": 10.94
+    },
+    {
+      "channel": "zeropay",
+      "deals": 666,
+      "apply_oku": 17.48,
+      "filing_rate": 84.1,
+      "decision_rate": 74.6,
+      "won_rate": 68.9,
+      "payment_rate": 68.6,
+      "yield_pct": 12.08
+    },
+    {
+      "channel": "tiktok",
+      "deals": 530,
+      "apply_oku": 11.4,
+      "filing_rate": 93.0,
+      "decision_rate": 84.0,
+      "won_rate": 73.8,
+      "payment_rate": 73.4,
+      "yield_pct": 10.92
+    },
+    {
+      "channel": "bznav.homepage",
+      "deals": 195,
+      "apply_oku": 9.76,
+      "filing_rate": 70.3,
+      "decision_rate": 51.3,
+      "won_rate": 57.9,
+      "payment_rate": 57.4,
+      "yield_pct": 11.68
+    },
+    {
+      "channel": "app_bznav",
+      "deals": 180,
+      "apply_oku": 9.36,
+      "filing_rate": 91.1,
+      "decision_rate": 78.3,
+      "won_rate": 76.7,
+      "payment_rate": 76.1,
+      "yield_pct": 10.79
+    },
+    {
+      "channel": "sena",
+      "deals": 156,
+      "apply_oku": 6.1,
+      "filing_rate": 87.8,
+      "decision_rate": 75.0,
+      "won_rate": 73.1,
+      "payment_rate": 73.1,
+      "yield_pct": 15.13
+    },
+    {
+      "channel": "share",
+      "deals": 133,
+      "apply_oku": 6.05,
+      "filing_rate": 88.7,
+      "decision_rate": 78.9,
+      "won_rate": 72.2,
+      "payment_rate": 71.4,
+      "yield_pct": 8.21
+    },
+    {
+      "channel": "imbank",
+      "deals": 194,
+      "apply_oku": 5.0,
+      "filing_rate": 88.7,
+      "decision_rate": 77.8,
+      "won_rate": 73.2,
+      "payment_rate": 73.2,
+      "yield_pct": 14.73
+    },
+    {
+      "channel": "yogiyo",
+      "deals": 159,
+      "apply_oku": 4.81,
+      "filing_rate": 88.1,
+      "decision_rate": 76.1,
+      "won_rate": 71.1,
+      "payment_rate": 69.8,
+      "yield_pct": 11.15
+    },
+    {
+      "channel": "kakaopay",
+      "deals": 131,
+      "apply_oku": 3.94,
+      "filing_rate": 83.2,
+      "decision_rate": 69.5,
+      "won_rate": 61.1,
+      "payment_rate": 60.3,
+      "yield_pct": 10.06
+    },
+    {
+      "channel": "kakaobrandmsg",
+      "deals": 189,
+      "apply_oku": 3.66,
+      "filing_rate": 91.5,
+      "decision_rate": 78.3,
+      "won_rate": 70.9,
+      "payment_rate": 70.9,
+      "yield_pct": 7.94
+    },
+    {
+      "channel": "refund_pincrux",
+      "deals": 135,
+      "apply_oku": 3.42,
+      "filing_rate": 83.7,
+      "decision_rate": 73.3,
+      "won_rate": 59.3,
+      "payment_rate": 57.8,
+      "yield_pct": 11.1
+    },
+    {
+      "channel": "atlantruck",
+      "deals": 136,
+      "apply_oku": 1.36,
+      "filing_rate": 99.3,
+      "decision_rate": 92.6,
+      "won_rate": 83.1,
+      "payment_rate": 83.8,
+      "yield_pct": 16.56
+    },
+    {
+      "channel": "zaritalk",
+      "deals": 124,
+      "apply_oku": 0.52,
+      "filing_rate": 99.2,
+      "decision_rate": 84.7,
+      "won_rate": 82.3,
+      "payment_rate": 82.3,
+      "yield_pct": 20.72
+    }
+  ],
+  "quarterly_trend": {
+    "toss.join": [
+      {
+        "quarter": "2024Q4",
+        "deals": 1035,
+        "apply_oku": 23.82,
+        "yield_pct": 16.63
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 8184,
+        "apply_oku": 206.82,
+        "yield_pct": 15.85
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 4057,
+        "apply_oku": 99.81,
+        "yield_pct": 14.39
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 2498,
+        "apply_oku": 86.79,
+        "yield_pct": 12.67
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 2315,
+        "apply_oku": 58.93,
+        "yield_pct": 11.35
+      }
+    ],
+    "alrimtalk": [
+      {
+        "quarter": "2024Q4",
+        "deals": 3153,
+        "apply_oku": 94.27,
+        "yield_pct": 14.71
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 2452,
+        "apply_oku": 78.25,
+        "yield_pct": 13.91
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 3477,
+        "apply_oku": 85.46,
+        "yield_pct": 15.15
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 2462,
+        "apply_oku": 85.22,
+        "yield_pct": 13.52
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 4993,
+        "apply_oku": 150.79,
+        "yield_pct": 10.89
+      }
+    ],
+    "sms": [
+      {
+        "quarter": "2024Q4",
+        "deals": 231,
+        "apply_oku": 18.92,
+        "yield_pct": 10.24
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 414,
+        "apply_oku": 24.9,
+        "yield_pct": 10.43
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 440,
+        "apply_oku": 29.26,
+        "yield_pct": 10.79
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 332,
+        "apply_oku": 30.59,
+        "yield_pct": 10.42
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 465,
+        "apply_oku": 34.94,
+        "yield_pct": 9.59
+      }
+    ],
+    "referer": [
+      {
+        "quarter": "2024Q4",
+        "deals": 313,
+        "apply_oku": 14.61,
+        "yield_pct": 15.2
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 413,
+        "apply_oku": 18.95,
+        "yield_pct": 11.7
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 533,
+        "apply_oku": 27.94,
+        "yield_pct": 9.24
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 543,
+        "apply_oku": 19.5,
+        "yield_pct": 13.98
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 532,
+        "apply_oku": 18.58,
+        "yield_pct": 12.03
+      }
+    ],
+    "kbcardlms": [
+      {
+        "quarter": "2024Q4",
+        "deals": 352,
+        "apply_oku": 11.06,
+        "yield_pct": 17.23
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 331,
+        "apply_oku": 12.13,
+        "yield_pct": 13.1
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 378,
+        "apply_oku": 13.32,
+        "yield_pct": 13.51
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 570,
+        "apply_oku": 28.96,
+        "yield_pct": 10.46
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 911,
+        "apply_oku": 31.18,
+        "yield_pct": 9.08
+      }
+    ],
+    "kakaobank": [
+      {
+        "quarter": "2024Q4",
+        "deals": 367,
+        "apply_oku": 9.69,
+        "yield_pct": 11.35
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 908,
+        "apply_oku": 21.12,
+        "yield_pct": 13.21
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 548,
+        "apply_oku": 11.63,
+        "yield_pct": 17.8
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 721,
+        "apply_oku": 19.81,
+        "yield_pct": 13.47
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 1006,
+        "apply_oku": 24.18,
+        "yield_pct": 12.16
+      }
+    ],
+    "google.adwords": [
+      {
+        "quarter": "2024Q4",
+        "deals": 13,
+        "apply_oku": 0.63,
+        "yield_pct": 28.74
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 14,
+        "apply_oku": 0.71,
+        "yield_pct": 9.9
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 452,
+        "apply_oku": 11.58,
+        "yield_pct": 11.53
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 766,
+        "apply_oku": 27.96,
+        "yield_pct": 9.74
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 761,
+        "apply_oku": 21.98,
+        "yield_pct": 10.55
+      }
+    ],
+    "naver.searchad": [
+      {
+        "quarter": "2024Q4",
+        "deals": 190,
+        "apply_oku": 10.98,
+        "yield_pct": 11.0
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 171,
+        "apply_oku": 8.17,
+        "yield_pct": 10.19
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 302,
+        "apply_oku": 10.95,
+        "yield_pct": 13.19
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 279,
+        "apply_oku": 11.67,
+        "yield_pct": 13.41
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 686,
+        "apply_oku": 26.48,
+        "yield_pct": 11.37
+      }
+    ],
+    "hanacardlms": [
+      {
+        "quarter": "2024Q4",
+        "deals": 201,
+        "apply_oku": 6.23,
+        "yield_pct": 13.01
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 153,
+        "apply_oku": 7.45,
+        "yield_pct": 8.15
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 325,
+        "apply_oku": 9.4,
+        "yield_pct": 11.2
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 494,
+        "apply_oku": 16.81,
+        "yield_pct": 12.28
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 425,
+        "apply_oku": 14.66,
+        "yield_pct": 11.29
+      }
+    ],
+    "kakaochannel": [
+      {
+        "quarter": "2024Q4",
+        "deals": 285,
+        "apply_oku": 8.0,
+        "yield_pct": 10.76
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 273,
+        "apply_oku": 8.32,
+        "yield_pct": 13.86
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 363,
+        "apply_oku": 10.31,
+        "yield_pct": 14.85
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 353,
+        "apply_oku": 12.63,
+        "yield_pct": 12.2
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 468,
+        "apply_oku": 14.54,
+        "yield_pct": 9.38
+      }
+    ],
+    "shinhancardlms": [
+      {
+        "quarter": "2024Q4",
+        "deals": 11,
+        "apply_oku": 0.09,
+        "yield_pct": 34.78
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 1,
+        "apply_oku": 0.01,
+        "yield_pct": 30.99
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 52,
+        "apply_oku": 1.35,
+        "yield_pct": 11.77
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 960,
+        "apply_oku": 19.93,
+        "yield_pct": 13.7
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 2196,
+        "apply_oku": 58.79,
+        "yield_pct": 10.03
+      }
+    ],
+    "partner": [
+      {
+        "quarter": "2024Q4",
+        "deals": 369,
+        "apply_oku": 13.26,
+        "yield_pct": 9.85
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 238,
+        "apply_oku": 7.17,
+        "yield_pct": 14.95
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 185,
+        "apply_oku": 7.57,
+        "yield_pct": 10.37
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 138,
+        "apply_oku": 6.2,
+        "yield_pct": 12.45
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 109,
+        "apply_oku": 2.32,
+        "yield_pct": 15.57
+      }
+    ],
+    "cashnote": [
+      {
+        "quarter": "2024Q4",
+        "deals": 253,
+        "apply_oku": 6.76,
+        "yield_pct": 8.97
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 91,
+        "apply_oku": 1.42,
+        "yield_pct": 17.02
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 127,
+        "apply_oku": 5.34,
+        "yield_pct": 6.05
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 409,
+        "apply_oku": 17.49,
+        "yield_pct": 10.28
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 177,
+        "apply_oku": 6.2,
+        "yield_pct": 6.64
+      }
+    ],
+    "okpos": [
+      {
+        "quarter": "2024Q4",
+        "deals": 2,
+        "apply_oku": 0.13,
+        "yield_pct": 23.0
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 125,
+        "apply_oku": 5.9,
+        "yield_pct": 14.59
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 131,
+        "apply_oku": 4.09,
+        "yield_pct": 11.96
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 412,
+        "apply_oku": 15.15,
+        "yield_pct": 11.43
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 168,
+        "apply_oku": 6.52,
+        "yield_pct": 5.61
+      }
+    ],
+    "facebook.business": [
+      {
+        "quarter": "2024Q4",
+        "deals": 63,
+        "apply_oku": 1.94,
+        "yield_pct": 13.12
+      },
+      {
+        "quarter": "2025Q1",
+        "deals": 48,
+        "apply_oku": 1.38,
+        "yield_pct": 17.55
+      },
+      {
+        "quarter": "2025Q2",
+        "deals": 250,
+        "apply_oku": 6.65,
+        "yield_pct": 10.41
+      },
+      {
+        "quarter": "2025Q3",
+        "deals": 338,
+        "apply_oku": 10.34,
+        "yield_pct": 11.49
+      },
+      {
+        "quarter": "2025Q4",
+        "deals": 1010,
+        "apply_oku": 29.92,
+        "yield_pct": 10.7
+      }
+    ]
+  },
+  "quarters": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+  ],
+  "self_conversion": [
+    {
+      "channel": "toss.join",
+      "total_deals": 17741,
+      "self_deals": 16327,
+      "crm_deals": 1414,
+      "self_pct": 92.0,
+      "crm_pct": 8.0,
+      "self_yield": 14.8,
+      "crm_yield": 13.05,
+      "apply_oku": 474.65
+    },
+    {
+      "channel": "alrimtalk",
+      "total_deals": 10191,
+      "self_deals": 9786,
+      "crm_deals": 405,
+      "self_pct": 96.0,
+      "crm_pct": 4.0,
+      "self_yield": 14.09,
+      "crm_yield": 11.61,
+      "apply_oku": 300.35
+    },
+    {
+      "channel": "referer",
+      "total_deals": 1946,
+      "self_deals": 1748,
+      "crm_deals": 198,
+      "self_pct": 89.8,
+      "crm_pct": 10.2,
+      "self_yield": 12.49,
+      "crm_yield": 8.29,
+      "apply_oku": 89.87
+    },
+    {
+      "channel": "kbcardlms",
+      "total_deals": 1930,
+      "self_deals": 1746,
+      "crm_deals": 184,
+      "self_pct": 90.5,
+      "crm_pct": 9.5,
+      "self_yield": 12.0,
+      "crm_yield": 10.5,
+      "apply_oku": 85.0
+    },
+    {
+      "channel": "kakaobank",
+      "total_deals": 2886,
+      "self_deals": 2618,
+      "crm_deals": 268,
+      "self_pct": 90.7,
+      "crm_pct": 9.3,
+      "self_yield": 14.04,
+      "crm_yield": 15.06,
+      "apply_oku": 72.69
+    },
+    {
+      "channel": "google.adwords",
+      "total_deals": 1664,
+      "self_deals": 1535,
+      "crm_deals": 129,
+      "self_pct": 92.2,
+      "crm_pct": 7.8,
+      "self_yield": 10.29,
+      "crm_yield": 13.37,
+      "apply_oku": 53.01
+    },
+    {
+      "channel": "naver.searchad",
+      "total_deals": 1019,
+      "self_deals": 922,
+      "crm_deals": 97,
+      "self_pct": 90.5,
+      "crm_pct": 9.5,
+      "self_yield": 11.48,
+      "crm_yield": 8.98,
+      "apply_oku": 48.13
+    },
+    {
+      "channel": "hanacardlms",
+      "total_deals": 1341,
+      "self_deals": 1200,
+      "crm_deals": 141,
+      "self_pct": 89.5,
+      "crm_pct": 10.5,
+      "self_yield": 11.23,
+      "crm_yield": 14.6,
+      "apply_oku": 46.57
+    },
+    {
+      "channel": "kakaochannel",
+      "total_deals": 1280,
+      "self_deals": 1108,
+      "crm_deals": 172,
+      "self_pct": 86.6,
+      "crm_pct": 13.4,
+      "self_yield": 13.07,
+      "crm_yield": 14.86,
+      "apply_oku": 40.58
+    },
+    {
+      "channel": "cashnote",
+      "total_deals": 998,
+      "self_deals": 858,
+      "crm_deals": 140,
+      "self_pct": 86.0,
+      "crm_pct": 14.0,
+      "self_yield": 9.83,
+      "crm_yield": 11.72,
+      "apply_oku": 38.55
+    },
+    {
+      "channel": "partner",
+      "total_deals": 983,
+      "self_deals": 859,
+      "crm_deals": 124,
+      "self_pct": 87.4,
+      "crm_pct": 12.6,
+      "self_yield": 11.87,
+      "crm_yield": 16.74,
+      "apply_oku": 38.35
+    },
+    {
+      "channel": "shinhancardlms",
+      "total_deals": 1599,
+      "self_deals": 1477,
+      "crm_deals": 122,
+      "self_pct": 92.4,
+      "crm_pct": 7.6,
+      "self_yield": 12.49,
+      "crm_yield": 17.37,
+      "apply_oku": 37.92
+    },
+    {
+      "channel": "facebook.business",
+      "total_deals": 959,
+      "self_deals": 871,
+      "crm_deals": 88,
+      "self_pct": 90.8,
+      "crm_pct": 9.2,
+      "self_yield": 10.52,
+      "crm_yield": 13.64,
+      "apply_oku": 30.95
+    },
+    {
+      "channel": "okpos",
+      "total_deals": 761,
+      "self_deals": 690,
+      "crm_deals": 71,
+      "self_pct": 90.7,
+      "crm_pct": 9.3,
+      "self_yield": 12.04,
+      "crm_yield": 12.92,
+      "apply_oku": 28.37
+    },
+    {
+      "channel": "banksalad",
+      "total_deals": 462,
+      "self_deals": 406,
+      "crm_deals": 56,
+      "self_pct": 87.9,
+      "crm_pct": 12.1,
+      "self_yield": 10.83,
+      "crm_yield": 10.01,
+      "apply_oku": 27.96
+    },
+    {
+      "channel": "wooricardlms",
+      "total_deals": 765,
+      "self_deals": 676,
+      "crm_deals": 89,
+      "self_pct": 88.4,
+      "crm_pct": 11.6,
+      "self_yield": 12.66,
+      "crm_yield": 10.23,
+      "apply_oku": 26.99
+    },
+    {
+      "channel": "zeropay",
+      "total_deals": 727,
+      "self_deals": 660,
+      "crm_deals": 67,
+      "self_pct": 90.8,
+      "crm_pct": 9.2,
+      "self_yield": 11.72,
+      "crm_yield": 5.06,
+      "apply_oku": 23.71
+    },
+    {
+      "channel": "sms",
+      "total_deals": 494,
+      "self_deals": 450,
+      "crm_deals": 44,
+      "self_pct": 91.1,
+      "crm_pct": 8.9,
+      "self_yield": 11.24,
+      "crm_yield": 10.5,
+      "apply_oku": 18.69
+    },
+    {
+      "channel": "tiktok",
+      "total_deals": 583,
+      "self_deals": 542,
+      "crm_deals": 41,
+      "self_pct": 93.0,
+      "crm_pct": 7.0,
+      "self_yield": 10.88,
+      "crm_yield": 14.81,
+      "apply_oku": 12.81
+    },
+    {
+      "channel": "bznav.homepage",
+      "total_deals": 178,
+      "self_deals": 167,
+      "crm_deals": 11,
+      "self_pct": 93.8,
+      "crm_pct": 6.2,
+      "self_yield": 9.73,
+      "crm_yield": 3.4,
+      "apply_oku": 9.57
+    },
+    {
+      "channel": "app_bznav",
+      "total_deals": 148,
+      "self_deals": 144,
+      "crm_deals": 4,
+      "self_pct": 97.3,
+      "crm_pct": 2.7,
+      "self_yield": 10.44,
+      "crm_yield": 22.34,
+      "apply_oku": 8.55
+    },
+    {
+      "channel": "share",
+      "total_deals": 134,
+      "self_deals": 122,
+      "crm_deals": 12,
+      "self_pct": 91.0,
+      "crm_pct": 9.0,
+      "self_yield": 7.36,
+      "crm_yield": 29.57,
+      "apply_oku": 6.73
+    },
+    {
+      "channel": "imbank",
+      "total_deals": 215,
+      "self_deals": 191,
+      "crm_deals": 24,
+      "self_pct": 88.8,
+      "crm_pct": 11.2,
+      "self_yield": 13.66,
+      "crm_yield": 11.7,
+      "apply_oku": 6.05
+    },
+    {
+      "channel": "sena",
+      "total_deals": 160,
+      "self_deals": 150,
+      "crm_deals": 10,
+      "self_pct": 93.8,
+      "crm_pct": 6.2,
+      "self_yield": 13.39,
+      "crm_yield": 26.92,
+      "apply_oku": 6.04
+    },
+    {
+      "channel": "yogiyo",
+      "total_deals": 170,
+      "self_deals": 157,
+      "crm_deals": 13,
+      "self_pct": 92.4,
+      "crm_pct": 7.6,
+      "self_yield": 11.5,
+      "crm_yield": 7.08,
+      "apply_oku": 5.12
+    },
+    {
+      "channel": "refund_pincrux",
+      "total_deals": 141,
+      "self_deals": 132,
+      "crm_deals": 9,
+      "self_pct": 93.6,
+      "crm_pct": 6.4,
+      "self_yield": 10.95,
+      "crm_yield": 10.14,
+      "apply_oku": 4.23
+    },
+    {
+      "channel": "kakaopay",
+      "total_deals": 120,
+      "self_deals": 117,
+      "crm_deals": 3,
+      "self_pct": 97.5,
+      "crm_pct": 2.5,
+      "self_yield": 11.07,
+      "crm_yield": 5.41,
+      "apply_oku": 3.78
+    },
+    {
+      "channel": "kakaobrandmsg",
+      "total_deals": 155,
+      "self_deals": 143,
+      "crm_deals": 12,
+      "self_pct": 92.3,
+      "crm_pct": 7.7,
+      "self_yield": 8.62,
+      "crm_yield": 13.06,
+      "apply_oku": 3.63
+    },
+    {
+      "channel": "atlantruck",
+      "total_deals": 142,
+      "self_deals": 133,
+      "crm_deals": 9,
+      "self_pct": 93.7,
+      "crm_pct": 6.3,
+      "self_yield": 16.62,
+      "crm_yield": 27.83,
+      "apply_oku": 1.4
+    },
+    {
+      "channel": "zaritalk",
+      "total_deals": 121,
+      "self_deals": 113,
+      "crm_deals": 8,
+      "self_pct": 93.4,
+      "crm_pct": 6.6,
+      "self_yield": 26.71,
+      "crm_yield": 12.57,
+      "apply_oku": 0.44
+    }
+  ]
+}
