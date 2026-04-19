@@ -25,7 +25,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install numpy openpyxl statsmodels plotly
+        run: pip install numpy openpyxl statsmodels plotly pandas
 
       - name: Extract from Pipedrive (개인)
         env:
@@ -48,6 +48,26 @@ jobs:
       - name: Generate dashboard
         working-directory: src
         run: python generate_dashboard.py
+
+      - name: UTM 채널 효율 분석
+        continue-on-error: true
+        run: python src/utm_channel_analysis.py
+
+      - name: 채널 정밀 분석 (신규/리마인드, 캠페인 A/B, 멀티터치)
+        continue-on-error: true
+        run: python src/channel_deep_analysis.py
+
+      - name: 어트리뷰션 분석 (First/Last/Linear, CRM Lift, Journey Matrix)
+        continue-on-error: true
+        run: python src/attribution_analysis.py
+
+      - name: 채널 퍼널 분석 (전환율, 분기 트렌드, 자력전환율)
+        continue-on-error: true
+        run: python src/channel_funnel_analysis.py
+
+      - name: 앙상블 예측 (Cohort + ARIMA + ETS)
+        continue-on-error: true
+        run: python src/agents/ensemble.py
 
       - name: Verify forecast
         run: python src/agents/verifier.py
