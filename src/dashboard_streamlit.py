@@ -1062,6 +1062,49 @@ with tabs[5]:
         mf_asof = mf_con.execute("SELECT MAX(as_of_date) FROM deal_history").fetchone()[0]
         st.caption(f"데이터 기준일: {mf_asof}")
 
+        # ── 0. 4.7% 도출 근거 ──────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🧮 4.7% 계수 도출 근거")
+        st.caption("마케팅팀이 쓰는 '신청환급금' 전체 base에 적용하는 계수가 왜 4.7%인지 단계별로 보여줍니다.")
+
+        # Step A: 유효 pipeline 실제 수익률
+        eff_row = mf_con.execute("""
+            SELECT SUM(apply_amount), SUM(payment_amount)
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline IN ('B(젠트)-환급','C(젠트)-추심','법인-환급','법인-추심')
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()
+        eff_apply, eff_pay = (eff_row[0] or 0), (eff_row[1] or 0)
+        eff_yield = eff_pay / eff_apply * 100 if eff_apply > 0 else 0
+
+        # Step B: 전체 base (마케팅 기준, A(지수) 포함)
+        total_apply_all = mf_con.execute("""
+            SELECT SUM(apply_amount) FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()[0] or 0
+
+        # Step C: scale ratio & 환산 계수
+        scale_ratio = total_apply_all / eff_apply if eff_apply > 0 else 0
+        derived_pct = eff_yield / scale_ratio if scale_ratio > 0 else 0
+
+        # 단계별 표시
+        st.markdown(f"""
+| 단계 | 계산 | 값 |
+|------|------|----|
+| **① 유효 pipeline 신청액** | B환급 + C추심 + 법인 합산 | **{eff_apply/1e8:.1f}억** |
+| **② 유효 pipeline 결제액** | 동일 pipeline 실측 결제 | **{eff_pay/1e8:.1f}억** |
+| **③ 실제 수익률** | ② ÷ ① | **{eff_yield:.2f}%** |
+| **④ 전체 신청액 (마케팅 base)** | A(지수) 포함 전체 | **{total_apply_all/1e8:.1f}억** |
+| **⑤ Base 배율** | ④ ÷ ① (마케팅 base가 유효 base의 몇 배) | **{scale_ratio:.2f}배** |
+| **⑥ 환산 계수** | ③ ÷ ⑤ (마케팅 base 기준 등가 계수) | **{derived_pct:.2f}%** |
+""")
+        st.info(
+            f"📌 결론: 실제 수익률 **{eff_yield:.1f}%** 는 유효 pipeline 기준 — "
+            f"마케팅팀이 보는 전체 신청액은 유효 base의 **{scale_ratio:.1f}배**이므로 "
+            f"전체 base에 적용할 등가 계수 = {eff_yield:.1f}% ÷ {scale_ratio:.1f} = **{derived_pct:.2f}% ≈ 4.7%**"
+        )
+        st.caption("※ A(지수) pipeline은 신청은 잡히지만 결제로 거의 이어지지 않아 분모만 키우는 구조. 이를 포함한 전체 base에 적용하려면 유효 수익률을 배율로 나눠야 함.")
+
         # ── 1. 공식 비교 카드 ─────────────────────────────────────────────────
         st.markdown("---")
         st.markdown("#### 🔢 예측 공식 비교")
