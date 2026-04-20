@@ -244,8 +244,7 @@ with tabs[0]:
     funnel_d = get_funnel()
     roas_d   = get_roas()
 
-    utm_window      = (utm_d  or {}).get("windows", {}).get(rp_key, {})
-    by_source       = utm_window.get("by_source", [])
+    by_source       = (utm_d or {}).get("by_dimension", {}).get("utm_source", {}).get(rp_key, [])
     roas_window     = (roas_d or {}).get("by_window", {}).get(rp_key, {})
     by_channel_roas = roas_window.get("by_channel", [])
     funnel_rows     = (funnel_d or {}).get("funnel", []) if rp_period == "12M" else []
@@ -260,7 +259,7 @@ with tabs[0]:
         df_src = pd.DataFrame(by_source)
         total_deals = int(df_src["deals"].sum()) if "deals" in df_src.columns else 0
         total_apply = df_src["apply_oku"].sum() if "apply_oku" in df_src.columns else 0
-        total_pay   = df_src["pay_oku"].sum()   if "pay_oku"   in df_src.columns else 0
+        total_pay   = df_src["payment_oku"].sum() if "payment_oku" in df_src.columns else 0
         avg_yield   = round(100 * total_pay / total_apply, 1) if total_apply > 0 else 0
         n_ch        = len(df_src)
 
@@ -288,7 +287,7 @@ with tabs[0]:
                 insights.append(
                     f"🏆 **가장 효율적인 채널**: `{best['utm_source']}` — "
                     f"수익률 **{best['yield_pct']:.1f}%** "
-                    f"(신청 {best['apply_oku']:.1f}억 → 결제 {best.get('pay_oku',0):.1f}억)"
+                    f"(신청 {best['apply_oku']:.1f}억 → 결제 {best.get('payment_oku',0):.1f}억)"
                 )
                 insights.append(
                     f"⚠️ **개선이 필요한 채널**: `{worst['utm_source']}` — "
@@ -349,11 +348,11 @@ with tabs[0]:
                 return "🔴 저조"
             except: return "—"
 
-        df_src["상태"] = df_src.get("yield_pct", pd.Series(dtype=float)).apply(_yield_badge)
+        df_src["상태"] = df_src["yield_pct"].apply(_yield_badge) if "yield_pct" in df_src.columns else "—"
 
         col_map = [
             ("utm_source", "채널"), ("deals", "신청건수"),
-            ("apply_oku", "신청액(억)"), ("pay_oku", "결제액(억)"),
+            ("apply_oku", "신청액(억)"), ("payment_oku", "결제액(억)"),
             ("yield_pct", "수익률(%)"), ("상태", "상태"),
         ]
         keep = [c for c, _ in col_map if c in df_src.columns]
