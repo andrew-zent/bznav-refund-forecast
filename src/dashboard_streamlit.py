@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import sqlite3
@@ -227,12 +228,210 @@ UTM_KEY = {
 }
 DEEP_KEY = {p: p for p in PERIOD_OPTIONS}
 
-tabs = st.tabs(["예측 현황", "채널 분석", "ROAS", "어트리뷰션", "시스템 상태"])
+tabs = st.tabs(["종합 리포트", "예측 현황", "채널 분석", "ROAS", "어트리뷰션", "마케팅 예측 공식", "시스템 상태"])
+
+# ─────────────────────────────────────────────
+# Tab 0 — 종합 리포트 (마케터용)
+# ─────────────────────────────────────────────
+with tabs[0]:
+    st.markdown("### 📊 기간별 종합 성과 리포트")
+    st.caption("채널 성과 · 광고 효율 · 퍼널 전환율을 한눈에 정리한 요약 리포트입니다.")
+
+    rp_label = st.pills("분석 기간", PERIOD_LABELS[:4], default="12개월(코호트)", key="report_period")
+    rp_period = PERIOD_OPTIONS[PERIOD_LABELS.index(rp_label)] if rp_label else "12M"
+    rp_key    = UTM_KEY[rp_period]
+
+    utm_d    = get_utm()
+    funnel_d = get_funnel()
+    roas_d   = get_roas()
+
+    by_source       = (utm_d or {}).get("by_dimension", {}).get("utm_source", {}).get(rp_key, [])
+    roas_window     = (roas_d or {}).get("by_window", {}).get(rp_key, {})
+    by_channel_roas = roas_window.get("by_channel", [])
+    funnel_rows     = (funnel_d or {}).get("funnel", []) if rp_period == "12M" else []
+
+    if rp_period in ("3M", "1M"):
+        st.warning(f"⚠️ {rp_label} 기간은 결제 완료까지 시간이 필요해 수익률이 실제보다 낮게 보입니다. 신청 건수·신청액 위주로 참고하세요.")
+
+    # ── 1. KPI 카드 ─────────────────────────────────────────────────────────
+    st.markdown("---")
+    st.markdown("#### 📌 핵심 지표")
+    if by_source:
+        df_src = pd.DataFrame(by_source)
+        total_deals = int(df_src["deals"].sum()) if "deals" in df_src.columns else 0
+        total_apply = df_src["apply_oku"].sum() if "apply_oku" in df_src.columns else 0
+        total_pay   = df_src["payment_oku"].sum() if "payment_oku" in df_src.columns else 0
+        avg_yield   = round(100 * total_pay / total_apply, 1) if total_apply > 0 else 0
+        n_ch        = len(df_src)
+
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("총 신청 건수",  f"{total_deals:,}건",    help="해당 기간 신청된 전체 딜 수")
+        k2.metric("총 신청액",     f"{total_apply:.1f}억원", help="신청 환급액 합계")
+        k3.metric("실제 결제액",   f"{total_pay:.1f}억원",   help="실제로 입금된 금액 합계")
+        k4.metric("전체 수익률",   f"{avg_yield:.1f}%",      help="결제액 ÷ 신청액")
+    else:
+        st.info("UTM 채널 데이터를 찾을 수 없습니다. (`utm_channel_analysis.json`)")
+
+    # ── 2. 자동 인사이트 ─────────────────────────────────────────────────────
+    st.markdown("---")
+    st.markdown("#### 💡 이 기간 핵심 인사이트")
+
+    insights = []
+    if by_source:
+        df_src = pd.DataFrame(by_source)
+        df_big = df_src[df_src["apply_oku"] >= 3].copy() if "apply_oku" in df_src.columns else df_src.copy()
+        if not df_big.empty and "yield_pct" in df_big.columns:
+            df_big_valid = df_big.dropna(subset=["yield_pct"])
+            if not df_big_valid.empty:
+                best  = df_big_valid.loc[df_big_valid["yield_pct"].idxmax()]
+                worst = df_big_valid.loc[df_big_valid["yield_pct"].idxmin()]
+                insights.append(
+                    f"🏆 **가장 효율적인 채널**: `{best['utm_source']}` — "
+                    f"수익률 **{best['yield_pct']:.1f}%** "
+                    f"(신청 {best['apply_oku']:.1f}억 → 결제 {best.get('payment_oku',0):.1f}억)"
+                )
+                insights.append(
+                    f"⚠️ **개선이 필요한 채널**: `{worst['utm_source']}` — "
+                    f"수익률 **{worst['yield_pct']:.1f}%** "
+                    f"(신청액 대비 결제 전환이 낮습니다)"
+                )
+        if "deals" in df_src.columns:
+            top_vol = df_src.loc[df_src["deals"].idxmax()]
+            insights.append(
+                f"📈 **신청 건수 1위**: `{top_vol['utm_source']}` — {int(top_vol['deals']):,}건 유입"
+            )
+
+    if by_channel_roas:
+        df_r = pd.DataFrame(by_channel_roas)
+        if "ROAS_expected" in df_r.columns and "광고비" in df_r.columns:
+            df_r_big = df_r[df_r["광고비"] >= 1_000_000]
+            if not df_r_big.empty:
+                best_roas = df_r_big.loc[df_r_big["ROAS_expected"].idxmax()]
+                insights.append(
+                    f"💰 **광고 효율 1위**: `{best_roas['채널']}` — "
+                    f"ROAS **{best_roas['ROAS_expected']:.2f}x** "
+                    f"(광고비 {best_roas['광고비']/10000:.0f}만원)"
+                )
+                below1 = df_r_big[df_r_big["ROAS_expected"] < 1.0]
+                if not below1.empty:
+                    names = ", ".join(f"`{c}`" for c in below1["채널"].tolist()[:3])
+                    insights.append(
+                        f"🔴 **ROAS 1.0 미만 채널 {len(below1)}개** — {names} 등 → "
+                        f"광고비보다 회수액이 적은 구간, 예산 재검토 필요"
+                    )
+
+    if funnel_rows:
+        df_fn = pd.DataFrame(funnel_rows)
+        avg_pay_rate = df_fn["payment_rate"].mean()
+        insights.append(
+            f"🔄 **전체 결제 전환율 평균**: {avg_pay_rate:.1f}% — "
+            f"신청 100건 중 약 {avg_pay_rate:.0f}건이 실제 결제까지 완료"
+        )
+
+    if insights:
+        for ins in insights:
+            st.markdown(f"- {ins}")
+    else:
+        st.info("분석에 필요한 데이터가 부족합니다.")
+
+    # ── 3. 채널별 성과 표 ────────────────────────────────────────────────────
+    st.markdown("---")
+    st.markdown(f"#### 📋 채널별 성과 요약 ({rp_label})")
+
+    if by_source:
+        df_src = pd.DataFrame(by_source).sort_values("apply_oku", ascending=False)
+
+        def _yield_badge(y):
+            try:
+                v = float(y)
+                if v >= 15: return "🟢 우수"
+                elif v >= 8: return "🟡 보통"
+                return "🔴 저조"
+            except: return "—"
+
+        df_src["상태"] = df_src["yield_pct"].apply(_yield_badge) if "yield_pct" in df_src.columns else "—"
+
+        col_map = [
+            ("utm_source", "채널"), ("deals", "신청건수"),
+            ("apply_oku", "신청액(억)"), ("payment_oku", "결제액(억)"),
+            ("yield_pct", "수익률(%)"), ("상태", "상태"),
+        ]
+        keep = [c for c, _ in col_map if c in df_src.columns]
+        rename = {c: k for c, k in col_map if c in df_src.columns}
+        st.dataframe(
+            df_src[keep].rename(columns=rename).reset_index(drop=True),
+            use_container_width=True, hide_index=True,
+        )
+        st.caption("수익률 기준 | 🟢 15% 이상: 우수 채널 / 🟡 8~15%: 평균 / 🔴 8% 미만: 개선 필요")
+    else:
+        st.info("채널 성과 데이터를 찾을 수 없습니다.")
+
+    # ── 4. 퍼널 요약 (12M 코호트만) ─────────────────────────────────────────
+    if funnel_rows:
+        st.markdown("---")
+        st.markdown("#### 🔄 신청 → 결제 퍼널 요약 (12개월 코호트)")
+        st.caption("신청부터 실제 결제까지 각 단계에서 얼마나 이탈하는지 보여줍니다.")
+
+        df_fn = pd.DataFrame(funnel_rows)
+        avg_f = df_fn["filing_rate"].mean()
+        avg_d = df_fn["decision_rate"].mean()
+        avg_w = df_fn["won_rate"].mean()
+        avg_p = df_fn["payment_rate"].mean()
+
+        fc1, fc2, fc3, fc4 = st.columns(4)
+        fc1.metric("① 접수율",  f"{avg_f:.1f}%", help="신청 후 세무서 신고까지 완료된 비율")
+        fc2.metric("② 결정율",  f"{avg_d:.1f}%", help="국세청이 환급 금액을 확정한 비율")
+        fc3.metric("③ 수주율",  f"{avg_w:.1f}%", help="최종 서비스 성사 비율")
+        fc4.metric("④ 결제율",  f"{avg_p:.1f}%", help="실제로 돈이 들어온 비율")
+
+        drops = [
+            ("신청 → 접수",  100  - avg_f),
+            ("접수 → 결정",  avg_f - avg_d),
+            ("결정 → 수주",  avg_d - avg_w),
+            ("수주 → 결제",  avg_w - avg_p),
+        ]
+        biggest = max(drops, key=lambda x: x[1])
+        st.info(f"💡 가장 큰 이탈 구간: **{biggest[0]}** — 평균 **{biggest[1]:.1f}%p** 이탈. 이 단계 개선이 전체 전환율 향상에 가장 효과적입니다.")
+
+    # ── 5. ROAS 요약 ─────────────────────────────────────────────────────────
+    if by_channel_roas:
+        st.markdown("---")
+        st.markdown(f"#### 💰 광고 채널 효율 요약 ({rp_label})")
+        st.caption("ROAS = 예상결제액 ÷ 광고비. 2.0x 이상이면 수익 구간입니다.")
+
+        df_r = pd.DataFrame(by_channel_roas).copy()
+        if "ROAS_expected" in df_r.columns:
+            def _roas_badge(v):
+                try:
+                    fv = float(v)
+                    if fv >= 2: return "🟢 수익"
+                    elif fv >= 1: return "🟡 주의"
+                    return "🔴 손실"
+                except: return "—"
+
+            df_r["상태"] = df_r["ROAS_expected"].apply(_roas_badge)
+            if "광고비" in df_r.columns:
+                df_r["광고비(만원)"] = df_r["광고비"].apply(
+                    lambda v: f"{int(v/10000):,}" if pd.notna(v) else "—"
+                )
+            show_r = [c for c in ["채널", "광고비(만원)", "신청건수", "ROAS_expected", "상태"] if c in df_r.columns]
+            df_r_show = df_r[show_r].rename(columns={"ROAS_expected": "ROAS"})
+            st.dataframe(df_r_show, use_container_width=True, hide_index=True)
+
+            n_g = len(df_r[df_r["ROAS_expected"] >= 2])
+            n_y = len(df_r[(df_r["ROAS_expected"] >= 1) & (df_r["ROAS_expected"] < 2)])
+            n_r = len(df_r[df_r["ROAS_expected"] < 1])
+            st.caption(
+                f"전체 {len(df_r)}개 채널 | "
+                f"🟢 수익 {n_g}개 / 🟡 주의 {n_y}개 / 🔴 손실 {n_r}개 | "
+                f"ROAS 기준: 🟢 ≥2.0x / 🟡 1.0~2.0x / 🔴 <1.0x"
+            )
+
 
 # ─────────────────────────────────────────────
 # Tab 1 — 예측 현황
 # ─────────────────────────────────────────────
-with tabs[0]:
+with tabs[1]:
     data = get_forecast()
     if data is None:
         st.warning("forecast.json 파일을 찾을 수 없습니다.")
@@ -309,7 +508,7 @@ with tabs[0]:
 # ─────────────────────────────────────────────
 # Tab 2 — 채널 분석
 # ─────────────────────────────────────────────
-with tabs[1]:
+with tabs[2]:
     deep = get_channel_deep()
     utm = get_utm()
 
@@ -334,21 +533,21 @@ with tabs[1]:
 
             # 그룹 막대 (접수율·수주율·결제율)
             fig_fn = go.Figure()
-            hover_tpl = "<b>%{x}</b><br>%{fullData.name}: %{y:.1f}%<br>딜수: %{customdata}건<extra></extra>"
-            for col, label, color in [
-                ("filing_rate",   "접수율",  "#4C9BE8"),
-                ("decision_rate", "결정율",  "#7BC67E"),
-                ("won_rate",      "수주율",  "#F9A825"),
-                ("payment_rate",  "결제율",  "#EF5350"),
+            for col, label, color, n_col in [
+                ("filing_rate",   "접수율",  "#4C9BE8", "filing_n"),
+                ("decision_rate", "결정율",  "#7BC67E", "decision_n"),
+                ("won_rate",      "수주율",  "#F9A825", "won_n"),
+                ("payment_rate",  "결제율",  "#EF5350", "payment_n"),
             ]:
+                n_series = df_fn[n_col] if n_col in df_fn.columns else df_fn["deals"]
                 fig_fn.add_bar(
                     x=df_fn["channel"], y=df_fn[col], name=label,
                     marker_color=color,
-                    customdata=df_fn["deals"],
+                    customdata=list(zip(n_series, df_fn["deals"])),
                     hovertemplate=(
                         f"<b>%{{x}}</b><br>{label}: %{{y:.1f}}%"
                         f"<br><i>{METRIC_DEFS.get(label,'')}</i>"
-                        "<br>딜수: %{customdata:,}건<extra></extra>"
+                        "<br>해당 단계: %{customdata[0]:,}건 / 전체 신청: %{customdata[1]:,}건<extra></extra>"
                     ),
                 )
             fig_fn.update_layout(
@@ -358,13 +557,20 @@ with tabs[1]:
             )
             st.plotly_chart(fig_fn, use_container_width=True)
 
-            # 수익률 오버레이 (scatter)
+            # 신청액 · 결제액 · 수익률 복합 차트
             fig_y = go.Figure()
             fig_y.add_bar(
                 x=df_fn["channel"], y=df_fn["apply_oku"],
-                name="신청액(억)", marker_color="lightblue", opacity=0.6,
+                name="신청액(억)", marker_color="#90CAF9", opacity=0.8,
                 yaxis="y2",
                 hovertemplate="<b>%{x}</b><br>신청액: %{y:.1f}억<extra></extra>",
+            )
+            fig_y.add_bar(
+                x=df_fn["channel"],
+                y=df_fn["payment_oku"] if "payment_oku" in df_fn.columns else [],
+                name="결제액(억)", marker_color="#A5D6A7", opacity=0.8,
+                yaxis="y2",
+                hovertemplate="<b>%{x}</b><br>결제액: %{y:.1f}억<extra></extra>",
             )
             fig_y.add_scatter(
                 x=df_fn["channel"], y=df_fn["yield_pct"],
@@ -376,8 +582,9 @@ with tabs[1]:
                 ),
             )
             fig_y.update_layout(
-                height=360, yaxis_title="수익률 (%)",
-                yaxis2=dict(title="신청액(억)", overlaying="y", side="right", showgrid=False),
+                barmode="group",
+                height=400, yaxis_title="수익률 (%)",
+                yaxis2=dict(title="금액(억)", overlaying="y", side="right", showgrid=False),
                 xaxis_tickangle=-30, legend_title="",
             )
             st.plotly_chart(fig_y, use_container_width=True)
@@ -505,7 +712,7 @@ with tabs[1]:
 # ─────────────────────────────────────────────
 # Tab 3 — ROAS
 # ─────────────────────────────────────────────
-with tabs[2]:
+with tabs[3]:
     roas = get_roas()
 
     # ── 상단 필터 ──
@@ -575,9 +782,27 @@ with tabs[2]:
         by_media = cohort.get("by_media", [])
         if by_media:
             st.subheader(f"매체별 CPL 표 ({roas_label})")
+            mc1, mc2, mc3 = st.columns([2, 1, 1])
+            with mc1:
+                media_search = st.text_input("매체명 검색", placeholder="예: toss, kakao, naver...", key="media_search")
+            with mc2:
+                media_min_spend = st.number_input("최소 광고비(만원)", min_value=0, max_value=10000, value=0, step=10, key="media_min_spend")
+            with mc3:
+                media_sort = st.selectbox("정렬 기준", ["광고비↓", "CPL↑", "ROAS↓", "신청건수↓"], key="media_sort")
+
             df_media = pd.DataFrame(by_media)
-            if "광고비" in df_media.columns:
-                df_media = df_media[df_media["광고비"] >= roas_min_spend * 10000]
+            total_count = len(df_media)
+            if "광고비" in df_media.columns and media_min_spend > 0:
+                df_media = df_media[df_media["광고비"] >= media_min_spend * 10000]
+            if media_search.strip() and "채널" in df_media.columns:
+                df_media = df_media[df_media["채널"].str.contains(media_search.strip(), case=False, na=False)]
+
+            sort_map = {"광고비↓": ("광고비", False), "CPL↑": ("CPL_krw", True), "ROAS↓": ("ROAS_expected", False), "신청건수↓": ("신청건수", False)}
+            sort_col, sort_asc = sort_map.get(media_sort, ("광고비", False))
+            if sort_col in df_media.columns:
+                df_media = df_media.sort_values(sort_col, ascending=sort_asc)
+
+            st.caption(f"전체 {total_count}개 매체 중 {len(df_media)}개 표시")
             cols_show = [c for c in ["채널", "광고비", "CPL_krw", "ROAS_expected", "신청건수"] if c in df_media.columns]
             df_show = df_media[cols_show].copy()
 
@@ -605,7 +830,7 @@ with tabs[2]:
 # ─────────────────────────────────────────────
 # Tab 4 — 어트리뷰션
 # ─────────────────────────────────────────────
-with tabs[3]:
+with tabs[4]:
     attr_data = get_attribution()
     if st.button("📖 이 차트 이해하기", key="guide_attribution"):
         show_guide("attribution")
@@ -816,9 +1041,245 @@ with tabs[3]:
                     st.dataframe(top_paths, use_container_width=True, hide_index=True)
 
 # ─────────────────────────────────────────────
-# Tab 5 — 시스템 상태
+# Tab 5 — 마케팅 예측 공식
 # ─────────────────────────────────────────────
-with tabs[4]:
+with tabs[5]:
+    st.markdown("### 📐 마케팅 예측 공식 현황")
+    st.caption("현재 공식(6.5%)의 문제와 개선 제안(4.7%), Pipeline별 실적, 월별 정확도, 로우 데이터 다운로드")
+
+    # ── 기간 설정 ────────────────────────────────────────────────────────────
+    mf1, mf2 = st.columns(2)
+    with mf1:
+        mf_from = st.date_input("신청일 시작", value=__import__("datetime").date(2024, 10, 20), key="mf_from")
+    with mf2:
+        mf_to   = st.date_input("신청일 종료", value=__import__("datetime").date(2025, 10, 20), key="mf_to")
+    mf_from_s, mf_to_s = str(mf_from), str(mf_to)
+
+    if not DB_PATH.exists():
+        st.warning("DB 파일을 찾을 수 없습니다. (/tmp/history.sqlite)")
+    else:
+        mf_con  = sqlite3.connect(DB_PATH)
+        mf_asof = mf_con.execute("SELECT MAX(as_of_date) FROM deal_history").fetchone()[0]
+        st.caption(f"데이터 기준일: {mf_asof}")
+
+        # ── 0. 4.7% 도출 근거 ──────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🧮 4.7% 계수 도출 근거")
+        st.caption("마케팅팀이 쓰는 '신청환급금' 전체 base에 적용하는 계수가 왜 4.7%인지 단계별로 보여줍니다.")
+
+        # Step A: 유효 pipeline 실제 수익률
+        eff_row = mf_con.execute("""
+            SELECT SUM(apply_amount), SUM(payment_amount)
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline IN ('B(젠트)-환급','C(젠트)-추심','법인-환급','법인-추심')
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()
+        eff_apply, eff_pay = (eff_row[0] or 0), (eff_row[1] or 0)
+        eff_yield = eff_pay / eff_apply * 100 if eff_apply > 0 else 0
+
+        # Step B: 전체 base (마케팅 기준, A(지수) 포함)
+        total_apply_all = mf_con.execute("""
+            SELECT SUM(apply_amount) FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()[0] or 0
+
+        # Step C: scale ratio & 환산 계수
+        scale_ratio = total_apply_all / eff_apply if eff_apply > 0 else 0
+        derived_pct = eff_yield / scale_ratio if scale_ratio > 0 else 0
+
+        # 단계별 표시
+        st.markdown(f"""
+| 단계 | 계산 | 값 |
+|------|------|----|
+| **① 유효 pipeline 신청액** | B환급 + C추심 + 법인 합산 | **{eff_apply/1e8:.1f}억** |
+| **② 유효 pipeline 결제액** | 동일 pipeline 실측 결제 | **{eff_pay/1e8:.1f}억** |
+| **③ 실제 수익률** | ② ÷ ① | **{eff_yield:.2f}%** |
+| **④ 전체 신청액 (마케팅 base)** | A(지수) 포함 전체 | **{total_apply_all/1e8:.1f}억** |
+| **⑤ Base 배율** | ④ ÷ ① (마케팅 base가 유효 base의 몇 배) | **{scale_ratio:.2f}배** |
+| **⑥ 환산 계수** | ③ ÷ ⑤ (마케팅 base 기준 등가 계수) | **{derived_pct:.2f}%** |
+""")
+        st.info(
+            f"📌 결론: 실제 수익률 **{eff_yield:.1f}%** 는 유효 pipeline 기준 — "
+            f"마케팅팀이 보는 전체 신청액은 유효 base의 **{scale_ratio:.1f}배**이므로 "
+            f"전체 base에 적용할 등가 계수 = {eff_yield:.1f}% ÷ {scale_ratio:.1f} = **{derived_pct:.2f}% ≈ 4.7%**"
+        )
+        st.caption("※ A(지수) pipeline은 신청은 잡히지만 결제로 거의 이어지지 않아 분모만 키우는 구조. 이를 포함한 전체 base에 적용하려면 유효 수익률을 배율로 나눠야 함.")
+
+        # ── 1. 공식 비교 카드 ─────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🔢 예측 공식 비교")
+
+        # 실제 신청액 (필터 전) 기간 합
+        raw_apply = mf_con.execute("""
+            SELECT SUM(apply_amount) FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline NOT IN ('A(지수)')
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()[0] or 0
+
+        fc1, fc2, fc3 = st.columns(3)
+        fc1.metric("기간 내 총 신청액 (유효 base)", f"{raw_apply/1e8:.1f}억",
+                   help="A(지수) 제외 유효 pipeline 합산")
+        fc2.metric("현재 공식 예상결제 (×6.5%)", f"{raw_apply * 0.065 / 1e8:.1f}억",
+                   help="마케팅팀 현재 사용 공식")
+        fc3.metric("개선 공식 예상결제 (×4.7%)", f"{raw_apply * 0.047 / 1e8:.1f}억",
+                   help="Pipedrive 실측 코호트 기반 제안 계수")
+
+        st.info(
+            "💡 현재 6.5% 공식은 **A(지수) pipeline 포함 전체 신청액** 기준으로 설계되어 약 38% 과대추정. "
+            "개선 공식 4.7%는 유효 pipeline(B·C·법인) 실측 전환율 20.3% ÷ base 비율 4.77배로 환산한 값."
+        )
+
+        # ── 2. Pipeline별 전환율 ─────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🏗️ Pipeline별 신청 → 결제 전환율")
+
+        pipe_rows = mf_con.execute("""
+            SELECT
+                pipeline,
+                COUNT(*) deals,
+                SUM(apply_amount) apply_sum,
+                SUM(payment_amount) pay_sum,
+                SUM(CASE WHEN payment_date IS NOT NULL THEN 1 ELSE 0 END) paid_n,
+                SUM(CASE WHEN status='won' THEN 1 ELSE 0 END) won_n,
+                SUM(CASE WHEN status='lost' THEN 1 ELSE 0 END) lost_n
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+            GROUP BY pipeline
+            ORDER BY apply_sum DESC
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchall()
+
+        df_pipe = pd.DataFrame(pipe_rows, columns=["Pipeline","딜수","신청액","결제액","결제완료","수주","취소"])
+        df_pipe["신청액(억)"]  = (df_pipe["신청액"] / 1e8).round(1)
+        df_pipe["결제액(억)"]  = (df_pipe["결제액"] / 1e8).round(1)
+        df_pipe["수익률(%)"]   = (df_pipe["결제액"] / df_pipe["신청액"] * 100).where(df_pipe["신청액"] > 0).round(2)
+        df_pipe["결제율(건수)"] = (df_pipe["결제완료"] / df_pipe["딜수"] * 100).round(1)
+        df_pipe["비중(%)"]    = (df_pipe["신청액"] / df_pipe["신청액"].sum() * 100).round(1)
+
+        def _pipe_note(p):
+            if "A(지수)" in p:  return "🚨 분모 희석 (전환율 0.01%)"
+            if "취소" in p:     return "⛔ 취소/환불 전용"
+            if "환급" in p:     return "✅ 핵심 매출"
+            if "추심" in p:     return "💰 추심 회수"
+            return ""
+        df_pipe["비고"] = df_pipe["Pipeline"].apply(_pipe_note)
+
+        show_pipe = df_pipe[["Pipeline","비고","딜수","신청액(억)","결제액(억)","수익률(%)","결제율(건수)","비중(%)"]]
+        st.dataframe(show_pipe, use_container_width=True, hide_index=True)
+
+        # 파이 차트: pipeline 신청액 비중
+        fig_pie = px.pie(
+            df_pipe, values="신청액(억)", names="Pipeline",
+            title="Pipeline별 신청액 비중",
+            color_discrete_sequence=px.colors.qualitative.Set2,
+            height=320,
+        )
+        fig_pie.update_traces(textinfo="label+percent")
+        st.plotly_chart(fig_pie, use_container_width=True)
+        st.caption("A(지수) pipeline이 신청액 절반 이상을 차지하며 전체 전환율을 희석 — 이 pipeline 제외 시 수익률이 2배로 올라감")
+
+        # ── 3. 월별 신청 코호트 정확도 ────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 📅 월별 신청 코호트 — 예측 vs 실측")
+
+        monthly_rows = mf_con.execute("""
+            SELECT
+                substr(apply_date,1,7) ym,
+                SUM(apply_amount) apply_sum,
+                SUM(payment_amount) pay_sum,
+                COUNT(*) deals
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline IN ('B(젠트)-환급','C(젠트)-추심','법인-환급','법인-추심')
+            GROUP BY ym ORDER BY ym
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchall()
+
+        df_mo = pd.DataFrame(monthly_rows, columns=["월","신청액","결제액(실측)","딜수"])
+        df_mo["신청액(억)"]     = (df_mo["신청액"] / 1e8).round(2)
+        df_mo["실측 결제액(억)"] = (df_mo["결제액(실측)"] / 1e8).round(2)
+        df_mo["예측_4.7%(억)"]  = (df_mo["신청액"] * 0.047 / 1e8).round(2)
+        df_mo["예측_6.5%(억)"]  = (df_mo["신청액"] * 0.065 / 1e8).round(2)
+        df_mo["오차_4.7%"]      = ((df_mo["예측_4.7%(억)"] - df_mo["실측 결제액(억)"]) / df_mo["실측 결제액(억)"] * 100).round(1)
+        df_mo["수익률(실측%)"]   = (df_mo["결제액(실측)"] / df_mo["신청액"] * 100).round(2)
+
+        fig_mo = go.Figure()
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["실측 결제액(억)"], name="실측 결제액",
+                           mode="lines+markers", line=dict(color="steelblue", width=2))
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["예측_4.7%(억)"], name="예측(4.7%)",
+                           mode="lines+markers", line=dict(dash="dash", color="green"))
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["예측_6.5%(억)"], name="예측(6.5%·현재)",
+                           mode="lines+markers", line=dict(dash="dot", color="red"))
+        fig_mo.update_layout(height=380, yaxis_title="억원", xaxis_title="", legend_title="")
+        st.plotly_chart(fig_mo, use_container_width=True)
+
+        mape_47 = df_mo["오차_4.7%"].abs().mean()
+        st.caption(f"4.7% 공식 MAPE: **{mape_47:.1f}%** | 유효 pipeline(B·C·법인) 기준")
+        st.dataframe(
+            df_mo[["월","딜수","신청액(억)","실측 결제액(억)","예측_4.7%(억)","오차_4.7%","수익률(실측%)"]],
+            use_container_width=True, hide_index=True,
+        )
+
+        mf_con.close()
+
+        # ── 4. Excel 다운로드 ─────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 📥 로우 데이터 다운로드 (Excel)")
+
+        dl_pipe_filter = st.multiselect(
+            "포함할 Pipeline", options=[r[0] for r in pipe_rows],
+            default=[r[0] for r in pipe_rows if "A(지수)" not in r[0] and "테스트" not in r[0]],
+            key="dl_pipe",
+        )
+
+        if st.button("📊 Excel 파일 생성", key="gen_excel"):
+            with st.spinner("Excel 생성 중..."):
+                dl_con = sqlite3.connect(DB_PATH)
+                dl_asof = dl_con.execute("SELECT MAX(as_of_date) FROM deal_history").fetchone()[0]
+
+                placeholders = ",".join("?" * len(dl_pipe_filter))
+                df_raw = pd.read_sql_query(f"""
+                    SELECT
+                        deal_id, pipeline, status, source,
+                        apply_date, apply_amount,
+                        filing_date, filing_amount,
+                        decision_date, decision_amount,
+                        payment_date, payment_amount,
+                        lost_reason, cancel_reason, hold_reason,
+                        customer_type, utm_source, utm_medium, utm_campaign,
+                        utm_source_query, update_time
+                    FROM deal_history
+                    WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+                      AND pipeline IN ({placeholders})
+                    ORDER BY apply_date DESC
+                """, dl_con, params=[dl_asof, mf_from_s, mf_to_s] + list(dl_pipe_filter))
+                dl_con.close()
+
+                buf = io.BytesIO()
+                with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+                    # Sheet 1: 로우 딜 데이터
+                    df_raw.to_excel(writer, sheet_name="딜 로우데이터", index=False)
+                    # Sheet 2: Pipeline 요약
+                    show_pipe.to_excel(writer, sheet_name="Pipeline 요약", index=False)
+                    # Sheet 3: 월별 코호트
+                    df_mo[["월","딜수","신청액(억)","실측 결제액(억)","예측_4.7%(억)","오차_4.7%","수익률(실측%)"]].to_excel(
+                        writer, sheet_name="월별 코호트 정확도", index=False
+                    )
+
+                buf.seek(0)
+                fname = f"bznav_forecast_raw_{mf_from_s}_{mf_to_s}.xlsx"
+                st.download_button(
+                    label="⬇️ Excel 다운로드",
+                    data=buf,
+                    file_name=fname,
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    key="dl_excel_btn",
+                )
+                st.success(f"✅ {len(df_raw):,}건 딜 데이터 + Pipeline 요약 + 월별 코호트 — 3개 시트")
+
+
+# ─────────────────────────────────────────────
+# Tab 6 — 시스템 상태
+# ─────────────────────────────────────────────
+with tabs[6]:
     vr = get_verification()
     pl = get_pipeline()
 
