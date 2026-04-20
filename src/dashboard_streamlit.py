@@ -1,3 +1,4 @@
+import io
 import json
 import os
 import sqlite3
@@ -227,7 +228,7 @@ UTM_KEY = {
 }
 DEEP_KEY = {p: p for p in PERIOD_OPTIONS}
 
-tabs = st.tabs(["종합 리포트", "예측 현황", "채널 분석", "ROAS", "어트리뷰션", "시스템 상태"])
+tabs = st.tabs(["종합 리포트", "예측 현황", "채널 분석", "ROAS", "어트리뷰션", "마케팅 예측 공식", "시스템 상태"])
 
 # ─────────────────────────────────────────────
 # Tab 0 — 종합 리포트 (마케터용)
@@ -1040,9 +1041,202 @@ with tabs[4]:
                     st.dataframe(top_paths, use_container_width=True, hide_index=True)
 
 # ─────────────────────────────────────────────
-# Tab 5 — 시스템 상태
+# Tab 5 — 마케팅 예측 공식
 # ─────────────────────────────────────────────
 with tabs[5]:
+    st.markdown("### 📐 마케팅 예측 공식 현황")
+    st.caption("현재 공식(6.5%)의 문제와 개선 제안(4.7%), Pipeline별 실적, 월별 정확도, 로우 데이터 다운로드")
+
+    # ── 기간 설정 ────────────────────────────────────────────────────────────
+    mf1, mf2 = st.columns(2)
+    with mf1:
+        mf_from = st.date_input("신청일 시작", value=__import__("datetime").date(2024, 10, 20), key="mf_from")
+    with mf2:
+        mf_to   = st.date_input("신청일 종료", value=__import__("datetime").date(2025, 10, 20), key="mf_to")
+    mf_from_s, mf_to_s = str(mf_from), str(mf_to)
+
+    if not DB_PATH.exists():
+        st.warning("DB 파일을 찾을 수 없습니다. (/tmp/history.sqlite)")
+    else:
+        mf_con  = sqlite3.connect(DB_PATH)
+        mf_asof = mf_con.execute("SELECT MAX(as_of_date) FROM deal_history").fetchone()[0]
+        st.caption(f"데이터 기준일: {mf_asof}")
+
+        # ── 1. 공식 비교 카드 ─────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🔢 예측 공식 비교")
+
+        # 실제 신청액 (필터 전) 기간 합
+        raw_apply = mf_con.execute("""
+            SELECT SUM(apply_amount) FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline NOT IN ('A(지수)')
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchone()[0] or 0
+
+        fc1, fc2, fc3 = st.columns(3)
+        fc1.metric("기간 내 총 신청액 (유효 base)", f"{raw_apply/1e8:.1f}억",
+                   help="A(지수) 제외 유효 pipeline 합산")
+        fc2.metric("현재 공식 예상결제 (×6.5%)", f"{raw_apply * 0.065 / 1e8:.1f}억",
+                   help="마케팅팀 현재 사용 공식")
+        fc3.metric("개선 공식 예상결제 (×4.7%)", f"{raw_apply * 0.047 / 1e8:.1f}억",
+                   help="Pipedrive 실측 코호트 기반 제안 계수")
+
+        st.info(
+            "💡 현재 6.5% 공식은 **A(지수) pipeline 포함 전체 신청액** 기준으로 설계되어 약 38% 과대추정. "
+            "개선 공식 4.7%는 유효 pipeline(B·C·법인) 실측 전환율 20.3% ÷ base 비율 4.77배로 환산한 값."
+        )
+
+        # ── 2. Pipeline별 전환율 ─────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🏗️ Pipeline별 신청 → 결제 전환율")
+
+        pipe_rows = mf_con.execute("""
+            SELECT
+                pipeline,
+                COUNT(*) deals,
+                SUM(apply_amount) apply_sum,
+                SUM(payment_amount) pay_sum,
+                SUM(CASE WHEN payment_date IS NOT NULL THEN 1 ELSE 0 END) paid_n,
+                SUM(CASE WHEN status='won' THEN 1 ELSE 0 END) won_n,
+                SUM(CASE WHEN status='lost' THEN 1 ELSE 0 END) lost_n
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+            GROUP BY pipeline
+            ORDER BY apply_sum DESC
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchall()
+
+        df_pipe = pd.DataFrame(pipe_rows, columns=["Pipeline","딜수","신청액","결제액","결제완료","수주","취소"])
+        df_pipe["신청액(억)"]  = (df_pipe["신청액"] / 1e8).round(1)
+        df_pipe["결제액(억)"]  = (df_pipe["결제액"] / 1e8).round(1)
+        df_pipe["수익률(%)"]   = (df_pipe["결제액"] / df_pipe["신청액"] * 100).where(df_pipe["신청액"] > 0).round(2)
+        df_pipe["결제율(건수)"] = (df_pipe["결제완료"] / df_pipe["딜수"] * 100).round(1)
+        df_pipe["비중(%)"]    = (df_pipe["신청액"] / df_pipe["신청액"].sum() * 100).round(1)
+
+        def _pipe_note(p):
+            if "A(지수)" in p:  return "🚨 분모 희석 (전환율 0.01%)"
+            if "취소" in p:     return "⛔ 취소/환불 전용"
+            if "환급" in p:     return "✅ 핵심 매출"
+            if "추심" in p:     return "💰 추심 회수"
+            return ""
+        df_pipe["비고"] = df_pipe["Pipeline"].apply(_pipe_note)
+
+        show_pipe = df_pipe[["Pipeline","비고","딜수","신청액(억)","결제액(억)","수익률(%)","결제율(건수)","비중(%)"]]
+        st.dataframe(show_pipe, use_container_width=True, hide_index=True)
+
+        # 파이 차트: pipeline 신청액 비중
+        fig_pie = px.pie(
+            df_pipe, values="신청액(억)", names="Pipeline",
+            title="Pipeline별 신청액 비중",
+            color_discrete_sequence=px.colors.qualitative.Set2,
+            height=320,
+        )
+        fig_pie.update_traces(textinfo="label+percent")
+        st.plotly_chart(fig_pie, use_container_width=True)
+        st.caption("A(지수) pipeline이 신청액 절반 이상을 차지하며 전체 전환율을 희석 — 이 pipeline 제외 시 수익률이 2배로 올라감")
+
+        # ── 3. 월별 신청 코호트 정확도 ────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 📅 월별 신청 코호트 — 예측 vs 실측")
+
+        monthly_rows = mf_con.execute("""
+            SELECT
+                substr(apply_date,1,7) ym,
+                SUM(apply_amount) apply_sum,
+                SUM(payment_amount) pay_sum,
+                COUNT(*) deals
+            FROM deal_history
+            WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+              AND pipeline IN ('B(젠트)-환급','C(젠트)-추심','법인-환급','법인-추심')
+            GROUP BY ym ORDER BY ym
+        """, (mf_asof, mf_from_s, mf_to_s)).fetchall()
+
+        df_mo = pd.DataFrame(monthly_rows, columns=["월","신청액","결제액(실측)","딜수"])
+        df_mo["신청액(억)"]     = (df_mo["신청액"] / 1e8).round(2)
+        df_mo["실측 결제액(억)"] = (df_mo["결제액(실측)"] / 1e8).round(2)
+        df_mo["예측_4.7%(억)"]  = (df_mo["신청액"] * 0.047 / 1e8).round(2)
+        df_mo["예측_6.5%(억)"]  = (df_mo["신청액"] * 0.065 / 1e8).round(2)
+        df_mo["오차_4.7%"]      = ((df_mo["예측_4.7%(억)"] - df_mo["실측 결제액(억)"]) / df_mo["실측 결제액(억)"] * 100).round(1)
+        df_mo["수익률(실측%)"]   = (df_mo["결제액(실측)"] / df_mo["신청액"] * 100).round(2)
+
+        fig_mo = go.Figure()
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["실측 결제액(억)"], name="실측 결제액",
+                           mode="lines+markers", line=dict(color="steelblue", width=2))
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["예측_4.7%(억)"], name="예측(4.7%)",
+                           mode="lines+markers", line=dict(dash="dash", color="green"))
+        fig_mo.add_scatter(x=df_mo["월"], y=df_mo["예측_6.5%(억)"], name="예측(6.5%·현재)",
+                           mode="lines+markers", line=dict(dash="dot", color="red"))
+        fig_mo.update_layout(height=380, yaxis_title="억원", xaxis_title="", legend_title="")
+        st.plotly_chart(fig_mo, use_container_width=True)
+
+        mape_47 = df_mo["오차_4.7%"].abs().mean()
+        st.caption(f"4.7% 공식 MAPE: **{mape_47:.1f}%** | 유효 pipeline(B·C·법인) 기준")
+        st.dataframe(
+            df_mo[["월","딜수","신청액(억)","실측 결제액(억)","예측_4.7%(억)","오차_4.7%","수익률(실측%)"]],
+            use_container_width=True, hide_index=True,
+        )
+
+        mf_con.close()
+
+        # ── 4. Excel 다운로드 ─────────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 📥 로우 데이터 다운로드 (Excel)")
+
+        dl_pipe_filter = st.multiselect(
+            "포함할 Pipeline", options=[r[0] for r in pipe_rows],
+            default=[r[0] for r in pipe_rows if "A(지수)" not in r[0] and "테스트" not in r[0]],
+            key="dl_pipe",
+        )
+
+        if st.button("📊 Excel 파일 생성", key="gen_excel"):
+            with st.spinner("Excel 생성 중..."):
+                dl_con = sqlite3.connect(DB_PATH)
+                dl_asof = dl_con.execute("SELECT MAX(as_of_date) FROM deal_history").fetchone()[0]
+
+                placeholders = ",".join("?" * len(dl_pipe_filter))
+                df_raw = pd.read_sql_query(f"""
+                    SELECT
+                        deal_id, pipeline, status, source,
+                        apply_date, apply_amount,
+                        filing_date, filing_amount,
+                        decision_date, decision_amount,
+                        payment_date, payment_amount,
+                        lost_reason, cancel_reason, hold_reason,
+                        customer_type, utm_source, utm_medium, utm_campaign,
+                        utm_source_query, update_time
+                    FROM deal_history
+                    WHERE as_of_date=? AND apply_date BETWEEN ? AND ?
+                      AND pipeline IN ({placeholders})
+                    ORDER BY apply_date DESC
+                """, dl_con, params=[dl_asof, mf_from_s, mf_to_s] + list(dl_pipe_filter))
+                dl_con.close()
+
+                buf = io.BytesIO()
+                with pd.ExcelWriter(buf, engine="openpyxl") as writer:
+                    # Sheet 1: 로우 딜 데이터
+                    df_raw.to_excel(writer, sheet_name="딜 로우데이터", index=False)
+                    # Sheet 2: Pipeline 요약
+                    show_pipe.to_excel(writer, sheet_name="Pipeline 요약", index=False)
+                    # Sheet 3: 월별 코호트
+                    df_mo[["월","딜수","신청액(억)","실측 결제액(억)","예측_4.7%(억)","오차_4.7%","수익률(실측%)"]].to_excel(
+                        writer, sheet_name="월별 코호트 정확도", index=False
+                    )
+
+                buf.seek(0)
+                fname = f"bznav_forecast_raw_{mf_from_s}_{mf_to_s}.xlsx"
+                st.download_button(
+                    label="⬇️ Excel 다운로드",
+                    data=buf,
+                    file_name=fname,
+                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    key="dl_excel_btn",
+                )
+                st.success(f"✅ {len(df_raw):,}건 딜 데이터 + Pipeline 요약 + 월별 코호트 — 3개 시트")
+
+
+# ─────────────────────────────────────────────
+# Tab 6 — 시스템 상태
+# ─────────────────────────────────────────────
+with tabs[6]:
     vr = get_verification()
     pl = get_pipeline()
 
