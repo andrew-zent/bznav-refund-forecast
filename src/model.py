@@ -484,12 +484,15 @@ class ForecastEngine:
 
             pred_c = self._backtest_collection(tgt)
             pred = (pred_b + pred_c) / 1e8
-            err = (pred - actual) / actual * 100 if actual > 0 else 0
             mon = month_of(tgt)
+            # forecast와 동일한 시즌 보정 적용 (미적용 시 March -15.3% 등 과대 오차)
+            adj = SEASON_ADJUSTMENT.get(mon, 0)
+            pred_adj = pred * (1 + adj)
+            err = (pred_adj - actual) / actual * 100 if actual > 0 else 0
             results.append({
                 "month": ym_label(tgt),
                 "actual": round(actual, 2),
-                "predicted": round(pred, 2),
+                "predicted": round(pred_adj, 2),
                 "error_pct": round(err, 1),
                 "season_month": mon,
                 "is_season_outlier": abs(err) > 15,
