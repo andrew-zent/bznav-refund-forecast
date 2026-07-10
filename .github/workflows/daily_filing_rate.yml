@@ -3,7 +3,12 @@ name: Daily Filing Rate Report
 on:
   schedule:
     - cron: '0 0 * * *'  # 매일 09:00 KST (UTC 00:00)
-  workflow_dispatch: {}  # 수동 실행 가능
+  workflow_dispatch:
+    inputs:
+      skip_slack:
+        description: 'Slack 알림 생략 (테스트 실행용)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -11,7 +16,7 @@ permissions:
 jobs:
   report:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -38,7 +43,7 @@ jobs:
 
       - name: Run filing rate monitor
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ inputs.skip_slack && '' || secrets.SLACK_WEBHOOK_URL }}
         run: python src/agents/filing_rate_monitor.py
 
       - name: Generate dashboard
