@@ -1,6 +1,7 @@
 """Agent 시스템 전체 테스트."""
 import json
 import sys
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 # src를 import path에 추가
@@ -21,6 +22,11 @@ from agents.verifier import (
 from agents.orchestrator import (
     StepStatus, ErrorPolicy, StepResult, PipelineState, PIPELINE_STEPS,
 )
+from agents.filing_rate_monitor import (
+    daily_flow, backlog_aging, cohort_conversion, cancel_reason_breakdown,
+    citation_stats, hold_reason_breakdown, run_all_checks as filing_rate_run_all,
+)
+from snapshot import build_id_label_map
 
 
 # ── 테스트 픽스처 ─────────────────────────────────────
@@ -172,6 +178,171 @@ def test_watcher_run_all():
     assert report["total_checks"] > 0
     assert "severity" in report
     print(f"  ✅ test_watcher_run_all ({report['passed']}/{report['total_checks']} passed)")
+
+
+# ── Filing Rate Monitor 테스트 ─────────────────────────
+
+def make_filing_deals(today):
+    """테스트용 신고율 관리 deals 생성 (today 기준 상대 날짜)."""
+    def d(days_ago):
+        return str(today - timedelta(days=days_ago))
+
+    deals = [
+        # 어제 신청/신고완료/취소 각 1건
+        {"pipeline": "B(젠트)-환급", "apply_date": d(40), "filing_date": d(1), "status": "won"},
+        {"pipeline": "B(젠트)-환급", "apply_date": d(1), "filing_date": None, "status": "open"},
+        {"pipeline": "B(젠트)-환급", "apply_date": d(35), "filing_date": None,
+         "cancel_request_date": d(1), "cancel_reason": "106", "status": "lost"},
+        # 성숙 코호트(45~75일 전): filed 4 / cancelled 2 / pending 1
+        *[{"pipeline": "B(젠트)-환급", "apply_date": d(60), "filing_date": d(30), "status": "won"} for _ in range(4)],
+        *[{"pipeline": "B(젠트)-환급", "apply_date": d(60), "filing_date": None,
+           "cancel_request_date": d(20), "cancel_reason": "107", "status": "lost"} for _ in range(2)],
+        {"pipeline": "B(젠트)-환급", "apply_date": d(60), "filing_date": None, "status": "open"},
+        # 백로그 에이징 + 보류
+        {"pipeline": "B(젠트)-환급", "apply_date": d(90), "filing_date": None, "status": "open",
+         "hold_status": "9001", "hold_reason": "5001", "hold_activity_date": d(15)},
+        # 인용확인: 완료 1건 + 기한 경과 미확인 2건 (상태 다름)
+        {"pipeline": "B(젠트)-환급", "apply_date": d(200), "filing_date": d(150),
+         "decision_date": d(100), "citation_confirmed_date": d(1)},
+        {"pipeline": "B(젠트)-환급", "apply_date": d(200), "filing_date": d(150),
+         "decision_date": d(100), "citation_due_date": d(5), "citation_status": "1507"},
+        {"pipeline": "B(젠트)-환급", "apply_date": d(200), "filing_date": d(150),
+         "decision_date": d(100), "citation_due_date": d(5), "citation_status": "598"},
+        # 다른 파이프라인 — 제외되어야 함
+        {"pipeline": "C(젠트)-추심", "apply_date": d(1), "filing_date": d(1)},
+    ]
+    return deals
+
+
+def make_filing_field_catalog():
+    return {
+        "all_fields": [
+            {"key": "ebdd813efc921dcb6a90be9156642c824589aced",
+             "options_full": [{"id": 106, "label": "기존 세무대리인"}, {"id": 107, "label": "수수료"}]},
+            {"key": "430f49c344b73aaa29622d1fa50e33f75a79ad80",
+             "options_full": [{"id": 5001, "label": "환급액 변동"}]},
+            {"key": "6a4c5816ff87fa993ea6c4affe4ce82636b09714",
+             "options_full": [{"id": 9001, "label": "보류 중"}, {"id": 9002, "label": "보류 완료"}]},
+            {"key": "8e057c4b5b8a2a57e4ad2579c150b197f1017506",
+             "options_full": [{"id": 1507, "label": "세무서 비협조"}, {"id": 598, "label": "대응 필요"}]},
+        ]
+    }
+
+
+def test_filing_rate_daily_flow():
+    now = datetime.now(timezone.utc)
+    today = now.date()
+    deals = make_filing_deals(today)
+    report_date = today - timedelta(days=1)
+    flow = daily_flow(deals, report_date)
+    # 다른 파이프라인 필터링은 run_all_checks에서 처리되므로 여기선 raw deals 그대로 집계됨
+    assert flow["applied"] >= 1
+    print("  ✅ test_filing_rate_daily_flow")
+
+
+def test_filing_rate_cohort_conversion():
+    today = datetime.now(timezone.utc).date()
+    deals = make_filing_deals(today)
+    conv = cohort_conversion(deals, today)
+    assert conv["n"] == 7
+    assert conv["filed"] == 4
+    assert conv["cancelled"] == 2
+    assert conv["pending"] == 1
+    print("  ✅ test_filing_rate_cohort_conversion")
+
+
+def test_filing_rate_cancel_reason_breakdown():
+    today = datetime.now(timezone.utc).date()
+    deals = make_filing_deals(today)
+    catalog = make_filing_field_catalog()
+    id_map = build_id_label_map(catalog)
+    result = cancel_reason_breakdown(deals, id_map, today)
+    assert result["total"] == 3  # 어제 1건 + 성숙 코호트 2건
+    labels = {r["reason"] for r in result["top_reasons"]}
+    assert labels == {"기존 세무대리인", "수수료"}
+    print("  ✅ test_filing_rate_cancel_reason_breakdown")
+
+
+def test_filing_rate_citation_stats():
+    today = datetime.now(timezone.utc).date()
+    deals = make_filing_deals(today)
+    catalog = make_filing_field_catalog()
+    id_map = build_id_label_map(catalog)
+    report_date = today - timedelta(days=1)
+    cite = citation_stats(deals, id_map, report_date, today)
+    assert cite["confirmed_total"] == 1
+    assert cite["confirmed_today"] == 1
+    assert cite["sla_overdue"] == 2
+    print("  ✅ test_filing_rate_citation_stats")
+
+
+def test_filing_rate_hold_reason_breakdown():
+    today = datetime.now(timezone.utc).date()
+    deals = make_filing_deals(today)
+    catalog = make_filing_field_catalog()
+    id_map = build_id_label_map(catalog)
+    result = hold_reason_breakdown(deals, id_map, today)
+    assert result["total_on_hold"] == 1
+    assert result["top_reasons"][0]["reason"] == "환급액 변동"
+    assert result["oldest_hold_days"] == 15
+    print("  ✅ test_filing_rate_hold_reason_breakdown")
+
+
+def test_filing_rate_run_all():
+    now = datetime.now(timezone.utc)
+    today = now.date()
+    deals = make_filing_deals(today)
+    catalog = make_filing_field_catalog()
+    report = filing_rate_run_all(deals, catalog, as_of=now)
+
+    assert report["agent"] == "filing_rate_monitor"
+    assert report["total_checks"] > 0
+    assert report["severity"] in ("info", "warn", "critical")
+
+    # 다른 파이프라인(C(젠트)-추심) 제외 확인: 어제 신고완료는 1건만 (B파이프라인)
+    assert report["daily_flow"]["filed"] == 1
+    assert report["daily_flow"]["cancelled"] == 1
+
+    # 성숙 코호트: 7건 중 filed 4, cancelled 2, pending 1
+    conv = report["cohort_conversion"]
+    assert conv["n"] == 7
+    assert conv["filed"] == 4
+    assert conv["cancelled"] == 2
+    assert conv["pending"] == 1
+
+    # 취소 사유 id → label 변환 확인
+    reasons = {r["reason"] for r in report["cancel_reasons"]["top_reasons"]}
+    assert "수수료" in reasons or "기존 세무대리인" in reasons
+
+    # 보류 사유 브레이크다운
+    assert report["hold_summary"]["total_on_hold"] == 1
+    assert report["hold_summary"]["top_reasons"][0]["reason"] == "환급액 변동"
+    assert report["hold_summary"]["oldest_hold_days"] == 15
+
+    # 인용확인: 오늘/누적 1건, 기한경과 미확인 2건, 상태별 2건
+    cite = report["citation"]
+    assert cite["confirmed_total"] == 1
+    assert cite["sla_overdue"] == 2
+    statuses = {r["status"] for r in cite["status_breakdown"]}
+    assert statuses == {"세무서 비협조", "대응 필요"}
+
+    print(f"  ✅ test_filing_rate_run_all ({report['passed']}/{report['total_checks']} passed, {report['severity']})")
+
+
+def test_filing_rate_backlog_aging():
+    today = datetime.now(timezone.utc).date()
+    deals = [
+        {"apply_date": str(today - timedelta(days=3)), "filing_date": None},
+        {"apply_date": str(today - timedelta(days=70)), "filing_date": None},
+        {"apply_date": str(today - timedelta(days=70)), "filing_date": str(today)},  # 이미 신고완료 → 제외
+        {"apply_date": str(today - timedelta(days=70)), "filing_date": None,
+         "cancel_request_date": str(today), "status": "lost"},  # 취소 → 제외
+    ]
+    aging = backlog_aging(deals, today)
+    assert aging["0-7"] == 1
+    assert aging["60+"] == 1
+    assert sum(aging.values()) == 2
+    print("  ✅ test_filing_rate_backlog_aging")
 
 
 # ── Verifier 테스트 ───────────────────────────────────
@@ -327,6 +498,13 @@ def main():
             test_check_mape, test_check_backtest_bias, test_check_backtest_outliers,
             test_check_distribution_stability, test_check_pool_health,
             test_check_forecast_range, test_verifier_run_all,
+        ]),
+        # Filing Rate Monitor
+        ("FilingRateMonitor", [
+            test_filing_rate_daily_flow, test_filing_rate_backlog_aging,
+            test_filing_rate_cohort_conversion, test_filing_rate_cancel_reason_breakdown,
+            test_filing_rate_citation_stats, test_filing_rate_hold_reason_breakdown,
+            test_filing_rate_run_all,
         ]),
         # Orchestrator
         ("Orchestrator", [test_pipeline_state, test_pipeline_steps_defined, test_step_error_policies]),

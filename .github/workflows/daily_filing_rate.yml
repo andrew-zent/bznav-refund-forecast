@@ -1,0 +1,59 @@
+name: Daily Filing Rate Report
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 매일 09:00 KST (UTC 00:00)
+  workflow_dispatch:
+    inputs:
+      skip_slack:
+        description: 'Slack 알림 생략 (테스트 실행용)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Restore Pipedrive incremental cache
+        uses: actions/cache@v4
+        with:
+          path: data/
+          key: pipedrive-data-${{ github.run_id }}
+          restore-keys: |
+            pipedrive-data-
+
+      - name: Extract Pipedrive (incremental, 개인만)
+        env:
+          PIPEDRIVE_API_TOKEN: ${{ secrets.PIPEDRIVE_API_TOKEN }}
+          PIPEDRIVE_DOMAIN: ${{ secrets.PIPEDRIVE_DOMAIN }}
+        run: python src/extract_pipedrive.py
+
+      - name: Run filing rate monitor
+        env:
+          SLACK_WEBHOOK_URL: ${{ inputs.skip_slack && '' || secrets.SLACK_WEBHOOK_URL }}
+        run: python src/agents/filing_rate_monitor.py
+
+      - name: Generate dashboard
+        run: python src/generate_filing_rate_dashboard.py
+
+      - name: Commit filing rate report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/filing_rate_report.json output/filing_rate_snapshots/ output/filing_rate_dashboard.html
+          git diff --staged --quiet || git commit -m "chore: daily filing rate report $(date +%Y-%m-%d)"
+          git pull --rebase origin main
+          git push

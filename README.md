@@ -44,7 +44,11 @@ bznav-refund-forecast/
 │   │
 │   ├── utm_channel_analysis.py   # [분석1] UTM 채널 효율 (yield/건수/금액, 3개 윈도우)
 │   ├── roas_from_marketing_sheet.py  # [분석2] ROAS — 마케팅팀 Daily Report 기반
-│   └── channel_deep_analysis.py  # [분석3] 신규/리마인드, 캠페인 A/B, 멀티터치
+│   ├── channel_deep_analysis.py  # [분석3] 신규/리마인드, 캠페인 A/B, 멀티터치
+│   │
+│   ├── agents/
+│   │   └── filing_rate_monitor.py  # [신고율 관리] 신청완료→신고완료 전환/취소율 + 인용확인 현황 (일일)
+│   └── generate_filing_rate_dashboard.py  # 신고율 관리 대시보드 HTML 생성
 │
 ├── data/
 │   └── 비즈넵환급_Daily Report_*.xlsx  # 마케팅팀 Daily Report (수동 갱신)
@@ -81,6 +85,27 @@ bznav-refund-forecast/
 python src/utm_channel_analysis.py       # UTM 채널 효율
 python src/roas_from_marketing_sheet.py  # ROAS (data/에 Excel 필요)
 python src/channel_deep_analysis.py      # 신규/리마인드, A/B, 멀티터치
+```
+
+---
+
+## 신고율 관리 (일일)
+
+매일 09:00 KST 자동 실행 (`.github/workflows/daily_filing_rate.yml`, 개인 파이프라인만 대상):
+
+- **일일 흐름**: 어제 신청완료 → 신고완료 전환 건수, 취소 건수
+- **백로그 에이징**: 신청완료 후 미해결 건을 0-7/8-14/15-30/31-60/60일+ 구간별 집계, 보류 사유 브레이크다운
+- **성숙 코호트 전환율**: 신청 후 45~75일 지난 건 기준 신고완료율/취소율/취소 사유 top
+- **인용확인 현황**: 완료 건수(당일/누적), 기한(6주) 경과 미확인 건, 상태별(세무서 비협조 등) 브레이크다운
+
+결과는 Slack으로 매일 발송되고 `output/filing_rate_report.json` + `output/filing_rate_snapshots/YYYY-MM-DD.json`에 저장된다. 대시보드는 `output/filing_rate_dashboard.html`로 생성되며 다음 주간 GitHub Pages 배포 시 함께 노출된다 (`/filing_rate_dashboard.html`). 임계값(`src/agents/filing_rate_monitor.py` 상단)은 실측 데이터 없이 잡은 초기값이므로 운영하면서 조정 필요.
+
+수동 실행:
+
+```bash
+python src/dump_fields.py             # 사유/상태 필드 id→label 매핑 갱신 (선택, output/field_catalog.json)
+python src/agents/filing_rate_monitor.py
+python src/generate_filing_rate_dashboard.py  # 대시보드 HTML 생성
 ```
 
 ---
