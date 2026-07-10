@@ -51,9 +51,17 @@ NEEDED_KEYS = {
     # 실패/취소/보류 진단용
     "ebdd813efc921dcb6a90be9156642c824589aced": "cancel_reason",   # 취소신청사유 (21옵션)
     "14558914daad0ec922e4e38a351df8058861c501": "cancel_reason_auto",  # 취소신청사유(자동)
+    "45fe537fe0966e9570193e8758993148f7d390ad": "cancel_request_date",  # 취소요청일
     "430f49c344b73aaa29622d1fa50e33f75a79ad80": "hold_reason",     # 보류 사유 (10옵션)
     "314ea8de88a7dda7349215ddc0975216b9662ad9": "hold_reason_2",   # 보류사유 (18옵션)
+    "6a4c5816ff87fa993ea6c4affe4ce82636b09714": "hold_status",     # 보류 상태 (보류 중/보류 완료)
+    "7fcb86ebf3f352fb633a0b46ccc7e538dc1ac0a3": "hold_activity_date",  # 보류 활동일자
     "0ec37f587ba626b05d5db916d9e2f185e47f1abc": "customer_type",   # B(환급)-고객 유형 (13옵션)
+    # 신고율 관리 — 인용확인 진단용
+    "bd0cf27e2ef80219e5edc70f9a9cf9587455f329": "citation_due_date",       # 인용확인 일자(6주뒤)
+    "6c46f9cfb5bb684f639b429098520fe4eae926a1": "citation_confirmed_date", # 인용확인완료 일자(자동)
+    "7d57139fff12645b4d4542fa80243ead6143c212": "citation_method",   # ✍ 인용확인 (확인방법)
+    "8e057c4b5b8a2a57e4ad2579c150b197f1017506": "citation_status",  # ✍ 인용확인상태
     # 유입 채널 추적 - 신청 시점
     "17a8ad9fd35f59b439c74d10a7af218589bb126b": "utm_source",
     "2a1a449aeddc0f50508ee94ab75427b561f031a6": "utm_medium",
