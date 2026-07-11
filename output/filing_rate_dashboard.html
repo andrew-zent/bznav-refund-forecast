@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8">
+<title>신고율 관리 대시보드</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box}body{font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;margin:0;padding:20px;background:#0d1117;color:#e6edf3;font-size:13px;line-height:1.5}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:24px;margin:0 0 4px 0}h2{font-size:14px;margin:0 0 10px 0}
+.meta{font-size:11px;color:#6e7681;margin-bottom:16px}
+.meta span{padding:2px 8px;background:#21262d;border-radius:4px;margin-right:6px}
+.badge{padding:2px 10px;border-radius:12px;font-weight:700;color:#0d1117}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.kpi{background:#161b22;border:1px solid #30363d;padding:14px;border-radius:8px}
+.kpi-label{color:#8b949e;font-size:10px;text-transform:uppercase}.kpi-value{font-size:22px;font-weight:700}.kpi-sub{font-size:10px;color:#8b949e;margin-top:4px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:14px}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:5px 6px;text-align:right;border-bottom:1px solid #21262d}th:first-child,td:first-child{text-align:left}th{color:#8b949e;font-size:10px}
+.chart-c{position:relative;height:280px}
+footer{margin-top:20px;text-align:center;font-size:10px;color:#6e7681}
+@media (max-width:900px){.kpi-row{grid-template-columns:repeat(2,1fr)}.grid-2{grid-template-columns:1fr}}
+</style></head><body>
+<div class="container">
+<h1>신고율 관리 대시보드</h1>
+<div class="meta">
+  <span>기준일: 2026-07-10</span>
+  <span>갱신: 2026-07-11T02:07:24Z</span>
+  <span class="badge" style="background:#d29922">주의 (3/5)</span>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi" style="border-color:#58a6ff">
+    <div class="kpi-label">어제 흐름</div>
+    <div class="kpi-value" style="color:#58a6ff">0<span style="font-size:11px;color:#8b949e"> 신청</span></div>
+    <div class="kpi-sub">신고완료 355건 · 취소 1건</div>
+  </div>
+  <div class="kpi" style="border-color:#f85149">
+    <div class="kpi-label">정체 백로그 (60일+)</div>
+    <div class="kpi-value" style="color:#f85149">41<span style="font-size:11px;color:#8b949e">건</span></div>
+    <div class="kpi-sub">전체 백로그 44건 중</div>
+  </div>
+  <div class="kpi" style="border-color:#d29922">
+    <div class="kpi-label">성숙 코호트 취소율</div>
+    <div class="kpi-value" style="color:#d29922">0.0<span style="font-size:11px;color:#8b949e">%</span></div>
+    <div class="kpi-sub">신청 75~45일 전 · 4990건 기준</div>
+  </div>
+  <div class="kpi" style="border-color:#f85149">
+    <div class="kpi-label">인용확인 기한경과 미확인</div>
+    <div class="kpi-value" style="color:#f85149">8486<span style="font-size:11px;color:#8b949e">건</span></div>
+    <div class="kpi-sub">완료 누적 52,734건 (오늘 152건)</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>📦 백로그 에이징 (신청완료 후 미해결)</h2>
+    <div class="chart-c" style="height:220px"><canvas id="agingChart"></canvas></div>
+  </div>
+  <div class="card">
+    <h2>🧭 성숙 코호트 결과 분포 (신청 75~45일 전)</h2>
+    <div style="display:flex;height:32px;border-radius:6px;overflow:hidden;margin-bottom:8px"><div style="width:100.0%;background:#3fb950;display:flex;align-items:center;justify-content:center;color:#0d1117;font-size:11px;font-weight:700;min-width:2px;overflow:hidden;white-space:nowrap;">신고완료 100.0%</div><div style="width:0.0%;background:#f85149;display:flex;align-items:center;justify-content:center;color:#0d1117;font-size:11px;font-weight:700;min-width:2px;overflow:hidden;white-space:nowrap;"></div><div style="width:0.0%;background:#d29922;display:flex;align-items:center;justify-content:center;color:#0d1117;font-size:11px;font-weight:700;min-width:2px;overflow:hidden;white-space:nowrap;"></div></div><div style="font-size:11px;color:#8b949e"><span style="margin-right:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#3fb950;margin-right:4px"></span>신고완료 100.0%</span><span style="margin-right:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#f85149;margin-right:4px"></span>취소 0.0%</span><span style="margin-right:14px"><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#d29922;margin-right:4px"></span>진행중 0.0%</span></div>
+    <div style="margin-top:14px;font-size:11px;color:#8b949e">보류 중 0건 (최장 0일)</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h2>❌ 취소 사유 top (90일 이내, 총 279건)</h2>
+    <div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>(미기재)</span><span style="color:#8b949e">49건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:100%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>신청취소_높은수수료</span><span style="color:#8b949e">35건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:71%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>부재중</span><span style="color:#8b949e">32건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:65%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>무응답</span><span style="color:#8b949e">31건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:63%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>서류제출불가</span><span style="color:#8b949e">23건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:47%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div>
+  </div>
+  <div class="card">
+    <h2>📋 인용확인 상태별 (미확인 건)</h2>
+    <div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>조사관 처리중</span><span style="color:#8b949e">7509건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:100%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>확인 종료</span><span style="color:#8b949e">719건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:10%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>세무서 부재</span><span style="color:#8b949e">490건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:7%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div><div style="margin-bottom:7px"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px"><span>대응 필요</span><span style="color:#8b949e">310건</span></div><div style="background:#21262d;border-radius:3px;height:8px"><div style="width:4%;background:#58a6ff;height:8px;border-radius:3px"></div></div></div>
+  </div>
+</div>
+
+
+
+<div class="card">
+  <h2>✅ 체크 상세</h2>
+  <table><thead><tr><th>항목</th><th></th><th>상세</th></tr></thead><tbody><tr><td>일일 전환 흐름 (2026-07-10)</td><td>🟢</td><td>신청 0건 · 신고완료 355건 · 취소 1건</td></tr><tr><td>정체 백로그 (신청 후 60일+)</td><td>🟢</td><td>41건 (임계 100건) · 전체 백로그 44건</td></tr><tr><td>성숙 코호트 취소율 (신청 75~45일 전)</td><td>🟢</td><td>취소 0.0% (0/4990건) · 신고완료 100.0%</td></tr><tr><td>인용확인 기한(6주) 경과 미확인</td><td>🔴</td><td>8486건 (임계 20건)</td></tr><tr><td>인용확인 대응필요 (세무서 비협조/대응 필요)</td><td>🔴</td><td>310건 (임계 15건)</td></tr></tbody></table>
+</div>
+
+<footer>지엔터프라이즈 · 신고율 관리 Agent · 매일 09:00 KST 자동 갱신</footer>
+</div>
+<script>
+Chart.defaults.color='#8b949e';Chart.defaults.borderColor='#21262d';
+const g={color:'#21262d',drawBorder:false},bs={grid:g,ticks:{color:'#8b949e'}};
+new Chart(document.getElementById('agingChart'),{type:'bar',data:{labels:["0-7\uc77c", "8-14\uc77c", "15-30\uc77c", "31-60\uc77c", "60+\uc77c"],datasets:[{data:[0, 0, 0, 3, 41],backgroundColor:["#3fb950", "#3fb950", "#d29922", "#d29922", "#f85149"],borderRadius:4,datalabels:{}}]},options:{maintainAspectRatio:false,responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.raw+'건'}}},scales:{y:{...bs,title:{display:true,text:'건수'}},x:{...bs}}}});
+
+</script></body></html>

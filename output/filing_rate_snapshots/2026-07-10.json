@@ -1,0 +1,128 @@
+{
+  "agent": "filing_rate_monitor",
+  "timestamp": "2026-07-11T02:07:24Z",
+  "report_date": "2026-07-10",
+  "total_checks": 5,
+  "passed": 3,
+  "failed": 2,
+  "severity": "warn",
+  "results": [
+    {
+      "check": "일일 전환 흐름 (2026-07-10)",
+      "ok": true,
+      "detail": "신청 0건 · 신고완료 355건 · 취소 1건",
+      "value": {
+        "date": "2026-07-10",
+        "applied": 0,
+        "filed": 355,
+        "cancelled": 1
+      }
+    },
+    {
+      "check": "정체 백로그 (신청 후 60일+)",
+      "ok": true,
+      "detail": "41건 (임계 100건) · 전체 백로그 44건",
+      "value": 41
+    },
+    {
+      "check": "성숙 코호트 취소율 (신청 75~45일 전)",
+      "ok": true,
+      "detail": "취소 0.0% (0/4990건) · 신고완료 100.0%",
+      "value": 0.0
+    },
+    {
+      "check": "인용확인 기한(6주) 경과 미확인",
+      "ok": false,
+      "detail": "8486건 (임계 20건)",
+      "value": 8486
+    },
+    {
+      "check": "인용확인 대응필요 (세무서 비협조/대응 필요)",
+      "ok": false,
+      "detail": "310건 (임계 15건)",
+      "value": 310
+    }
+  ],
+  "daily_flow": {
+    "date": "2026-07-10",
+    "applied": 0,
+    "filed": 355,
+    "cancelled": 1
+  },
+  "backlog_aging": {
+    "0-7": 0,
+    "8-14": 0,
+    "15-30": 0,
+    "31-60": 3,
+    "60+": 41
+  },
+  "hold_summary": {
+    "total_on_hold": 0,
+    "oldest_hold_days": 0,
+    "top_reasons": []
+  },
+  "cohort_conversion": {
+    "window_label": "신청 75~45일 전",
+    "n": 4990,
+    "filed": 4988,
+    "cancelled": 0,
+    "pending": 2,
+    "filed_pct": 100.0,
+    "cancel_pct": 0.0,
+    "pending_pct": 0.0
+  },
+  "cancel_reasons": {
+    "window_days": 90,
+    "total": 279,
+    "top_reasons": [
+      {
+        "reason": "(미기재)",
+        "count": 49,
+        "pct": 17.6
+      },
+      {
+        "reason": "신청취소_높은수수료",
+        "count": 35,
+        "pct": 12.5
+      },
+      {
+        "reason": "부재중",
+        "count": 32,
+        "pct": 11.5
+      },
+      {
+        "reason": "무응답",
+        "count": 31,
+        "pct": 11.1
+      },
+      {
+        "reason": "서류제출불가",
+        "count": 23,
+        "pct": 8.2
+      }
+    ]
+  },
+  "citation": {
+    "confirmed_today": 152,
+    "confirmed_total": 52734,
+    "sla_overdue": 8486,
+    "status_breakdown": [
+      {
+        "status": "조사관 처리중",
+        "count": 7509
+      },
+      {
+        "status": "확인 종료",
+        "count": 719
+      },
+      {
+        "status": "세무서 부재",
+        "count": 490
+      },
+      {
+        "status": "대응 필요",
+        "count": 310
+      }
+    ]
+  }
+}
