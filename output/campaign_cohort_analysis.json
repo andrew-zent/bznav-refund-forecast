@@ -1,0 +1,2936 @@
+{
+  "generated_at": "2026-07-29T03:10:23Z",
+  "as_of": "2026-07-29",
+  "params": {
+    "maturation_days": 30,
+    "baseline_weeks": 8,
+    "min_deals_per_week": 10,
+    "cancel_rate_delta_warn_ppt": 5.0,
+    "volume_drop_warn_pct": -30.0
+  },
+  "note": "캠페인 식별값(utm_campaign)이 없는 딜은 utm_source로 대체 그룹핑. 취소율은 신청 후 코호트 성숙 기준(MATURATION_DAYS일) 이상 경과한 주만 집계 — 최근 미성숙 주는 취소가 아직 발생하지 않았을 뿐일 수 있어 제외. VOC 신호는 미포함 (채널톡 API 연동 후 별도 스크립트에서 결합 예정).",
+  "campaigns": [
+    {
+      "campaign": "kakaomoment_bizboard_conv_260223",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 706,
+      "current_applied": 463,
+      "baseline_weekly_avg": 88.2,
+      "current_weekly_avg": 231.5,
+      "baseline_cancel_rate_pct": 1.4,
+      "current_cancel_rate_pct": 0.6,
+      "cancel_rate_delta_ppt": -0.8,
+      "volume_delta_pct": 162.3,
+      "baseline_apply_oku": 15.4,
+      "current_apply_oku": 11.76,
+      "flags": []
+    },
+    {
+      "campaign": "kakaomoment_display_conv_260223",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 948,
+      "current_applied": 316,
+      "baseline_weekly_avg": 118.5,
+      "current_weekly_avg": 158.0,
+      "baseline_cancel_rate_pct": 1.2,
+      "current_cancel_rate_pct": 1.9,
+      "cancel_rate_delta_ppt": 0.7,
+      "volume_delta_pct": 33.3,
+      "baseline_apply_oku": 24.09,
+      "current_apply_oku": 7.92,
+      "flags": []
+    },
+    {
+      "campaign": "no_check_refund_amount",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 620,
+      "current_applied": 181,
+      "baseline_weekly_avg": 77.5,
+      "current_weekly_avg": 90.5,
+      "baseline_cancel_rate_pct": 1.9,
+      "current_cancel_rate_pct": 0.6,
+      "cancel_rate_delta_ppt": -1.4,
+      "volume_delta_pct": 16.8,
+      "baseline_apply_oku": 21.88,
+      "current_apply_oku": 5.76,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_notapply_50down",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 585,
+      "current_applied": 491,
+      "baseline_weekly_avg": 73.1,
+      "current_weekly_avg": 245.5,
+      "baseline_cancel_rate_pct": 1.4,
+      "current_cancel_rate_pct": 0.6,
+      "cancel_rate_delta_ppt": -0.8,
+      "volume_delta_pct": 235.7,
+      "baseline_apply_oku": 10.17,
+      "current_apply_oku": 5.43,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_closed",
+      "baseline_weeks": [
+        "2026-04-06",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-29"
+      ],
+      "baseline_applied": 200,
+      "current_applied": 228,
+      "baseline_weekly_avg": 25.0,
+      "current_weekly_avg": 114.0,
+      "baseline_cancel_rate_pct": 1.0,
+      "current_cancel_rate_pct": 0.4,
+      "cancel_rate_delta_ppt": -0.6,
+      "volume_delta_pct": 356.0,
+      "baseline_apply_oku": 3.79,
+      "current_apply_oku": 3.95,
+      "flags": []
+    },
+    {
+      "campaign": "kbcard_enterprisecard",
+      "baseline_weeks": [
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-30",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-29"
+      ],
+      "baseline_applied": 220,
+      "current_applied": 142,
+      "baseline_weekly_avg": 27.5,
+      "current_weekly_avg": 71.0,
+      "baseline_cancel_rate_pct": 1.4,
+      "current_cancel_rate_pct": 0.7,
+      "cancel_rate_delta_ppt": -0.7,
+      "volume_delta_pct": 158.2,
+      "baseline_apply_oku": 6.39,
+      "current_apply_oku": 3.67,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_newlwi_mo_0101",
+      "baseline_weeks": [
+        "2025-12-15",
+        "2025-12-29",
+        "2026-01-05"
+      ],
+      "current_weeks": [
+        "2026-01-12",
+        "2026-01-19"
+      ],
+      "baseline_applied": 15,
+      "current_applied": 14,
+      "baseline_weekly_avg": 5.0,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 6.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -6.7,
+      "volume_delta_pct": 40.0,
+      "baseline_apply_oku": 0.33,
+      "current_apply_oku": 3.5,
+      "flags": []
+    },
+    {
+      "campaign": "shinhancard_enterprisecard",
+      "baseline_weeks": [
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-29"
+      ],
+      "baseline_applied": 299,
+      "current_applied": 78,
+      "baseline_weekly_avg": 37.4,
+      "current_weekly_avg": 39.0,
+      "baseline_cancel_rate_pct": 1.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.0,
+      "volume_delta_pct": 4.3,
+      "baseline_apply_oku": 6.23,
+      "current_apply_oku": 3.23,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_notlookup",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 439,
+      "current_applied": 122,
+      "baseline_weekly_avg": 54.9,
+      "current_weekly_avg": 61.0,
+      "baseline_cancel_rate_pct": 1.4,
+      "current_cancel_rate_pct": 1.6,
+      "cancel_rate_delta_ppt": 0.3,
+      "volume_delta_pct": 11.2,
+      "baseline_apply_oku": 12.73,
+      "current_apply_oku": 3.1,
+      "flags": []
+    },
+    {
+      "campaign": "kakaomoment_bizboard_deadline_260326",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 793,
+      "current_applied": 104,
+      "baseline_weekly_avg": 99.1,
+      "current_weekly_avg": 52.0,
+      "baseline_cancel_rate_pct": 2.8,
+      "current_cancel_rate_pct": 2.9,
+      "cancel_rate_delta_ppt": 0.1,
+      "volume_delta_pct": -47.5,
+      "baseline_apply_oku": 22.18,
+      "current_apply_oku": 2.98,
+      "flags": [
+        "신청량 기준선 대비 -47.5% 급감"
+      ]
+    },
+    {
+      "campaign": "play_store_android",
+      "baseline_weeks": [
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 75,
+      "current_applied": 72,
+      "baseline_weekly_avg": 9.4,
+      "current_weekly_avg": 36.0,
+      "baseline_cancel_rate_pct": 5.3,
+      "current_cancel_rate_pct": 1.4,
+      "cancel_rate_delta_ppt": -3.9,
+      "volume_delta_pct": 284.0,
+      "baseline_apply_oku": 2.75,
+      "current_apply_oku": 2.92,
+      "flags": []
+    },
+    {
+      "campaign": "Lookup",
+      "baseline_weeks": [
+        "2025-07-14",
+        "2025-07-21",
+        "2025-08-04"
+      ],
+      "current_weeks": [
+        "2025-08-11",
+        "2025-08-25"
+      ],
+      "baseline_applied": 26,
+      "current_applied": 61,
+      "baseline_weekly_avg": 8.7,
+      "current_weekly_avg": 30.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 3.3,
+      "cancel_rate_delta_ppt": 3.3,
+      "volume_delta_pct": 251.9,
+      "baseline_apply_oku": 1.11,
+      "current_apply_oku": 2.52,
+      "flags": []
+    },
+    {
+      "campaign": "zeropay_lms_applydetarget.old10",
+      "baseline_weeks": [
+        "2026-02-23",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 103,
+      "current_applied": 97,
+      "baseline_weekly_avg": 12.9,
+      "current_weekly_avg": 48.5,
+      "baseline_cancel_rate_pct": 5.8,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.8,
+      "volume_delta_pct": 276.7,
+      "baseline_apply_oku": 3.63,
+      "current_apply_oku": 2.51,
+      "flags": []
+    },
+    {
+      "campaign": "kakaobank_mybusiness_ceo",
+      "baseline_weeks": [
+        "2025-12-15",
+        "2026-01-12",
+        "2026-01-19",
+        "2026-02-02",
+        "2026-03-09",
+        "2026-04-13",
+        "2026-04-20",
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-22"
+      ],
+      "baseline_applied": 77,
+      "current_applied": 73,
+      "baseline_weekly_avg": 9.6,
+      "current_weekly_avg": 36.5,
+      "baseline_cancel_rate_pct": 1.3,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.3,
+      "volume_delta_pct": 279.2,
+      "baseline_apply_oku": 2.37,
+      "current_apply_oku": 2.43,
+      "flags": []
+    },
+    {
+      "campaign": "(no-campaign)/referer",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 169,
+      "current_applied": 38,
+      "baseline_weekly_avg": 21.1,
+      "current_weekly_avg": 19.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 2.6,
+      "cancel_rate_delta_ppt": 2.6,
+      "volume_delta_pct": -10.1,
+      "baseline_apply_oku": 8.37,
+      "current_apply_oku": 2.27,
+      "flags": []
+    },
+    {
+      "campaign": "hyundaicard_apppush_ceo",
+      "baseline_weeks": [
+        "2026-03-30",
+        "2026-04-13",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 130,
+      "current_applied": 88,
+      "baseline_weekly_avg": 16.2,
+      "current_weekly_avg": 44.0,
+      "baseline_cancel_rate_pct": 1.5,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.5,
+      "volume_delta_pct": 170.8,
+      "baseline_apply_oku": 2.36,
+      "current_apply_oku": 2.21,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_lucky_mo_1210",
+      "baseline_weeks": [
+        "2025-09-08",
+        "2025-09-15",
+        "2025-09-22",
+        "2025-11-10",
+        "2025-11-24",
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "current_weeks": [
+        "2025-12-22",
+        "2025-12-29"
+      ],
+      "baseline_applied": 101,
+      "current_applied": 38,
+      "baseline_weekly_avg": 14.4,
+      "current_weekly_avg": 19.0,
+      "baseline_cancel_rate_pct": 5.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.0,
+      "volume_delta_pct": 31.7,
+      "baseline_apply_oku": 1.52,
+      "current_apply_oku": 1.93,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimktalk_p_lookupd0_apply_vip",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 91,
+      "current_applied": 18,
+      "baseline_weekly_avg": 11.4,
+      "current_weekly_avg": 9.0,
+      "baseline_cancel_rate_pct": 3.3,
+      "current_cancel_rate_pct": 5.6,
+      "cancel_rate_delta_ppt": 2.3,
+      "volume_delta_pct": -20.9,
+      "baseline_apply_oku": 9.67,
+      "current_apply_oku": 1.9,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_completeregistration_251208",
+      "baseline_weeks": [
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12",
+        "2026-01-19",
+        "2026-01-26",
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16"
+      ],
+      "current_weeks": [
+        "2026-02-23",
+        "2026-04-20"
+      ],
+      "baseline_applied": 510,
+      "current_applied": 41,
+      "baseline_weekly_avg": 63.8,
+      "current_weekly_avg": 20.5,
+      "baseline_cancel_rate_pct": 1.2,
+      "current_cancel_rate_pct": 2.4,
+      "cancel_rate_delta_ppt": 1.3,
+      "volume_delta_pct": -67.8,
+      "baseline_apply_oku": 10.75,
+      "current_apply_oku": 1.75,
+      "flags": [
+        "신청량 기준선 대비 -67.8% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_2026may_waiting",
+      "baseline_weeks": [
+        "2025-06-23",
+        "2025-12-01",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18"
+      ],
+      "current_weeks": [
+        "2026-05-25",
+        "2026-06-29"
+      ],
+      "baseline_applied": 43,
+      "current_applied": 40,
+      "baseline_weekly_avg": 8.6,
+      "current_weekly_avg": 20.0,
+      "baseline_cancel_rate_pct": 2.3,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.3,
+      "volume_delta_pct": 132.6,
+      "baseline_apply_oku": 1.32,
+      "current_apply_oku": 1.53,
+      "flags": []
+    },
+    {
+      "campaign": "kakaochannel_taxrefund_btn",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 129,
+      "current_applied": 49,
+      "baseline_weekly_avg": 16.1,
+      "current_weekly_avg": 24.5,
+      "baseline_cancel_rate_pct": 2.3,
+      "current_cancel_rate_pct": 2.0,
+      "cancel_rate_delta_ppt": -0.3,
+      "volume_delta_pct": 51.9,
+      "baseline_apply_oku": 3.36,
+      "current_apply_oku": 1.51,
+      "flags": []
+    },
+    {
+      "campaign": "kbcard_franchise",
+      "baseline_weeks": [
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-25",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-29"
+      ],
+      "baseline_applied": 143,
+      "current_applied": 54,
+      "baseline_weekly_avg": 17.9,
+      "current_weekly_avg": 27.0,
+      "baseline_cancel_rate_pct": 2.8,
+      "current_cancel_rate_pct": 1.9,
+      "cancel_rate_delta_ppt": -0.9,
+      "volume_delta_pct": 51.0,
+      "baseline_apply_oku": 5.18,
+      "current_apply_oku": 1.4,
+      "flags": []
+    },
+    {
+      "campaign": "kakaobank_hometop_big",
+      "baseline_weeks": [
+        "2026-01-12",
+        "2026-01-26",
+        "2026-02-09",
+        "2026-02-23",
+        "2026-03-16",
+        "2026-03-30",
+        "2026-04-13",
+        "2026-04-27"
+      ],
+      "current_weeks": [
+        "2026-05-11",
+        "2026-06-29"
+      ],
+      "baseline_applied": 293,
+      "current_applied": 52,
+      "baseline_weekly_avg": 36.6,
+      "current_weekly_avg": 26.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -29.0,
+      "baseline_apply_oku": 7.5,
+      "current_apply_oku": 1.21,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_tritx_notlookup",
+      "baseline_weeks": [
+        "2025-11-03",
+        "2025-11-10",
+        "2025-11-17",
+        "2025-11-24",
+        "2025-12-01",
+        "2025-12-08",
+        "2025-12-15",
+        "2025-12-22"
+      ],
+      "current_weeks": [
+        "2025-12-29",
+        "2026-02-16"
+      ],
+      "baseline_applied": 590,
+      "current_applied": 46,
+      "baseline_weekly_avg": 73.8,
+      "current_weekly_avg": 23.0,
+      "baseline_cancel_rate_pct": 0.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.7,
+      "volume_delta_pct": -68.8,
+      "baseline_apply_oku": 6.16,
+      "current_apply_oku": 1.19,
+      "flags": [
+        "신청량 기준선 대비 -68.8% 급감"
+      ]
+    },
+    {
+      "campaign": "bsnaver.tap.ref_lwi_mo_1013",
+      "baseline_weeks": [
+        "2025-10-13"
+      ],
+      "current_weeks": [
+        "2025-10-20",
+        "2025-10-27"
+      ],
+      "baseline_applied": 10,
+      "current_applied": 30,
+      "baseline_weekly_avg": 10.0,
+      "current_weekly_avg": 15.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 50.0,
+      "baseline_apply_oku": 0.12,
+      "current_apply_oku": 1.19,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_deadli_mo_0413",
+      "baseline_weeks": [
+        "2025-10-20",
+        "2026-04-13"
+      ],
+      "current_weeks": [
+        "2026-04-20",
+        "2026-04-27"
+      ],
+      "baseline_applied": 10,
+      "current_applied": 28,
+      "baseline_weekly_avg": 5.0,
+      "current_weekly_avg": 14.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 180.0,
+      "baseline_apply_oku": 0.21,
+      "current_apply_oku": 1.19,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_signupd0_lookup",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 182,
+      "current_applied": 36,
+      "baseline_weekly_avg": 22.8,
+      "current_weekly_avg": 18.0,
+      "baseline_cancel_rate_pct": 2.2,
+      "current_cancel_rate_pct": 2.8,
+      "cancel_rate_delta_ppt": 0.6,
+      "volume_delta_pct": -20.9,
+      "baseline_apply_oku": 7.43,
+      "current_apply_oku": 1.12,
+      "flags": []
+    },
+    {
+      "campaign": "kakaomoment_display_video_260413",
+      "baseline_weeks": [
+        "2026-04-13",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 55,
+      "current_applied": 42,
+      "baseline_weekly_avg": 6.9,
+      "current_weekly_avg": 21.0,
+      "baseline_cancel_rate_pct": 3.6,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.6,
+      "volume_delta_pct": 205.5,
+      "baseline_apply_oku": 1.14,
+      "current_apply_oku": 1.0,
+      "flags": []
+    },
+    {
+      "campaign": "google_pmax_250401",
+      "baseline_weeks": [
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-13"
+      ],
+      "current_weeks": [
+        "2026-04-20",
+        "2026-04-27"
+      ],
+      "baseline_applied": 68,
+      "current_applied": 34,
+      "baseline_weekly_avg": 8.5,
+      "current_weekly_avg": 17.0,
+      "baseline_cancel_rate_pct": 2.9,
+      "current_cancel_rate_pct": 2.9,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 100.0,
+      "baseline_apply_oku": 1.54,
+      "current_apply_oku": 0.96,
+      "flags": []
+    },
+    {
+      "campaign": "toss.join_inapppage_btn",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 448,
+      "current_applied": 37,
+      "baseline_weekly_avg": 56.0,
+      "current_weekly_avg": 18.5,
+      "baseline_cancel_rate_pct": 2.0,
+      "current_cancel_rate_pct": 5.4,
+      "cancel_rate_delta_ppt": 3.4,
+      "volume_delta_pct": -67.0,
+      "baseline_apply_oku": 12.38,
+      "current_apply_oku": 0.94,
+      "flags": [
+        "신청량 기준선 대비 -67.0% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_cancellation",
+      "baseline_weeks": [
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-27",
+        "2026-05-11",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 78,
+      "current_applied": 15,
+      "baseline_weekly_avg": 9.8,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 2.6,
+      "current_cancel_rate_pct": 6.7,
+      "cancel_rate_delta_ppt": 4.1,
+      "volume_delta_pct": -23.1,
+      "baseline_apply_oku": 3.09,
+      "current_apply_oku": 0.92,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_retention_21to23",
+      "baseline_weeks": [
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11"
+      ],
+      "current_weeks": [
+        "2026-05-18",
+        "2026-05-25"
+      ],
+      "baseline_applied": 63,
+      "current_applied": 36,
+      "baseline_weekly_avg": 7.9,
+      "current_weekly_avg": 18.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 128.6,
+      "baseline_apply_oku": 2.53,
+      "current_apply_oku": 0.91,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimktalk_lookupd6_apply",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 124,
+      "current_applied": 30,
+      "baseline_weekly_avg": 15.5,
+      "current_weekly_avg": 15.0,
+      "baseline_cancel_rate_pct": 0.8,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.8,
+      "volume_delta_pct": -3.2,
+      "baseline_apply_oku": 3.13,
+      "current_apply_oku": 0.9,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_closed_251118",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-06-23",
+        "2025-11-17",
+        "2025-11-24"
+      ],
+      "current_weeks": [
+        "2025-12-01",
+        "2025-12-08"
+      ],
+      "baseline_applied": 46,
+      "current_applied": 33,
+      "baseline_weekly_avg": 11.5,
+      "current_weekly_avg": 16.5,
+      "baseline_cancel_rate_pct": 2.2,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.2,
+      "volume_delta_pct": 43.5,
+      "baseline_apply_oku": 0.29,
+      "current_apply_oku": 0.87,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_closed_260420",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 109,
+      "current_applied": 42,
+      "baseline_weekly_avg": 13.6,
+      "current_weekly_avg": 21.0,
+      "baseline_cancel_rate_pct": 0.9,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.9,
+      "volume_delta_pct": 54.1,
+      "baseline_apply_oku": 1.82,
+      "current_apply_oku": 0.83,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_abtest_260202",
+      "baseline_weeks": [
+        "2025-06-30",
+        "2025-07-21",
+        "2026-02-02",
+        "2026-02-09"
+      ],
+      "current_weeks": [
+        "2026-02-16",
+        "2026-02-23"
+      ],
+      "baseline_applied": 13,
+      "current_applied": 20,
+      "baseline_weekly_avg": 3.2,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 5.0,
+      "cancel_rate_delta_ppt": 5.0,
+      "volume_delta_pct": 207.7,
+      "baseline_apply_oku": 0.27,
+      "current_apply_oku": 0.71,
+      "flags": [
+        "취소율 기준선 대비 +5.0%p 상승"
+      ]
+    },
+    {
+      "campaign": "kakaopay_tms.basic.text_ceo",
+      "baseline_weeks": [
+        "2025-12-15",
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12",
+        "2026-01-26",
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-23"
+      ],
+      "current_weeks": [
+        "2026-03-02",
+        "2026-03-23"
+      ],
+      "baseline_applied": 199,
+      "current_applied": 35,
+      "baseline_weekly_avg": 24.9,
+      "current_weekly_avg": 17.5,
+      "baseline_cancel_rate_pct": 2.5,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.5,
+      "volume_delta_pct": -29.6,
+      "baseline_apply_oku": 8.68,
+      "current_apply_oku": 0.69,
+      "flags": []
+    },
+    {
+      "campaign": "kt_franchise",
+      "baseline_weeks": [
+        "2025-09-29",
+        "2025-10-27",
+        "2025-11-17",
+        "2025-11-24"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "baseline_applied": 95,
+      "current_applied": 50,
+      "baseline_weekly_avg": 23.8,
+      "current_weekly_avg": 25.0,
+      "baseline_cancel_rate_pct": 2.1,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.1,
+      "volume_delta_pct": 5.3,
+      "baseline_apply_oku": 1.87,
+      "current_apply_oku": 0.69,
+      "flags": []
+    },
+    {
+      "campaign": "lookup",
+      "baseline_weeks": [
+        "2025-09-01"
+      ],
+      "current_weeks": [
+        "2025-09-08",
+        "2025-09-22"
+      ],
+      "baseline_applied": 22,
+      "current_applied": 49,
+      "baseline_weekly_avg": 22.0,
+      "current_weekly_avg": 24.5,
+      "baseline_cancel_rate_pct": 4.5,
+      "current_cancel_rate_pct": 2.0,
+      "cancel_rate_delta_ppt": -2.5,
+      "volume_delta_pct": 11.4,
+      "baseline_apply_oku": 0.33,
+      "current_apply_oku": 0.68,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_target_mo_0201",
+      "baseline_weeks": [
+        "2026-01-26",
+        "2026-02-02"
+      ],
+      "current_weeks": [
+        "2026-02-09",
+        "2026-02-16"
+      ],
+      "baseline_applied": 17,
+      "current_applied": 28,
+      "baseline_weekly_avg": 8.5,
+      "current_weekly_avg": 14.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 3.6,
+      "cancel_rate_delta_ppt": 3.6,
+      "volume_delta_pct": 64.7,
+      "baseline_apply_oku": 0.17,
+      "current_apply_oku": 0.68,
+      "flags": []
+    },
+    {
+      "campaign": "hanacard_franchise",
+      "baseline_weeks": [
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-27",
+        "2026-05-11",
+        "2026-05-25",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-22"
+      ],
+      "baseline_applied": 47,
+      "current_applied": 22,
+      "baseline_weekly_avg": 5.9,
+      "current_weekly_avg": 11.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 87.2,
+      "baseline_apply_oku": 1.3,
+      "current_apply_oku": 0.67,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_lookupd0_apply",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 211,
+      "current_applied": 63,
+      "baseline_weekly_avg": 26.4,
+      "current_weekly_avg": 31.5,
+      "baseline_cancel_rate_pct": 0.5,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.5,
+      "volume_delta_pct": 19.4,
+      "baseline_apply_oku": 2.14,
+      "current_apply_oku": 0.67,
+      "flags": []
+    },
+    {
+      "campaign": "wooricard_franchise",
+      "baseline_weeks": [
+        "2025-09-08",
+        "2025-09-22",
+        "2025-09-29",
+        "2025-10-27",
+        "2025-11-03",
+        "2025-11-10",
+        "2025-11-17",
+        "2025-11-24"
+      ],
+      "current_weeks": [
+        "2025-12-01",
+        "2025-12-08"
+      ],
+      "baseline_applied": 236,
+      "current_applied": 49,
+      "baseline_weekly_avg": 29.5,
+      "current_weekly_avg": 24.5,
+      "baseline_cancel_rate_pct": 1.3,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.3,
+      "volume_delta_pct": -16.9,
+      "baseline_apply_oku": 5.01,
+      "current_apply_oku": 0.64,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_notlookup_24_25",
+      "baseline_weeks": [
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12",
+        "2026-01-19"
+      ],
+      "current_weeks": [
+        "2026-01-26",
+        "2026-02-09"
+      ],
+      "baseline_applied": 53,
+      "current_applied": 21,
+      "baseline_weekly_avg": 13.2,
+      "current_weekly_avg": 10.5,
+      "baseline_cancel_rate_pct": 1.9,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.9,
+      "volume_delta_pct": -20.8,
+      "baseline_apply_oku": 1.78,
+      "current_apply_oku": 0.63,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_newjhy_mo_0303",
+      "baseline_weeks": [
+        "2025-06-09",
+        "2025-12-15",
+        "2026-03-02",
+        "2026-03-09"
+      ],
+      "current_weeks": [
+        "2026-03-16",
+        "2026-03-23"
+      ],
+      "baseline_applied": 18,
+      "current_applied": 13,
+      "baseline_weekly_avg": 4.5,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 11.1,
+      "current_cancel_rate_pct": 7.7,
+      "cancel_rate_delta_ppt": -3.4,
+      "volume_delta_pct": 44.4,
+      "baseline_apply_oku": 0.74,
+      "current_apply_oku": 0.63,
+      "flags": []
+    },
+    {
+      "campaign": "okpos_lms",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-07-21",
+        "2025-07-28",
+        "2025-08-25",
+        "2025-09-01",
+        "2025-09-22",
+        "2025-12-01",
+        "2025-12-22"
+      ],
+      "current_weeks": [
+        "2025-12-29",
+        "2026-01-19"
+      ],
+      "baseline_applied": 89,
+      "current_applied": 20,
+      "baseline_weekly_avg": 11.1,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 5.0,
+      "cancel_rate_delta_ppt": 5.0,
+      "volume_delta_pct": -10.1,
+      "baseline_apply_oku": 1.46,
+      "current_apply_oku": 0.56,
+      "flags": [
+        "취소율 기준선 대비 +5.0%p 상승"
+      ]
+    },
+    {
+      "campaign": "meta_asc_lookup_260601",
+      "baseline_weeks": [
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "baseline_applied": 11,
+      "current_applied": 18,
+      "baseline_weekly_avg": 11.0,
+      "current_weekly_avg": 9.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -18.2,
+      "baseline_apply_oku": 0.4,
+      "current_apply_oku": 0.54,
+      "flags": []
+    },
+    {
+      "campaign": "hanacard_entrepreneur",
+      "baseline_weeks": [
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-27",
+        "2026-05-11",
+        "2026-05-25",
+        "2026-06-08"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-22"
+      ],
+      "baseline_applied": 64,
+      "current_applied": 30,
+      "baseline_weekly_avg": 8.0,
+      "current_weekly_avg": 15.0,
+      "baseline_cancel_rate_pct": 3.1,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.1,
+      "volume_delta_pct": 87.5,
+      "baseline_apply_oku": 1.79,
+      "current_apply_oku": 0.53,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_lwi_mo_1201",
+      "baseline_weeks": [
+        "2025-12-01"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-22"
+      ],
+      "baseline_applied": 42,
+      "current_applied": 36,
+      "baseline_weekly_avg": 42.0,
+      "current_weekly_avg": 18.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -57.1,
+      "baseline_apply_oku": 0.46,
+      "current_apply_oku": 0.53,
+      "flags": [
+        "신청량 기준선 대비 -57.1% 급감"
+      ]
+    },
+    {
+      "campaign": "lgupluslms_entrepreneur",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-11-17",
+        "2025-12-01"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "baseline_applied": 19,
+      "current_applied": 44,
+      "baseline_weekly_avg": 6.3,
+      "current_weekly_avg": 22.0,
+      "baseline_cancel_rate_pct": 5.3,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.3,
+      "volume_delta_pct": 247.4,
+      "baseline_apply_oku": 0.33,
+      "current_apply_oku": 0.53,
+      "flags": []
+    },
+    {
+      "campaign": "yogiyo_eventpage",
+      "baseline_weeks": [
+        "2025-07-28",
+        "2025-08-04",
+        "2025-08-25",
+        "2025-09-29",
+        "2025-11-03",
+        "2025-11-24",
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "current_weeks": [
+        "2026-03-30",
+        "2026-06-29"
+      ],
+      "baseline_applied": 50,
+      "current_applied": 25,
+      "baseline_weekly_avg": 6.2,
+      "current_weekly_avg": 12.5,
+      "baseline_cancel_rate_pct": 2.0,
+      "current_cancel_rate_pct": 4.0,
+      "cancel_rate_delta_ppt": 2.0,
+      "volume_delta_pct": 100.0,
+      "baseline_apply_oku": 0.52,
+      "current_apply_oku": 0.52,
+      "flags": []
+    },
+    {
+      "campaign": "shinhancard_franchise",
+      "baseline_weeks": [
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-11"
+      ],
+      "current_weeks": [
+        "2026-05-18",
+        "2026-05-25"
+      ],
+      "baseline_applied": 97,
+      "current_applied": 10,
+      "baseline_weekly_avg": 12.1,
+      "current_weekly_avg": 5.0,
+      "baseline_cancel_rate_pct": 5.2,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.2,
+      "volume_delta_pct": -58.8,
+      "baseline_apply_oku": 2.5,
+      "current_apply_oku": 0.47,
+      "flags": [
+        "신청량 기준선 대비 -58.8% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_retention_21to24",
+      "baseline_weeks": [
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 501,
+      "current_applied": 23,
+      "baseline_weekly_avg": 250.5,
+      "current_weekly_avg": 11.5,
+      "baseline_cancel_rate_pct": 1.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.0,
+      "volume_delta_pct": -95.4,
+      "baseline_apply_oku": 18.72,
+      "current_apply_oku": 0.47,
+      "flags": [
+        "신청량 기준선 대비 -95.4% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_tritx_notapply_payingcustomers",
+      "baseline_weeks": [
+        "2025-12-01"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "baseline_applied": 30,
+      "current_applied": 12,
+      "baseline_weekly_avg": 30.0,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -80.0,
+      "baseline_apply_oku": 0.73,
+      "current_apply_oku": 0.46,
+      "flags": [
+        "신청량 기준선 대비 -80.0% 급감"
+      ]
+    },
+    {
+      "campaign": "tiktok_refunds_dbstore_completepayment_madup_250618",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-06-23"
+      ],
+      "current_weeks": [
+        "2025-06-30",
+        "2025-07-07"
+      ],
+      "baseline_applied": 23,
+      "current_applied": 14,
+      "baseline_weekly_avg": 11.5,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 7.1,
+      "cancel_rate_delta_ppt": 7.1,
+      "volume_delta_pct": -39.1,
+      "baseline_apply_oku": 0.29,
+      "current_apply_oku": 0.43,
+      "flags": [
+        "취소율 기준선 대비 +7.1%p 상승",
+        "신청량 기준선 대비 -39.1% 급감"
+      ]
+    },
+    {
+      "campaign": "bsnaver.tap.ref_noknow_mo_0601",
+      "baseline_weeks": [
+        "2025-06-02",
+        "2025-06-09",
+        "2025-06-16"
+      ],
+      "current_weeks": [
+        "2025-06-23",
+        "2025-06-30"
+      ],
+      "baseline_applied": 27,
+      "current_applied": 26,
+      "baseline_weekly_avg": 9.0,
+      "current_weekly_avg": 13.0,
+      "baseline_cancel_rate_pct": 3.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.7,
+      "volume_delta_pct": 44.4,
+      "baseline_apply_oku": 0.52,
+      "current_apply_oku": 0.42,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver.tap.ref_jhydea_mo_0501",
+      "baseline_weeks": [
+        "2025-12-08",
+        "2026-02-09",
+        "2026-03-30",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18"
+      ],
+      "current_weeks": [
+        "2026-05-25",
+        "2026-06-01"
+      ],
+      "baseline_applied": 25,
+      "current_applied": 28,
+      "baseline_weekly_avg": 3.6,
+      "current_weekly_avg": 14.0,
+      "baseline_cancel_rate_pct": 8.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -8.0,
+      "volume_delta_pct": 292.0,
+      "baseline_apply_oku": 0.84,
+      "current_apply_oku": 0.42,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimktalk_signupd0_lookup",
+      "baseline_weeks": [
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06"
+      ],
+      "current_weeks": [
+        "2026-04-13",
+        "2026-04-20"
+      ],
+      "baseline_applied": 90,
+      "current_applied": 15,
+      "baseline_weekly_avg": 11.2,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 3.3,
+      "current_cancel_rate_pct": 13.3,
+      "cancel_rate_delta_ppt": 10.0,
+      "volume_delta_pct": -33.3,
+      "baseline_apply_oku": 3.62,
+      "current_apply_oku": 0.41,
+      "flags": [
+        "취소율 기준선 대비 +10.0%p 상승",
+        "신청량 기준선 대비 -33.3% 급감"
+      ]
+    },
+    {
+      "campaign": "meta_asc_completeregistration_250612",
+      "baseline_weeks": [
+        "2025-08-25",
+        "2025-09-01",
+        "2025-09-08",
+        "2025-09-15",
+        "2025-09-22",
+        "2025-09-29",
+        "2025-10-06",
+        "2025-10-13"
+      ],
+      "current_weeks": [
+        "2025-10-20",
+        "2025-10-27"
+      ],
+      "baseline_applied": 174,
+      "current_applied": 44,
+      "baseline_weekly_avg": 21.8,
+      "current_weekly_avg": 22.0,
+      "baseline_cancel_rate_pct": 1.1,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.1,
+      "volume_delta_pct": 1.1,
+      "baseline_apply_oku": 2.33,
+      "current_apply_oku": 0.4,
+      "flags": []
+    },
+    {
+      "campaign": "tiktok_refunds_db365_completepayment_madup_250618",
+      "baseline_weeks": [
+        "2025-06-16"
+      ],
+      "current_weeks": [
+        "2025-06-23",
+        "2025-06-30"
+      ],
+      "baseline_applied": 15,
+      "current_applied": 25,
+      "baseline_weekly_avg": 15.0,
+      "current_weekly_avg": 12.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -16.7,
+      "baseline_apply_oku": 0.24,
+      "current_apply_oku": 0.38,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_closed_251117",
+      "baseline_weeks": [
+        "2025-10-27",
+        "2025-11-24",
+        "2025-12-01",
+        "2025-12-08",
+        "2025-12-15",
+        "2025-12-22"
+      ],
+      "current_weeks": [
+        "2025-12-29",
+        "2026-01-05"
+      ],
+      "baseline_applied": 57,
+      "current_applied": 15,
+      "baseline_weekly_avg": 9.5,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 1.8,
+      "current_cancel_rate_pct": 6.7,
+      "cancel_rate_delta_ppt": 4.9,
+      "volume_delta_pct": -21.1,
+      "baseline_apply_oku": 1.91,
+      "current_apply_oku": 0.37,
+      "flags": []
+    },
+    {
+      "campaign": "google_demandgen_260209",
+      "baseline_weeks": [
+        "2025-09-15",
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09"
+      ],
+      "current_weeks": [
+        "2026-03-16",
+        "2026-03-23"
+      ],
+      "baseline_applied": 34,
+      "current_applied": 19,
+      "baseline_weekly_avg": 6.8,
+      "current_weekly_avg": 9.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 39.7,
+      "baseline_apply_oku": 0.5,
+      "current_apply_oku": 0.35,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_lookupd1_apply",
+      "baseline_weeks": [
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 160,
+      "current_applied": 45,
+      "baseline_weekly_avg": 22.9,
+      "current_weekly_avg": 22.5,
+      "baseline_cancel_rate_pct": 0.6,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.6,
+      "volume_delta_pct": -1.6,
+      "baseline_apply_oku": 1.44,
+      "current_apply_oku": 0.35,
+      "flags": []
+    },
+    {
+      "campaign": "pincrux_banner",
+      "baseline_weeks": [
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 33,
+      "current_applied": 13,
+      "baseline_weekly_avg": 4.1,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 57.6,
+      "baseline_apply_oku": 1.14,
+      "current_apply_oku": 0.33,
+      "flags": []
+    },
+    {
+      "campaign": "cashnote_lms_1020m",
+      "baseline_weeks": [
+        "2025-08-11",
+        "2025-08-18",
+        "2025-09-29",
+        "2025-11-10",
+        "2025-11-24",
+        "2025-12-08",
+        "2025-12-29",
+        "2026-01-26"
+      ],
+      "current_weeks": [
+        "2026-02-23",
+        "2026-04-27"
+      ],
+      "baseline_applied": 37,
+      "current_applied": 10,
+      "baseline_weekly_avg": 4.6,
+      "current_weekly_avg": 5.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 8.1,
+      "baseline_apply_oku": 1.16,
+      "current_apply_oku": 0.33,
+      "flags": []
+    },
+    {
+      "campaign": "meta_asc_lwi_251013",
+      "baseline_weeks": [
+        "2025-10-13",
+        "2025-10-20",
+        "2025-10-27",
+        "2025-11-03",
+        "2025-11-10",
+        "2025-11-17",
+        "2025-11-24"
+      ],
+      "current_weeks": [
+        "2025-12-01",
+        "2025-12-08"
+      ],
+      "baseline_applied": 142,
+      "current_applied": 13,
+      "baseline_weekly_avg": 20.3,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 0.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.7,
+      "volume_delta_pct": -68.0,
+      "baseline_apply_oku": 3.62,
+      "current_apply_oku": 0.32,
+      "flags": [
+        "신청량 기준선 대비 -68.0% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimktalk_signupd1_lookup",
+      "baseline_weeks": [
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30"
+      ],
+      "current_weeks": [
+        "2026-04-06",
+        "2026-04-13"
+      ],
+      "baseline_applied": 43,
+      "current_applied": 10,
+      "baseline_weekly_avg": 5.4,
+      "current_weekly_avg": 5.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -7.0,
+      "baseline_apply_oku": 0.68,
+      "current_apply_oku": 0.3,
+      "flags": []
+    },
+    {
+      "campaign": "kakaopay_fitbanner_ceo",
+      "baseline_weeks": [
+        "2025-12-22",
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12",
+        "2026-01-19",
+        "2026-01-26",
+        "2026-02-02",
+        "2026-02-09"
+      ],
+      "current_weeks": [
+        "2026-02-16",
+        "2026-02-23"
+      ],
+      "baseline_applied": 42,
+      "current_applied": 11,
+      "baseline_weekly_avg": 5.2,
+      "current_weekly_avg": 5.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 4.8,
+      "baseline_apply_oku": 1.12,
+      "current_apply_oku": 0.3,
+      "flags": []
+    },
+    {
+      "campaign": "re_refund_apply",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 59,
+      "current_applied": 20,
+      "baseline_weekly_avg": 7.4,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 10.2,
+      "current_cancel_rate_pct": 15.0,
+      "cancel_rate_delta_ppt": 4.8,
+      "volume_delta_pct": 35.6,
+      "baseline_apply_oku": 1.93,
+      "current_apply_oku": 0.28,
+      "flags": []
+    },
+    {
+      "campaign": "bccard_franchise",
+      "baseline_weeks": [
+        "2024-06-17"
+      ],
+      "current_weeks": [
+        "2024-06-24",
+        "2024-07-01"
+      ],
+      "baseline_applied": 12,
+      "current_applied": 27,
+      "baseline_weekly_avg": 12.0,
+      "current_weekly_avg": 13.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 12.5,
+      "baseline_apply_oku": 0.08,
+      "current_apply_oku": 0.27,
+      "flags": []
+    },
+    {
+      "campaign": "google_demandgen_251208",
+      "baseline_weeks": [
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-08",
+        "2026-06-22"
+      ],
+      "baseline_applied": 114,
+      "current_applied": 12,
+      "baseline_weekly_avg": 14.2,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 3.5,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.5,
+      "volume_delta_pct": -57.9,
+      "baseline_apply_oku": 2.61,
+      "current_apply_oku": 0.27,
+      "flags": [
+        "신청량 기준선 대비 -57.9% 급감"
+      ]
+    },
+    {
+      "campaign": "okpos_inappbanner",
+      "baseline_weeks": [
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23"
+      ],
+      "current_weeks": [
+        "2026-03-30",
+        "2026-04-06"
+      ],
+      "baseline_applied": 140,
+      "current_applied": 12,
+      "baseline_weekly_avg": 17.5,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 2.1,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.1,
+      "volume_delta_pct": -65.7,
+      "baseline_apply_oku": 4.36,
+      "current_apply_oku": 0.25,
+      "flags": [
+        "신청량 기준선 대비 -65.7% 급감"
+      ]
+    },
+    {
+      "campaign": "app_store_ios",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 34,
+      "current_applied": 14,
+      "baseline_weekly_avg": 4.2,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 5.9,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.9,
+      "volume_delta_pct": 64.7,
+      "baseline_apply_oku": 0.58,
+      "current_apply_oku": 0.25,
+      "flags": []
+    },
+    {
+      "campaign": "tiktok_refunds_db365_completepayment_madup_250609",
+      "baseline_weeks": [
+        "2025-06-09",
+        "2025-06-16"
+      ],
+      "current_weeks": [
+        "2025-06-23",
+        "2025-06-30"
+      ],
+      "baseline_applied": 24,
+      "current_applied": 18,
+      "baseline_weekly_avg": 12.0,
+      "current_weekly_avg": 9.0,
+      "baseline_cancel_rate_pct": 4.2,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -4.2,
+      "volume_delta_pct": -25.0,
+      "baseline_apply_oku": 0.18,
+      "current_apply_oku": 0.23,
+      "flags": []
+    },
+    {
+      "campaign": "hyundaicard_entrepreneur",
+      "baseline_weeks": [
+        "2026-05-25",
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-15",
+        "2026-06-22"
+      ],
+      "baseline_applied": 28,
+      "current_applied": 24,
+      "baseline_weekly_avg": 14.0,
+      "current_weekly_avg": 12.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -14.3,
+      "baseline_apply_oku": 0.53,
+      "current_apply_oku": 0.22,
+      "flags": []
+    },
+    {
+      "campaign": "tiktok_refunds_smart_completepayment_madup_250604",
+      "baseline_weeks": [
+        "2025-06-02",
+        "2025-06-09"
+      ],
+      "current_weeks": [
+        "2025-06-16",
+        "2025-06-23"
+      ],
+      "baseline_applied": 15,
+      "current_applied": 17,
+      "baseline_weekly_avg": 7.5,
+      "current_weekly_avg": 8.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 13.3,
+      "baseline_apply_oku": 0.24,
+      "current_apply_oku": 0.2,
+      "flags": []
+    },
+    {
+      "campaign": "bsnaver_new_coffee_homelink_mo",
+      "baseline_weeks": [
+        "2024-06-17",
+        "2024-06-24",
+        "2024-07-01"
+      ],
+      "current_weeks": [
+        "2024-07-08",
+        "2024-07-15"
+      ],
+      "baseline_applied": 11,
+      "current_applied": 10,
+      "baseline_weekly_avg": 3.7,
+      "current_weekly_avg": 5.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 36.4,
+      "baseline_apply_oku": 0.15,
+      "current_apply_oku": 0.19,
+      "flags": []
+    },
+    {
+      "campaign": "sena_feedbanner",
+      "baseline_weeks": [
+        "2025-08-04",
+        "2025-08-18",
+        "2025-08-25",
+        "2025-09-01",
+        "2025-09-08",
+        "2025-09-15",
+        "2025-09-22",
+        "2025-09-29"
+      ],
+      "current_weeks": [
+        "2025-10-13",
+        "2025-10-20"
+      ],
+      "baseline_applied": 20,
+      "current_applied": 12,
+      "baseline_weekly_avg": 2.5,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 140.0,
+      "baseline_apply_oku": 0.74,
+      "current_apply_oku": 0.19,
+      "flags": []
+    },
+    {
+      "campaign": "barogo_lms",
+      "baseline_weeks": [
+        "2025-05-26",
+        "2025-06-09",
+        "2025-08-25",
+        "2025-09-01",
+        "2025-10-27",
+        "2025-12-15",
+        "2025-12-22",
+        "2026-03-30"
+      ],
+      "current_weeks": [
+        "2026-04-06",
+        "2026-06-08"
+      ],
+      "baseline_applied": 80,
+      "current_applied": 14,
+      "baseline_weekly_avg": 10.0,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -30.0,
+      "baseline_apply_oku": 1.24,
+      "current_apply_oku": 0.17,
+      "flags": [
+        "신청량 기준선 대비 -30.0% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaobrandmsg_notlookup",
+      "baseline_weeks": [
+        "2025-11-03",
+        "2026-02-02",
+        "2026-02-09"
+      ],
+      "current_weeks": [
+        "2026-02-16",
+        "2026-02-23"
+      ],
+      "baseline_applied": 34,
+      "current_applied": 15,
+      "baseline_weekly_avg": 11.3,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -33.8,
+      "baseline_apply_oku": 0.74,
+      "current_apply_oku": 0.17,
+      "flags": [
+        "신청량 기준선 대비 -33.8% 급감"
+      ]
+    },
+    {
+      "campaign": "tiktok_refunds_smart_completepayment_madup_250618",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-06-23",
+        "2025-06-30",
+        "2025-08-04",
+        "2025-08-11",
+        "2025-08-18"
+      ],
+      "current_weeks": [
+        "2025-08-25",
+        "2025-09-01"
+      ],
+      "baseline_applied": 55,
+      "current_applied": 20,
+      "baseline_weekly_avg": 9.2,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 9.1,
+      "baseline_apply_oku": 1.34,
+      "current_apply_oku": 0.15,
+      "flags": []
+    },
+    {
+      "campaign": "meta_innitiatepayment_target_250121",
+      "baseline_weeks": [
+        "2025-04-14",
+        "2025-04-21",
+        "2025-04-28",
+        "2025-05-05",
+        "2025-05-19",
+        "2025-05-26",
+        "2025-06-02",
+        "2025-06-09"
+      ],
+      "current_weeks": [
+        "2025-06-16",
+        "2025-06-23"
+      ],
+      "baseline_applied": 28,
+      "current_applied": 21,
+      "baseline_weekly_avg": 3.5,
+      "current_weekly_avg": 10.5,
+      "baseline_cancel_rate_pct": 3.6,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.6,
+      "volume_delta_pct": 200.0,
+      "baseline_apply_oku": 0.5,
+      "current_apply_oku": 0.14,
+      "flags": []
+    },
+    {
+      "campaign": "google_demandgen_250701",
+      "baseline_weeks": [
+        "2025-09-08",
+        "2025-09-15",
+        "2025-09-22",
+        "2025-09-29",
+        "2025-10-06",
+        "2025-10-13",
+        "2025-10-20",
+        "2025-10-27"
+      ],
+      "current_weeks": [
+        "2025-11-03",
+        "2025-11-10"
+      ],
+      "baseline_applied": 74,
+      "current_applied": 16,
+      "baseline_weekly_avg": 9.2,
+      "current_weekly_avg": 8.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -13.5,
+      "baseline_apply_oku": 0.93,
+      "current_apply_oku": 0.14,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_refundid2024_fail",
+      "baseline_weeks": [
+        "2025-11-24",
+        "2025-12-01",
+        "2025-12-08",
+        "2025-12-15",
+        "2025-12-22",
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12"
+      ],
+      "current_weeks": [
+        "2026-01-19",
+        "2026-01-26"
+      ],
+      "baseline_applied": 29,
+      "current_applied": 11,
+      "baseline_weekly_avg": 3.6,
+      "current_weekly_avg": 5.5,
+      "baseline_cancel_rate_pct": 3.4,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.4,
+      "volume_delta_pct": 51.7,
+      "baseline_apply_oku": 0.55,
+      "current_apply_oku": 0.14,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimktalk_lookupd0_apply",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 65,
+      "current_applied": 13,
+      "baseline_weekly_avg": 8.1,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -20.0,
+      "baseline_apply_oku": 0.6,
+      "current_apply_oku": 0.13,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_lookupd3_apply",
+      "baseline_weeks": [
+        "2026-02-16",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 79,
+      "current_applied": 20,
+      "baseline_weekly_avg": 9.9,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 1.3,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.3,
+      "volume_delta_pct": 1.3,
+      "baseline_apply_oku": 0.77,
+      "current_apply_oku": 0.13,
+      "flags": []
+    },
+    {
+      "campaign": "kakaoalrimtalk_signupd3_lookup",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 39,
+      "current_applied": 15,
+      "baseline_weekly_avg": 4.9,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 53.8,
+      "baseline_apply_oku": 0.87,
+      "current_apply_oku": 0.1,
+      "flags": []
+    },
+    {
+      "campaign": "zaritalk_lessee_refundtab",
+      "baseline_weeks": [
+        "2026-01-19",
+        "2026-01-26",
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09"
+      ],
+      "current_weeks": [
+        "2026-03-16",
+        "2026-03-23"
+      ],
+      "baseline_applied": 81,
+      "current_applied": 15,
+      "baseline_weekly_avg": 10.1,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -25.9,
+      "baseline_apply_oku": 0.6,
+      "current_apply_oku": 0.09,
+      "flags": []
+    },
+    {
+      "campaign": "toss_listbanner_insurance",
+      "baseline_weeks": [
+        "2024-05-27",
+        "2024-06-03",
+        "2024-06-10"
+      ],
+      "current_weeks": [
+        "2024-06-17",
+        "2024-06-24"
+      ],
+      "baseline_applied": 17,
+      "current_applied": 14,
+      "baseline_weekly_avg": 5.7,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": 23.5,
+      "baseline_apply_oku": 0.32,
+      "current_apply_oku": 0.07,
+      "flags": []
+    },
+    {
+      "campaign": "tiktok_refunds_smart_purchase_madup_250901",
+      "baseline_weeks": [
+        "2025-09-01",
+        "2025-09-08"
+      ],
+      "current_weeks": [
+        "2025-09-15",
+        "2025-10-13"
+      ],
+      "baseline_applied": 36,
+      "current_applied": 13,
+      "baseline_weekly_avg": 18.0,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 2.8,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.8,
+      "volume_delta_pct": -63.9,
+      "baseline_apply_oku": 0.41,
+      "current_apply_oku": 0.07,
+      "flags": [
+        "신청량 기준선 대비 -63.9% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimktalk_p_lookupd1_apply",
+      "baseline_weeks": [
+        "2024-08-12",
+        "2024-08-19",
+        "2024-08-26",
+        "2024-09-02",
+        "2024-09-09",
+        "2024-09-16",
+        "2024-09-23",
+        "2024-09-30"
+      ],
+      "current_weeks": [
+        "2024-10-07",
+        "2024-10-14"
+      ],
+      "baseline_applied": 64,
+      "current_applied": 14,
+      "baseline_weekly_avg": 8.0,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 1.6,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.6,
+      "volume_delta_pct": -12.5,
+      "baseline_apply_oku": 0.69,
+      "current_apply_oku": 0.05,
+      "flags": []
+    }
+  ],
+  "flagged": [
+    {
+      "campaign": "kakaomoment_bizboard_deadline_260326",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 793,
+      "current_applied": 104,
+      "baseline_weekly_avg": 99.1,
+      "current_weekly_avg": 52.0,
+      "baseline_cancel_rate_pct": 2.8,
+      "current_cancel_rate_pct": 2.9,
+      "cancel_rate_delta_ppt": 0.1,
+      "volume_delta_pct": -47.5,
+      "baseline_apply_oku": 22.18,
+      "current_apply_oku": 2.98,
+      "flags": [
+        "신청량 기준선 대비 -47.5% 급감"
+      ]
+    },
+    {
+      "campaign": "meta_asc_completeregistration_251208",
+      "baseline_weeks": [
+        "2025-12-29",
+        "2026-01-05",
+        "2026-01-12",
+        "2026-01-19",
+        "2026-01-26",
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16"
+      ],
+      "current_weeks": [
+        "2026-02-23",
+        "2026-04-20"
+      ],
+      "baseline_applied": 510,
+      "current_applied": 41,
+      "baseline_weekly_avg": 63.8,
+      "current_weekly_avg": 20.5,
+      "baseline_cancel_rate_pct": 1.2,
+      "current_cancel_rate_pct": 2.4,
+      "cancel_rate_delta_ppt": 1.3,
+      "volume_delta_pct": -67.8,
+      "baseline_apply_oku": 10.75,
+      "current_apply_oku": 1.75,
+      "flags": [
+        "신청량 기준선 대비 -67.8% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_tritx_notlookup",
+      "baseline_weeks": [
+        "2025-11-03",
+        "2025-11-10",
+        "2025-11-17",
+        "2025-11-24",
+        "2025-12-01",
+        "2025-12-08",
+        "2025-12-15",
+        "2025-12-22"
+      ],
+      "current_weeks": [
+        "2025-12-29",
+        "2026-02-16"
+      ],
+      "baseline_applied": 590,
+      "current_applied": 46,
+      "baseline_weekly_avg": 73.8,
+      "current_weekly_avg": 23.0,
+      "baseline_cancel_rate_pct": 0.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.7,
+      "volume_delta_pct": -68.8,
+      "baseline_apply_oku": 6.16,
+      "current_apply_oku": 1.19,
+      "flags": [
+        "신청량 기준선 대비 -68.8% 급감"
+      ]
+    },
+    {
+      "campaign": "toss.join_inapppage_btn",
+      "baseline_weeks": [
+        "2026-04-27",
+        "2026-05-04",
+        "2026-05-11",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01",
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 448,
+      "current_applied": 37,
+      "baseline_weekly_avg": 56.0,
+      "current_weekly_avg": 18.5,
+      "baseline_cancel_rate_pct": 2.0,
+      "current_cancel_rate_pct": 5.4,
+      "cancel_rate_delta_ppt": 3.4,
+      "volume_delta_pct": -67.0,
+      "baseline_apply_oku": 12.38,
+      "current_apply_oku": 0.94,
+      "flags": [
+        "신청량 기준선 대비 -67.0% 급감"
+      ]
+    },
+    {
+      "campaign": "meta_asc_abtest_260202",
+      "baseline_weeks": [
+        "2025-06-30",
+        "2025-07-21",
+        "2026-02-02",
+        "2026-02-09"
+      ],
+      "current_weeks": [
+        "2026-02-16",
+        "2026-02-23"
+      ],
+      "baseline_applied": 13,
+      "current_applied": 20,
+      "baseline_weekly_avg": 3.2,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 5.0,
+      "cancel_rate_delta_ppt": 5.0,
+      "volume_delta_pct": 207.7,
+      "baseline_apply_oku": 0.27,
+      "current_apply_oku": 0.71,
+      "flags": [
+        "취소율 기준선 대비 +5.0%p 상승"
+      ]
+    },
+    {
+      "campaign": "okpos_lms",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-07-21",
+        "2025-07-28",
+        "2025-08-25",
+        "2025-09-01",
+        "2025-09-22",
+        "2025-12-01",
+        "2025-12-22"
+      ],
+      "current_weeks": [
+        "2025-12-29",
+        "2026-01-19"
+      ],
+      "baseline_applied": 89,
+      "current_applied": 20,
+      "baseline_weekly_avg": 11.1,
+      "current_weekly_avg": 10.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 5.0,
+      "cancel_rate_delta_ppt": 5.0,
+      "volume_delta_pct": -10.1,
+      "baseline_apply_oku": 1.46,
+      "current_apply_oku": 0.56,
+      "flags": [
+        "취소율 기준선 대비 +5.0%p 상승"
+      ]
+    },
+    {
+      "campaign": "bsnaver.tap.ref_lwi_mo_1201",
+      "baseline_weeks": [
+        "2025-12-01"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-22"
+      ],
+      "baseline_applied": 42,
+      "current_applied": 36,
+      "baseline_weekly_avg": 42.0,
+      "current_weekly_avg": 18.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -57.1,
+      "baseline_apply_oku": 0.46,
+      "current_apply_oku": 0.53,
+      "flags": [
+        "신청량 기준선 대비 -57.1% 급감"
+      ]
+    },
+    {
+      "campaign": "shinhancard_franchise",
+      "baseline_weeks": [
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-11"
+      ],
+      "current_weeks": [
+        "2026-05-18",
+        "2026-05-25"
+      ],
+      "baseline_applied": 97,
+      "current_applied": 10,
+      "baseline_weekly_avg": 12.1,
+      "current_weekly_avg": 5.0,
+      "baseline_cancel_rate_pct": 5.2,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -5.2,
+      "volume_delta_pct": -58.8,
+      "baseline_apply_oku": 2.5,
+      "current_apply_oku": 0.47,
+      "flags": [
+        "신청량 기준선 대비 -58.8% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_retention_21to24",
+      "baseline_weeks": [
+        "2026-06-08",
+        "2026-06-15"
+      ],
+      "current_weeks": [
+        "2026-06-22",
+        "2026-06-29"
+      ],
+      "baseline_applied": 501,
+      "current_applied": 23,
+      "baseline_weekly_avg": 250.5,
+      "current_weekly_avg": 11.5,
+      "baseline_cancel_rate_pct": 1.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -1.0,
+      "volume_delta_pct": -95.4,
+      "baseline_apply_oku": 18.72,
+      "current_apply_oku": 0.47,
+      "flags": [
+        "신청량 기준선 대비 -95.4% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimtalk_tritx_notapply_payingcustomers",
+      "baseline_weeks": [
+        "2025-12-01"
+      ],
+      "current_weeks": [
+        "2025-12-08",
+        "2025-12-15"
+      ],
+      "baseline_applied": 30,
+      "current_applied": 12,
+      "baseline_weekly_avg": 30.0,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -80.0,
+      "baseline_apply_oku": 0.73,
+      "current_apply_oku": 0.46,
+      "flags": [
+        "신청량 기준선 대비 -80.0% 급감"
+      ]
+    },
+    {
+      "campaign": "tiktok_refunds_dbstore_completepayment_madup_250618",
+      "baseline_weeks": [
+        "2025-06-16",
+        "2025-06-23"
+      ],
+      "current_weeks": [
+        "2025-06-30",
+        "2025-07-07"
+      ],
+      "baseline_applied": 23,
+      "current_applied": 14,
+      "baseline_weekly_avg": 11.5,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 7.1,
+      "cancel_rate_delta_ppt": 7.1,
+      "volume_delta_pct": -39.1,
+      "baseline_apply_oku": 0.29,
+      "current_apply_oku": 0.43,
+      "flags": [
+        "취소율 기준선 대비 +7.1%p 상승",
+        "신청량 기준선 대비 -39.1% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaoalrimktalk_signupd0_lookup",
+      "baseline_weeks": [
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23",
+        "2026-03-30",
+        "2026-04-06"
+      ],
+      "current_weeks": [
+        "2026-04-13",
+        "2026-04-20"
+      ],
+      "baseline_applied": 90,
+      "current_applied": 15,
+      "baseline_weekly_avg": 11.2,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 3.3,
+      "current_cancel_rate_pct": 13.3,
+      "cancel_rate_delta_ppt": 10.0,
+      "volume_delta_pct": -33.3,
+      "baseline_apply_oku": 3.62,
+      "current_apply_oku": 0.41,
+      "flags": [
+        "취소율 기준선 대비 +10.0%p 상승",
+        "신청량 기준선 대비 -33.3% 급감"
+      ]
+    },
+    {
+      "campaign": "meta_asc_lwi_251013",
+      "baseline_weeks": [
+        "2025-10-13",
+        "2025-10-20",
+        "2025-10-27",
+        "2025-11-03",
+        "2025-11-10",
+        "2025-11-17",
+        "2025-11-24"
+      ],
+      "current_weeks": [
+        "2025-12-01",
+        "2025-12-08"
+      ],
+      "baseline_applied": 142,
+      "current_applied": 13,
+      "baseline_weekly_avg": 20.3,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 0.7,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -0.7,
+      "volume_delta_pct": -68.0,
+      "baseline_apply_oku": 3.62,
+      "current_apply_oku": 0.32,
+      "flags": [
+        "신청량 기준선 대비 -68.0% 급감"
+      ]
+    },
+    {
+      "campaign": "google_demandgen_251208",
+      "baseline_weeks": [
+        "2026-03-30",
+        "2026-04-06",
+        "2026-04-13",
+        "2026-04-20",
+        "2026-04-27",
+        "2026-05-18",
+        "2026-05-25",
+        "2026-06-01"
+      ],
+      "current_weeks": [
+        "2026-06-08",
+        "2026-06-22"
+      ],
+      "baseline_applied": 114,
+      "current_applied": 12,
+      "baseline_weekly_avg": 14.2,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 3.5,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -3.5,
+      "volume_delta_pct": -57.9,
+      "baseline_apply_oku": 2.61,
+      "current_apply_oku": 0.27,
+      "flags": [
+        "신청량 기준선 대비 -57.9% 급감"
+      ]
+    },
+    {
+      "campaign": "okpos_inappbanner",
+      "baseline_weeks": [
+        "2026-02-02",
+        "2026-02-09",
+        "2026-02-16",
+        "2026-02-23",
+        "2026-03-02",
+        "2026-03-09",
+        "2026-03-16",
+        "2026-03-23"
+      ],
+      "current_weeks": [
+        "2026-03-30",
+        "2026-04-06"
+      ],
+      "baseline_applied": 140,
+      "current_applied": 12,
+      "baseline_weekly_avg": 17.5,
+      "current_weekly_avg": 6.0,
+      "baseline_cancel_rate_pct": 2.1,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.1,
+      "volume_delta_pct": -65.7,
+      "baseline_apply_oku": 4.36,
+      "current_apply_oku": 0.25,
+      "flags": [
+        "신청량 기준선 대비 -65.7% 급감"
+      ]
+    },
+    {
+      "campaign": "barogo_lms",
+      "baseline_weeks": [
+        "2025-05-26",
+        "2025-06-09",
+        "2025-08-25",
+        "2025-09-01",
+        "2025-10-27",
+        "2025-12-15",
+        "2025-12-22",
+        "2026-03-30"
+      ],
+      "current_weeks": [
+        "2026-04-06",
+        "2026-06-08"
+      ],
+      "baseline_applied": 80,
+      "current_applied": 14,
+      "baseline_weekly_avg": 10.0,
+      "current_weekly_avg": 7.0,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -30.0,
+      "baseline_apply_oku": 1.24,
+      "current_apply_oku": 0.17,
+      "flags": [
+        "신청량 기준선 대비 -30.0% 급감"
+      ]
+    },
+    {
+      "campaign": "kakaobrandmsg_notlookup",
+      "baseline_weeks": [
+        "2025-11-03",
+        "2026-02-02",
+        "2026-02-09"
+      ],
+      "current_weeks": [
+        "2026-02-16",
+        "2026-02-23"
+      ],
+      "baseline_applied": 34,
+      "current_applied": 15,
+      "baseline_weekly_avg": 11.3,
+      "current_weekly_avg": 7.5,
+      "baseline_cancel_rate_pct": 0.0,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": 0.0,
+      "volume_delta_pct": -33.8,
+      "baseline_apply_oku": 0.74,
+      "current_apply_oku": 0.17,
+      "flags": [
+        "신청량 기준선 대비 -33.8% 급감"
+      ]
+    },
+    {
+      "campaign": "tiktok_refunds_smart_purchase_madup_250901",
+      "baseline_weeks": [
+        "2025-09-01",
+        "2025-09-08"
+      ],
+      "current_weeks": [
+        "2025-09-15",
+        "2025-10-13"
+      ],
+      "baseline_applied": 36,
+      "current_applied": 13,
+      "baseline_weekly_avg": 18.0,
+      "current_weekly_avg": 6.5,
+      "baseline_cancel_rate_pct": 2.8,
+      "current_cancel_rate_pct": 0.0,
+      "cancel_rate_delta_ppt": -2.8,
+      "volume_delta_pct": -63.9,
+      "baseline_apply_oku": 0.41,
+      "current_apply_oku": 0.07,
+      "flags": [
+        "신청량 기준선 대비 -63.9% 급감"
+      ]
+    }
+  ]
+}
