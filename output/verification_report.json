@@ -1,16 +1,16 @@
 {
   "agent": "verifier",
-  "timestamp": "2026-04-14T12:21:08.493705Z",
-  "total_checks": 6,
+  "timestamp": "2026-08-31T02:31:33.589737Z",
+  "total_checks": 11,
   "passed": 4,
-  "failed": 2,
-  "severity": "warn",
+  "failed": 7,
+  "severity": "critical",
   "results": [
     {
       "check": "MAPE 수준",
       "ok": true,
-      "detail": "5.7%",
-      "value": 5.73
+      "detail": "4.1%",
+      "value": 4.14
     },
     {
       "check": "편향 검증",
@@ -19,25 +19,55 @@
       "value": 5
     },
     {
-      "check": "백테스트 이상: 2026-03",
-      "ok": false,
-      "detail": "오차 -15.3% (임계 ±15.0%)",
-      "value": -15.3
+      "check": "백테스트 개별 월",
+      "ok": true,
+      "detail": "전체 ±15.0% 이내"
     },
     {
-      "check": "분산 비율 안정성",
-      "ok": true,
-      "detail": "전체 안정"
+      "check": "분산 급변: d2p[2]",
+      "ok": false,
+      "detail": "1.54% → 2.12% (변화 38%)",
+      "value": 37.66233766233766
+    },
+    {
+      "check": "분산 급변: d2p[3]",
+      "ok": false,
+      "detail": "0.07% → 0.11% (변화 57%)",
+      "value": 57.14285714285713
+    },
+    {
+      "check": "분산 급변: f2d[4]",
+      "ok": false,
+      "detail": "2.08% → 2.81% (변화 35%)",
+      "value": 35.09615384615385
+    },
+    {
+      "check": "분산 급변: a2f[2]",
+      "ok": false,
+      "detail": "1.76% → 0.89% (변화 49%)",
+      "value": 49.43181818181818
+    },
+    {
+      "check": "분산 급변: a2f[3]",
+      "ok": false,
+      "detail": "0.75% → 0.44% (변화 41%)",
+      "value": 41.333333333333336
+    },
+    {
+      "check": "분산 급변: a2f[4]",
+      "ok": false,
+      "detail": "0.26% → 0.63% (변화 142%)",
+      "value": 142.3076923076923
     },
     {
       "check": "채권풀 건강도",
       "ok": true,
-      "detail": "잔액 149.4억, 순변동 -0.9억/월, 회수율 1.109%"
+      "detail": "잔액 175.9억, 순변동 +1.0억/월, 회수율 0.598%"
     },
     {
       "check": "예측 범위",
       "ok": true,
-      "detail": "16.3~21.4억 (정상)"
+      "detail": "21.8~32.1억 (정상)"
     }
   ]
 }
