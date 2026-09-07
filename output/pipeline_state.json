@@ -1,59 +1,59 @@
 {
-  "run_id": "20260831_022231",
-  "started_at": "2026-08-31T02:22:31Z",
-  "finished_at": "2026-08-31T02:31:59Z",
+  "run_id": "20260907_015453",
+  "started_at": "2026-09-07T01:54:53Z",
+  "finished_at": "2026-09-07T02:03:11Z",
   "status": "success",
   "steps": [
     {
       "name": "extract_individual",
       "status": "success",
-      "started_at": "2026-08-31T02:22:31Z",
-      "finished_at": "2026-08-31T02:30:55Z",
-      "duration_sec": 504.1,
-      "detail": "[3/3] Writing output ...\n      → /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/data/deals_slim.json (228.1 MB)\n      sync timestamp: 2026-08-31T02:30:55Z\n\nDone. 236,218 deals (228 MB — 기존 4.1GB 대비 18x 절감)",
+      "started_at": "2026-09-07T01:54:53Z",
+      "finished_at": "2026-09-07T02:01:56Z",
+      "duration_sec": 422.6,
+      "detail": "[3/3] Writing output ...\n      → /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/data/deals_slim.json (230.5 MB)\n      sync timestamp: 2026-09-07T02:01:55Z\n\nDone. 238,726 deals (231 MB — 기존 4.1GB 대비 18x 절감)",
       "error": ""
     },
     {
       "name": "extract_corp",
       "status": "success",
-      "started_at": "2026-08-31T02:30:55Z",
-      "finished_at": "2026-08-31T02:31:08Z",
-      "duration_sec": 13.5,
-      "detail": "[3/3] Writing output ...\n      → /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/data/deals_corp_slim.json (5.3 MB)\n      sync timestamp: 2026-08-31T02:31:08Z\n\nDone. 8,741 corp deals (5.3 MB)",
+      "started_at": "2026-09-07T02:01:56Z",
+      "finished_at": "2026-09-07T02:02:05Z",
+      "duration_sec": 9.8,
+      "detail": "[3/3] Writing output ...\n      → /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/data/deals_corp_slim.json (5.3 MB)\n      sync timestamp: 2026-09-07T02:02:05Z\n\nDone. 8,741 corp deals (5.3 MB)",
       "error": ""
     },
     {
       "name": "watch_data",
       "status": "success",
-      "started_at": "2026-08-31T02:31:08Z",
-      "finished_at": "2026-08-31T02:31:11Z",
-      "duration_sec": 2.2,
-      "detail": "  ✅ 금액 이상치: apply_amount: 정상\n  ❌ 금액 이상치: filing_amount: 1건 > 100억\n  ✅ 금액 이상치: decision_amount: 정상\n  ✅ 금액 이상치: payment_amount: 정상\n  ✅ 월별 분포: 2026-08: Z=-0.77 (327.9억, 평균 413.4억±111.2억)",
+      "started_at": "2026-09-07T02:02:05Z",
+      "finished_at": "2026-09-07T02:02:08Z",
+      "duration_sec": 3.0,
+      "detail": "  ❌ 금액 이상치: filing_amount: 1건 > 100억\n  ✅ 금액 이상치: decision_amount: 정상\n  ✅ 금액 이상치: payment_amount: 정상\n  ❌ 월별 분포: 2026-09: Z=-3.47 (50.4억, 평균 419.7억±106.3억)\nSlack send failed: HTTP Error 404: Not Found",
       "error": ""
     },
     {
       "name": "run_model",
       "status": "success",
-      "started_at": "2026-08-31T02:31:11Z",
-      "finished_at": "2026-08-31T02:31:30Z",
-      "duration_sec": 19.7,
-      "detail": "  2026-10: 개인 29.23억 + 법인 0.208억 = 29.44억\n  2026-11: 개인 30.83억 + 법인 0.203억 = 31.03억\n  2026-12: 개인 31.94억 + 법인 0.198억 = 32.14억\n\n→ /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/output/forecast.json",
+      "started_at": "2026-09-07T02:02:08Z",
+      "finished_at": "2026-09-07T02:02:44Z",
+      "duration_sec": 35.2,
+      "detail": "  2026-11: 개인 22.44억 + 법인 0.274억 = 22.71억\n  2026-12: 개인 24.5억 + 법인 0.278억 = 24.78억\n  2027-01: 개인 27.63억 + 법인 0.282억 = 27.91억\n\n→ /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/output/forecast.json",
       "error": ""
     },
     {
       "name": "utm_channel_analysis",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:30Z",
-      "finished_at": "2026-08-31T02:31:31Z",
-      "duration_sec": 0.3,
+      "started_at": "2026-09-07T02:02:44Z",
+      "finished_at": "2026-09-07T02:02:44Z",
+      "duration_sec": 0.1,
       "detail": "",
       "error": "ile \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/utm_channel_analysis.py\", line 146, in run\n    as_of = latest_as_of(con)\n            ^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/utm_channel_analysis.py\", line 61, in latest_as_of\n    return con.execute(\"SELECT MAX(as_of_date) FROM deal_history\").fetchone()[0]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: no such table: deal_history"
     },
     {
       "name": "channel_deep_analysis",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:31Z",
-      "finished_at": "2026-08-31T02:31:31Z",
+      "started_at": "2026-09-07T02:02:44Z",
+      "finished_at": "2026-09-07T02:02:44Z",
       "duration_sec": 0.0,
       "detail": "",
       "error": "work/bznav-refund-forecast/bznav-refund-forecast/src/channel_deep_analysis.py\", line 216, in run\n    as_of = latest(con)\n            ^^^^^^^^^^^\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/channel_deep_analysis.py\", line 33, in latest\n    def latest(con): return con.execute(\"SELECT MAX(as_of_date) FROM deal_history\").fetchone()[0]\n                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: no such table: deal_history"
@@ -61,8 +61,8 @@
     {
       "name": "attribution_analysis",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:31Z",
-      "finished_at": "2026-08-31T02:31:31Z",
+      "started_at": "2026-09-07T02:02:44Z",
+      "finished_at": "2026-09-07T02:02:44Z",
       "duration_sec": 0.0,
       "detail": "",
       "error": "Traceback (most recent call last):\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/attribution_analysis.py\", line 270, in <module>\n    run()\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/attribution_analysis.py\", line 208, in run\n    as_of = con.execute(\"SELECT MAX(as_of_date) FROM deal_history\").fetchone()[0]\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: no such table: deal_history"
@@ -70,8 +70,8 @@
     {
       "name": "channel_funnel_analysis",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:31Z",
-      "finished_at": "2026-08-31T02:31:31Z",
+      "started_at": "2026-09-07T02:02:44Z",
+      "finished_at": "2026-09-07T02:02:44Z",
       "duration_sec": 0.0,
       "detail": "",
       "error": "Traceback (most recent call last):\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/channel_funnel_analysis.py\", line 175, in <module>\n    run()\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/channel_funnel_analysis.py\", line 27, in run\n    as_of = con.execute(\"SELECT MAX(as_of_date) FROM deal_history\").fetchone()[0]\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: no such table: deal_history"
@@ -79,26 +79,26 @@
     {
       "name": "ensemble_forecast",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:31Z",
-      "finished_at": "2026-08-31T02:31:33Z",
-      "duration_sec": 2.2,
+      "started_at": "2026-09-07T02:02:44Z",
+      "finished_at": "2026-09-07T02:02:45Z",
+      "duration_sec": 1.7,
       "detail": "",
       "error": ">\n    run()\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/agents/ensemble.py\", line 149, in run\n    claims = load_claims()\n             ^^^^^^^^^^^^^\n  File \"/home/runner/work/bznav-refund-forecast/bznav-refund-forecast/src/agents/ensemble.py\", line 31, in load_claims\n    as_of = con.execute(\"SELECT MAX(as_of_date) FROM deal_history\").fetchone()[0]\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nsqlite3.OperationalError: no such table: deal_history"
     },
     {
       "name": "verify_forecast",
       "status": "success",
-      "started_at": "2026-08-31T02:31:33Z",
-      "finished_at": "2026-08-31T02:31:33Z",
+      "started_at": "2026-09-07T02:02:45Z",
+      "finished_at": "2026-09-07T02:02:46Z",
       "duration_sec": 0.2,
-      "detail": "  ❌ 분산 급변: a2f[4]: 0.26% → 0.63% (변화 142%)\n  ✅ 채권풀 건강도: 잔액 175.9억, 순변동 +1.0억/월, 회수율 0.598%\n  ✅ 예측 범위: 21.8~32.1억 (정상)\n\n→ /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/output/verification_report.json",
+      "detail": "  ✅ 채권풀 건강도: 잔액 175.4억, 순변동 -1.7억/월, 회수율 0.799%\n  ✅ 예측 범위: 14.3~27.9억 (정상)\n\n→ /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/output/verification_report.json\nSlack send failed: HTTP Error 404: Not Found",
       "error": ""
     },
     {
       "name": "generate_dashboard",
       "status": "success",
-      "started_at": "2026-08-31T02:31:33Z",
-      "finished_at": "2026-08-31T02:31:33Z",
+      "started_at": "2026-09-07T02:02:46Z",
+      "finished_at": "2026-09-07T02:02:46Z",
       "duration_sec": 0.0,
       "detail": "templates/dashboard_template.html not found. Using inline generation.\n→ /home/runner/work/bznav-refund-forecast/bznav-refund-forecast/output/index.html (11 KB)",
       "error": ""
@@ -106,8 +106,8 @@
     {
       "name": "validate_dashboard",
       "status": "failed",
-      "started_at": "2026-08-31T02:31:33Z",
-      "finished_at": "2026-08-31T02:31:58Z",
+      "started_at": "2026-09-07T02:02:46Z",
+      "finished_at": "2026-09-07T02:03:11Z",
       "duration_sec": 25.1,
       "detail": "",
       "error": "✅ syntax OK\n❌ dashboard failed to start within 25s"
@@ -115,18 +115,18 @@
     {
       "name": "notify_slack",
       "status": "success",
-      "started_at": "2026-08-31T02:31:58Z",
-      "finished_at": "2026-08-31T02:31:59Z",
-      "duration_sec": 0.2,
-      "detail": "Slack notification sent (200)",
+      "started_at": "2026-09-07T02:03:11Z",
+      "finished_at": "2026-09-07T02:03:11Z",
+      "duration_sec": 0.3,
+      "detail": "Slack notification failed: HTTP Error 404: Not Found",
       "error": ""
     },
     {
       "name": "confluence_report",
       "status": "success",
-      "started_at": "2026-08-31T02:31:59Z",
-      "finished_at": "2026-08-31T02:31:59Z",
-      "duration_sec": 0.0,
+      "started_at": "2026-09-07T02:03:11Z",
+      "finished_at": "2026-09-07T02:03:11Z",
+      "duration_sec": 0.1,
       "detail": "SKIP: CONFLUENCE_EMAIL / CONFLUENCE_API_TOKEN 미설정",
       "error": ""
     }
