@@ -1,22 +1,22 @@
 {
-  "generated_at": "2026-09-07T02:02:43Z",
+  "generated_at": "2026-09-14T02:32:01Z",
   "data_range": "... ~ 2026-09",
-  "total_claims": 238726,
+  "total_claims": 214670,
   "total_corp_claims": 8741,
   "distributions": {
     "a2f": {
-      "0": 33.91,
-      "1": 27.09,
-      "2": 1.0,
-      "3": 0.39,
+      "0": 33.95,
+      "1": 27.1,
+      "2": 1.01,
+      "3": 0.33,
       "4": 0.6
     },
     "f2d": {
-      "0": 16.1,
+      "0": 16.11,
       "1": 39.42,
-      "2": 36.17,
+      "2": 36.18,
       "3": 4.41,
-      "4": 2.56
+      "4": 2.57
     },
     "d2p": {
       "0": 18.58,
@@ -26,9 +26,9 @@
     }
   },
   "collection_pool": {
-    "balance": 175.4,
-    "utilization_rate": 0.799,
-    "monthly_delta": -1.7
+    "balance": 177.9,
+    "utilization_rate": 0.788,
+    "monthly_delta": -1.1
   },
   "season_adjustments": {
     "1": 0.03,
@@ -50,15 +50,15 @@
         "app": [
           {
             "month": "2024-10",
-            "amount": 40.069
+            "amount": 9.373
           },
           {
             "month": "2024-11",
-            "amount": 36.364
+            "amount": 27.489
           },
           {
             "month": "2024-12",
-            "amount": 32.874
+            "amount": 32.555
           },
           {
             "month": "2025-01",
@@ -94,19 +94,19 @@
           },
           {
             "month": "2025-09",
-            "amount": 62.838
+            "amount": 62.835
           },
           {
             "month": "2025-10",
-            "amount": 59.899
+            "amount": 59.895
           },
           {
             "month": "2025-11",
-            "amount": 81.503
+            "amount": 81.487
           },
           {
             "month": "2025-12",
-            "amount": 121.073
+            "amount": 121.059
           },
           {
             "month": "2026-01",
@@ -118,45 +118,45 @@
           },
           {
             "month": "2026-03",
-            "amount": 67.633
+            "amount": 67.372
           },
           {
             "month": "2026-04",
-            "amount": 68.317
+            "amount": 68.248
           },
           {
             "month": "2026-05",
-            "amount": 115.542
+            "amount": 112.991
           },
           {
             "month": "2026-06",
-            "amount": 129.357
+            "amount": 126.971
           },
           {
             "month": "2026-07",
-            "amount": 155.087
+            "amount": 151.836
           },
           {
             "month": "2026-08",
-            "amount": 106.981
+            "amount": 126.549
           },
           {
             "month": "2026-09",
-            "amount": 0.428
+            "amount": 15.324
           }
         ],
         "fil": [
           {
             "month": "2024-10",
-            "amount": 27.596
+            "amount": 4.107
           },
           {
             "month": "2024-11",
-            "amount": 25.157
+            "amount": 15.367
           },
           {
             "month": "2024-12",
-            "amount": 23.105
+            "amount": 22.266
           },
           {
             "month": "2025-01",
@@ -204,11 +204,11 @@
           },
           {
             "month": "2025-12",
-            "amount": 57.868
+            "amount": 57.867
           },
           {
             "month": "2026-01",
-            "amount": 59.733
+            "amount": 59.721
           },
           {
             "month": "2026-02",
@@ -220,41 +220,41 @@
           },
           {
             "month": "2026-04",
-            "amount": 48.847
+            "amount": 48.821
           },
           {
             "month": "2026-05",
-            "amount": 69.421
+            "amount": 68.671
           },
           {
             "month": "2026-06",
-            "amount": 68.461
+            "amount": 65.633
           },
           {
             "month": "2026-07",
-            "amount": 109.093
+            "amount": 106.549
           },
           {
             "month": "2026-08",
-            "amount": 79.496
+            "amount": 77.863
           },
           {
             "month": "2026-09",
-            "amount": 11.894
+            "amount": 37.185
           }
         ],
         "dec": [
           {
             "month": "2024-10",
-            "amount": 41.273
+            "amount": 0.162
           },
           {
             "month": "2024-11",
-            "amount": 25.656
+            "amount": 0.722
           },
           {
             "month": "2024-12",
-            "amount": 26.744
+            "amount": 7.755
           },
           {
             "month": "2025-01",
@@ -310,7 +310,7 @@
           },
           {
             "month": "2026-02",
-            "amount": 48.77
+            "amount": 48.756
           },
           {
             "month": "2026-03",
@@ -322,37 +322,37 @@
           },
           {
             "month": "2026-05",
-            "amount": 28.468
+            "amount": 28.478
           },
           {
             "month": "2026-06",
-            "amount": 55.002
+            "amount": 54.803
           },
           {
             "month": "2026-07",
-            "amount": 78.739
+            "amount": 78.582
           },
           {
             "month": "2026-08",
-            "amount": 56.532
+            "amount": 60.526
           },
           {
             "month": "2026-09",
-            "amount": 3.236
+            "amount": 12.772
           }
         ],
         "pay": [
           {
             "month": "2024-10",
-            "amount": 13.353
+            "amount": 0.0
           },
           {
             "month": "2024-11",
-            "amount": 10.377
+            "amount": 0.0
           },
           {
             "month": "2024-12",
-            "amount": 10.015
+            "amount": 0.0
           },
           {
             "month": "2025-01",
@@ -408,7 +408,7 @@
           },
           {
             "month": "2026-02",
-            "amount": 14.772
+            "amount": 14.767
           },
           {
             "month": "2026-03",
@@ -436,7 +436,7 @@
           },
           {
             "month": "2026-09",
-            "amount": 5.289
+            "amount": 10.752
           }
         ]
       },
@@ -444,11 +444,11 @@
         "app": [
           {
             "month": "2024-10",
-            "amount": 7.539
+            "amount": 7.289
           },
           {
             "month": "2024-11",
-            "amount": 3.96
+            "amount": 3.958
           },
           {
             "month": "2024-12",
@@ -488,15 +488,15 @@
           },
           {
             "month": "2025-09",
-            "amount": 9.569
+            "amount": 9.573
           },
           {
             "month": "2025-10",
-            "amount": 9.908
+            "amount": 9.912
           },
           {
             "month": "2025-11",
-            "amount": 15.895
+            "amount": 15.911
           },
           {
             "month": "2025-12",
@@ -512,23 +512,23 @@
           },
           {
             "month": "2026-03",
-            "amount": 13.037
+            "amount": 13.27
           },
           {
             "month": "2026-04",
-            "amount": 11.594
+            "amount": 11.662
           },
           {
             "month": "2026-05",
-            "amount": 15.816
+            "amount": 18.005
           },
           {
             "month": "2026-06",
-            "amount": 3.171
+            "amount": 6.087
           },
           {
             "month": "2026-07",
-            "amount": 0.056
+            "amount": 0.091
           },
           {
             "month": "2026-08",
@@ -542,11 +542,11 @@
         "fil": [
           {
             "month": "2024-10",
-            "amount": 4.192
+            "amount": 4.07
           },
           {
             "month": "2024-11",
-            "amount": 3.9
+            "amount": 3.897
           },
           {
             "month": "2024-12",
@@ -618,15 +618,15 @@
           },
           {
             "month": "2026-05",
-            "amount": 11.116
+            "amount": 11.733
           },
           {
             "month": "2026-06",
-            "amount": 5.412
+            "amount": 8.152
           },
           {
             "month": "2026-07",
-            "amount": 0.211
+            "amount": 0.269
           },
           {
             "month": "2026-08",
@@ -640,11 +640,11 @@
         "dec": [
           {
             "month": "2024-10",
-            "amount": 5.363
+            "amount": 4.216
           },
           {
             "month": "2024-11",
-            "amount": 4.1
+            "amount": 3.748
           },
           {
             "month": "2024-12",
@@ -720,15 +720,15 @@
           },
           {
             "month": "2026-06",
-            "amount": 9.072
+            "amount": 9.296
           },
           {
             "month": "2026-07",
-            "amount": 11.47
+            "amount": 12.888
           },
           {
             "month": "2026-08",
-            "amount": 0.406
+            "amount": 2.176
           },
           {
             "month": "2026-09",
@@ -738,15 +738,15 @@
         "pay": [
           {
             "month": "2024-10",
-            "amount": 0.312
+            "amount": 0.01
           },
           {
             "month": "2024-11",
-            "amount": 0.388
+            "amount": 0.0
           },
           {
             "month": "2024-12",
-            "amount": 0.441
+            "amount": 0.014
           },
           {
             "month": "2025-01",
@@ -830,7 +830,7 @@
           },
           {
             "month": "2026-09",
-            "amount": 0.335
+            "amount": 0.675
           }
         ]
       }
@@ -916,15 +916,15 @@
           },
           {
             "month": "2026-05",
-            "amount": 1.856
+            "amount": 1.812
           },
           {
             "month": "2026-06",
-            "amount": 0.594
+            "amount": 0.486
           },
           {
             "month": "2026-07",
-            "amount": 1.791
+            "amount": 1.736
           },
           {
             "month": "2026-08",
@@ -1018,11 +1018,11 @@
           },
           {
             "month": "2026-06",
-            "amount": 1.168
+            "amount": 1.134
           },
           {
             "month": "2026-07",
-            "amount": 1.432
+            "amount": 1.333
           },
           {
             "month": "2026-08",
@@ -1226,7 +1226,7 @@
           },
           {
             "month": "2026-09",
-            "amount": 0.033
+            "amount": 0.177
           }
         ]
       },
@@ -1630,41 +1630,41 @@
     {
       "month": "2026-09",
       "individual": {
-        "regular": 12.64,
+        "regular": 15.73,
         "collection": 1.4,
-        "total": 14.05,
+        "total": 17.13,
         "season_adj": 0.0,
-        "adjusted": 14.05,
+        "adjusted": 17.13,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-09",
-            "dec_amount": 13.87,
-            "rate": 18.582146978023136,
-            "contrib": 2.58,
+            "dec_amount": 27.37,
+            "rate": 18.579757397509276,
+            "contrib": 5.08,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-08",
-            "dec_amount": 56.53,
-            "rate": 14.497705733824404,
-            "contrib": 8.2,
+            "dec_amount": 60.53,
+            "rate": 14.497739614010214,
+            "contrib": 8.77,
             "source": "실측"
           },
           {
             "off": 2,
             "src": "2026-07",
-            "dec_amount": 78.74,
-            "rate": 2.295391592939253,
-            "contrib": 1.81,
+            "dec_amount": 78.58,
+            "rate": 2.295274425099774,
+            "contrib": 1.8,
             "source": "실측"
           },
           {
             "off": 3,
             "src": "2026-06",
-            "dec_amount": 55.0,
-            "rate": 0.11677968138094492,
+            "dec_amount": 54.8,
+            "rate": 0.11676357163558956,
             "contrib": 0.06,
             "source": "실측"
           }
@@ -1676,46 +1676,46 @@
         "collection": 0,
         "total": 0.265
       },
-      "grand_total": 14.32
+      "grand_total": 17.39
     },
     {
       "month": "2026-10",
       "individual": {
-        "regular": 15.11,
+        "regular": 19.42,
         "collection": 1.39,
-        "total": 16.5,
+        "total": 20.81,
         "season_adj": 0.0,
-        "adjusted": 16.5,
+        "adjusted": 20.81,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-10",
-            "dec_amount": 63.01,
-            "rate": 18.582146978023136,
-            "contrib": 11.71,
+            "dec_amount": 75.2,
+            "rate": 18.579757397509276,
+            "contrib": 13.97,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-09",
-            "dec_amount": 13.87,
-            "rate": 14.497705733824404,
-            "contrib": 2.01,
+            "dec_amount": 27.37,
+            "rate": 14.497739614010214,
+            "contrib": 3.97,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-08",
-            "dec_amount": 56.53,
-            "rate": 2.295391592939253,
-            "contrib": 1.3,
+            "dec_amount": 60.53,
+            "rate": 2.295274425099774,
+            "contrib": 1.39,
             "source": "실측"
           },
           {
             "off": 3,
             "src": "2026-07",
-            "dec_amount": 78.74,
-            "rate": 0.11677968138094492,
+            "dec_amount": 78.58,
+            "rate": 0.11676357163558956,
             "contrib": 0.09,
             "source": "실측"
           }
@@ -1727,46 +1727,46 @@
         "collection": 0,
         "total": 0.269
       },
-      "grand_total": 16.77
+      "grand_total": 21.08
     },
     {
       "month": "2026-11",
       "individual": {
-        "regular": 20.0,
-        "collection": 1.37,
-        "total": 21.37,
+        "regular": 24.82,
+        "collection": 1.38,
+        "total": 26.2,
         "season_adj": 0.05,
-        "adjusted": 22.44,
+        "adjusted": 27.51,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-11",
-            "dec_amount": 56.38,
-            "rate": 18.582146978023136,
-            "contrib": 10.48,
+            "dec_amount": 71.14,
+            "rate": 18.579757397509276,
+            "contrib": 13.22,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-10",
-            "dec_amount": 63.01,
-            "rate": 14.497705733824404,
-            "contrib": 9.14,
+            "dec_amount": 75.2,
+            "rate": 14.497739614010214,
+            "contrib": 10.9,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-09",
-            "dec_amount": 13.87,
-            "rate": 2.295391592939253,
-            "contrib": 0.32,
+            "dec_amount": 27.37,
+            "rate": 2.295274425099774,
+            "contrib": 0.63,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-08",
-            "dec_amount": 56.53,
-            "rate": 0.11677968138094492,
+            "dec_amount": 60.53,
+            "rate": 0.11676357163558956,
             "contrib": 0.07,
             "source": "실측"
           }
@@ -1778,47 +1778,47 @@
         "collection": 0,
         "total": 0.274
       },
-      "grand_total": 22.71
+      "grand_total": 27.78
     },
     {
       "month": "2026-12",
       "individual": {
-        "regular": 21.98,
-        "collection": 1.36,
-        "total": 23.33,
+        "regular": 25.65,
+        "collection": 1.38,
+        "total": 27.02,
         "season_adj": 0.05,
-        "adjusted": 24.5,
+        "adjusted": 28.37,
         "breakdown": [
           {
             "off": 0,
             "src": "2026-12",
-            "dec_amount": 66.4,
-            "rate": 18.582146978023136,
-            "contrib": 12.34,
+            "dec_amount": 73.06,
+            "rate": 18.579757397509276,
+            "contrib": 13.57,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-11",
-            "dec_amount": 56.38,
-            "rate": 14.497705733824404,
-            "contrib": 8.17,
+            "dec_amount": 71.14,
+            "rate": 14.497739614010214,
+            "contrib": 10.31,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-10",
-            "dec_amount": 63.01,
-            "rate": 2.295391592939253,
-            "contrib": 1.45,
+            "dec_amount": 75.2,
+            "rate": 2.295274425099774,
+            "contrib": 1.73,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-09",
-            "dec_amount": 13.87,
-            "rate": 0.11677968138094492,
-            "contrib": 0.02,
+            "dec_amount": 27.37,
+            "rate": 0.11676357163558956,
+            "contrib": 0.03,
             "source": "추정"
           }
         ]
@@ -1829,47 +1829,47 @@
         "collection": 0,
         "total": 0.278
       },
-      "grand_total": 24.78
+      "grand_total": 28.65
     },
     {
       "month": "2027-01",
       "individual": {
-        "regular": 25.48,
-        "collection": 1.35,
-        "total": 26.82,
+        "regular": 27.55,
+        "collection": 1.37,
+        "total": 28.92,
         "season_adj": 0.03,
-        "adjusted": 27.63,
+        "adjusted": 29.79,
         "breakdown": [
           {
             "off": 0,
             "src": "2027-01",
-            "dec_amount": 77.93,
-            "rate": 18.582146978023136,
-            "contrib": 14.48,
+            "dec_amount": 82.02,
+            "rate": 18.579757397509276,
+            "contrib": 15.24,
             "source": "추정"
           },
           {
             "off": 1,
             "src": "2026-12",
-            "dec_amount": 66.4,
-            "rate": 14.497705733824404,
-            "contrib": 9.63,
+            "dec_amount": 73.06,
+            "rate": 14.497739614010214,
+            "contrib": 10.59,
             "source": "추정"
           },
           {
             "off": 2,
             "src": "2026-11",
-            "dec_amount": 56.38,
-            "rate": 2.295391592939253,
-            "contrib": 1.29,
+            "dec_amount": 71.14,
+            "rate": 2.295274425099774,
+            "contrib": 1.63,
             "source": "추정"
           },
           {
             "off": 3,
             "src": "2026-10",
-            "dec_amount": 63.01,
-            "rate": 0.11677968138094492,
-            "contrib": 0.07,
+            "dec_amount": 75.2,
+            "rate": 0.11676357163558956,
+            "contrib": 0.09,
             "source": "추정"
           }
         ]
@@ -1880,7 +1880,7 @@
         "collection": 0,
         "total": 0.282
       },
-      "grand_total": 27.91
+      "grand_total": 30.07
     }
   ],
   "backtest": [
@@ -1896,7 +1896,7 @@
       "month": "2025-10",
       "actual": 17.76,
       "predicted": 18.0,
-      "error_pct": 1.3,
+      "error_pct": 1.4,
       "season_month": 10,
       "is_season_outlier": false
     },
@@ -1926,7 +1926,7 @@
     },
     {
       "month": "2026-02",
-      "actual": 16.35,
+      "actual": 16.34,
       "predicted": 17.4,
       "error_pct": 6.4,
       "season_month": 2,
@@ -1959,24 +1959,24 @@
     {
       "month": "2026-06",
       "actual": 15.56,
-      "predicted": 17.03,
-      "error_pct": 9.5,
+      "predicted": 17.02,
+      "error_pct": 9.4,
       "season_month": 6,
       "is_season_outlier": false
     },
     {
       "month": "2026-07",
       "actual": 25.74,
-      "predicted": 24.74,
-      "error_pct": -3.9,
+      "predicted": 24.7,
+      "error_pct": -4.0,
       "season_month": 7,
       "is_season_outlier": false
     },
     {
       "month": "2026-08",
       "actual": 26.0,
-      "predicted": 24.25,
-      "error_pct": -6.7,
+      "predicted": 24.98,
+      "error_pct": -3.9,
       "season_month": 8,
       "is_season_outlier": false
     }
@@ -2055,6 +2055,6 @@
       "error_pct": -29.5
     }
   ],
-  "mape": 3.78,
+  "mape": 3.55,
   "corp_mape": 47.6
 }
